@@ -1,1 +1,540 @@
 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS基础：选择器与盒模型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9ff 0%, #eef2f7 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #5b7cfa 0%, #3b5bdb 100%);
+            color: white;
+            padding: 50px 30px 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .intro {
+            padding: 30px;
+            background: #f8f9ff;
+            border-bottom: 1px solid #eaeef7;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        .intro p {
+            margin-bottom: 15px;
+        }
+        
+        .content-section {
+            padding: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #2d3748;
+            position: relative;
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: #5b7cfa;
+            border-radius: 2px;
+        }
+        
+        .section-title span {
+            margin-right: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .concept-box {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid #eaeef7;
+            transition: all 0.3s ease;
+        }
+        
+        .concept-box:hover {
+            border-color: #a0b8f0;
+            box-shadow: 0 5px 15px rgba(91, 124, 250, 0.1);
+        }
+        
+        .concept-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .concept-title {
+            font-size: 1.6rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+        
+        .concept-icon {
+            font-size: 2rem;
+            background: #eef2f7;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .explanation {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Fira Code', monospace;
+            overflow-x: auto;
+            font-size: 1rem;
+        }
+        
+        .code-comment {
+            color: #a0aec0;
+        }
+        
+        .code-selector {
+            color: #81e6d9;
+        }
+        
+        .code-property {
+            color: #feb2b2;
+        }
+        
+        .code-value {
+            color: #faf089;
+        }
+        
+        .visual-box {
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .box-model {
+            width: 300px;
+            height: 200px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .margin-box {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed #f56565;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .border-box {
+            position: absolute;
+            width: 80%;
+            height: 70%;
+            border: 4px solid #4299e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .padding-box {
+            position: absolute;
+            width: 60%;
+            height: 50%;
+            border: 2px solid #48bb78;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .content-box {
+            width: 40%;
+            height: 30%;
+            background: #f56565;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .box-label {
+            position: absolute;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .margin-label {
+            top: -15px;
+            left: 10px;
+            color: #f56565;
+        }
+        
+        .border-label {
+            top: -15px;
+            right: 10px;
+            color: #4299e1;
+        }
+        
+        .padding-label {
+            bottom: -15px;
+            left: 10px;
+            color: #48bb78;
+        }
+        
+        .content-label {
+            bottom: -15px;
+            right: 10px;
+            color: #f56565;
+        }
+        
+        .selector-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .selector-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #eaeef7;
+        }
+        
+        .selector-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .selector-title span {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .selector-desc {
+            font-size: 1rem;
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 40px 0;
+            border: 1px solid #81e6d9;
+        }
+        
+        .tip-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #2c7a7b;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tip-title span {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #2d3748;
+            color: #cbd5e0;
+            font-size: 1rem;
+        }
+        
+        .footer a {
+            color: #63b3ed;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 700px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            header {
+                padding: 40px 20px 30px;
+            }
+            
+            .box-model {
+                width: 250px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 CSS基础：选择器与盒模型</h1>
+            <div class="subtitle">掌握CSS核心概念，构建样式基石</div>
+        </header>
+        
+        <div class="intro">
+            <p>CSS选择器与盒模型是前端开发的基石，无论您是初学者还是有经验的开发者，深入理解这些概念都至关重要。</p>
+            <p>本文将带您系统学习：</p>
+            <p>• 如何精准选择页面元素</p>
+            <p>• 理解盒模型的组成和工作原理</p>
+            <p>• 掌握布局的基础概念</p>
+            <p>• 常见问题与解决方案</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title"><span>🔍</span>CSS选择器详解</h2>
+            
+            <div class="concept-box">
+                <div class="concept-header">
+                    <h3 class="concept-title">选择器的作用</h3>
+                    <div class="concept-icon">🎯</div>
+                </div>
+                <p class="explanation">CSS选择器用于"选择"您想要样式化的HTML元素。通过选择器，我们可以精准定位页面中的特定元素或元素组。</p>
+                
+                <div class="selector-examples">
+                    <div class="selector-card">
+                        <h4 class="selector-title"><span>#️⃣</span>基本选择器</h4>
+                        <p class="selector-desc">通过元素类型、类名或ID选择元素</p>
+                        <div class="code-block">
+                            <span class="code-selector">p</span> { <span class="code-comment">/* 选择所有段落 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">color</span>: <span class="code-value">blue</span>;<br>
+                            }<br><br>
+                            
+                            <span class="code-selector">.highlight</span> { <span class="code-comment">/* 选择类名为highlight的元素 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">background</span>: <span class="code-value">yellow</span>;<br>
+                            }<br><br>
+                            
+                            <span class="code-selector">#main-title</span> { <span class="code-comment">/* 选择ID为main-title的元素 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">font-size</span>: <span class="code-value">2.5rem</span>;<br>
+                            }
+                        </div>
+                    </div>
+                    
+                    <div class="selector-card">
+                        <h4 class="selector-title"><span>🧩</span>组合选择器</h4>
+                        <p class="selector-desc">基于元素之间的关系选择元素</p>
+                        <div class="code-block">
+                            <span class="code-selector">div p</span> { <span class="code-comment">/* 选择div内的所有段落 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">margin</span>: <span class="code-value">10px 0</span>;<br>
+                            }<br><br>
+                            
+                            <span class="code-selector">ul > li</span> { <span class="code-comment">/* 选择ul的直接子元素li */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">list-style</span>: <span class="code-value">none</span>;<br>
+                            }<br><br>
+                            
+                            <span class="code-selector">h1 + p</span> { <span class="code-comment">/* 选择紧接在h1后的段落 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">font-weight</span>: <span class="code-value">bold</span>;<br>
+                            }
+                        </div>
+                    </div>
+                    
+                    <div class="selector-card">
+                        <h4 class="selector-title"><span>🎭</span>伪类选择器</h4>
+                        <p class="selector-desc">基于元素状态选择元素</p>
+                        <div class="code-block">
+                            <span class="code-selector">a:hover</span> { <span class="code-comment">/* 鼠标悬停在链接上时 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">color</span>: <span class="code-value">red</span>;<br>
+                            }<br><br>
+                            
+                            <span class="code-selector">li:first-child</span> { <span class="code-comment">/* 选择第一个li元素 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">font-weight</span>: <span class="code-value">bold</span>;<br>
+                            }<br><br>
+                            
+                            <span class="code-selector">input:focus</span> { <span class="code-comment">/* 输入框获得焦点时 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">border-color</span>: <span class="code-value">blue</span>;<br>
+                            }
+                        </div>
+                    </div>
+                    
+                    <div class="selector-card">
+                        <h4 class="selector-title"><span>📦</span>属性选择器</h4>
+                        <p class="selector-desc">基于属性或属性值选择元素</p>
+                        <div class="code-block">
+                            <span class="code-selector">a[target="_blank"]</span> { <span class="code-comment">/* 选择在新标签页打开的链接 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">background-color</span>: <span class="code-value">yellow</span>;<br>
+                            }<br><br>
+                            
+                            <span class="code-selector">input[type="text"]</span> { <span class="code-comment">/* 选择所有文本输入框 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">padding</span>: <span class="code-value">8px</span>;<br>
+                            }<br><br>
+                            
+                            <span class="code-selector">img[alt]</span> { <span class="code-comment">/* 选择所有有alt属性的图片 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">border</span>: <span class="code-value">1px solid #ccc</span>;<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-title"><span>📦</span>CSS盒模型详解</h2>
+            
+            <div class="concept-box">
+                <div class="concept-header">
+                    <h3 class="concept-title">什么是盒模型？</h3>
+                    <div class="concept-icon">📐</div>
+                </div>
+                <p class="explanation">在CSS中，每个元素都被视为一个矩形盒子。这个盒子由四个部分组成：内容(content)、内边距(padding)、边框(border)和外边距(margin)。</p>
+                
+                <div class="visual-box">
+                    <div class="box-model">
+                        <div class="margin-box">
+                            <div class="box-label margin-label">margin</div>
+                            <div class="border-box">
+                                <div class="box-label border-label">border</div>
+                                <div class="padding-box">
+                                    <div class="box-label padding-label">padding</div>
+                                    <div class="content-box">
+                                        Content
+                                        <div class="box-label content-label">content</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <span class="code-selector">.box</span> {<br>
+                        &nbsp;&nbsp;<span class="code-property">width</span>: <span class="code-value">300px</span>; <span class="code-comment">/* 内容宽度 */</span><br>
+                        &nbsp;&nbsp;<span class="code-property">height</span>: <span class="code-value">200px</span>; <span class="code-comment">/* 内容高度 */</span><br>
+                        &nbsp;&nbsp;<span class="code-property">padding</span>: <span class="code-value">20px</span>; <span class="code-comment">/* 内边距 */</span><br>
+                        &nbsp;&nbsp;<span class="code-property">border</span>: <span class="code-value">5px solid #333</span>; <span class="code-comment">/* 边框 */</span><br>
+                        &nbsp;&nbsp;<span class="code-property">margin</span>: <span class="code-value">30px</span>; <span class="code-comment">/* 外边距 */</span><br>
+                        }
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>标准盒模型 vs 替代盒模型：</strong></p>
+                    <p>默认情况下，元素的宽度(width)和高度(height)只包括内容区域。添加内边距和边框会增加盒子的总大小。</p>
+                    <p>使用 <code>box-sizing: border-box;</code> 可以改变这种行为，使宽度和高度包括内容、内边距和边框。</p>
+                </div>
+                
+                <div class="code-block">
+                    <span class="code-selector">.standard-box</span> {<br>
+                    &nbsp;&nbsp;<span class="code-property">box-sizing</span>: <span class="code-value">content-box</span>; <span class="code-comment">/* 默认值 */</span><br>
+                    &nbsp;&nbsp;<span class="code-property">width</span>: <span class="code-value">300px</span>;<br>
+                    &nbsp;&nbsp;<span class="code-property">padding</span>: <span class="code-value">20px</span>;<br>
+                    &nbsp;&nbsp;<span class="code-property">border</span>: <span class="code-value">5px solid #333</span>;<br>
+                    &nbsp;&nbsp;<span class="code-comment">/* 总宽度 = 300 + 40 + 10 = 350px */</span><br>
+                    }<br><br>
+                    
+                    <span class="code-selector">.border-box</span> {<br>
+                    &nbsp;&nbsp;<span class="code-property">box-sizing</span>: <span class="code-value">border-box</span>; <span class="code-comment">/* 推荐设置 */</span><br>
+                    &nbsp;&nbsp;<span class="code-property">width</span>: <span class="code-value">300px</span>;<br>
+                    &nbsp;&nbsp;<span class="code-property">padding</span>: <span class="code-value">20px</span>;<br>
+                    &nbsp;&nbsp;<span class="code-property">border</span>: <span class="code-value">5px solid #333</span>;<br>
+                    &nbsp;&nbsp;<span class="code-comment">/* 总宽度 = 300px (内容自动调整) */</span><br>
+                    }
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <h3 class="tip-title"><span>💡</span>实用技巧</h3>
+                <div class="explanation">
+                    <p>1. 全局设置box-sizing：在CSS开头添加以下代码，使所有元素使用border-box模型：</p>
+                    <div class="code-block">
+                        <span class="code-selector">*, *::before, *::after</span> {<br>
+                        &nbsp;&nbsp;<span class="code-property">box-sizing</span>: <span class="code-value">border-box</span>;<br>
+                        }
+                    </div>
+                    
+                    <p>2. 使用margin: auto; 可以轻松实现水平居中：</p>
+                    <div class="code-block">
+                        <span class="code-selector">.container</span> {<br>
+                        &nbsp;&nbsp;<span class="code-property">width</span>: <span class="code-value">80%</span>;<br>
+                        &nbsp;&nbsp;<span class="code-property">margin</span>: <span class="code-value">0 auto</span>; <span class="code-comment">/* 水平居中 */</span><br>
+                        }
+                    </div>
+                    
+                    <p>3. 使用负margin可以创建重叠效果，但需谨慎使用。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 CSS完全指南 | 前端开发学习系列</p>
+            <p>下一节：Flexbox布局完全指南</p>
+            <p>回复"CSS"获取完整学习资料 | <a href="#">分享给学习伙伴</a></p>
+        </div>
+    </div>
+</body>
+</html>
