@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS组合选择器与选择器优先级</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9ff 0%, #eef2f7 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6f42c1 0%, #563d7c 100%);
+            color: white;
+            padding: 50px 30px 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .intro {
+            padding: 30px;
+            background: #f8f9ff;
+            border-bottom: 1px solid #eaeef7;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        .intro p {
+            margin-bottom: 15px;
+        }
+        
+        .content-section {
+            padding: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #2d3748;
+            position: relative;
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: #6f42c1;
+            border-radius: 2px;
+        }
+        
+        .section-title i {
+            margin-right: 15px;
+            font-size: 1.8rem;
+            color: #6f42c1;
+        }
+        
+        .concept-box {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid #eaeef7;
+        }
+        
+        .concept-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .concept-icon {
+            font-size: 2.5rem;
+            color: #6f42c1;
+            margin-right: 20px;
+        }
+        
+        .concept-title {
+            font-size: 1.6rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+        
+        .explanation {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Fira Code', monospace;
+            overflow-x: auto;
+            font-size: 1rem;
+        }
+        
+        .code-comment {
+            color: #a0aec0;
+        }
+        
+        .code-selector {
+            color: #81e6d9;
+        }
+        
+        .code-property {
+            color: #feb2b2;
+        }
+        
+        .code-value {
+            color: #faf089;
+        }
+        
+        .selector-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .selector-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #eaeef7;
+        }
+        
+        .selector-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .selector-title i {
+            margin-right: 10px;
+            color: #6f42c1;
+        }
+        
+        .selector-desc {
+            font-size: 1rem;
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+        
+        .visual-example {
+            margin: 30px 0;
+            padding: 25px;
+            background: #f8f9ff;
+            border-radius: 12px;
+            border: 1px solid #eaeef7;
+        }
+        
+        .demo-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .demo-box {
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #eaeef7;
+            background: white;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .demo-box h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #6f42c1;
+        }
+        
+        .priority-system {
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid #eaeef7;
+        }
+        
+        .priority-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2d3748;
+            text-align: center;
+        }
+        
+        .priority-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .priority-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #eaeef7;
+            text-align: center;
+        }
+        
+        .priority-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #6f42c1;
+        }
+        
+        .priority-name {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-weight: 600;
+        }
+        
+        .priority-examples {
+            font-size: 0.95rem;
+            color: #4a5568;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .comparison-table th {
+            background: #6f42c1;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eaeef7;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 40px 0;
+            border: 1px solid #81e6d9;
+        }
+        
+        .tip-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #2c7a7b;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tip-title i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #2d3748;
+            color: #cbd5e0;
+            font-size: 1rem;
+        }
+        
+        .footer a {
+            color: #63b3ed;
+            text-decoration: none;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #e1f5fe 0%, #b3e5fc 100%);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 700px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            header {
+                padding: 40px 20px 30px;
+            }
+            
+            .selector-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .priority-levels {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-code-branch"></i> CSS组合选择器与选择器优先级</h1>
+            <div class="subtitle">掌握CSS选择器的高级用法与规则</div>
+        </header>
+        
+        <div class="intro">
+            <p>组合选择器允许你基于元素之间的关系精确选择元素，而选择器优先级决定了当多个规则冲突时哪个规则将被应用。</p>
+            <p>本文将深入探讨：</p>
+            <p>• 四种核心组合选择器的用法与区别</p>
+            <p>• 选择器优先级的计算规则</p>
+            <p>• 实际应用场景与最佳实践</p>
+            <p>• 解决样式冲突的专业技巧</p>
+        </div>
+        
+        <div class="content-section">
+            <div class="concept-box">
+                <div class="concept-header">
+                    <i class="fas fa-link concept-icon"></i>
+                    <h2 class="concept-title">组合选择器详解</h2>
+                </div>
+                <p class="explanation">
+                    组合选择器通过组合两个或多个选择器来精确选择元素，基于它们在文档结构中的关系。
+                </p>
+                
+                <div class="selector-grid">
+                    <div class="selector-card">
+                        <h3 class="selector-title"><i class="fas fa-sitemap"></i> 后代选择器</h3>
+                        <p class="selector-desc">选择指定元素内部的所有后代元素（所有层级）</p>
+                        <div class="code-block">
+                            <span class="code-selector">div p</span> {<br>
+                            &nbsp;&nbsp;<span class="code-comment">/* 选择div内所有p元素 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">color</span>: <span class="code-value">blue</span>;<br>
+                            }
+                        </div>
+                        <div class="code-block">
+                            <span class="code-comment">/* HTML 示例 */</span><br>
+                            &lt;div&gt;<br>
+                            &nbsp;&nbsp;&lt;p&gt;被选中&lt;/p&gt;<br>
+                            &nbsp;&nbsp;&lt;section&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;也被选中&lt;/p&gt;<br>
+                            &nbsp;&nbsp;&lt;/section&gt;<br>
+                            &lt;/div&gt;
+                        </div>
+                    </div>
+                    
+                    <div class="selector-card">
+                        <h3 class="selector-title"><i class="fas fa-level-down-alt"></i> 子选择器</h3>
+                        <p class="selector-desc">选择指定元素的直接子元素（仅第一层级）</p>
+                        <div class="code-block">
+                            <span class="code-selector">div > p</span> {<br>
+                            &nbsp;&nbsp;<span class="code-comment">/* 仅选择div的直接子p元素 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">color</span>: <span class="code-value">red</span>;<br>
+                            }
+                        </div>
+                        <div class="code-block">
+                            <span class="code-comment">/* HTML 示例 */</span><br>
+                            &lt;div&gt;<br>
+                            &nbsp;&nbsp;&lt;p&gt;被选中（直接子元素）&lt;/p&gt;<br>
+                            &nbsp;&nbsp;&lt;section&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;不被选中&lt;/p&gt;<br>
+                            &nbsp;&nbsp;&lt;/section&gt;<br>
+                            &lt;/div&gt;
+                        </div>
+                    </div>
+                    
+                    <div class="selector-card">
+                        <h3 class="selector-title"><i class="fas fa-arrow-right"></i> 相邻兄弟选择器</h3>
+                        <p class="selector-desc">选择紧接在指定元素后的第一个兄弟元素</p>
+                        <div class="code-block">
+                            <span class="code-selector">h2 + p</span> {<br>
+                            &nbsp;&nbsp;<span class="code-comment">/* 选择紧接在h2后的第一个p元素 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">font-weight</span>: <span class="code-value">bold</span>;<br>
+                            }
+                        </div>
+                        <div class="code-block">
+                            <span class="code-comment">/* HTML 示例 */</span><br>
+                            &lt;h2&gt;标题&lt;/h2&gt;<br>
+                            &lt;p&gt;被选中（紧接在h2后）&lt;/p&gt;<br>
+                            &lt;p&gt;不被选中&lt;/p&gt;
+                        </div>
+                    </div>
+                    
+                    <div class="selector-card">
+                        <h3 class="selector-title"><i class="fas fa-arrows-alt-h"></i> 通用兄弟选择器</h3>
+                        <p class="selector-desc">选择指定元素后的所有兄弟元素</p>
+                        <div class="code-block">
+                            <span class="code-selector">h2 ~ p</span> {<br>
+                            &nbsp;&nbsp;<span class="code-comment">/* 选择h2后的所有p兄弟元素 */</span><br>
+                            &nbsp;&nbsp;<span class="code-property">color</span>: <span class="code-value">green</span>;<br>
+                            }
+                        </div>
+                        <div class="code-block">
+                            <span class="code-comment">/* HTML 示例 */</span><br>
+                            &lt;h2&gt;标题&lt;/h2&gt;<br>
+                            &lt;p&gt;被选中&lt;/p&gt;<br>
+                            &lt;div&gt;...&lt;/div&gt;<br>
+                            &lt;p&gt;也被选中&lt;/p&gt;
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="visual-example">
+                <h2 class="section-title"><i class="fas fa-laptop-code"></i> 组合选择器演示</h2>
+                <p class="explanation">以下示例展示不同组合选择器的实际效果：</p>
+                
+                <div class="demo-area">
+                    <div class="demo-box">
+                        <h3>HTML结构</h3>
+                        <div style="background: #e9ecef; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 0.9rem;">
+                            &lt;div class="container"&gt;<br>
+                            &nbsp;&nbsp;&lt;h2&gt;标题&lt;/h2&gt;<br>
+                            &nbsp;&nbsp;&lt;p&gt;段落1&lt;/p&gt;<br>
+                            &nbsp;&nbsp;&lt;div class="inner"&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;内部段落&lt;/p&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;文本&lt;/span&gt;<br>
+                            &nbsp;&nbsp;&lt;/div&gt;<br>
+                            &nbsp;&nbsp;&lt;p&gt;段落2&lt;/p&gt;<br>
+                            &nbsp;&nbsp;&lt;p&gt;段落3&lt;/p&gt;<br>
+                            &lt;/div&gt;
+                        </div>
+                    </div>
+                    
+                    <div class="demo-box">
+                        <h3>后代选择器</h3>
+                        <p style="color: blue;">.container p { color: blue; }</p>
+                        <p>效果：所有段落变蓝</p>
+                    </div>
+                    
+                    <div class="demo-box">
+                        <h3>子选择器</h3>
+                        <p style="color: red;">.container > p { color: red; }</p>
+                        <p>效果：仅直接子段落变红</p>
+                    </div>
+                    
+                    <div class="demo-box">
+                        <h3>相邻兄弟</h3>
+                        <p style="font-weight: bold;">h2 + p { font-weight: bold; }</p>
+                        <p>效果：标题后第一个段落加粗</p>
+                    </div>
+                    
+                    <div class="demo-box">
+                        <h3>通用兄弟</h3>
+                        <p style="color: green;">h2 ~ p { color: green; }</p>
+                        <p>效果：标题后所有段落变绿</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-box">
+                <div class="concept-header">
+                    <i class="fas fa-trophy concept-icon"></i>
+                    <h2 class="concept-title">选择器优先级</h2>
+                </div>
+                <p class="explanation">
+                    当多个CSS规则应用于同一个元素时，浏览器使用优先级系统来确定哪个规则生效。优先级通过计算选择器的权重值来确定。
+                </p>
+                
+                <div class="priority-system">
+                    <h3 class="priority-title">优先级权重系统</h3>
+                    <div class="priority-levels">
+                        <div class="priority-card">
+                            <div class="priority-value">0,0,0,0</div>
+                            <div class="priority-name">元素选择器</div>
+                            <div class="priority-examples">
+                                p, div, span<br>
+                                权重：0,0,0,1
+                            </div>
+                        </div>
+                        
+                        <div class="priority-card">
+                            <div class="priority-value">0,0,1,0</div>
+                            <div class="priority-name">类选择器</div>
+                            <div class="priority-examples">
+                                .class, [type="text"]<br>
+                                :hover, ::before<br>
+                                权重：0,0,1,0
+                            </div>
+                        </div>
+                        
+                        <div class="priority-card">
+                            <div class="priority-value">0,1,0,0</div>
+                            <div class="priority-name">ID选择器</div>
+                            <div class="priority-examples">
+                                #header, #main<br>
+                                权重：0,1,0,0
+                            </div>
+                        </div>
+                        
+                        <div class="priority-card">
+                            <div class="priority-value">1,0,0,0</div>
+                            <div class="priority-name">内联样式</div>
+                            <div class="priority-examples">
+                                style="color: red;"<br>
+                                权重：1,0,0,0
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="explanation">
+                    优先级计算规则：从左到右比较权重级别，数字大的优先级更高。权重值通常表示为(A,B,C,D)：
+                </p>
+                <ul class="explanation" style="padding-left: 25px; margin-bottom: 20px;">
+                    <li>A: 内联样式（1或0）</li>
+                    <li>B: ID选择器的数量</li>
+                    <li>C: 类、伪类、属性选择器的数量</li>
+                    <li>D: 元素、伪元素选择器的数量</li>
+                </ul>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>选择器</th>
+                            <th>权重值</th>
+                            <th>计算示例</th>
+                            <th>优先级</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>p</td>
+                            <td>0,0,0,1</td>
+                            <td>D=1</td>
+                            <td>低</td>
+                        </tr>
+                        <tr>
+                            <td>.container p</td>
+                            <td>0,0,1,1</td>
+                            <td>C=1, D=1</td>
+                            <td>中</td>
+                        </tr>
+                        <tr>
+                            <td>#header .nav-item</td>
+                            <td>0,1,1,0</td>
+                            <td>B=1, C=1</td>
+                            <td>高</td>
+                        </tr>
+                        <tr>
+                            <td>style="color:red"</td>
+                            <td>1,0,0,0</td>
+                            <td>A=1</td>
+                            <td>最高</td>
+                        </tr>
+                        <tr>
+                            <td>!important</td>
+                            <td>超越所有</td>
+                            <td>color: red !important;</td>
+                            <td>最高（慎用）</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="tip-box">
+                <h3 class="tip-title"><i class="fas fa-lightbulb"></i> 优先级最佳实践</h3>
+                <div class="explanation">
+                    <p>1. <strong>保持低特异性</strong>：尽可能使用低优先级选择器，便于覆盖</p>
+                    <div class="code-block">
+                        <span class="code-comment">/* 推荐 - 低特异性 */</span><br>
+                        <span class="code-selector">.btn-primary</span> {<br>
+                        &nbsp;&nbsp;<span class="code-property">background</span>: <span class="code-value">blue</span>;<br>
+                        }<br><br>
+                        
+                        <span class="code-comment">/* 不推荐 - 高特异性 */</span><br>
+                        <span class="code-selector">header#main-nav ul li a.btn-primary</span> {<br>
+                        &nbsp;&nbsp;<span class="code-property">background</span>: <span class="code-value">blue</span>;<br>
+                        }
+                    </div>
+                    
+                    <p>2. <strong>避免!important</strong>：只在绝对必要时使用，它会破坏优先级系统</p>
+                    <div class="code-block">
+                        <span class="code-comment">/* 不推荐 */</span><br>
+                        <span class="code-selector">.text</span> {<br>
+                        &nbsp;&nbsp;<span class="code-property">color</span>: <span class="code-value">red !important</span>;<br>
+                        }<br><br>
+                        
+                        <span class="code-comment">/* 更好的解决方案 */</span><br>
+                        <span class="code-selector">.special-text</span> {<br>
+                        &nbsp;&nbsp;<span class="code-property">color</span>: <span class="code-value">red</span>;<br>
+                        }
+                    </div>
+                    
+                    <p>3. <strong>使用类选择器覆盖样式</strong>：通过增加类名而非提高优先级来覆盖样式</p>
+                    <div class="code-block">
+                        <span class="code-comment">/* 基础样式 */</span><br>
+                        <span class="code-selector">.btn</span> {<br>
+                        &nbsp;&nbsp;<span class="code-property">padding</span>: <span class="code-value">10px</span>;<br>
+                        }<br><br>
+                        
+                        <span class="code-comment">/* 特定场景样式 */</span><br>
+                        <span class="code-selector">.btn.large</span> {<br>
+                        &nbsp;&nbsp;<span class="code-property">padding</span>: <span class="code-value">15px</span>;<br>
+                        }
+                    </div>
+                    
+                    <p>4. <strong>理解继承</strong>：某些属性会被子元素继承，但不是所有属性</p>
+                    <div class="code-block">
+                        <span class="code-selector">body</span> {<br>
+                        &nbsp;&nbsp;<span class="code-property">font-family</span>: <span class="code-value">'Arial', sans-serif</span>;<br>
+                        &nbsp;&nbsp;<span class="code-property">color</span>: <span class="code-value">#333</span>;<br>
+                        }<br>
+                        <span class="code-comment">/* 以上属性会被大多数子元素继承 */</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-box">
+                <div class="concept-header">
+                    <i class="fas fa-question-circle concept-icon"></i>
+                    <h2 class="concept-title">优先级常见问题</h2>
+                </div>
+                
+                <div class="selector-grid">
+                    <div class="selector-card">
+                        <h3 class="selector-title"><i class="fas fa-exclamation"></i> 为什么我的样式没生效？</h3>
+                        <p class="selector-desc">最常见的原因是优先级不足：</p>
+                        <ul style="padding-left: 20px; color: #4a5568;">
+                            <li>检查是否有更高优先级的规则</li>
+                            <li>使用开发者工具检查应用样式</li>
+                            <li>避免使用ID选择器设置样式</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="selector-card">
+                        <h3 class="selector-title"><i class="fas fa-sync"></i> 如何覆盖已有样式？</h3>
+                        <p class="selector-desc">安全覆盖样式的方法：</p>
+                        <ul style="padding-left: 20px; color: #4a5568;">
+                            <li>使用相同选择器（后定义的生效）</li>
+                            <li>增加类名而不是提高优先级</li>
+                            <li>在已有类名基础上添加新类</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="selector-card">
+                        <h3 class="selector-title"><i class="fas fa-tools"></i> 开发者工具使用技巧</h3>
+                        <p class="selector-desc">浏览器开发者工具是调试优先级的最佳工具：</p>
+                        <ul style="padding-left: 20px; color: #4a5568;">
+                            <li>查看被覆盖的样式（带删除线）</li>
+                            <li>查看样式来源文件</li>
+                            <li>测试样式修改实时效果</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="selector-card">
+                        <h3 class="selector-title"><i class="fas fa-file-code"></i> 样式加载顺序</h3>
+                        <p class="selector-desc">CSS加载顺序也影响优先级：</p>
+                        <ul style="padding-left: 20px; color: #4a5568;">
+                            <li>后加载的样式表优先级更高</li>
+                            <li>相同选择器后定义的生效</li>
+                            <li>合理组织CSS文件顺序</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 CSS完全指南 | 前端开发学习系列</p>
+            <p>下一节：CSS伪类与伪元素</p>
+            <p>回复"CSS"获取完整学习资料 | <a href="#">分享给学习伙伴</a></p>
+        </div>
+    </div>
+</body>
+</html>
