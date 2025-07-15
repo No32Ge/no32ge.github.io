@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字游牧革命：远程工作重塑全球城市</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #00f3ff;
+            --secondary: #7b61ff;
+            --accent: #ff2a6d;
+            --dark: #0a0a12;
+            --darker: #050508;
+            --card-bg: rgba(15, 15, 30, 0.7);
+            --text: #e0e0ff;
+            --text-secondary: #a0a0c0;
+        }
+        
+        body {
+            background: var(--darker);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(123, 97, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 25%),
+                linear-gradient(to bottom, var(--darker), var(--dark));
+            color: var(--text);
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+        }
+        
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 243, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary), var(--secondary), transparent);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: var(--card-bg);
+            border: 1px solid rgba(123, 97, 255, 0.2);
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            min-width: 180px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(0, 243, 255, 0.15);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.8rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(0, 243, 255, 0.2);
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 243, 255, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-index {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .level-badge {
+            background: rgba(123, 97, 255, 0.2);
+            color: var(--secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--secondary);
+        }
+        
+        .content-en, .content-cn {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .content-en {
+            color: var(--text);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .content-cn {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid rgba(123, 97, 255, 0.5);
+        }
+        
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .highlight::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .highlight:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .terms-container {
+            margin-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+        }
+        
+        .terms-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .terms-title i {
+            font-size: 1.3rem;
+        }
+        
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        
+        .term-card {
+            background: rgba(10, 10, 20, 0.7);
+            border: 1px solid rgba(123, 97, 255, 0.2);
+            border-radius: 10px;
+            padding: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .term-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 243, 255, 0.1);
+        }
+        
+        .term-word {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .term-word::before {
+            content: "•";
+            color: var(--accent);
+        }
+        
+        .term-definition {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+        
+        .term-example {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text);
+            border-left: 2px solid var(--accent);
+            padding-left: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .globe-animation {
+            position: fixed;
+            top: 50%;
+            right: -200px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 243, 255, 0.05) 0%, transparent 70%);
+            filter: blur(50px);
+            z-index: -1;
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(123, 97, 255, 0.3);
+            border-radius: 50%;
+            border-top: 5px solid var(--primary);
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        .loading-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, -50%) rotate(0deg);
+            }
+            25% {
+                transform: translate(-100px, -60%) rotate(20deg);
+            }
+            50% {
+                transform: translate(-200px, -40%) rotate(0deg);
+            }
+            75% {
+                transform: translate(-100px, -30%) rotate(-20deg);
+            }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-item {
+                width: 100%;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">正在加载数据并构建页面...</div>
+    </div>
+    
+    <div class="globe-animation"></div>
+    
+    <div class="container">
+        <header>
+            <div class="header-overlay"></div>
+            <h1 id="pageTitle">数字游牧革命</h1>
+            <p class="subtitle" id="pageSubtitle">远程工作如何重塑全球城市 - 科技风数据可视化展示</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value">89%</div>
+                    <div class="stat-label">远程工作满意度</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">4.8M</div>
+                    <div class="stat-label">全球数字游牧民</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">35+</div>
+                    <div class="stat-label">数字游牧签证国家</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">$1.2T</div>
+                    <div class="stat-label">远程经济规模</div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="content-grid" id="contentContainer">
+            <!-- 内容将通过JavaScript动态生成 -->
+        </div>
+        
+        <div class="footer">
+            <p>数字游牧革命研究报告 | 数据可视化展示 © 2023</p>
+            <p>探索远程工作如何重塑全球城市与经济格局</p>
+        </div>
+    </div>
+    
+    <script>
+        // 页面内容数据（在实际应用中，这个数据可以来自外部JSON文件）
+        const pageData = {
+            "title": "The Digital Nomad Revolution: How Remote Work is Reshaping Global Cities",
+            "paragraphs": [
+                {
+                    "index": "1",
+                    "content_en": "The rise of **digital** **nomadism** has **transformed the way we think about** work and travel. This **section** explores the **origins** of this **movement**, from the early **adopters** in the tech industry to the **mainstream** **acceptance** **post-pandemic**.",
+                    "content_cn": "数字游牧的兴起改变了我们对工作和旅行的思考方式。本节探讨了这一运动的起源，从科技行业的早期采用者到后疫情时代的主流接受。",
+                    "level": "B2",
+                    "terms": [
+                        {
+                            "word": "digital",
+                            "definition": "adj.: relating to, using, or storing data or information in the form of electronic signals. (数字的：与以电子信号形式使用或存储数据或信息相关的。)",
+                            "sentence_en": "We are living in a digital age where information is instantly accessible.",
+                            "sentence_cn": "我们生活在一个信息即时获取的数字时代。"
+                        },
+                        {
+                            "word": "nomadism",
+                            "definition": "n.: a way of life of people who do not live in one place but move from one area to another. (游牧生活；流浪生活：指不固定居住在一处，而是从一个地区移动到另一个地区的人们的生活方式。)",
+                            "sentence_en": "Modern nomadism is often supported by remote work and technology.",
+                            "sentence_cn": "现代的游牧生活方式通常由远程工作和技术支持。"
+                        },
+                        {
+                            "word": "transform the way someone thinks about",
+                            "definition": "phr.: to completely change someone's opinion or understanding of something. (改变某人对...的看法：彻底改变某人对某事的观点或理解。)",
+                            "sentence_en": "The internet has transformed the way we think about communication.",
+                            "sentence_cn": "互联网改变了我们对沟通的看法。"
+                        },
+                        {
+                            "word": "section",
+                            "definition": "n.: one of the parts that something is divided into. (部分；章节：某物被分割成的部分之一。)",
+                            "sentence_en": "Please read the first section of the report before our meeting.",
+                            "sentence_cn": "请在开会前阅读报告的第一部分。"
+                        },
+                        {
+                            "word": "origin",
+                            "definition": "n.: the beginning or cause of something. (起源；起因：某事的开端或原因。)",
+                            "sentence_en": "The museum has a display on the origin of the universe.",
+                            "sentence_cn": "博物馆有一个关于宇宙起源的展览。"
+                        },
+                        {
+                            "word": "movement",
+                            "definition": "n.: a group of people with a particular set of aims or ideas. (运动：指有特定目标或理念的一群人。)",
+                            "sentence_en": "She was an active member of the environmental movement.",
+                            "sentence_cn": "她是环保运动的积极成员。"
+                        },
+                        {
+                            "word": "adopter",
+                            "definition": "n.: a person or organization that starts to use a new product, service, or idea. (采用者：开始使用新产品、服务或理念的个人或组织。)",
+                            "sentence_en": "He was an early adopter of the smartphone.",
+                            "sentence_cn": "他是智能手机的早期采用者。"
+                        },
+                        {
+                            "word": "mainstream",
+                            "definition": "n./adj.: considered normal, and having or using ideas, beliefs, etc. that are accepted by most people. (主流的；主流：被认为是正常的，拥有或使用被大多数人接受的思想、信仰等。)",
+                            "sentence_en": "Vegetarianism is now considered a mainstream lifestyle choice.",
+                            "sentence_cn": "素食主义现在被认为是一种主流的生活方式选择。"
+                        },
+                        {
+                            "word": "acceptance",
+                            "definition": "n.: the act of agreeing to or approving of something. (接受；认可：同意或赞成某事的行为。)",
+                            "sentence_en": "The new policy has gained widespread acceptance among employees.",
+                            "sentence_cn": "这项新政策在员工中获得了广泛的认可。"
+                        },
+                        {
+                            "word": "post-pandemic",
+                            "definition": "adj.: relating to the period of time after a pandemic. (后疫情时代的：与大流行病之后的时期相关的。)",
+                            "sentence_en": "Many companies have changed their work policies in the post-pandemic era.",
+                            "sentence_cn": "许多公司在后疫情时代改变了他们的工作政策。"
+                        }
+                    ]
+                },
+                {
+                    "index": "2",
+                    "content_en": "We'll **delve** into the economic and cultural **impacts** on cities like Bali, Lisbon, and Chiang Mai, which have become **hubs** for remote workers. The challenges of **visa** **regulations**, **infrastructure** **demands**, and local community **integration** will also be **examined**.",
+                    "content_cn": "我们将深入探讨其对巴厘岛、里斯本和清迈等已成为远程工作者中心城市的经济和文化影响。签证法规、基础设施需求以及与当地社区融合的挑战也将被审视。",
+                    "level": "C1",
+                    "terms": [
+                        {
+                            "word": "delve",
+                            "definition": "v.: to search, especially as if by digging, in order to find a thing or information. (深入研究；探究：为了寻找事物或信息而进行探索，尤指像挖掘一样。)",
+                            "sentence_en": "The book delves into the history of the ancient civilization.",
+                            "sentence_cn": "这本书深入研究了那个古老文明的历史。"
+                        },
+                        {
+                            "word": "impact",
+                            "definition": "n.: a powerful effect that something, especially something new, has on a situation or person. (影响；冲击：某事物，特别是新事物，对局势或个人产生的强大作用。)",
+                            "sentence_en": "The new law will have a significant impact on the economy.",
+                            "sentence_cn": "新法律将对经济产生重大影响。"
+                        },
+                        {
+                            "word": "hub",
+                            "definition": "n.: the central or main part of something where there is most activity. (中心；枢纽：某事物的中心或主要部分，是活动最集中的地方。)",
+                            "sentence_en": "Singapore is a major financial hub in Asia.",
+                            "sentence_cn": "新加坡是亚洲的主要金融中心。"
+                        },
+                        {
+                            "word": "visa",
+                            "definition": "n.: an official mark, usually made in a passport, that allows you to enter or leave a particular country. (签证：通常印在护照上的官方标记，允许你进入或离开某个特定国家。)",
+                            "sentence_en": "You need to apply for a visa to travel to that country.",
+                            "sentence_cn": "你需要申请签证才能前往那个国家旅行。"
+                        },
+                        {
+                            "word": "regulation",
+                            "definition": "n.: an official rule or the act of controlling something. (法规；规定：官方的规则或控制某事的行为。)",
+                            "sentence_en": "There are strict safety regulations for the construction industry.",
+                            "sentence_cn": "建筑行业有严格的安全法规。"
+                        },
+                        {
+                            "word": "infrastructure",
+                            "definition": "n.: the basic systems and services, such as transport and power supplies, that a country or organization uses in order to work effectively. (基础设施：一个国家或组织为有效运作而使用的基本系统和服务，如交通和电力供应。)",
+                            "sentence_en": "The government is investing in improving the country's infrastructure.",
+                            "sentence_cn": "政府正在投资改善国家的基础设施。"
+                        },
+                        {
+                            "word": "demand",
+                            "definition": "n.: a strong need for something. (需求：对某物的强烈需要。)",
+                            "sentence_en": "There is a high demand for skilled workers in the tech industry.",
+                            "sentence_cn": "科技行业对技术工人的需求量很大。"
+                        },
+                        {
+                            "word": "integration",
+                            "definition": "n.: the action or process of combining two or more things in an effective way. (融合；整合：将两个或多个事物有效地结合起来的行动或过程。)",
+                            "sentence_en": "The successful integration of new employees is important for team morale.",
+                            "sentence_cn": "新员工的成功融入对团队士气很重要。"
+                        },
+                        {
+                            "word": "examine",
+                            "definition": "v.: to look at or consider a person or thing carefully and in detail in order to discover something about them. (检查；审查：为了解某人或某事而仔细、详细地察看或考虑。)",
+                            "sentence_en": "The committee will examine the evidence before making a decision.",
+                            "sentence_cn": "委员会将在做出决定前审查证据。"
+                        }
+                    ]
+                },
+                {
+                    "index": "3",
+                    "content_en": "As digital nomadism grows, **so does** its influence on **urban** development. This section **investigates** how cities are **adapting** to **cater** to this new **workforce**, from **co-working** spaces to digital **nomad** visas. We'll **highlight** **success stories** of cities that have **embraced** the **trend** and the **lessons learned** from those that **struggled**. The balance between **attracting** remote workers and **preserving** local culture is a **delicate** one, and this section explores the **strategies** cities are using to **navigate** it.",
+                    "content_cn": "随着数字游牧主义的发展，其对城市发展的影响也随之增强。本节研究了城市如何进行调整以迎合这一新的劳动力群体，从共享办公空间到数字游牧签证。我们将重点介绍那些成功拥抱这一趋势的城市的案例，以及那些在适应过程中遇到困难的城市所吸取的教训。在吸引远程工作者和保护当地文化之间取得平衡是一项微妙的任务，本节将探讨各个城市为驾驭这一局面所采用的策略。",
+                    "level": "C1",
+                    "terms": [
+                        {
+                            "word": "so do / does",
+                            "definition": "phr.: used to show that a positive statement is also true for someone or something else. (也一样；也是如此：用于表示一个肯定的陈述对其他人或事物同样适用。)",
+                            "sentence_en": "She loves to travel, and so do I.",
+                            "sentence_cn": "她喜欢旅行，我也一样。"
+                        },
+                        {
+                            "word": "urban",
+                            "definition": "adj.: relating to a town or city. (城市的；都市的：与城镇或城市有关的。)",
+                            "sentence_en": "The government is focused on urban renewal projects.",
+                            "sentence_cn": "政府正专注于城市更新项目。"
+                        },
+                        {
+                            "word": "investigate",
+                            "definition": "v.: to examine a crime, problem, statement, etc. carefully, especially to discover the truth. (调查；研究：仔细检查罪行、问题、陈述等，尤指为了发现真相。)",
+                            "sentence_en": "Police are investigating the cause of the accident.",
+                            "sentence_cn": "警方正在调查事故的原因。"
+                        },
+                        {
+                            "word": "adapt",
+                            "definition": "v.: to change, or to change something, to suit different conditions or uses. (适应；改造：为了适应不同条件或用途而改变或修改某物。)",
+                            "sentence_en": "Animals must adapt to their environment to survive.",
+                            "sentence_cn": "动物必须适应环境才能生存。"
+                        },
+                        {
+                            "word": "cater",
+                            "definition": "v.: to provide what is wanted or needed by a particular person or group. (迎合；满足…的需求：提供特定个人或团体想要或需要的东西。)",
+                            "sentence_en": "The hotel aims to cater to business travelers.",
+                            "sentence_cn": "这家酒店旨在满足商务旅客的需求。"
+                        },
+                        {
+                            "word": "workforce",
+                            "definition": "n.: the group of people who work in a company, industry, country, etc. (劳动力；全体员工：在公司、行业、国家等工作的群体。)",
+                            "sentence_en": "The company has a diverse and skilled workforce.",
+                            "sentence_cn": "该公司拥有一支多元化且技术娴熟的劳动力队伍。"
+                        },
+                        {
+                            "word": "co-working",
+                            "definition": "n./adj.: a way of working in which people from different companies share an office space. (共享办公（的）：一种工作方式，来自不同公司的人共享一个办公空间。)",
+                            "sentence_en": "She rents a desk at a co-working space downtown.",
+                            "sentence_cn": "她在市中心的一个共享办公空间租了一张办公桌。"
+                        },
+                        {
+                            "word": "nomad",
+                            "definition": "n.: a member of a group of people who move from one place to another, rather than living in one place all of the time. (游牧者；流浪者：指从一个地方移动到另一个地方，而不是一直住在一个地方的人群中的一员。)",
+                            "sentence_en": "A digital nomad can work from anywhere with an internet connection.",
+                            "sentence_cn": "一个数字游牧者可以在任何有网络连接的地方工作。"
+                        },
+                        {
+                            "word": "highlight",
+                            "definition": "v.: to attract attention to or emphasize something important. (强调；突出：吸引对重要事物的注意或强调。)",
+                            "sentence_en": "The report will highlight the need for more funding.",
+                            "sentence_cn": "该报告将强调需要更多资金。"
+                        },
+                        {
+                            "word": "success story",
+                            "definition": "n. phr.: someone or something that has achieved a great deal of success. (成功案例；成功的人或事：取得了巨大成功的人或事物。)",
+                            "sentence_en": "The company is a classic success story, starting from a small garage.",
+                            "sentence_cn": "这家公司是一个经典的成功案例，从一个小车库起家。"
+                        },
+                        {
+                            "word": "embrace",
+                            "definition": "v.: to accept something enthusiastically. (欣然接受；拥抱：热情地接受某事物。)",
+                            "sentence_en": "We must embrace new technologies to stay competitive.",
+                            "sentence_cn": "我们必须拥抱新技术以保持竞争力。"
+                        },
+                        {
+                            "word": "trend",
+                            "definition": "n.: a general development or change in a situation or in the way that people are behaving. (趋势；潮流：情况或人们行为方式的普遍发展或变化。)",
+                            "sentence_en": "There is a growing trend towards sustainable fashion.",
+                            "sentence_cn": "可持续时尚的趋势日益增长。"
+                        },
+                        {
+                            "word": "lesson learned",
+                            "definition": "n. phr.: knowledge or understanding gained by experience, especially a negative one. (经验教训：通过经验，特别是负面经验，获得的知识或理解。)",
+                            "sentence_en": "The main lesson learned from the project failure was the importance of communication.",
+                            "sentence_cn": "从项目失败中吸取的主要教训是沟通的重要性。"
+                        },
+                        {
+                            "word": "struggle",
+                            "definition": "v.: to experience difficulty and make a very great effort in order to do something. (挣扎；奋斗：经历困难并为做某事而付出巨大努力。)",
+                            "sentence_en": "The company has to struggle to survive in a competitive market.",
+                            "sentence_cn": "公司必须在竞争激烈的市场中挣扎求生。"
+                        },
+                        {
+                            "word": "attract",
+                            "definition": "v.: to pull or draw someone or something towards them, by the qualities they have. (吸引：通过所拥有的品质将某人或某物拉向自己。)",
+                            "sentence_en": "The city hopes to attract more tourists with its new museum.",
+                            "sentence_cn": "这个城市希望通过其新博物馆吸引更多游客。"
+                        },
+                        {
+                            "word": "preserve",
+                            "definition": "v.: to keep something as it is, especially in order to prevent it from being damaged or destroyed. (保护；保存：保持某物原样，尤指为了防止其被损坏或摧毁。)",
+                            "sentence_en": "It is important to preserve historical buildings for future generations.",
+                            "sentence_cn": "为子孙后代保护历史建筑非常重要。"
+                        },
+                        {
+                            "word": "delicate",
+                            "definition": "adj.: needing careful treatment, especially because it is easily damaged, broken, or harmed. (微妙的；需要小心处理的：需要小心对待，特别是因为它容易损坏、破碎或受到伤害。)",
+                            "sentence_en": "Negotiating a peace treaty is a delicate process.",
+                            "sentence_cn": "谈判和平条约是一个微妙的过程。"
+                        },
+                        {
+                            "word": "strategy",
+                            "definition": "n.: a detailed plan for achieving success in situations such as war, politics, business, industry, or sport. (策略；战略：为在战争、政治、商业、工业或体育等情境中取得成功而制定的详细计划。)",
+                            "sentence_en": "The company developed a new marketing strategy to increase sales.",
+                            "sentence_cn": "公司制定了新的营销策略以增加销售额。"
+                        },
+                        {
+                            "word": "navigate",
+                            "definition": "v.: to find the right way to deal with a difficult or complicated situation. (驾驭；应对：找到处理困难或复杂情况的正确方法。)",
+                            "sentence_en": "She is good at navigating the complex world of corporate politics.",
+                            "sentence_cn": "她善于应对复杂的企业政治世界。"
+                        }
+                    ]
+                },
+                {
+                    "index": "4",
+                    "content_en": "The future of digital nomadism is still **unfolding**. This section **speculates** on **emerging** trends, such as the rise of '**nomad** villages' and the potential for remote work to **decentralize** urban **populations**. We'll also discuss the **ethical** **considerations**, from **tax** **implications** to the environmental impact of **constant** travel. The digital nomad revolution is more than a lifestyle choice; it's a **glimpse** into the future of work and community.",
+                    "content_cn": "数字游牧的未来仍在展开。本节推测了一些新兴趋势，例如“游牧村”的兴起以及远程工作分散城市人口的潜力。我们还将讨论其中的伦理考量，从税务影响到持续旅行对环境的影响。数字游牧革命不仅仅是一种生活方式的选择；它也是对未来工作和社区的一瞥。",
+                    "level": "C1",
+                    "terms": [
+                        {
+                            "word": "unfold",
+                            "definition": "v.: (of events or information) to develop or be revealed. (（指事件或信息）展开；显露：发展或被揭示。)",
+                            "sentence_en": "Let's see how the story will unfold in the next chapter.",
+                            "sentence_cn": "让我们看看故事在下一章将如何展开。"
+                        },
+                        {
+                            "word": "speculate",
+                            "definition": "v.: to form an opinion about something without knowing all the details or facts. (推测；猜测：在不了解所有细节或事实的情况下对某事形成看法。)",
+                            "sentence_en": "It is too early to speculate on the outcome of the election.",
+                            "sentence_cn": "现在推测选举结果还为时过早。"
+                        },
+                        {
+                            "word": "emerge",
+                            "definition": "v.: to appear by coming out of something or out from behind something; to become known. (出现；显现；为人所知：从某物中或从某物后出现；变得为人所知。)",
+                            "sentence_en": "New business opportunities will emerge from this crisis.",
+                            "sentence_cn": "新的商业机会将从这场危机中出现。"
+                        },
+                        {
+                            "word": "nomad",
+                            "definition": "n.: a member of a group of people who move from one place to another, rather than living in one place all of the time. (游牧者；流浪者：指从一个地方移动到另一个地方，而不是一直住在一个地方的人群中的一员。)",
+                            "sentence_en": "He lives like a nomad, traveling from city to city for work.",
+                            "sentence_cn": "他像个游牧者一样生活，为工作从一个城市到另一个城市。"
+                        },
+                        {
+                            "word": "decentralize",
+                            "definition": "v.: to move the control of an organization or government from a single place to several smaller ones. (使分散；下放权力：将组织或政府的控制权从一个单一地点转移到几个较小的地点。)",
+                            "sentence_en": "The company decided to decentralize its operations to improve efficiency.",
+                            "sentence_cn": "公司决定将其运营分散化以提高效率。"
+                        },
+                        {
+                            "word": "population",
+                            "definition": "n.: all the people who live in a particular area, city, or country. (人口：居住在特定地区、城市或国家的所有人。)",
+                            "sentence_en": "The world's population is expected to reach 10 billion by 2050.",
+                            "sentence_cn": "预计到2050年，世界人口将达到100亿。"
+                        },
+                        {
+                            "word": "ethical",
+                            "definition": "adj.: relating to beliefs about what is morally right and wrong. (伦理的；道德的：与关于道德上对错的信念有关的。)",
+                            "sentence_en": "Doctors face many ethical dilemmas in their work.",
+                            "sentence_cn": "医生在工作中面临许多伦理困境。"
+                        },
+                        {
+                            "word": "consideration",
+                            "definition": "n.: something that must be thought about when you are planning or deciding something. (考虑因素：在计划或决定某事时必须考虑的事情。)",
+                            "sentence_en": "Safety is a major consideration in the design of any new car.",
+                            "sentence_cn": "安全性是任何新车设计中的一个主要考虑因素。"
+                        },
+                        {
+                            "word": "tax",
+                            "definition": "n.: money that you have to pay to the government so that it can pay for public services. (税；税款：你必须支付给政府以便其支付公共服务的钱。)",
+                            "sentence_en": "The government announced a new tax on sugary drinks.",
+                            "sentence_cn": "政府宣布对含糖饮料征收新税。"
+                        },
+                        {
+                            "word": "implication",
+                            "definition": "n.: a possible effect or result of an action or decision. (可能的影响；后果：一个行动或决定可能带来的影响或结果。)",
+                            "sentence_en": "The new law has serious implications for the a gricultural industry.",
+                            "sentence_cn": "这项新法律对农业有严重的影响。"
+                        },
+                        {
+                            "word": "constant",
+                            "definition": "adj.: happening a lot or all the time. (持续不断的；经常的：频繁发生或一直发生的。)",
+                            "sentence_en": "He was in constant pain before the surgery.",
+                            "sentence_cn": "手术前他一直处于持续的疼痛中。"
+                        },
+                        {
+                            "word": "glimpse",
+                            "definition": "n.: a brief look at someone or something. (一瞥；短暂的感受：对某人或某物的短暂一看或体验。)",
+                            "sentence_en": "The book offers a fascinating glimpse into the life of a spy.",
+                            "sentence_cn": "这本书让读者得以一窥间谍生活的迷人之处。"
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // 解析带**标记的文本
+        function parseMarkedText(text) {
+            // 使用正则表达式匹配**包裹的内容
+            return text.replace(/\*\*(.*?)\*\*/g, '<span class="highlight">$1</span>');
+        }
+
+        // 创建单个卡片元素
+        function createCardElement(paragraph) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            const cardHeader = document.createElement('div');
+            cardHeader.className = 'card-header';
+            
+            const sectionIndex = document.createElement('div');
+            sectionIndex.className = 'section-index';
+            sectionIndex.textContent = `Section ${paragraph.index}`;
+            
+            const levelBadge = document.createElement('div');
+            levelBadge.className = 'level-badge';
+            levelBadge.textContent = paragraph.level;
+            
+            cardHeader.appendChild(sectionIndex);
+            cardHeader.appendChild(levelBadge);
+            card.appendChild(cardHeader);
+            
+            const contentEn = document.createElement('div');
+            contentEn.className = 'content-en';
+            contentEn.innerHTML = parseMarkedText(paragraph.content_en);
+            card.appendChild(contentEn);
+            
+            const contentCn = document.createElement('div');
+            contentCn.className = 'content-cn';
+            contentCn.innerHTML = parseMarkedText(paragraph.content_cn);
+            card.appendChild(contentCn);
+            
+            // 添加术语部分
+            if (paragraph.terms && paragraph.terms.length > 0) {
+                const termsContainer = document.createElement('div');
+                termsContainer.className = 'terms-container';
+                
+                const termsTitle = document.createElement('div');
+                termsTitle.className = 'terms-title';
+                termsTitle.innerHTML = '<i class="fas fa-gem"></i> 核心术语';
+                termsContainer.appendChild(termsTitle);
+                
+                const termsGrid = document.createElement('div');
+                termsGrid.className = 'terms-grid';
+                
+                paragraph.terms.forEach(term => {
+                    const termCard = document.createElement('div');
+                    termCard.className = 'term-card';
+                    
+                    const termWord = document.createElement('div');
+                    termWord.className = 'term-word';
+                    termWord.textContent = term.word;
+                    termCard.appendChild(termWord);
+                    
+                    const termDefinition = document.createElement('div');
+                    termDefinition.className = 'term-definition';
+                    termDefinition.textContent = term.definition;
+                    termCard.appendChild(termDefinition);
+                    
+                    const exampleEn = document.createElement('div');
+                    exampleEn.className = 'term-example';
+                    exampleEn.textContent = term.sentence_en;
+                    termCard.appendChild(exampleEn);
+                    
+                    const exampleCn = document.createElement('div');
+                    exampleCn.className = 'term-example';
+                    exampleCn.textContent = term.sentence_cn;
+                    termCard.appendChild(exampleCn);
+                    
+                    termsGrid.appendChild(termCard);
+                });
+                
+                termsContainer.appendChild(termsGrid);
+                card.appendChild(termsContainer);
+            }
+            
+            return card;
+        }
+
+        // 初始化页面
+        function initPage() {
+            // 设置页面标题
+            document.getElementById('pageTitle').textContent = pageData.title;
+            document.getElementById('pageSubtitle').textContent = "远程工作如何重塑全球城市 - 科技风数据可视化展示";
+            
+            // 获取内容容器
+            const contentContainer = document.getElementById('contentContainer');
+            
+            // 清空容器
+            contentContainer.innerHTML = '';
+            
+            // 创建并添加卡片
+            pageData.paragraphs.forEach(paragraph => {
+                const card = createCardElement(paragraph);
+                contentContainer.appendChild(card);
+            });
+            
+            // 添加动画效果
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+            
+            // 隐藏加载层
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }, 500);
+            }, 1000);
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initPage);
+    </script>
+</body>
+</html>
