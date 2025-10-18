@@ -919,6 +919,95 @@
             border-left: 3px solid #95a5a6;
         }
 
+        /* 动态导入相关样式 */
+        .preset-libraries {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .preset-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .preset-item:last-child {
+            border-bottom: none;
+        }
+
+        .preset-btn {
+            min-width: 200px;
+            margin-right: 10px;
+        }
+
+        .preset-description {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            flex: 1;
+        }
+
+        .import-progress {
+            margin-top: 15px;
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* 批量操作状态 */
+        .batch-operation-status {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            z-index: 10001;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .preset-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .preset-btn {
+                min-width: auto;
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+
 
         /* 手机端悬浮球锁定样式 */
         @media (max-width: 767px) {
@@ -1179,6 +1268,10 @@
             </button>
             <button class="menu-item" id="export-articles-btn">
                 <i class="bi bi-upload"></i> 导出文章
+            </button>
+            <!-- 在现有的导入导出按钮后面添加 -->
+            <button class="menu-item" id="dynamic-import-btn">
+                <i class="bi bi-box-arrow-in-down"></i> 动态导入JS
             </button>
         </div>
 
@@ -1469,6 +1562,78 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" id="cancel-export-btn">取消</button>
                 <button class="btn btn-primary" id="confirm-export-btn">导出</button>
+            </div>
+        </div>
+    </div>
+    <!-- 动态导入JS模态框 -->
+    <div class="modal-overlay" id="dynamic-import-modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3 class="modal-title">动态导入JS文章库</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label required-field">JS文件URL</label>
+                    <input type="text" class="form-input" id="js-file-url"
+                        placeholder="例如: https://example.com/articles.js">
+                    <div class="field-note">支持本地文件或远程JS文件，文件应导出文章数组</div>
+                </div>
+
+                <!-- 预设的基础文章库 -->
+                <div class="form-group">
+                    <label class="form-label">预设文章库</label>
+                    <div class="preset-libraries">
+                        <div class="preset-item">
+                            <button type="button" class="btn btn-outline-primary btn-sm preset-btn"
+                                data-url="https://cdn.jsdelivr.net/gh/your-repo/basic-articles.js">
+                                基础英语文章库 (100篇)
+                            </button>
+                            <span class="preset-description">包含100篇基础英语学习文章</span>
+                        </div>
+                        <div class="preset-item">
+                            <button type="button" class="btn btn-outline-primary btn-sm preset-btn"
+                                data-url="https://cdn.jsdelivr.net/gh/your-repo/advanced-articles.js">
+                                进阶英语文章库 (150篇)
+                            </button>
+                            <span class="preset-description">包含150篇进阶英语学习文章</span>
+                        </div>
+                        <div class="preset-item">
+                            <button type="button" class="btn btn-outline-primary btn-sm preset-btn"
+                                data-url="https://cdn.jsdelivr.net/gh/your-repo/business-articles.js">
+                                商务英语文章库 (80篇)
+                            </button>
+                            <span class="preset-description">包含80篇商务英语文章</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">导入选项</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="dynamic-overwrite" checked>
+                        <label class="form-check-label">覆盖重复文章</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="dynamic-merge" checked>
+                        <label class="form-check-label">合并到现有文章</label>
+                    </div>
+                    <div class="field-note">如果勾选覆盖，遇到相同ID的文章将覆盖；合并选项决定是否保留现有文章</div>
+                </div>
+
+                <!-- 导入进度显示 -->
+                <div class="import-progress" style="display: none;">
+                    <div class="progress" style="height: 20px;">
+                        <div class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
+                    </div>
+                    <div class="progress-text text-center mt-2"></div>
+                </div>
+
+                <!-- 导入结果 -->
+                <div class="import-result" id="dynamic-import-result" style="display: none;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-dynamic-import-btn">取消</button>
+                <button class="btn btn-primary" id="confirm-dynamic-import-btn">开始导入</button>
             </div>
         </div>
     </div>
@@ -2430,6 +2595,7 @@
             renderPage();
             initFloatingControl();
             initImportExport();
+            initDynamicImport(); // 添加这一行
 
             // 初始化语音合成
             initSpeechSynthesis();
@@ -3791,7 +3957,6 @@
 
             return deleteBtn;
         }
-
         // 删除语法功能
         function deleteGrammarItem(grammar, paragraph, index) {
             if (!confirm(`确定要删除语法点 "${grammar.rule}" 吗？`)) {
@@ -3807,8 +3972,6 @@
                 showTemporaryMessage(`已删除语法点: "${grammar.rule}"`);
             }
         }
-
-
         function initGlobalSpeechControl() {
             // 在页面失去焦点时暂停所有语音
             document.addEventListener('visibilitychange', function () {
@@ -3831,6 +3994,360 @@
                     stopWordSpeech();
                 }
             });
+        }
+
+
+        // 动态导入功能
+        function initDynamicImport() {
+            // 动态导入按钮事件
+            document.getElementById('dynamic-import-btn').addEventListener('click', function () {
+                showDynamicImportModal();
+            });
+
+            // 动态导入模态框事件
+            document.getElementById('cancel-dynamic-import-btn').addEventListener('click', function () {
+                hideAllModals();
+            });
+
+            document.getElementById('confirm-dynamic-import-btn').addEventListener('click', function () {
+                startDynamicImport();
+            });
+
+            // 预设库按钮事件
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const url = this.getAttribute('data-url');
+                    document.getElementById('js-file-url').value = url;
+                });
+            });
+        }
+
+        // 显示动态导入模态框
+        function showDynamicImportModal() {
+            const modal = document.getElementById('dynamic-import-modal');
+            document.getElementById('js-file-url').value = '';
+            document.getElementById('dynamic-overwrite').checked = true;
+            document.getElementById('dynamic-merge').checked = true;
+
+            // 隐藏进度和结果
+            document.querySelector('.import-progress').style.display = 'none';
+            document.getElementById('dynamic-import-result').style.display = 'none';
+
+            modal.classList.add('show');
+        }
+
+        // 开始动态导入
+        function startDynamicImport() {
+            const url = document.getElementById('js-file-url').value.trim();
+            const overwrite = document.getElementById('dynamic-overwrite').checked;
+            const merge = document.getElementById('dynamic-merge').checked;
+
+            if (!url) {
+                showTemporaryMessage('请输入JS文件URL');
+                return;
+            }
+
+            // 显示进度
+            const progressContainer = document.querySelector('.import-progress');
+            const progressBar = progressContainer.querySelector('.progress-bar');
+            const progressText = progressContainer.querySelector('.progress-text');
+
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+            progressBar.textContent = '0%';
+            progressText.textContent = '正在加载JS文件...';
+
+            // 禁用按钮
+            const confirmBtn = document.getElementById('confirm-dynamic-import-btn');
+            const cancelBtn = document.getElementById('cancel-dynamic-import-btn');
+            confirmBtn.disabled = true;
+            cancelBtn.disabled = true;
+
+            // 创建加载状态提示
+            const loadingStatus = createLoadingStatus('正在导入文章，请稍候...');
+            document.body.appendChild(loadingStatus);
+
+            // 动态加载JS文件
+            loadExternalJS(url)
+                .then(articles => {
+                    updateProgress(50, '正在处理文章数据...');
+
+                    // 处理导入的文章
+                    const result = processDynamicImport(articles, overwrite, merge);
+
+                    updateProgress(100, '导入完成！');
+
+                    // 显示导入结果
+                    showDynamicImportResult(result);
+
+                    // 如果导入成功，重新渲染页面
+                    if (result.successCount > 0) {
+                        setTimeout(() => {
+                            renderArticleMenu();
+                            renderPage();
+                        }, 1000);
+                    }
+                })
+                .catch(error => {
+                    console.error('动态导入失败:', error);
+                    showDynamicImportResult({
+                        successCount: 0,
+                        total: 0,
+                        errors: [`导入失败: ${error.message}`]
+                    });
+                })
+                .finally(() => {
+                    // 恢复按钮状态
+                    confirmBtn.disabled = false;
+                    cancelBtn.disabled = false;
+
+                    // 移除加载状态
+                    document.body.removeChild(loadingStatus);
+                });
+        }
+
+        // 动态加载外部JS文件
+        function loadExternalJS(url) {
+            return new Promise((resolve, reject) => {
+                // 检查是否已经加载过相同的URL
+                const existingScript = document.querySelector(`script[data-imported-url="${url}"]`);
+                if (existingScript) {
+                    // 如果已经加载过，直接从全局变量获取
+                    const articles = getArticlesFromGlobal();
+                    if (articles && articles.length > 0) {
+                        resolve(articles);
+                        return;
+                    }
+                }
+
+                // 创建script标签
+                const script = document.createElement('script');
+                script.src = url;
+                script.setAttribute('data-imported-url', url);
+
+                // 设置超时
+                const timeoutId = setTimeout(() => {
+                    reject(new Error('加载超时，请检查网络连接和文件URL'));
+                }, 30000);
+
+                script.onload = function () {
+                    clearTimeout(timeoutId);
+
+                    // 从全局变量获取文章数据
+                    const articles = getArticlesFromGlobal();
+
+                    if (articles && articles.length > 0) {
+                        resolve(articles);
+                    } else {
+                        reject(new Error('JS文件未导出有效的文章数据'));
+                    }
+                };
+
+                script.onerror = function () {
+                    clearTimeout(timeoutId);
+                    reject(new Error('无法加载JS文件，请检查URL是否正确'));
+                };
+
+                document.head.appendChild(script);
+            });
+        }
+
+        // 从全局变量获取文章数据（支持多种导出格式）
+        function getArticlesFromGlobal() {
+            // 支持多种可能的全局变量名
+            const possibleGlobals = [
+                'externalArticles',
+                'articlesData',
+                'englishArticles',
+                'articleLibrary',
+                'window.articles',
+                'articles'
+            ];
+
+            for (const globalName of possibleGlobals) {
+                try {
+                    // 尝试从window对象获取
+                    let articles = window[globalName];
+
+                    // 如果直接是数组，返回
+                    if (Array.isArray(articles)) {
+                        return articles;
+                    }
+
+                    // 如果是对象，尝试从default属性获取
+                    if (articles && articles.default && Array.isArray(articles.default)) {
+                        return articles.default;
+                    }
+                } catch (error) {
+                    // 忽略错误，继续尝试下一个
+                    continue;
+                }
+            }
+
+            return null;
+        }
+
+        // 处理动态导入的文章数据
+        function processDynamicImport(importedArticles, overwrite, merge) {
+            let successCount = 0;
+            let skipCount = 0;
+            let overwriteCount = 0;
+            const errors = [];
+
+            // 验证文章数据
+            const validationResult = validateArticles(importedArticles);
+            if (!validationResult.valid) {
+                return {
+                    successCount: 0,
+                    skipCount: 0,
+                    overwriteCount: 0,
+                    errors: [validationResult.error],
+                    total: importedArticles.length
+                };
+            }
+
+            // 如果不合并，清空现有文章（除了当前文章）
+            if (!merge) {
+                const currentArticleId = appState.currentArticleId;
+                articlesData.length = 0;
+                // 保留当前文章
+                const currentArticle = getCurrentArticle();
+                if (currentArticle) {
+                    articlesData.push(currentArticle);
+                }
+            }
+
+            // 处理每篇文章
+            importedArticles.forEach(article => {
+                const existingIndex = articlesData.findIndex(a => a.id === article.id);
+
+                if (existingIndex !== -1) {
+                    if (overwrite) {
+                        // 覆盖现有文章
+                        articlesData[existingIndex] = article;
+                        overwriteCount++;
+                        successCount++;
+                    } else {
+                        // 跳过重复文章
+                        skipCount++;
+                        errors.push(`跳过重复文章: ${article.title} (ID: ${article.id})`);
+                    }
+                } else {
+                    // 添加新文章
+                    articlesData.push(article);
+                    successCount++;
+                }
+            });
+
+            return {
+                successCount,
+                skipCount,
+                overwriteCount,
+                errors,
+                total: importedArticles.length
+            };
+        }
+
+        // 更新导入进度
+        function updateProgress(percent, text) {
+            const progressBar = document.querySelector('.import-progress .progress-bar');
+            const progressText = document.querySelector('.import-progress .progress-text');
+
+            if (progressBar && progressText) {
+                progressBar.style.width = percent + '%';
+                progressBar.textContent = percent + '%';
+                progressText.textContent = text;
+            }
+        }
+
+        // 显示动态导入结果
+        function showDynamicImportResult(result) {
+            const resultContainer = document.getElementById('dynamic-import-result');
+            let html = '';
+
+            if (result.successCount > 0) {
+                html = `<div class="import-result success">
+            <strong>导入成功！</strong><br>
+            成功导入/更新: ${result.successCount} 篇文章<br>
+            ${result.overwriteCount > 0 ? `覆盖: ${result.overwriteCount} 篇<br>` : ''}
+            ${result.skipCount > 0 ? `跳过重复: ${result.skipCount} 篇<br>` : ''}
+            总计处理: ${result.total} 篇
+        </div>`;
+            } else {
+                html = `<div class="import-result error">
+            <strong>导入失败！</strong><br>
+            ${result.errors.join('<br>')}
+        </div>`;
+            }
+
+            resultContainer.innerHTML = html;
+            resultContainer.style.display = 'block';
+
+            // 滚动到结果区域
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 创建加载状态提示
+        function createLoadingStatus(message) {
+            const status = document.createElement('div');
+            status.className = 'batch-operation-status';
+            status.innerHTML = `
+        <div class="loading-spinner"></div>
+        <div>${message}</div>
+    `;
+            return status;
+        }
+
+        // 批量导入示例函数（用于测试）
+        function demoBatchImport() {
+            // 这是一个示例函数，展示如何批量导入
+            const demoArticles = [
+                {
+                    "id": "demo_1",
+                    "title": "示例文章 1",
+                    "info": {
+                        "author": "系统",
+                        "source": "示例库",
+                        "level": "B1",
+                        "tags": ["示例"]
+                    },
+                    "gram_types": {
+                        "S": "Sentence Structure",
+                        "T": "Tense",
+                        "C": "Clause",
+                        "P": "Punctuation",
+                        "W": "Word Form / Morphology",
+                        "O": "Others"
+                    },
+                    "paras": [
+                        {
+                            "id": 1,
+                            "en": "This is a demo paragraph for testing.",
+                            "cn": "这是一个用于测试的示例段落。",
+                            "vocab": [
+                                {
+                                    "word": "demo",
+                                    "ph": "/ˈdeməʊ/",
+                                    "mean": "演示",
+                                    "ex": "This is just a demo version."
+                                }
+                            ],
+                            "gram": [
+                                {
+                                    "rule": "simple present tense",
+                                    "cat": "T",
+                                    "desc": "一般现在时用法",
+                                    "ex": "I work every day."
+                                }
+                            ]
+                        }
+                    ],
+                    "note": "这是一个示例文章"
+                }
+                // 可以添加更多示例文章...
+            ];
+
+            return processDynamicImport(demoArticles, true, true);
         }
 
 
