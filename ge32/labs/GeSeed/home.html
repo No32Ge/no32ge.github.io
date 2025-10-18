@@ -994,6 +994,216 @@
             }
         }
 
+        /* 文章目录样式 */
+        .article-catalog {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 9997;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-catalog.show {
+            transform: translateX(0);
+        }
+
+        .catalog-header {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .catalog-title {
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .catalog-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .catalog-search {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .catalog-stats {
+            padding: 10px 15px;
+            background: var(--light-color);
+            font-size: 0.8rem;
+            color: var(--text-light);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .catalog-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 0;
+        }
+
+        .article-catalog-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.2s;
+            position: relative;
+        }
+
+        .article-catalog-item:hover {
+            background: var(--light-color);
+        }
+
+        .article-catalog-item.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .article-catalog-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-color);
+        }
+
+        .catalog-item-title {
+            font-weight: bold;
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+
+        .catalog-item-meta {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .catalog-item-level {
+            display: inline-block;
+            padding: 2px 6px;
+            background: #95a5a6;
+            color: white;
+            border-radius: 3px;
+            font-size: 0.7rem;
+        }
+
+        .catalog-item-tags {
+            margin-top: 4px;
+        }
+
+        .catalog-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1px 4px;
+            border-radius: 2px;
+            margin-right: 3px;
+            font-size: 0.7rem;
+        }
+
+        .article-catalog-item.active .catalog-tag {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .catalog-footer {
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .catalog-toggle-btn {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 9996;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .catalog-toggle-btn:hover {
+            background: #2980b9;
+            transform: translateX(5px);
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .article-catalog {
+                width: 280px;
+            }
+
+            .catalog-toggle-btn {
+                left: 10px;
+                top: 10px;
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 在移动端，目录全屏显示 */
+        @media (max-width: 480px) {
+            .article-catalog {
+                width: 100%;
+            }
+        }
+
+        /* 确保目录在悬浮菜单之上 */
+        .floating-menu {
+            z-index: 9998;
+        }
+
+        .article-catalog {
+            z-index: 9997;
+        }
+
+        .catalog-toggle-btn {
+            z-index: 9996;
+        }
+
         /* 响应式调整 */
         @media (max-width: 768px) {
             .preset-item {
@@ -1248,8 +1458,12 @@
             <button type="button" class="btn-close" id="close-menu"></button>
         </div>
 
+        <!-- 修改悬浮菜单中的文章选择部分 -->
         <div class="menu-section">
-            <div class="menu-section-title">文章选择</div>
+            <div class="menu-section-title">文章管理</div>
+            <button class="menu-item" id="article-catalog-btn">
+                <i class="bi bi-list-ul"></i> 文章目录
+            </button>
             <div id="article-menu-items">
                 <!-- 文章菜单项将通过JavaScript动态生成 -->
             </div>
@@ -1585,21 +1799,21 @@
                     <div class="preset-libraries">
                         <div class="preset-item">
                             <button type="button" class="btn btn-outline-primary btn-sm preset-btn"
-                                data-url="https://cdn.jsdelivr.net/gh/your-repo/basic-articles.js">
+                                data-url="https://ge32english.com/ge32/labs/GeSeed/article-repo/basic-articles.js">
                                 基础英语文章库 (100篇)
                             </button>
                             <span class="preset-description">包含100篇基础英语学习文章</span>
                         </div>
                         <div class="preset-item">
                             <button type="button" class="btn btn-outline-primary btn-sm preset-btn"
-                                data-url="https://cdn.jsdelivr.net/gh/your-repo/advanced-articles.js">
+                                data-url="https://ge32english.com/ge32/labs/GeSeed/article-repo/advanced-articles.js">
                                 进阶英语文章库 (150篇)
                             </button>
                             <span class="preset-description">包含150篇进阶英语学习文章</span>
                         </div>
                         <div class="preset-item">
                             <button type="button" class="btn btn-outline-primary btn-sm preset-btn"
-                                data-url="https://cdn.jsdelivr.net/gh/your-repo/business-articles.js">
+                                data-url="https://ge32english.com/ge32/labs/GeSeed/article-repo/business-articles.js">
                                 商务英语文章库 (80篇)
                             </button>
                             <span class="preset-description">包含80篇商务英语文章</span>
@@ -1637,7 +1851,38 @@
             </div>
         </div>
     </div>
+    <!-- 文章目录 -->
+    <div class="article-catalog" id="article-catalog">
+        <div class="catalog-header">
+            <h3 class="catalog-title">文章目录</h3>
+            <button class="catalog-close" id="catalog-close">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
 
+        <div class="catalog-search">
+            <input type="text" class="search-input" id="catalog-search" placeholder="搜索文章标题、标签、作者...(Ctrl+K)">
+        </div>
+
+        <div class="catalog-stats" id="catalog-stats">
+            共加载 0 篇文章
+        </div>
+
+        <div class="catalog-list" id="catalog-list">
+            <!-- 文章列表将通过JavaScript动态生成 -->
+        </div>
+
+        <div class="catalog-footer">
+            <button class="btn btn-sm btn-outline-secondary" id="refresh-catalog">
+                <i class="bi bi-arrow-clockwise"></i> 刷新目录
+            </button>
+        </div>
+    </div>
+
+    <!-- 目录切换按钮 -->
+    <button class="catalog-toggle-btn" id="catalog-toggle">
+        <i class="bi bi-list"></i> 文章目录
+    </button>
 
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
@@ -1881,6 +2126,8 @@
             renderArticleMenu();
             buildWordDictionary();
             renderPage();
+            // 更新目录高亮
+            updateCatalogHighlight();
             // 滚动到顶部
             window.scrollTo(0, 0);
         }
@@ -2280,6 +2527,13 @@
                 y: window.innerHeight - 100
             };
 
+            // 在悬浮菜单初始化部分添加
+            document.getElementById('article-catalog-btn').addEventListener('click', function () {
+                document.getElementById('article-catalog').classList.add('show');
+                renderCatalogList();
+                hideFloatingMenu();
+            });
+
             // 根据设备类型绑定不同的事件
             if (isTouch) {
                 // 触屏设备 - 简化交互，只处理点击
@@ -2605,7 +2859,8 @@
             renderPage();
             initFloatingControl();
             initImportExport();
-            initDynamicImport(); // 添加这一行
+            initDynamicImport();
+            initArticleCatalog(); // 添加这一行
 
             // 初始化语音合成
             initSpeechSynthesis();
@@ -4053,7 +4308,7 @@
             const merge = document.getElementById('dynamic-merge').checked;
 
             if (!url) {
-                showTemporaryMessage('请输入JS文件URL');
+                showTemporaryMessage('请输入文件URL');
                 return;
             }
 
@@ -4359,6 +4614,149 @@
 
             return processDynamicImport(demoArticles, true, true);
         }
+
+        // 文章目录功能
+        function initArticleCatalog() {
+            const catalog = document.getElementById('article-catalog');
+            const catalogToggle = document.getElementById('catalog-toggle');
+            const catalogClose = document.getElementById('catalog-close');
+            const catalogSearch = document.getElementById('catalog-search');
+            const catalogList = document.getElementById('catalog-list');
+            const catalogStats = document.getElementById('catalog-stats');
+            const refreshCatalog = document.getElementById('refresh-catalog');
+
+            // 切换目录显示
+            catalogToggle.addEventListener('click', function () {
+                catalog.classList.add('show');
+                renderCatalogList();
+            });
+
+            // 关闭目录
+            catalogClose.addEventListener('click', function () {
+                catalog.classList.remove('show');
+            });
+
+            // 点击目录外部关闭
+            document.addEventListener('click', function (e) {
+                if (!catalog.contains(e.target) && !catalogToggle.contains(e.target) && catalog.classList.contains('show')) {
+                    catalog.classList.remove('show');
+                }
+            });
+
+            // 搜索功能
+            catalogSearch.addEventListener('input', function () {
+                renderCatalogList(this.value.trim());
+            });
+
+            // 刷新目录
+            refreshCatalog.addEventListener('click', function () {
+                renderCatalogList();
+                showTemporaryMessage('目录已刷新');
+            });
+
+            // 初始渲染目录
+            renderCatalogList();
+        }
+
+        // 渲染目录列表
+        function renderCatalogList(searchTerm = '') {
+            const catalogList = document.getElementById('catalog-list');
+            const catalogStats = document.getElementById('catalog-stats');
+
+            // 过滤文章
+            let filteredArticles = articlesData;
+            if (searchTerm) {
+                const searchLower = searchTerm.toLowerCase();
+                filteredArticles = articlesData.filter(article => {
+                    return (
+                        article.title.toLowerCase().includes(searchLower) ||
+                        (article.info.author && article.info.author.toLowerCase().includes(searchLower)) ||
+                        (article.info.tags && article.info.tags.some(tag => tag.toLowerCase().includes(searchLower))) ||
+                        (article.info.level && article.info.level.toLowerCase().includes(searchLower))
+                    );
+                });
+            }
+
+            // 更新统计信息
+            catalogStats.textContent = `共加载 ${filteredArticles.length} 篇文章${searchTerm ? ` (搜索: "${searchTerm}")` : ''}`;
+
+            // 清空列表
+            catalogList.innerHTML = '';
+
+            if (filteredArticles.length === 0) {
+                catalogList.innerHTML = `
+            <div style="padding: 40px 20px; text-align: center; color: var(--text-light);">
+                <i class="bi bi-search" style="font-size: 2rem; margin-bottom: 10px; display: block;"></i>
+                <div>没有找到匹配的文章</div>
+            </div>
+        `;
+                return;
+            }
+
+            // 渲染文章列表
+            filteredArticles.forEach(article => {
+                const catalogItem = document.createElement('div');
+                catalogItem.className = `article-catalog-item ${article.id === appState.currentArticleId ? 'active' : ''}`;
+                catalogItem.setAttribute('data-article-id', article.id);
+
+                // 构建标签HTML
+                const tagsHtml = article.info.tags && article.info.tags.length > 0
+                    ? article.info.tags.map(tag => `<span class="catalog-tag">${tag}</span>`).join('')
+                    : '';
+
+                // 构建元数据HTML
+                const metaHtml = `
+            <span>${article.info.author || '未知作者'}</span>
+            ${article.info.level ? `<span class="catalog-item-level">${article.info.level}</span>` : ''}
+        `;
+
+                catalogItem.innerHTML = `
+            <div class="catalog-item-title">${article.title}</div>
+            <div class="catalog-item-meta">${metaHtml}</div>
+            ${tagsHtml ? `<div class="catalog-item-tags">${tagsHtml}</div>` : ''}
+        `;
+
+                // 添加点击事件
+                catalogItem.addEventListener('click', function () {
+                    switchArticle(article.id);
+                    document.getElementById('article-catalog').classList.remove('show');
+                });
+
+                catalogList.appendChild(catalogItem);
+            });
+        }
+        // 更新目录中的当前文章高亮
+        function updateCatalogHighlight() {
+            document.querySelectorAll('.article-catalog-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-article-id') === appState.currentArticleId) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        document.addEventListener('keydown', function (e) {
+            // Ctrl + K 或 Cmd + K 打开目录
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                const catalog = document.getElementById('article-catalog');
+                if (catalog.classList.contains('show')) {
+                    catalog.classList.remove('show');
+                } else {
+                    catalog.classList.add('show');
+                    renderCatalogList();
+                    // 聚焦搜索框
+                    document.getElementById('catalog-search').focus();
+                }
+            }
+
+            // ESC 键关闭目录
+            if (e.key === 'Escape' && document.getElementById('article-catalog').classList.contains('show')) {
+                document.getElementById('article-catalog').classList.remove('show');
+            }
+        });
+
+
         // 在页面加载完成后初始化选择功能
         document.addEventListener('DOMContentLoaded', function () {
             // ... 其他初始化代码 ...
@@ -4367,5 +4765,4 @@
         });
     </script>
 </body>
-
 </html>
