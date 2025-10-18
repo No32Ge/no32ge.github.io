@@ -2237,8 +2237,18 @@
         function updateProgress() {
             const winHeight = window.innerHeight;
             const docHeight = document.documentElement.scrollHeight;
-            const scrollTop = window.pageYOffset;
-            const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+            const scrollTop = window.scrollY || window.pageYOffset; // 使用现代API，保持向后兼容
+
+            // 防止除零错误
+            const scrollableHeight = docHeight - winHeight;
+            let scrollPercent = 0;
+
+            if (scrollableHeight > 0) {
+                scrollPercent = (scrollTop / scrollableHeight) * 100;
+            }
+
+            // 确保进度在合理范围内
+            scrollPercent = Math.min(Math.max(scrollPercent, 0), 100);
 
             document.getElementById('progress-bar').style.width = scrollPercent + '%';
             document.getElementById('progress-display').textContent = `${Math.round(scrollPercent)}%`;
@@ -4070,12 +4080,12 @@
             // 动态加载JS文件
             loadExternalJS(url)
                 .then(articles => {
-                    updateProgress(50, '正在处理文章数据...');
+                    updateDataProgress(50, '正在处理文章数据...');
 
                     // 处理导入的文章
                     const result = processDynamicImport(articles, overwrite, merge);
 
-                    updateProgress(100, '导入完成！');
+                    updateDataProgress(100, '导入完成！');
 
                     // 显示导入结果
                     showDynamicImportResult(result);
@@ -4249,7 +4259,7 @@
         }
 
         // 更新导入进度
-        function updateProgress(percent, text) {
+        function updateDataProgress(percent, text) {
             const progressBar = document.querySelector('.import-progress .progress-bar');
             const progressText = document.querySelector('.import-progress .progress-text');
 
@@ -4349,8 +4359,6 @@
 
             return processDynamicImport(demoArticles, true, true);
         }
-
-
         // 在页面加载完成后初始化选择功能
         document.addEventListener('DOMContentLoaded', function () {
             // ... 其他初始化代码 ...
