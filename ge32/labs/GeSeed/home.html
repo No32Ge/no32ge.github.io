@@ -1428,7 +1428,7 @@
 
     <div class="container">
         <div class="header">
-            <h1 id="page-title">The Value of Failure</h1>
+            <h1 id="page-title">GesEes</h1>
             <div class="info-bar" id="info-area">
                 <!-- 信息将通过JavaScript动态生成 -->
             </div>
@@ -1604,12 +1604,12 @@
                     <div class="form-group">
                         <label class="form-label">类别</label>
                         <select class="form-input" id="grammar-category">
-                            <option value="S">Sentence Structure - 句子结构</option>
-                            <option value="T">Tense - 时态</option>
-                            <option value="C">Clause - 从句</option>
-                            <option value="P">Punctuation - 标点</option>
-                            <option value="W">Word Form / Morphology - 词形/词法</option>
-                            <option value="O">Others - 其他</option>
+                            <option value="S">句子结构 (Sentence Structure)</option>
+                            <option value="T">时态 (Tense)</option>
+                            <option value="C">从句 (Clause)</option>
+                            <option value="P">标点 (Punctuation)</option>
+                            <option value="W">词形变化 (Word Form / Morphology)</option>
+                            <option value="O">其他 (Others)</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -1889,6 +1889,7 @@
 
     <script>
         // 多篇文章数据
+        // 多篇文章数据 - 新格式
         const articlesData = [
             {
                 "id": "failure",
@@ -1900,14 +1901,6 @@
                     "tags": ["learning", "motivation"],
                     "link": "https://example.com/original"
                 },
-                "gram_types": {
-                    "S": "Sentence Structure",
-                    "T": "Tense",
-                    "C": "Clause",
-                    "P": "Punctuation",
-                    "W": "Word Form / Morphology",
-                    "O": "Others"
-                },
                 "paras": [
                     {
                         "id": 1,
@@ -1917,61 +1910,43 @@
                             {
                                 "word": "failure",
                                 "ph": "/ˈfeɪljər/",
+                                "pos": "n",
                                 "mean": "失败",
                                 "ex": "He learned a lot from his failure."
                             },
                             {
                                 "word": "opposite of",
                                 "ph": "/ˈɒpəzɪt/",
+                                "pos": "phr",
                                 "mean": "相反的事物",
                                 "ex": "Love is the opposite of hate."
                             }
                         ],
                         "gram": [
                             {
-                                "rule": "not ... but ... structure",
-                                "cat": "S",
-                                "desc": "用于表达'不是……而是……'，强调两者对比。",
-                                "ex": "She is not lazy but tired."
-                            },
-                            {
-                                "rule": "semicolon usage",
-                                "cat": "P",
-                                "desc": "用于连接两个意思紧密相关的独立句，语气比句号弱。",
-                                "ex": "I was tired; I went to bed early."
-                            }
-                        ]
-                    },
-                    {
-                        "id": 2,
-                        "en": "Every mistake you make teaches you something valuable.",
-                        "cn": "你犯的每一个错误都会教给你一些有价值的东西。",
-                        "vocab": [
-                            {
-                                "word": "mistake",
-                                "ph": "/mɪˈsteɪk/",
-                                "mean": "错误",
-                                "ex": "She made a small mistake in the report."
-                            },
-                            {
-                                "word": "valuable",
-                                "ph": "/ˈvæljuəbl/",
-                                "mean": "有价值的",
-                                "ex": "Time is the most valuable thing we have."
-                            }
-                        ],
-                        "gram": [
-                            {
-                                "rule": "relative clause",
-                                "cat": "C",
-                                "desc": "you make 是修饰 mistake 的定语从句。",
-                                "ex": "The book that I read yesterday was fascinating."
-                            },
-                            {
-                                "rule": "simple present tense",
-                                "cat": "T",
-                                "desc": "用于表达普遍真理或习惯。",
-                                "ex": "The sun rises in the east."
+                                "id": "not_but_structure",
+                                "name": "not ... but ... 结构",
+                                "category": "S",
+                                "level": "B1",
+                                "pattern": "SUBJ + be + not + X + but + Y",
+                                "components": [
+                                    { "slot": "SUBJ", "role": "主语", "pos": ["n", "pron", "phr"] },
+                                    { "slot": "be", "role": "系动词", "pos": ["v"] },
+                                    { "slot": "not", "role": "否定词", "pos": ["adv"] },
+                                    { "slot": "X", "role": "否定内容", "pos": ["n", "adj", "phr"] },
+                                    { "slot": "but", "role": "转折连词", "pos": ["conj"] },
+                                    { "slot": "Y", "role": "肯定内容", "pos": ["n", "adj", "phr"] }
+                                ],
+                                "function": "用于表达'不是……而是……'，强调两者对比，否定前者肯定后者。",
+                                "example": {
+                                    "en": "She is not lazy but tired.",
+                                    "cn": "她不是懒惰而是累了。"
+                                },
+                                "variants": [
+                                    "SUBJ + do/does/did + not + VERB + but + VERB",
+                                    "SUBJ + be (past) + not + X + but + Y"
+                                ],
+                                "constraints": "X 与 Y 必须为语法功能一致（都为名词或都为形容词类）；but 前后保持平行结构。"
                             }
                         ]
                     }
@@ -1988,14 +1963,6 @@
                     "tags": ["persistence", "success"],
                     "link": "https://example.com/grit"
                 },
-                "gram_types": {
-                    "S": "Sentence Structure",
-                    "T": "Tense",
-                    "C": "Clause",
-                    "P": "Punctuation",
-                    "W": "Word Form / Morphology",
-                    "O": "Others"
-                },
                 "paras": [
                     {
                         "id": 1,
@@ -2005,43 +1972,37 @@
                             {
                                 "word": "grit",
                                 "ph": "/ɡrɪt/",
+                                "pos": "n",
                                 "mean": "毅力，勇气",
                                 "ex": "She showed true grit in overcoming her challenges."
                             },
                             {
                                 "word": "perseverance",
                                 "ph": "/ˌpɜːsɪˈvɪərəns/",
+                                "pos": "n",
                                 "mean": "坚持不懈",
                                 "ex": "Success requires talent and perseverance."
                             }
                         ],
                         "gram": [
                             {
-                                "rule": "is ... and ... structure",
-                                "cat": "S",
-                                "desc": "用于定义某事物，并列描述其组成部分。",
-                                "ex": "Happiness is health and freedom."
-                            }
-                        ]
-                    },
-                    {
-                        "id": 2,
-                        "en": "Our potential is one thing. What we do with it is quite another.",
-                        "cn": "我们的潜力是一回事，我们如何利用它则是另一回事。",
-                        "vocab": [
-                            {
-                                "word": "potential",
-                                "ph": "/pəˈtenʃl/",
-                                "mean": "潜力",
-                                "ex": "She has the potential to become a great leader."
-                            }
-                        ],
-                        "gram": [
-                            {
-                                "rule": "contrasting clauses",
-                                "cat": "C",
-                                "desc": "使用两个独立的句子形成对比，强调差异。",
-                                "ex": "Money is important. Happiness is more important."
+                                "id": "copular_and_list_predicates",
+                                "name": "系动词 + 列举表语",
+                                "category": "S",
+                                "level": "B1",
+                                "pattern": "SUBJ + be + PRED1 + and + PRED2",
+                                "components": [
+                                    { "slot": "SUBJ", "role": "主语", "pos": ["n", "pron", "phr"] },
+                                    { "slot": "be", "role": "系动词", "pos": ["v"] },
+                                    { "slot": "PRED1", "role": "表语1", "pos": ["n", "adj", "phr"] },
+                                    { "slot": "and", "role": "并列连词", "pos": ["conj"] },
+                                    { "slot": "PRED2", "role": "表语2", "pos": ["n", "adj", "phr"] }
+                                ],
+                                "function": "说明主语具有两个或多个并列的属性或组成部分（表语并列）。",
+                                "example": {
+                                    "en": "Happiness is health and freedom.",
+                                    "cn": "幸福就是健康和自由。"
+                                }
                             }
                         ]
                     }
@@ -2049,6 +2010,86 @@
                 "note": "Talent is important, but effort counts twice."
             }
         ];
+
+        // 文章数据初始化函数
+        function initArtcleData(currentArticle) {
+            // 确保文章对象存在
+            if (!currentArticle) return currentArticle;
+
+            // 设置默认的语法类型
+            if (!currentArticle.gram_types) {
+                currentArticle.gram_types = {
+                    "S": { "en": "Sentence Structure", "cn": "句子结构" },
+                    "T": { "en": "Tense", "cn": "时态" },
+                    "C": { "en": "Clause", "cn": "从句" },
+                    "P": { "en": "Punctuation", "cn": "标点" },
+                    "W": { "en": "Word Form / Morphology", "cn": "词形变化" },
+                    "O": { "en": "Others", "cn": "其他" }
+                };
+            }
+
+            // 设置默认的词性类型
+            if (!currentArticle.pos_types) {
+                currentArticle.pos_types = {
+                    "n": { "en": "noun", "cn": "名词" },
+                    "v": { "en": "verb", "cn": "动词" },
+                    "adj": { "en": "adjective", "cn": "形容词" },
+                    "adv": { "en": "adverb", "cn": "副词" },
+                    "prep": { "en": "preposition", "cn": "介词" },
+                    "conj": { "en": "conjunction", "cn": "连词" },
+                    "pron": { "en": "pronoun", "cn": "代词" },
+                    "det": { "en": "determiner", "cn": "限定词" },
+                    "int": { "en": "interjection", "cn": "感叹词" },
+                    "phr": { "en": "phrase", "cn": "短语" }
+                };
+            }
+
+            // 确保文章有ID（如果没有，使用标题作为ID）
+            if (!currentArticle.id && currentArticle.title) {
+                currentArticle.id = currentArticle.title.toLowerCase().replace(/[^a-z0-9]/g, '_');
+            }
+
+            // 确保段落数据存在且是数组
+            if (!currentArticle.paras || !Array.isArray(currentArticle.paras)) {
+                currentArticle.paras = [];
+            }
+
+            // 初始化每个段落
+            currentArticle.paras.forEach((para, index) => {
+                // 确保段落有ID
+                if (!para.id) {
+                    para.id = index + 1;
+                }
+
+                // 确保词汇表存在
+                if (!para.vocab) {
+                    para.vocab = [];
+                }
+
+                // 确保语法点存在
+                if (!para.gram) {
+                    para.gram = [];
+                }
+
+                // 初始化每个词汇项
+                para.vocab.forEach(vocab => {
+                    if (!vocab.ph) vocab.ph = "";
+                    if (!vocab.pos) vocab.pos = "n";
+                    if (!vocab.mean) vocab.mean = "";
+                    if (!vocab.ex) vocab.ex = "";
+                });
+
+                // 初始化每个语法项
+                para.gram.forEach(gram => {
+                    if (!gram.rule) gram.rule = "";
+                    if (!gram.cat) gram.cat = "S";
+                    if (!gram.desc) gram.desc = "";
+                    if (!gram.ex) gram.ex = "";
+                });
+            });
+
+            return currentArticle;
+        }
 
         // 应用状态
         const appState = {
@@ -2079,7 +2120,8 @@
 
         // 获取当前文章数据
         function getCurrentArticle() {
-            return articlesData.find(article => article.id === appState.currentArticleId) || articlesData[0];
+            const article = articlesData.find(article => article.id === appState.currentArticleId) || articlesData[0];
+            return initArtcleData(article);
         }
 
         // 构建单词词典
@@ -2329,6 +2371,15 @@
                         // ... 其他语法项内容保持不变
                         const category = document.createElement('div');
                         category.className = 'category';
+
+                        const gramType = currentArticle.gram_types[grammar.cat];
+                        if (gramType) {
+                            category.textContent = gramType.cn || gramType.en || grammar.cat;
+                        } else {
+                            category.textContent = grammar.cat;
+                        }
+                        grammarItem.appendChild(category);
+
                         category.textContent = currentArticle.gram_types[grammar.cat] || grammar.cat;
                         grammarItem.appendChild(category);
 
@@ -2416,9 +2467,15 @@
         }
 
 
+        function showGramToolTip(event) {
+
+        }
+
+
         // 增强showWordTooltip函数，在工具提示中添加发音按钮
         function showWordTooltip(event) {
             const word = event.target.dataset.word;
+            console.log(word)
             // 使用小写形式查找词典
             const wordData = appState.wordDictionary[word.toLowerCase()];
 
@@ -2853,14 +2910,18 @@
         }
 
         // 页面加载完成后初始化
+        // 页面加载完成后初始化
         document.addEventListener('DOMContentLoaded', function () {
+            // 初始化所有文章数据
+            articlesData.forEach(article => initArtcleData(article));
+
             buildWordDictionary();
             renderArticleMenu();
             renderPage();
             initFloatingControl();
             initImportExport();
             initDynamicImport();
-            initArticleCatalog(); // 添加这一行
+            initArticleCatalog();
 
             // 初始化语音合成
             initSpeechSynthesis();
@@ -3282,7 +3343,7 @@
                         rule: item.rule.trim(),
                         cat: item.cat && item.cat.trim() ? item.cat.trim() : "S",
                         desc: item.desc && item.desc.trim() ? item.desc.trim() : "Undefined",
-                        ex: item.ex && item.ex.trim() ? item.ex.trim() : "Undefined"
+                        ex: item.ex && item.desc.trim() ? item.ex.trim() : "Undefined"
                     });
 
                     successCount++;
@@ -3486,6 +3547,7 @@
             const file = fileInput.files[0];
             const reader = new FileReader();
 
+            // 在importArticles函数中，处理导入后调用初始化
             reader.onload = function (e) {
                 try {
                     const data = JSON.parse(e.target.result);
@@ -3506,6 +3568,9 @@
                         showTemporaryMessage(`导入失败：${validationResult.error}`);
                         return;
                     }
+
+                    // 导入文章前初始化
+                    importedArticles.forEach(article => initArtcleData(article));
 
                     // 导入文章
                     const importResult = processImport(importedArticles, overwrite);
@@ -4484,6 +4549,7 @@
 
             // 处理每篇文章
             importedArticles.forEach(article => {
+                initArtcleData(article);
                 const existingIndex = articlesData.findIndex(a => a.id === article.id);
 
                 if (existingIndex !== -1) {
@@ -4765,4 +4831,5 @@
         });
     </script>
 </body>
+
 </html>
