@@ -390,139 +390,293 @@
         justify-content: center;
       }
 
+      /* 完全重写的媒体库样式 */
       .iseeu-media-manager {
         display: none;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 90%;
-        max-width: 800px;
-        max-height: 80vh;
-        background: #1a1a2e;
-        border-radius: 12px;
+        width: 95%;
+        max-width: 1200px;
+        max-height: 90vh;
+        background: #1e1e2e;
+        border-radius: 16px;
         z-index: 10004;
         overflow: hidden;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+        border: 1px solid rgba(255,255,255,0.1);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
 
       .iseeu-media-manager.active {
-        display: block;
+        display: flex;
+        flex-direction: column;
       }
 
       .iseeu-media-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 15px 20px;
-        background: rgba(0,0,0,0.3);
+        padding: 20px 30px;
+        background: linear-gradient(135deg, #2d2d44, #252536);
         border-bottom: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      }
+
+      .iseeu-media-header h3 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .iseeu-media-header h3:before {
+        content: "🎨";
+        font-size: 28px;
       }
 
       .iseeu-media-content {
-        padding: 20px;
-        max-height: 60vh;
+        padding: 25px;
+        max-height: calc(90vh - 80px);
         overflow-y: auto;
+        background: #1a1a2e;
       }
 
       .iseeu-media-stats {
-        background: rgba(255,255,255,0.05);
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 15px;
+        background: linear-gradient(135deg, #252536, #2d2d44);
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 15px;
+        border: 1px solid rgba(255,255,255,0.05);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      }
+
+      .iseeu-media-stats-info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        color: #e2e2e2;
+        font-size: 15px;
+      }
+
+      .iseeu-media-stats-info strong {
+        color: #3498db;
+        font-weight: 600;
       }
 
       .iseeu-clear-all-btn {
         background: linear-gradient(135deg, #e74c3c, #c0392b);
         color: white;
         border: none;
-        padding: 8px 16px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 14px;
-      }
-
-      .iseeu-clear-all-btn:hover {
-        background: linear-gradient(135deg, #ea6153, #d35400);
-      }
-
-      .iseeu-media-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 15px;
-      }
-
-      .iseeu-media-item {
-        position: relative;
+        padding: 12px 24px;
         border-radius: 8px;
-        overflow: hidden;
-        cursor: pointer;
-        background: rgba(255,255,255,0.05);
-        transition: transform 0.2s;
-      }
-
-      .iseeu-media-item:hover {
-        transform: translateY(-2px);
-      }
-
-      .iseeu-media-item img,
-      .iseeu-media-item video {
-        width: 100%;
-        height: 120px;
-        object-fit: cover;
-        display: block;
-      }
-
-      .iseeu-media-item-info {
-        padding: 8px;
-        font-size: 12px;
-        color: #aaa;
-        text-align: center;
-      }
-
-      .iseeu-media-item-actions {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        display: flex;
-        gap: 5px;
-      }
-
-      .iseeu-delete-media {
-        background: rgba(231, 76, 60, 0.9);
-        border: none;
-        color: white;
-        border-radius: 50%;
-        width: 24px;
-        height: 24px;
-        cursor: pointer;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .iseeu-manager-btn {
-        margin-top: 15px;
-        background: rgba(255,255,255,0.1);
-        border: 1px solid rgba(255,255,255,0.2);
-        color: #eee;
-        padding: 10px 15px;
-        border-radius: 6px;
         cursor: pointer;
         font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
         display: flex;
         align-items: center;
         gap: 8px;
       }
 
+      .iseeu-clear-all-btn:hover {
+        background: linear-gradient(135deg, #ea6153, #d35400);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
+      }
+
+      .iseeu-clear-all-btn:before {
+        content: "🗑️";
+      }
+
+      .iseeu-media-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 25px;
+      }
+
+      .iseeu-media-item {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        background: linear-gradient(135deg, #252536, #2d2d44);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      }
+
+      .iseeu-media-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        border-color: rgba(52, 152, 219, 0.3);
+      }
+
+      .iseeu-media-item img,
+      .iseeu-media-item video {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      .iseeu-media-item:hover img,
+      .iseeu-media-item:hover video {
+        transform: scale(1.05);
+      }
+
+      .iseeu-media-item-info {
+        padding: 15px;
+        background: rgba(0,0,0,0.4);
+        backdrop-filter: blur(10px);
+      }
+
+      .iseeu-media-item-title {
+        font-size: 14px;
+        color: #fff;
+        font-weight: 600;
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .iseeu-media-item-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color: #b0b0b0;
+      }
+
+      .iseeu-media-item-type {
+        background: rgba(52, 152, 219, 0.2);
+        color: #3498db;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 11px;
+      }
+
+      .iseeu-media-item-actions {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        display: flex;
+        gap: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .iseeu-media-item:hover .iseeu-media-item-actions {
+        opacity: 1;
+      }
+
+      .iseeu-delete-media {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        border: none;
+        color: white;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+      }
+
+      .iseeu-delete-media:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+      }
+
+      .iseeu-download-media {
+        background: linear-gradient(135deg, #2ecc71, #27ae60);
+        border: none;
+        color: white;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+      }
+
+      .iseeu-download-media:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+      }
+
+      .iseeu-manager-btn {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        border: none;
+        color: #eee;
+        padding: 14px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        margin: 0 auto;
+      }
+
       .iseeu-manager-btn:hover {
-        background: rgba(255,255,255,0.2);
+        background: linear-gradient(135deg, #3ca0db, #2c88c7);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+      }
+
+      .iseeu-manager-btn svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
+
+      .iseeu-empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #888;
+      }
+
+      .iseeu-empty-state-icon {
+        font-size: 64px;
+        margin-bottom: 20px;
+        opacity: 0.5;
+      }
+
+      .iseeu-empty-state-text {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #aaa;
+      }
+
+      .iseeu-empty-state-subtext {
+        font-size: 14px;
+        color: #666;
       }
 
       /* 响应式设计 */
@@ -551,13 +705,27 @@
           height: 45px;
         }
 
+        .iseeu-media-manager {
+          width: 98%;
+          max-height: 95vh;
+        }
+
         .iseeu-media-grid {
-          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+          gap: 15px;
         }
 
         .iseeu-media-stats {
           flex-direction: column;
           align-items: flex-start;
+        }
+
+        .iseeu-media-header {
+          padding: 15px 20px;
+        }
+
+        .iseeu-media-content {
+          padding: 15px;
         }
       }
 
@@ -608,6 +776,11 @@
       <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/>
     </svg>`;
 
+    // 拷贝SVG图标
+    const copySvg = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+    </svg>`;
+
     // 创建主悬浮按钮
     const floatingBtn = document.createElement('div');
     floatingBtn.className = 'iseeu-floating-btn';
@@ -652,6 +825,10 @@
             <button class="iseeu-btn iseeu-manager-btn iseeu-open-manager-btn">
               ${librarySvg}
               媒体库
+            </button>
+            <button class="iseeu-btn iseeu-copy-content-btn">
+              ${copySvg}
+              获取拷贝内容
             </button>
           </div>
           <div class="iseeu-status" id="cameraStatus">点击按钮开始操作</div>
@@ -715,6 +892,7 @@
     const stopRecordBtn = modal.querySelector('.iseeu-stop-record-btn');
     const switchCameraBtn = modal.querySelector('.iseeu-switch-camera-btn');
     const openManagerBtn = modal.querySelector('.iseeu-open-manager-btn');
+    const copyContentBtn = modal.querySelector('.iseeu-copy-content-btn');
     const minimizeBtn = modal.querySelector('.iseeu-minimize-btn');
     const closeBtn = modal.querySelector('.iseeu-close-btn');
     const closeManagerBtn = mediaManager.querySelector('.iseeu-close-manager');
@@ -1340,14 +1518,15 @@
         mediaGrid.innerHTML = '<div class="iseeu-loading"><div class="iseeu-spinner"></div><span>加载中...</span></div>';
         
         const allMedia = await getAllMediaFromDB();
-        const storageInfo = await getStorageInfo(allMedia);
+        const storageInfo = getStorageInfo(allMedia);
         
         // 更新统计信息
         mediaStats.innerHTML = `
-          共 ${storageInfo.totalItems} 个文件 | 
-          照片: ${storageInfo.photos} | 
-          视频: ${storageInfo.videos} | 
-          总大小: ${storageInfo.totalSizeFormatted}
+          <div class="iseeu-media-stats-info">
+            <div>共 <strong>${storageInfo.totalItems}</strong> 个文件</div>
+            <div>照片: <strong>${storageInfo.photos}</strong> | 视频: <strong>${storageInfo.videos}</strong></div>
+            <div>总大小: <strong>${storageInfo.totalSizeFormatted}</strong></div>
+          </div>
           <button class="iseeu-clear-all-btn">清空所有</button>
         `;
         
@@ -1361,7 +1540,13 @@
         
         // 显示媒体文件
         if (allMedia.length === 0) {
-          mediaGrid.innerHTML = '<div style="text-align: center; color: #aaa; padding: 20px;">暂无媒体文件</div>';
+          mediaGrid.innerHTML = `
+            <div class="iseeu-empty-state">
+              <div class="iseeu-empty-state-icon">📷</div>
+              <div class="iseeu-empty-state-text">暂无媒体文件</div>
+              <div class="iseeu-empty-state-subtext">拍照或录制视频后，文件将显示在这里</div>
+            </div>
+          `;
           return;
         }
         
@@ -1376,35 +1561,63 @@
           
           const blobUrl = URL.createObjectURL(media.blob);
           const date = new Date(media.timestamp).toLocaleString();
+          const fileSize = formatBytes(media.size);
+          const fileType = media.type === 'photo' ? '照片' : '视频';
           
           if (media.type === 'photo') {
             mediaItem.innerHTML = `
-              <img src="${blobUrl}" alt="照片 ${date}" />
+              <img src="${blobUrl}" alt="${fileType} ${date}" loading="lazy" />
               <div class="iseeu-media-item-info">
-                ${date}<br>
-                ${formatBytes(media.size)}
+                <div class="iseeu-media-item-title">${fileType} - ${date}</div>
+                <div class="iseeu-media-item-meta">
+                  <span>${fileSize}</span>
+                  <span class="iseeu-media-item-type">${fileType}</span>
+                </div>
               </div>
               <div class="iseeu-media-item-actions">
-                <button class="iseeu-delete-media" data-id="${media.id}">×</button>
+                <button class="iseeu-download-media" data-id="${media.id}" title="下载">↓</button>
+                <button class="iseeu-delete-media" data-id="${media.id}" title="删除">×</button>
               </div>
             `;
           } else {
             mediaItem.innerHTML = `
               <video src="${blobUrl}" preload="metadata"></video>
               <div class="iseeu-media-item-info">
-                ${date}<br>
-                ${formatBytes(media.size)}
+                <div class="iseeu-media-item-title">${fileType} - ${date}</div>
+                <div class="iseeu-media-item-meta">
+                  <span>${fileSize}</span>
+                  <span class="iseeu-media-item-type">${fileType}</span>
+                </div>
               </div>
               <div class="iseeu-media-item-actions">
-                <button class="iseeu-delete-media" data-id="${media.id}">×</button>
+                <button class="iseeu-download-media" data-id="${media.id}" title="下载">↓</button>
+                <button class="iseeu-delete-media" data-id="${media.id}" title="删除">×</button>
               </div>
             `;
           }
           
           // 点击预览
           mediaItem.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('iseeu-delete-media')) {
+            if (!e.target.classList.contains('iseeu-delete-media') && 
+                !e.target.classList.contains('iseeu-download-media')) {
               window.open(blobUrl, '_blank');
+            }
+          });
+          
+          // 下载功能
+          const downloadBtn = mediaItem.querySelector('.iseeu-download-media');
+          downloadBtn.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            try {
+              const a = document.createElement('a');
+              a.href = blobUrl;
+              a.download = `iseeu-${media.type}-${media.timestamp}.${media.type === 'photo' ? 'png' : 'webm'}`;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              showNotification('文件下载开始', 'success');
+            } catch (error) {
+              handleError(error, 'downloadMedia');
             }
           });
           
@@ -1465,6 +1678,146 @@
       return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     }
 
+    // 获取当前页面拷贝内容
+    function getCurrentPageCopyContent() {
+      try {
+        // 获取页面基本信息
+        const pageInfo = {
+          title: document.title,
+          url: window.location.href,
+          timestamp: new Date().toISOString(),
+          viewport: {
+            width: window.innerWidth,
+            height: window.innerHeight
+          }
+        };
+
+        // 获取可见文本内容
+        const visibleText = document.body.innerText || document.body.textContent || '';
+        
+        // 获取选中的文本（如果有）
+        const selectedText = window.getSelection().toString().trim();
+        
+        // 获取页面截图（如果支持）
+        let screenshotData = null;
+        if (typeof HTMLCanvasElement !== 'undefined') {
+          try {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // 注意：这需要适当的权限，可能在某些浏览器中受限
+            ctx.drawWindow(window, 0, 0, canvas.width, canvas.height, 'rgb(255,255,255)');
+            screenshotData = canvas.toDataURL('image/png');
+          } catch (e) {
+            console.warn('无法获取页面截图:', e);
+          }
+        }
+
+        // 获取所有图片
+        const images = Array.from(document.images).map(img => ({
+          src: img.src,
+          alt: img.alt,
+          width: img.width,
+          height: img.height
+        }));
+
+        // 获取所有链接
+        const links = Array.from(document.links).map(link => ({
+          href: link.href,
+          text: link.textContent?.trim(),
+          title: link.title
+        }));
+
+        // 构建完整的拷贝内容对象
+        const copyContent = {
+          page: pageInfo,
+          content: {
+            visibleText: visibleText.substring(0, 10000), // 限制长度
+            selectedText: selectedText,
+            screenshot: screenshotData,
+            images: images.slice(0, 50), // 限制数量
+            links: links.slice(0, 100) // 限制数量
+          },
+          metadata: {
+            userAgent: navigator.userAgent,
+            platform: navigator.platform,
+            language: navigator.language,
+            timestamp: Date.now()
+          }
+        };
+
+        return copyContent;
+      } catch (error) {
+        console.error('获取页面拷贝内容时出错:', error);
+        return {
+          error: '无法获取页面内容',
+          message: error.message
+        };
+      }
+    }
+
+    // 复制内容到剪贴板
+    async function copyToClipboard(text) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } else {
+          // 回退方案
+          const textArea = document.createElement('textarea');
+          textArea.value = text;
+          textArea.style.position = 'fixed';
+          textArea.style.left = '-999999px';
+          textArea.style.top = '-999999px';
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          const successful = document.execCommand('copy');
+          document.body.removeChild(textArea);
+          return successful;
+        }
+      } catch (error) {
+        console.error('复制到剪贴板失败:', error);
+        return false;
+      }
+    }
+
+    // 处理获取拷贝内容按钮点击
+    async function handleCopyContent() {
+      try {
+        showLoading('正在获取页面内容...');
+        
+        const copyContent = getCurrentPageCopyContent();
+        
+        if (copyContent.error) {
+          throw new Error(copyContent.message);
+        }
+        
+        // 将内容转换为JSON字符串
+        const jsonContent = JSON.stringify(copyContent, null, 2);
+        
+        // 尝试复制到剪贴板
+        const copied = await copyToClipboard(jsonContent);
+        
+        if (copied) {
+          updateStatus('页面内容已复制到剪贴板');
+          showNotification('页面内容已成功复制到剪贴板', 'success');
+          
+          // 在控制台输出内容信息
+          console.log('📋 页面拷贝内容:', copyContent);
+          console.log('📝 内容长度:', jsonContent.length, '字符');
+        } else {
+          throw new Error('复制到剪贴板失败');
+        }
+      } catch (error) {
+        console.error('获取拷贝内容失败:', error);
+        updateStatus('获取页面内容失败');
+        showNotification('获取页面内容失败: ' + error.message, 'error');
+      }
+    }
+
     // 浏览器兼容性检查
     function checkBrowserCompatibility() {
       const requiredAPIs = [
@@ -1514,6 +1867,9 @@
           case 's': // S键切换摄像头
             switchCamera();
             break;
+          case 'c': // C键获取拷贝内容
+            handleCopyContent();
+            break;
           case 'Escape': // ESC键关闭
             if (mediaManager.classList.contains('active')) {
               closeMediaManager();
@@ -1550,6 +1906,7 @@
     stopRecordBtn.addEventListener('click', stopRecording);
     switchCameraBtn.addEventListener('click', switchCamera);
     openManagerBtn.addEventListener('click', openMediaManager);
+    copyContentBtn.addEventListener('click', handleCopyContent);
 
     // 最小化按钮
     minimizeBtn.addEventListener('click', minimizeModal);
@@ -1691,6 +2048,23 @@
         handleError(e, 'getStorageInfo');
         throw e;
       }
+    };
+
+    // ==================== 新增的拷贝内容API ====================
+    
+    // 获取当前页面拷贝内容
+    window.ISeeU.getCurrentPageCopyContent = function() {
+      return getCurrentPageCopyContent();
+    };
+
+    // 复制文本到剪贴板
+    window.ISeeU.copyToClipboard = async function(text) {
+      return await copyToClipboard(text);
+    };
+
+    // 获取页面拷贝内容并复制到剪贴板
+    window.ISeeU.copyPageContent = async function() {
+      return await handleCopyContent();
     };
 
     // ==================== 视频流API ====================
