@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>网页摄影机 — 拍照与录像</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#06f;--glass: rgba(255,255,255,0.04);--text:#e6eef8}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,#071025 0%,#071a2a 100%);color:var(--text)}
+    .wrap{max-width:980px;margin:28px auto;padding:20px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 6px 30px rgba(2,6,23,0.6)}
+    header{display:flex;align-items:center;gap:12px}
+    h1{font-size:18px;margin:0}
+    p.lead{margin:6px 0 16px;color:rgba(230,238,248,0.75);font-size:13px}
+
+    .grid{display:grid;grid-template-columns: 1fr 360px;gap:16px}
+    .card{background:var(--card);padding:12px;border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.02)}
+
+    .preview{position:relative;border-radius:10px;overflow:hidden;background:#000;height:480px;display:flex;align-items:center;justify-content:center}
+    video#player{width:100%;height:100%;object-fit:cover;background:#000}
+    canvas#photoCanvas{display:none}
+
+    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    button,select,input[type=range]{background:var(--glass);border:1px solid rgba(255,255,255,0.03);color:var(--text);padding:8px 10px;border-radius:8px}
+    button.primary{background:linear-gradient(90deg,var(--accent),#00d4ff);color:#001; font-weight:600}
+    .small{padding:6px 8px;font-size:13px}
+
+    .meta{display:flex;align-items:center;gap:8px;margin-top:8px}
+    .devices{max-height:120px;overflow:auto;margin-top:8px}
+
+    .gallery{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .thumb{width:120px;height:80px;background:#06111a;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}
+    .thumb img, .thumb video{width:100%;height:100%;object-fit:cover}
+    .thumb a{position:absolute;right:6px;top:6px;background:rgba(0,0,0,0.4);color:#fff;padding:4px 6px;border-radius:6px;font-size:12px;text-decoration:none}
+
+    .status{font-size:13px;color:rgba(230,238,248,0.8);margin-top:8px}
+    .rec-dot{width:12px;height:12px;border-radius:50%;background:red;display:inline-block;margin-right:6px;box-shadow:0 0 8px rgba(255,0,0,0.7)}
+
+    footer{margin-top:14px;font-size:13px;color:rgba(230,238,248,0.6)}
+    @media(max-width:920px){.grid{grid-template-columns:1fr;}.preview{height:360px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>网页摄影机 — 拍照 & 录像（单文件）</h1>
+    </header>
+    <p class="lead">支持摄像头预览、拍照（下载）、录像（下载 .webm）、切换摄像头、设置分辨率。仅在 HTTPS 或 localhost 下可用。</p>
+
+    <div class="grid">
+      <section class="card">
+        <div class="preview" id="previewWrap">
+          <video id="player" autoplay playsinline muted></video>
+          <canvas id="photoCanvas"></canvas>
+        </div>
+
+        <div class="controls">
+          <button id="takePhoto" class="primary">拍照</button>
+          <button id="startRec" class="small">开始录像</button>
+          <button id="stopRec" class="small" disabled>停止录像</button>
+
+          <label for="cameraSelect" class="small">摄像头</label>
+          <select id="cameraSelect" class="small"></select>
+
+          <label class="small">分辨率</label>
+          <select id="resolution" class="small">
+            <option value="{\"width\":1280,\"height\":720}">720p</option>
+            <option value="{\"width\":1920,\"height\":1080}">1080p</option>
+            <option value="{\"width\":640,\"height\":480}">VGA</option>
+            <option value="{\"width\":320,\"height\":240}">QVGA</option>
+          </select>
+
+          <label class="small">质量</label>
+          <input id="photoQuality" type="range" min="0.1" max="1" step="0.1" value="0.92" title="照片质量（用于JPEG导出）">
+        </div>
+
+        <div class="meta">
+          <div class="status" id="status">未连接摄像头</div>
+          <div style="margin-left:auto" id="recIndicator"></div>
+        </div>
+
+        <div class="gallery" id="gallery"></div>
+      </section>
+
+      <aside class="card">
+        <h3 style="margin:0 0 8px 0">调试 & 设备</h3>
+        <div class="devices card" id="devicesBox" style="padding:8px;">
+          正在列举设备...
+        </div>
+
+        <h4 style="margin-top:12px">说明</h4>
+        <ul style="font-size:13px;line-height:1.5;color:rgba(230,238,248,0.8)">
+          <li>首次使用请允许摄像头与麦克风权限。</li>
+          <li>录像会保存为 <code>.webm</code>（浏览器支持）。</li>
+          <li>若想把视频转为其他格式，使用本地工具（ffmpeg）进行转换。</li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer>注意：部分功能（如切换后摄像头或更高分辨率）受到设备与浏览器限制。</footer>
+  </div>
+
+  <script>
+    // 主要 DOM
+    const player = document.getElementById('player');
+    const photoCanvas = document.getElementById('photoCanvas');
+    const takePhotoBtn = document.getElementById('takePhoto');
+    const startRecBtn = document.getElementById('startRec');
+    const stopRecBtn = document.getElementById('stopRec');
+    const cameraSelect = document.getElementById('cameraSelect');
+    const devicesBox = document.getElementById('devicesBox');
+    const gallery = document.getElementById('gallery');
+    const status = document.getElementById('status');
+    const recIndicator = document.getElementById('recIndicator');
+    const resolutionSel = document.getElementById('resolution');
+    const photoQuality = document.getElementById('photoQuality');
+
+    let currentStream = null;
+    let mediaRecorder = null;
+    let recordedChunks = [];
+
+    async function enumerateAndPopulate(){
+      try{
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        cameraSelect.innerHTML = '';
+        devicesBox.textContent = '';
+        let videoCount = 0;
+        devices.forEach(d => {
+          const line = document.createElement('div');
+          line.style.fontSize='13px';
+          line.style.marginBottom='6px';
+          line.textContent = `${d.kind} — ${d.label || '未命名'} — id: ${d.deviceId}`;
+          devicesBox.appendChild(line);
+          if(d.kind === 'videoinput'){
+            videoCount++;
+            const opt = document.createElement('option');
+            opt.value = d.deviceId;
+            opt.textContent = d.label || `摄像头 ${videoCount}`;
+            cameraSelect.appendChild(opt);
+          }
+        });
+        if(cameraSelect.options.length===0){
+          cameraSelect.innerHTML = '<option>无可用摄像头</option>';
+        }
+      }catch(err){
+        devicesBox.textContent = '列举设备失败: ' + err.message;
+      }
+    }
+
+    async function startCamera(deviceId=null){
+      stopStream(currentStream);
+      const res = JSON.parse(resolutionSel.value);
+      const constraints = {
+        audio: true,
+        video: Object.assign({
+          width: { ideal: res.width },
+          height: { ideal: res.height },
+          facingMode: 'environment'
+        }, deviceId ? { deviceId: { exact: deviceId } } : {})
+      };
+
+      try{
+        status.textContent = '请求摄像头...';
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        currentStream = stream;
+        player.srcObject = stream;
+        status.textContent = '摄像头已连接';
+        await enumerateAndPopulate();
+      }catch(err){
+        status.textContent = '打开摄像头失败: ' + err.message;
+        console.error(err);
+      }
+    }
+
+    function stopStream(stream){
+      if(!stream) return;
+      stream.getTracks().forEach(t=>t.stop());
+      player.srcObject = null;
+    }
+
+    takePhotoBtn.addEventListener('click', ()=>{
+      takePhoto();
+    });
+
+    cameraSelect.addEventListener('change', ()=>{
+      const id = cameraSelect.value;
+      if(id) startCamera(id);
+    });
+
+    resolutionSel.addEventListener('change', ()=>{
+      // 立即切换分辨率
+      startCamera(cameraSelect.value || null);
+    });
+
+    function takePhoto(){
+      if(!currentStream) { status.textContent = '无可用摄像头，无法拍照'; return; }
+      const videoTrack = currentStream.getVideoTracks()[0];
+      const settings = videoTrack.getSettings ? videoTrack.getSettings() : {};
+      const w = settings.width || player.videoWidth || 1280;
+      const h = settings.height || player.videoHeight || 720;
+      photoCanvas.width = w;
+      photoCanvas.height = h;
+      const ctx = photoCanvas.getContext('2d');
+      // 将当前帧绘制到canvas
+      ctx.drawImage(player, 0, 0, w, h);
+      // 导出为JPEG
+      photoCanvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `photo_${Date.now()}.jpg`;
+        // 创建缩略图
+        const thumb = document.createElement('div');
+        thumb.className='thumb';
+        const img = document.createElement('img');
+        img.src = url;
+        thumb.appendChild(img);
+        const dl = document.createElement('a');
+        dl.href = url; dl.download = a.download; dl.textContent='⬇';
+        thumb.appendChild(dl);
+        gallery.prepend(thumb);
+        status.textContent = '已拍照 — 下载准备就绪';
+      }, 'image/jpeg', parseFloat(photoQuality.value));
+    }
+
+    startRecBtn.addEventListener('click', ()=>{
+      startRecording();
+    });
+    stopRecBtn.addEventListener('click', ()=>{
+      stopRecording();
+    });
+
+    function startRecording(){
+      if(!currentStream) { status.textContent = '无视频流，无法录像'; return; }
+      recordedChunks = [];
+      try{
+        mediaRecorder = new MediaRecorder(currentStream, { mimeType: 'video/webm;codecs=vp8,opus' });
+      }catch(e){
+        try{ mediaRecorder = new MediaRecorder(currentStream); }catch(err){ status.textContent = 'MediaRecorder 不受支持: '+err.message; return; }
+      }
+      mediaRecorder.ondataavailable = e => { if(e.data && e.data.size>0) recordedChunks.push(e.data); };
+      mediaRecorder.onstart = ()=>{
+        startRecBtn.disabled = true; stopRecBtn.disabled = false;
+        recIndicator.innerHTML = '<span class="rec-dot"></span><span>录制中</span>';
+        status.textContent = '录像中...';
+      };
+      mediaRecorder.onstop = ()=>{
+        startRecBtn.disabled = false; stopRecBtn.disabled = true;
+        recIndicator.innerHTML = '';
+        status.textContent = '录像已停止，正在生成文件...';
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        const thumb = document.createElement('div');
+        thumb.className='thumb';
+        const vid = document.createElement('video');
+        vid.src = url; vid.controls = true; vid.muted = true;
+        thumb.appendChild(vid);
+        const dl = document.createElement('a');
+        dl.href = url; dl.download = `video_${Date.now()}.webm`; dl.textContent = '⬇';
+        thumb.appendChild(dl);
+        gallery.prepend(thumb);
+        status.textContent = '录像文件已生成';
+      };
+      mediaRecorder.onerror = e => { status.textContent = '录制错误: ' + e.message; };
+      mediaRecorder.start();
+    }
+
+    function stopRecording(){
+      if(!mediaRecorder) return;
+      try{ mediaRecorder.stop(); }catch(e){ console.warn(e); }
+    }
+
+    // 初始尝试：请求权限并打开默认摄像头
+    async function init(){
+      if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+        status.textContent = '此浏览器不支持媒体设备 API';
+        return;
+      }
+      try{
+        // 先请求低分辨率以提升兼容性，然后列举设备
+        await startCamera();
+      }catch(e){
+        console.warn('初始化失败', e);
+      }
+      await enumerateAndPopulate();
+    }
+
+    // 当页面卸载时清理流
+    window.addEventListener('beforeunload', ()=>{ stopStream(currentStream); });
+
+    // 开始
+    init();
+  </script>
+</body>
+</html>
