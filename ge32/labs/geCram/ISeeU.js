@@ -441,6 +441,15 @@
     // 录像状态
     let isRecording = false;
 
+    // 视频配置参数（可由外部API修改）
+    let videoConfig = {
+      width: 640,
+      height: 480,
+      scale: 1.0,
+      frameRate: 30,
+      mirror: true
+    };
+
     // 持续把 video 帧绘制到 canvas
     function startDrawingLoop() {
       // 如果没有流或 video 还没准备好，继续等待并重试
@@ -449,15 +458,21 @@
         return;
       }
 
-      // 绘制当前帧（前置摄像头镜像）
-      if (currentFacingMode === 'user') {
+      // 应用视频配置
+      canvas.width = videoConfig.width;
+      canvas.height = videoConfig.height;
+
+      // 绘制当前帧（根据配置决定是否镜像）
+      if (currentFacingMode === 'user' && videoConfig.mirror) {
+        // 前置摄像头：镜像显示
         ctx.save();
         ctx.translate(canvas.width, 0);
         ctx.scale(-1, 1);
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(video, 0, 0, canvas.width * videoConfig.scale, canvas.height * videoConfig.scale);
         ctx.restore();
       } else {
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        // 后置摄像头：正常显示（不镜像）
+        ctx.drawImage(video, 0, 0, canvas.width * videoConfig.scale, canvas.height * videoConfig.scale);
       }
 
       // 循环
@@ -582,8 +597,9 @@
         // 获取新的媒体流
         stream = await navigator.mediaDevices.getUserMedia({
           video: {
-            width: { ideal: 1280 },
-            height: { ideal: 720 },
+            width: { ideal: videoConfig.width },
+            height: { ideal: videoConfig.height },
+            frameRate: { ideal: videoConfig.frameRate },
             facingMode: currentFacingMode
           },
           audio: false
@@ -592,9 +608,6 @@
         video.srcObject = stream;
         await video.play();
 
-        // 调整 canvas 尺寸匹配视频
-        canvas.width = video.videoWidth || 640;
-        canvas.height = video.videoHeight || 480;
         // 启动画面绘制循环
         if (animationFrameId) {
           cancelAnimationFrame(animationFrameId);
@@ -670,16 +683,16 @@
       if (!stream) return;
 
       // 绘制当前视频帧到canvas
-      if (currentFacingMode === 'user') {
+      if (currentFacingMode === 'user' && videoConfig.mirror) {
         // 前置摄像头：镜像显示
         ctx.save();
         ctx.translate(canvas.width, 0);
         ctx.scale(-1, 1);
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(video, 0, 0, canvas.width * videoConfig.scale, canvas.height * videoConfig.scale);
         ctx.restore();
       } else {
         // 后置摄像头：正常显示（不镜像）
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(video, 0, 0, canvas.width * videoConfig.scale, canvas.height * videoConfig.scale);
       }
 
       canvas.toBlob(async (blob) => {
@@ -711,7 +724,7 @@
 
       try {
         // 创建混合流
-        const canvasStream = canvas.captureStream(30);
+        const canvasStream = canvas.captureStream(videoConfig.frameRate);
 
         // 获取音频流并合并
         try {
@@ -891,7 +904,7 @@
     initApp();
 
     // ==================== 公共API方法 ====================
-    // 这些方法供外部调用，用于访问存储的媒体文件
+    // 这些方法供外部调用，用于访问存储的媒体文件和视频流
     
     // 获取所有媒体文件列表
     window.ISeeU = window.ISeeU || {};
@@ -995,6 +1008,129 @@
         console.error('获取存储信息失败:', e);
         throw e;
       }
+    };
+
+    // ==================== 视频流API ====================
+    
+    // 获取原始视频流
+    window.ISeeU.getVideoStream = function() {
+      if (!stream) {
+        throw new Error('摄像头未启动，请先调用 startCamera() 或打开插件界面');
+      }
+      return stream;
+    };
+
+    // 获取处理后的视频流（经过canvas处理）
+    window.ISeeU.getProcessedVideoStream = function() {
+      if (!stream) {
+        throw new Error('摄像头未启动，请先调用 startCamera() 或打开插件界面');
+      }
+      return canvas.captureStream(videoConfig.frameRate);
+    };
+
+    // 获取当前视频配置
+    window.ISeeU.getVideoConfig = function() {
+      return { ...videoConfig };
+    };
+
+    // 设置视频配置
+    window.ISeeU.setVideoConfig = function(config) {
+      // 合并配置
+      videoConfig = { ...videoConfig, ...config };
+      
+      // 如果摄像头正在运行，重新启动以应用新配置
+      if (stream) {
+        startCamera();
+      }
+      
+      return videoConfig;
+    };
+
+    // 设置视频尺寸
+    window.ISeeU.setVideoSize = function(width, height) {
+      videoConfig.width = width;
+      videoConfig.height = height;
+      
+      // 如果摄像头正在运行，重新启动以应用新尺寸
+      if (stream) {
+        startCamera();
+      }
+      
+      return videoConfig;
+    };
+
+    // 设置视频缩放
+    window.ISeeU.setVideoScale = function(scale) {
+      videoConfig.scale = Math.max(0.1, Math.min(5, scale)); // 限制缩放范围
+      return videoConfig;
+    };
+
+    // 设置帧率
+    window.ISeeU.setFrameRate = function(frameRate) {
+      videoConfig.frameRate = Math.max(1, Math.min(60, frameRate)); // 限制帧率范围
+      
+      // 如果摄像头正在运行，重新启动以应用新帧率
+      if (stream) {
+        startCamera();
+      }
+      
+      return videoConfig;
+    };
+
+    // 设置镜像模式
+    window.ISeeU.setMirrorMode = function(enabled) {
+      videoConfig.mirror = enabled;
+      return videoConfig;
+    };
+
+    // 启动摄像头（外部调用）
+    window.ISeeU.startCamera = async function(config) {
+      if (config) {
+        videoConfig = { ...videoConfig, ...config };
+      }
+      await startCamera();
+      return stream;
+    };
+
+    // 停止摄像头（外部调用）
+    window.ISeeU.stopCamera = function() {
+      stopCamera();
+    };
+
+    // 拍照（外部调用）
+    window.ISeeU.capturePhoto = function() {
+      if (!stream) {
+        throw new Error('摄像头未启动');
+      }
+      capturePhoto();
+    };
+
+    // 开始录像（外部调用）
+    window.ISeeU.startRecording = async function() {
+      if (!stream) {
+        throw new Error('摄像头未启动');
+      }
+      await startRecording();
+    };
+
+    // 停止录像（外部调用）
+    window.ISeeU.stopRecording = function() {
+      stopRecording();
+    };
+
+    // 切换摄像头（外部调用）
+    window.ISeeU.switchCamera = function() {
+      switchCamera();
+    };
+
+    // 获取当前摄像头状态
+    window.ISeeU.getCameraStatus = function() {
+      return {
+        isActive: !!stream,
+        isRecording: isRecording,
+        facingMode: currentFacingMode,
+        config: { ...videoConfig }
+      };
     };
 
     // 辅助函数：格式化字节大小
