@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISeeU - 高端浏览器相机</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .camera-preview {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+        
+        .preview-header {
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .preview-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #cameraCanvas {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+            border-radius: 10px;
+        }
+        
+        .camera-placeholder {
+            text-align: center;
+            color: #777;
+            padding: 40px;
+        }
+        
+        .camera-placeholder svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        
+        .controls-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .panel-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #3498db;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .control-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .control-label {
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+        
+        .slider-container {
+            flex: 1;
+            max-width: 200px;
+        }
+        
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .slider::-webkit-slider-thumb:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+        
+        .slider-value {
+            min-width: 40px;
+            text-align: right;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(135deg, #3ca0db, #2c88c7);
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+        
+        .btn-success:hover:not(:disabled) {
+            background: linear-gradient(135deg, #36d278, #2ecc71);
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .btn-danger:hover:not(:disabled) {
+            background: linear-gradient(135deg, #ea6153, #d35400);
+            transform: translateY(-2px);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+        
+        .btn-warning:hover:not(:disabled) {
+            background: linear-gradient(135deg, #f4b042, #f39c12);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-secondary:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e74c3c;
+        }
+        
+        .status-indicator.active {
+            background: #2ecc71;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(52, 152, 219, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .feature-desc {
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.5;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+        
+        .zoom-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .zoom-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .zoom-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .zoom-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            max-width: 300px;
+            animation: slideIn 0.3s ease-out;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .notification.success {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+        
+        .notification.error {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+        }
+        
+        .notification.warning {
+            background: linear-gradient(135deg, #f39c12, #f1c40f);
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .notification-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ISeeU 浏览器相机</h1>
+            <p class="subtitle">专业级浏览器摄像头解决方案，提供高清拍摄、录像和丰富的调节选项</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="camera-preview">
+                <div class="preview-header">
+                    <div class="preview-title">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            <path d="M20 4h-3.17l-1.24-1.35A1 1 0 0 0 15 2H9a1 1 0 0 0-.59.18L7.17 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-8 13a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+                        </svg>
+                        相机预览
+                    </div>
+                    <div class="status-item">
+                        <div class="status-indicator" id="cameraStatusIndicator"></div>
+                        <span id="cameraStatusText">未连接</span>
+                    </div>
+                </div>
+                <div class="preview-container">
+                    <canvas id="cameraCanvas"></canvas>
+                    <div class="camera-placeholder" id="cameraPlaceholder">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            <path d="M20 4h-3.17l-1.24-1.35A1 1 0 0 0 15 2H9a1 1 0 0 0-.59.18L7.17 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-8 13a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+                        </svg>
+                        <p>点击"启动相机"开始使用</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls-panel">
+                <div class="panel-section">
+                    <h3 class="section-title">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            <path d="M20 4h-3.17l-1.24-1.35A1 1 0 0 0 15 2H9a1 1 0 0 0-.59.18L7.17 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-8 13a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+                        </svg>
+                        相机控制
+                    </h3>
+                    <div class="control-group">
+                        <div class="buttons-grid">
+                            <button class="btn btn-primary" id="startCameraBtn">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                    <path d="M20 4h-3.17l-1.24-1.35A1 1 0 0 0 15 2H9a1 1 0 0 0-.59.18L7.17 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-8 13a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+                                </svg>
+                                启动相机
+                            </button>
+                            <button class="btn btn-secondary" id="switchCameraBtn" disabled>
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>
+                                </svg>
+                                切换摄像头
+                            </button>
+                            <button class="btn btn-success" id="captureBtn" disabled>
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                    <path d="M20 4h-3.17l-1.24-1.35A1 1 0 0 0 15 2H9a1 1 0 0 0-.59.18L7.17 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-8 13a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+                                </svg>
+                                拍照
+                            </button>
+                            <button class="btn btn-warning" id="recordBtn" disabled>
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/>
+                                </svg>
+                                开始录像
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h3 class="section-title">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                        </svg>
+                        画面调节
+                    </h3>
+                    <div class="control-group">
+                        <div class="control-row">
+                            <span class="control-label">缩放比例</span>
+                            <div class="zoom-control">
+                                <div class="zoom-buttons">
+                                    <button class="zoom-btn" id="zoomOutBtn">-</button>
+                                    <button class="zoom-btn" id="zoomInBtn">+</button>
+                                </div>
+                                <div class="slider-container">
+                                    <input type="range" min="0.1" max="3" step="0.1" value="1" class="slider" id="zoomSlider">
+                                </div>
+                                <span class="slider-value" id="zoomValue">1.0x</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-row">
+                            <span class="control-label">亮度</span>
+                            <div class="slider-container">
+                                <input type="range" min="0" max="2" step="0.1" value="1" class="slider" id="brightnessSlider">
+                            </div>
+                            <span class="slider-value" id="brightnessValue">1.0</span>
+                        </div>
+                        
+                        <div class="control-row">
+                            <span class="control-label">对比度</span>
+                            <div class="slider-container">
+                                <input type="range" min="0" max="2" step="0.1" value="1" class="slider" id="contrastSlider">
+                            </div>
+                            <span class="slider-value" id="contrastValue">1.0</span>
+                        </div>
+                        
+                        <div class="control-row">
+                            <span class="control-label">饱和度</span>
+                            <div class="slider-container">
+                                <input type="range" min="0" max="2" step="0.1" value="1" class="slider" id="saturationSlider">
+                            </div>
+                            <span class="slider-value" id="saturationValue">1.0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h3 class="section-title">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/>
+                        </svg>
+                        媒体库
+                    </h3>
+                    <div class="control-group">
+                        <div class="buttons-grid">
+                            <button class="btn btn-secondary" id="openMediaManagerBtn">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/>
+                                </svg>
+                                打开媒体库
+                            </button>
+                            <button class="btn btn-secondary" id="clearAllMediaBtn">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                                </svg>
+                                清空媒体
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="status-bar">
+                    <div class="status-item">
+                        <span>摄像头状态:</span>
+                        <span id="currentCameraStatus">未启动</span>
+                    </div>
+                    <div class="status-item">
+                        <span>当前摄像头:</span>
+                        <span id="currentCameraType">前置</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#3498db">
+                        <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        <path d="M20 4h-3.17l-1.24-1.35A1 1 0 0 0 15 2H9a1 1 0 0 0-.59.18L7.17 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-8 13a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">高清拍摄</h3>
+                <p class="feature-desc">支持高分辨率照片拍摄，自动优化图像质量，提供专业级拍摄体验。</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#2ecc71">
+                        <path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">流畅录像</h3>
+                <p class="feature-desc">录制高清视频，支持音频录制，可自定义帧率和分辨率设置。</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#e74c3c">
+                        <path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">多摄像头支持</h3>
+                <p class="feature-desc">轻松切换前后摄像头，自动检测可用摄像头设备。</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#f39c12">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">高级调节</h3>
+                <p class="feature-desc">丰富的画面调节选项，包括缩放、亮度、对比度和饱和度控制。</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>ISeeU 浏览器相机 &copy; 2023 - 专业级摄像头解决方案</p>
+    </footer>
+
+    <script src="ISeeU.js"></script>
+    <script>
+        // 初始化相机应用
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取DOM元素
+            const startCameraBtn = document.getElementById('startCameraBtn');
+            const switchCameraBtn = document.getElementById('switchCameraBtn');
+            const captureBtn = document.getElementById('captureBtn');
+            const recordBtn = document.getElementById('recordBtn');
+            const openMediaManagerBtn = document.getElementById('openMediaManagerBtn');
+            const clearAllMediaBtn = document.getElementById('clearAllMediaBtn');
+            const cameraCanvas = document.getElementById('cameraCanvas');
+            const cameraPlaceholder = document.getElementById('cameraPlaceholder');
+            const cameraStatusIndicator = document.getElementById('cameraStatusIndicator');
+            const cameraStatusText = document.getElementById('cameraStatusText');
+            const currentCameraStatus = document.getElementById('currentCameraStatus');
+            const currentCameraType = document.getElementById('currentCameraType');
+            
+            // 缩放控制
+            const zoomSlider = document.getElementById('zoomSlider');
+            const zoomValue = document.getElementById('zoomValue');
+            const zoomInBtn = document.getElementById('zoomInBtn');
+            const zoomOutBtn = document.getElementById('zoomOutBtn');
+            
+            // 画面调节
+            const brightnessSlider = document.getElementById('brightnessSlider');
+            const brightnessValue = document.getElementById('brightnessValue');
+            const contrastSlider = document.getElementById('contrastSlider');
+            const contrastValue = document.getElementById('contrastValue');
+            const saturationSlider = document.getElementById('saturationSlider');
+            const saturationValue = document.getElementById('saturationValue');
+            
+            // 初始化变量
+            let isCameraActive = false;
+            let currentZoom = 1.0;
+            
+            // 启动相机
+            startCameraBtn.addEventListener('click', async function() {
+                try {
+                    startCameraBtn.disabled = true;
+                    startCameraBtn.innerHTML = `
+                        <div style="display:flex;align-items:center;gap:8px;">
+                            <div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-radius:50%;border-top-color:white;animation:spin 1s linear infinite;"></div>
+                            启动中...
+                        </div>
+                    `;
+                    
+                    await window.ISeeU.startCamera();
+                    
+                    // 更新UI状态
+                    isCameraActive = true;
+                    cameraCanvas.style.display = 'block';
+                    cameraPlaceholder.style.display = 'none';
+                    cameraStatusIndicator.classList.add('active');
+                    cameraStatusText.textContent = '已连接';
+                    currentCameraStatus.textContent = '运行中';
+                    
+                    startCameraBtn.style.display = 'none';
+                    switchCameraBtn.disabled = false;
+                    captureBtn.disabled = false;
+                    recordBtn.disabled = false;
+                    
+                    showNotification('摄像头启动成功', 'success');
+                    
+                } catch (error) {
+                    console.error('启动相机失败:', error);
+                    showNotification('摄像头启动失败: ' + error.message, 'error');
+                    
+                    startCameraBtn.disabled = false;
+                    startCameraBtn.innerHTML = `
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            <path d="M20 4h-3.17l-1.24-1.35A1 1 0 0 0 15 2H9a1 1 0 0 0-.59.18L7.17 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-8 13a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+                        </svg>
+                        启动相机
+                    `;
+                }
+            });
+            
+            // 切换摄像头
+            switchCameraBtn.addEventListener('click', function() {
+                window.ISeeU.switchCamera();
+                const status = window.ISeeU.getCameraStatus();
+                currentCameraType.textContent = status.facingMode === 'user' ? '前置' : '后置';
+                showNotification(`已切换到${status.facingMode === 'user' ? '前置' : '后置'}摄像头`, 'success');
+            });
+            
+            // 拍照
+            captureBtn.addEventListener('click', function() {
+                window.ISeeU.capturePhoto();
+                showNotification('照片已拍摄', 'success');
+            });
+            
+            // 开始/停止录像
+            let isRecording = false;
+            recordBtn.addEventListener('click', function() {
+                if (!isRecording) {
+                    window.ISeeU.startRecording();
+                    recordBtn.innerHTML = `
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <rect x="6" y="6" width="12" height="12" rx="1"/>
+                        </svg>
+                        停止录像
+                    `;
+                    recordBtn.classList.remove('btn-warning');
+                    recordBtn.classList.add('btn-danger');
+                    isRecording = true;
+                    showNotification('开始录制视频', 'success');
+                } else {
+                    window.ISeeU.stopRecording();
+                    recordBtn.innerHTML = `
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/>
+                        </svg>
+                        开始录像
+                    `;
+                    recordBtn.classList.remove('btn-danger');
+                    recordBtn.classList.add('btn-warning');
+                    isRecording = false;
+                    showNotification('视频录制已停止', 'success');
+                }
+            });
+            
+            // 打开媒体管理器
+            openMediaManagerBtn.addEventListener('click', function() {
+                window.ISeeU.openMediaManager();
+            });
+            
+            // 清空所有媒体
+            clearAllMediaBtn.addEventListener('click', async function() {
+                if (confirm('确定要清空所有媒体文件吗？此操作不可撤销。')) {
+                    try {
+                        await window.ISeeU.clearAllMedia();
+                        showNotification('所有媒体已清空', 'success');
+                    } catch (error) {
+                        console.error('清空媒体失败:', error);
+                        showNotification('清空媒体失败: ' + error.message, 'error');
+                    }
+                }
+            });
+            
+            // 缩放控制
+            zoomSlider.addEventListener('input', function() {
+                currentZoom = parseFloat(this.value);
+                zoomValue.textContent = currentZoom.toFixed(1) + 'x';
+                window.ISeeU.setVideoScale(currentZoom);
+            });
+            
+            zoomInBtn.addEventListener('click', function() {
+                if (currentZoom < 3) {
+                    currentZoom += 0.1;
+                    zoomSlider.value = currentZoom;
+                    zoomValue.textContent = currentZoom.toFixed(1) + 'x';
+                    window.ISeeU.setVideoScale(currentZoom);
+                }
+            });
+            
+            zoomOutBtn.addEventListener('click', function() {
+                if (currentZoom > 0.1) {
+                    currentZoom -= 0.1;
+                    zoomSlider.value = currentZoom;
+                    zoomValue.textContent = currentZoom.toFixed(1) + 'x';
+                    window.ISeeU.setVideoScale(currentZoom);
+                }
+            });
+            
+            // 亮度调节
+            brightnessSlider.addEventListener('input', function() {
+                const value = parseFloat(this.value);
+                brightnessValue.textContent = value.toFixed(1);
+                applyImageFilters();
+            });
+            
+            // 对比度调节
+            contrastSlider.addEventListener('input', function() {
+                const value = parseFloat(this.value);
+                contrastValue.textContent = value.toFixed(1);
+                applyImageFilters();
+            });
+            
+            // 饱和度调节
+            saturationSlider.addEventListener('input', function() {
+                const value = parseFloat(this.value);
+                saturationValue.textContent = value.toFixed(1);
+                applyImageFilters();
+            });
+            
+            // 应用图像滤镜
+            function applyImageFilters() {
+                const brightness = parseFloat(brightnessSlider.value);
+                const contrast = parseFloat(contrastSlider.value);
+                const saturation = parseFloat(saturationSlider.value);
+                
+                const filter = `brightness(${brightness}) contrast(${contrast}) saturate(${saturation})`;
+                cameraCanvas.style.filter = filter;
+            }
+            
+            // 显示通知
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.innerHTML = `
+                    <span>${message}</span>
+                    <button class="notification-close">×</button>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // 自动消失
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 3000);
+                
+                // 手动关闭
+                notification.querySelector('.notification-close').addEventListener('click', () => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                });
+            }
+            
+            // 添加CSS动画
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    to { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
