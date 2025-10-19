@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>摄像头工具JS插件演示</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f5f5f5;
+      margin: 0;
+    }
+    .demo-section {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    p {
+      line-height: 1.6;
+      color: #555;
+    }
+    #gecram {
+      position: relative;
+      min-height: 200px;
+      border: 1px dashed #ccc;
+      padding: 20px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-section">
+    <h1>摄像头工具JS插件演示</h1>
+    <p>这个页面演示了摄像头工具JS插件的使用。插件会自动在页面右下角创建一个悬浮小球。</p>
+    <p><strong>功能特点：</strong></p>
+    <ul>
+      <li>点击悬浮球打开摄像头控制面板</li>
+      <li>支持拍照、录像、停止录像和切换摄像头</li>
+      <li>支持最小化模式</li>
+      <li>所有媒体文件自动保存到本地存储</li>
+    </ul>
+    
+    <div id="gecram">
+      <!-- 插件将在这里创建UI -->
+    </div>
+  </div>
+
+  <!-- 引入摄像头插件JS -->
+  <script src="camera-plugin.js"></script>
+</body>
+</html>
