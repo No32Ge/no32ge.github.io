@@ -1,0 +1,1041 @@
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伪装活动模拟器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            height: 100vh;
+            padding: 10px;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            height: calc(100vh - 20px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background-color: #fff;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .time {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .battery {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        
+        .battery-icon {
+            width: 24px;
+            height: 12px;
+            border: 1px solid #333;
+            border-radius: 2px;
+            margin-right: 4px;
+            position: relative;
+        }
+        
+        .battery-icon::after {
+            content: '';
+            position: absolute;
+            right: -3px;
+            top: 3px;
+            width: 2px;
+            height: 6px;
+            background-color: #333;
+            border-radius: 0 1px 1px 0;
+        }
+        
+        .battery-level {
+            height: 8px;
+            width: 18px;
+            background-color: #4CAF50;
+            margin: 1px;
+        }
+        
+        nav {
+            display: flex;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #e0e0e0;
+            overflow-x: auto;
+        }
+        
+        nav button {
+            flex: 1;
+            padding: 12px 8px;
+            background: none;
+            border: none;
+            font-size: 13px;
+            color: #666;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        
+        nav button.active {
+            color: #007AFF;
+            border-bottom: 2px solid #007AFF;
+        }
+        
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+        }
+        
+        .mode {
+            display: none;
+        }
+        
+        .mode.active {
+            display: block;
+        }
+        
+        /* 娱乐文章模式样式 */
+        .article-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        
+        .article-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        .article-content p {
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+        
+        /* 消消乐模式样式 */
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+        
+        .game-tile {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .game-tile.selected {
+            transform: scale(0.9);
+            box-shadow: 0 0 0 2px #007AFF;
+        }
+        
+        .game-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 10px;
+        }
+        
+        .game-score {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        /* 计算机模式样式 */
+        .calculator {
+            background-color: #000;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .calculator-display {
+            background-color: #000;
+            color: white;
+            text-align: right;
+            padding: 20px 10px;
+            font-size: 48px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            min-height: 64px;
+        }
+        
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        
+        .calc-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .calc-btn.operator {
+            background-color: #FF9500;
+        }
+        
+        .calc-btn.function {
+            background-color: #A5A5A5;
+            color: black;
+        }
+        
+        .calc-btn.zero {
+            grid-column: span 2;
+            border-radius: 30px;
+            width: 100%;
+        }
+        
+        /* 学英语模式样式 */
+        .english-card {
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .english-word {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .english-pronunciation {
+            color: #666;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+        
+        .english-meaning {
+            margin-bottom: 16px;
+        }
+        
+        .english-example {
+            background-color: #e8f4fd;
+            padding: 12px;
+            border-radius: 8px;
+            font-style: italic;
+            color: #0066CC;
+        }
+        
+        .english-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .english-btn {
+            padding: 10px 20px;
+            background-color: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        /* 英语播放器模式样式 */
+        .player-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .album-art {
+            width: 250px;
+            height: 250px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        .song-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .song-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .song-artist {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .progress-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background-color: #e0e0e0;
+            border-radius: 2px;
+            margin-bottom: 8px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .progress {
+            height: 100%;
+            width: 45%;
+            background-color: #007AFF;
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+        
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .player-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .control-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+        }
+        
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #007AFF;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        
+        .lyrics-container {
+            width: 100%;
+            height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .lyric-line {
+            margin-bottom: 16px;
+            font-size: 16px;
+            color: #666;
+            transition: all 0.3s;
+        }
+        
+        .lyric-line.active {
+            color: #007AFF;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        /* 记事本模式样式 */
+        .notepad-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .notepad-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .notepad-date {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .notepad-content {
+            width: 100%;
+            height: calc(100vh - 200px);
+            border: none;
+            resize: none;
+            font-size: 16px;
+            line-height: 1.6;
+            padding: 0;
+            outline: none;
+        }
+        
+        /* 底部状态栏 */
+        footer {
+            background-color: #fff;
+            padding: 8px 16px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 480px) {
+            .game-tile {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .album-art {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="time" id="current-time">05:04</div>
+            <div class="battery">
+                <div class="battery-icon">
+                    <div class="battery-level"></div>
+                </div>
+                <span>82%</span>
+            </div>
+        </header>
+        
+        <nav>
+            <button class="active" data-mode="article">娱乐文章</button>
+            <button data-mode="game" class="">消消乐</button>
+            <button data-mode="calculator" class="">计算机</button>
+            <button data-mode="english" class="">学英语</button>
+            <button data-mode="player" class="">英语播放器</button>
+            <button data-mode="notepad" class="">记事本</button>
+        </nav>
+        
+        <div class="content">
+            <!-- 娱乐文章模式 -->
+            <div class="mode active" id="article">
+                <h1 class="article-title">简单排版：如何提高设计感</h1>
+                <div class="article-meta">Ge32   <span id="article-date">2025/10/22</span> · 阅读 2.5万</div>
+                <section data-cacheurl="" data-pm-slice="0 0 []" data-remoteid="" style="margin: 0px; padding: 0px; background: url(&quot;https://mmbiz.qpic.cn/sz_mmbiz_jpg/4vWm7Iev4CZH47x9L5tlU6EuptcuPAibJeFasF8tBQA42WeIxWb85B91lgXZznA4yDyBhBBGyPZSdSFq15D7akw/640?wx_fmt=jpeg&amp;from=appmsg&amp;tp=webp&amp;wxfrom=15&amp;wx_lazy=1&quot;) center center / cover no-repeat fixed rgb(10, 10, 10); color: rgba(255, 255, 255, 0.85); font-family: &quot;Cormorant Garamond&quot;, serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; visibility: visible;" data-lazy-bgimg="https://mmbiz.qpic.cn/sz_mmbiz_jpg/4vWm7Iev4CZH47x9L5tlU6EuptcuPAibJeFasF8tBQA42WeIxWb85B91lgXZznA4yDyBhBBGyPZSdSFq15D7akw/640?wx_fmt=jpeg&amp;from=appmsg" class="" data-fail="0"><section style="visibility: visible;"><span leaf="" style="visibility: visible;"><br style="visibility: visible;"></span></section><h1 style="font-family: &quot;Nothing You Could Do&quot;, cursive; text-align: center; margin-top: 30px; margin-bottom: 40px; color: rgba(255, 255, 255, 0.9); font-size: 3rem; letter-spacing: 2px; padding-bottom: 20px; visibility: visible;"><span style="font-size: 3rem; caret-color: var(--weui-BRAND); visibility: visible;">Slow Motion</span></h1><p style="visibility: visible;"><span leaf="" style="visibility: visible;"><br style="visibility: visible;"></span></p><p style="visibility: visible;"><span leaf="" style="visibility: visible;"><br style="visibility: visible;"></span></p><p style="visibility: visible;"><br style="visibility: visible;"></p><section style="visibility: visible;"><br style="visibility: visible;"><span leaf="" style="visibility: visible;"><br style="visibility: visible;"></span></section><section style="max-width: 700px; width: 700px; padding: 10px; background: rgba(20, 20, 20, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 30px; backdrop-filter: blur(5px); overflow: hidden; visibility: visible;"><section style="margin-bottom: 35px; visibility: visible;"><section style="font-family: &quot;Nothing You Could Do&quot;, cursive; font-weight: 400; color: rgba(180, 180, 180, 0.7); margin-bottom: 15px; font-size: 1.2rem; letter-spacing: 3px; text-transform: uppercase; text-align: center; visibility: visible;"><span leaf="" style="visibility: visible;"><span textstyle="" style="font-size: 14px; visibility: visible;">[Intro]</span></span></section><section style="white-space: pre-line; line-height: 1.9; font-weight: 300; font-size: 1.15rem; letter-spacing: 0.3px; text-align: center; padding-left: 15px; visibility: visible;"><span leaf="" style="visibility: visible;"><span textstyle="" style="font-size: 14px; visibility: visible;">(I wish that I could hate you, my baby)</span></span></section></section><section style="margin-bottom: 35px; visibility: visible;"><section style="font-family: &quot;Nothing You Could Do&quot;, cursive; font-weight: 400; color: rgba(180, 180, 180, 0.7); margin-bottom: 15px; font-size: 1.2rem; letter-spacing: 3px; text-transform: uppercase; text-align: center; visibility: visible;"><span leaf="" style="visibility: visible;"><span textstyle="" style="font-size: 14px; visibility: visible;">[Verse 1]</span></span></section><section style="white-space: pre-line; line-height: 1.9; font-weight: 300; font-size: 1.15rem; letter-spacing: 0.3px; text-align: center; padding-left: 15px; visibility: visible;"><span leaf="" style="visibility: visible;"><span textstyle="" style="font-size: 14px; visibility: visible;">The colors are fading out</span></span><br style="visibility: visible;"><span leaf="" style="visibility: visible;"><span textstyle="" style="font-size: 14px; visibility: visible;">Is it quiet where you're sleeping?</span></span><br style="visibility: visible;"><span leaf="" style="visibility: visible;"><span textstyle="" style="font-size: 14px; visibility: visible;">Your records, my empty house</span></span><br style="visibility: visible;"><span leaf="" style="visibility: visible;"><span textstyle="" style="font-size: 14px; visibility: visible;">I wish I knew what you were feeling</span></span></section></section><section style="margin-bottom: 35px; visibility: visible;"><section style="font-family: &quot;Nothing You Could Do&quot;, cursive; font-weight: 400; color: rgba(180, 180, 180, 0.7); margin-bottom: 15px; font-size: 1.2rem; letter-spacing: 3px; text-transform: uppercase; text-align: center; visibility: visible;"><span leaf="" style="visibility: visible;"><span textstyle="" style="font-size: 14px; visibility: visible;">[Pre-Chorus]</span></span></section><section style="white-space: pre-line; line-height: 1.9; font-weight: 300; font-size: 1.15rem; letter-spacing: 0.3px; text-align: center; padding-left: 15px; visibility: visible;"><span leaf="" style="visibility: visible;"><span textstyle="" style="font-size: 14px; visibility: visible;">Fighting every instinct while you hold your pride</span></span><br style="visibility: visible;"><span leaf="" style="visibility: visible;"><span textstyle="" style="font-size: 14px; visibility: visible;">Back to the beginning, it swallows my mind</span></span><br style="visibility: visible;"><span leaf=""><span textstyle="" style="font-size: 14px;">You're all that I think about</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I even see you when I'm dreaming</span></span></section></section><section style="margin-bottom: 35px;"><section style="font-family: &quot;Nothing You Could Do&quot;, cursive;font-weight: 400;color: rgba(180, 180, 180, 0.7);margin-bottom: 15px;font-size: 1.2rem;letter-spacing: 3px;text-transform: uppercase;text-align: center;"><span leaf=""><span textstyle="" style="font-size: 14px;">[Chorus]</span></span></section><section style="white-space: pre-line;line-height: 1.9;font-weight: 300;font-size: 1.15rem;letter-spacing: 0.3px;text-align: center;padding-left: 25px;color: rgba(220, 220, 220, 0.95);font-style: italic;margin: 30px 0px;border-left: 1px solid rgba(255, 255, 255, 0.2);"><span leaf=""><span textstyle="" style="font-size: 14px;">I wish that I could hate you, my baby</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I wish that when I left, you'd've chased me</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I didn't wanna change, but you made me</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">Now you're telling all your friends that I'm crazy</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">Hard to believe that you ever really loved me</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I made-believe that you cared when you touched me</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I know I'll be movin' on in slow motion</span></span></section></section><section style="margin-bottom: 35px;"><section style="font-family: &quot;Nothing You Could Do&quot;, cursive;font-weight: 400;color: rgba(180, 180, 180, 0.7);margin-bottom: 15px;font-size: 1.2rem;letter-spacing: 3px;text-transform: uppercase;text-align: center;"><span leaf=""><span textstyle="" style="font-size: 14px;">[Verse 2]</span></span></section><section style="white-space: pre-line;line-height: 1.9;font-weight: 300;font-size: 1.15rem;letter-spacing: 0.3px;text-align: center;padding-left: 15px;"><span leaf=""><span textstyle="" style="font-size: 14px;">I've never been good with words</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">But you didn't try to listen</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">Could call, but I won't be the first</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">To remind you what you're missin'</span></span></section></section><section style="margin-bottom: 35px;"><section style="font-family: &quot;Nothing You Could Do&quot;, cursive;font-weight: 400;color: rgba(180, 180, 180, 0.7);margin-bottom: 15px;font-size: 1.2rem;letter-spacing: 3px;text-transform: uppercase;text-align: center;"><span leaf=""><span textstyle="" style="font-size: 14px;">[Pre-Chorus]</span></span></section><section style="white-space: pre-line;line-height: 1.9;font-weight: 300;font-size: 1.15rem;letter-spacing: 0.3px;text-align: center;padding-left: 15px;"><span leaf=""><span textstyle="" style="font-size: 14px;">Fighting every instinct while you hold your pride</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">Back to the beginning, it swallows my mind</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">You never learned how to hurt</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">But I didn't try to fix it</span></span></section></section><section style="margin-bottom: 35px;"><section style="font-family: &quot;Nothing You Could Do&quot;, cursive;font-weight: 400;color: rgba(180, 180, 180, 0.7);margin-bottom: 15px;font-size: 1.2rem;letter-spacing: 3px;text-transform: uppercase;text-align: center;"><span leaf=""><span textstyle="" style="font-size: 14px;">[Chorus]</span></span></section><section style="white-space: pre-line;line-height: 1.9;font-weight: 300;font-size: 1.15rem;letter-spacing: 0.3px;text-align: center;padding-left: 25px;color: rgba(220, 220, 220, 0.95);font-style: italic;margin: 30px 0px;border-left: 1px solid rgba(255, 255, 255, 0.2);"><span leaf=""><span textstyle="" style="font-size: 14px;">I wish that I could hate you, my baby</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I wish that when I left, you'd've chased me</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I didn't wanna change, but you made me</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">Now you're telling all your friends that I'm crazy</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">Hard to believe that you ever really loved me</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I made-believe that you cared when you touched me</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I know I'll be movin' on in slow motion</span></span></section></section><section style="margin-bottom: 35px;"><section style="font-family: &quot;Nothing You Could Do&quot;, cursive;font-weight: 400;color: rgba(180, 180, 180, 0.7);margin-bottom: 15px;font-size: 1.2rem;letter-spacing: 3px;text-transform: uppercase;text-align: center;"><span leaf=""><span textstyle="" style="font-size: 14px;">[Bridge]</span></span></section><section style="white-space: pre-line;line-height: 1.9;font-weight: 300;font-size: 1.15rem;letter-spacing: 0.3px;text-align: center;padding: 15px;font-style: italic;color: rgba(200, 200, 255, 0.8);margin: 35px 0px;background: rgba(30, 30, 50, 0);border-radius: 2px;"><span leaf=""><span textstyle="" style="font-size: 14px;">(I wish that I could hate you, my baby)</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I need you more when you are not around, not around</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">Maybe I crave the way you let me down, let me down</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I think I want you more than I need ya</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">Avoid the places I see ya</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">Killing me slow, killing me slowly</span></span></section></section><section style="margin-bottom: 35px;"><section style="font-family: &quot;Nothing You Could Do&quot;, cursive;font-weight: 400;color: rgba(180, 180, 180, 0.7);margin-bottom: 15px;font-size: 1.2rem;letter-spacing: 3px;text-transform: uppercase;text-align: center;"><span leaf=""><span textstyle="" style="font-size: 14px;">[Chorus]</span></span></section><section style="white-space: pre-line;line-height: 1.9;font-weight: 300;font-size: 1.15rem;letter-spacing: 0.3px;text-align: center;padding-left: 25px;color: rgba(220, 220, 220, 0.95);font-style: italic;margin: 30px 0px;border-left: 1px solid rgba(255, 255, 255, 0.2);"><span leaf=""><span textstyle="" style="font-size: 14px;">I wish that I could hate you, my baby</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I wish that when I left, you'd've chased me</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I didn't wanna change, but you made me</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">Now you're telling all your friends that I'm crazy</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">Hard to believe that you ever really loved me</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I made-believe that you cared when you touched me</span></span><br><span leaf=""><span textstyle="" style="font-size: 14px;">I know I'll be movin' on in slow motion</span></span></section></section></section><section style="text-align: center;"><span leaf=""><br></span></section><section style="text-align: center;margin-top: 50px;font-size: 0.8rem;color: rgb(10, 10, 10);letter-spacing: 1px;"><span leaf=""><span textstyle="" style="font-size: 14px;">Alex Ctrl Lyrics&nbsp;</span></span></section><section><span leaf=""><br></span></section></section>
+            </div>
+            
+            <!-- 消消乐模式 -->
+            <div class="mode" id="game">
+                <div class="game-container">
+                    <div class="game-board" id="game-board"><div class="game-tile" data-index="0" style="background-color: rgb(78, 205, 196);">♦</div><div class="game-tile" data-index="1" style="background-color: rgb(17, 138, 178);">♥</div><div class="game-tile" data-index="2" style="background-color: rgb(106, 5, 114);">♣</div><div class="game-tile" data-index="3" style="background-color: rgb(17, 138, 178);">♥</div><div class="game-tile" data-index="4" style="background-color: rgb(255, 107, 107);">★</div><div class="game-tile" data-index="5" style="background-color: rgb(78, 205, 196);">♦</div><div class="game-tile" data-index="6" style="background-color: rgb(78, 205, 196);">♦</div><div class="game-tile" data-index="7" style="background-color: rgb(255, 107, 107);">★</div><div class="game-tile" data-index="8" style="background-color: rgb(255, 107, 107);">★</div><div class="game-tile" data-index="9" style="background-color: rgb(255, 209, 102);">♠</div><div class="game-tile" data-index="10" style="background-color: rgb(78, 205, 196);">♦</div><div class="game-tile" data-index="11" style="background-color: rgb(106, 5, 114);">♣</div><div class="game-tile" data-index="12" style="background-color: rgb(106, 5, 114);">♣</div><div class="game-tile" data-index="13" style="background-color: rgb(255, 107, 107);">★</div><div class="game-tile" data-index="14" style="background-color: rgb(17, 138, 178);">♥</div><div class="game-tile" data-index="15" style="background-color: rgb(255, 107, 107);">★</div><div class="game-tile" data-index="16" style="background-color: rgb(78, 205, 196);">♦</div><div class="game-tile" data-index="17" style="background-color: rgb(255, 107, 107);">★</div><div class="game-tile" data-index="18" style="background-color: rgb(78, 205, 196);">♦</div><div class="game-tile" data-index="19" style="background-color: rgb(255, 107, 107);">★</div><div class="game-tile" data-index="20" style="background-color: rgb(255, 209, 102);">♠</div><div class="game-tile" data-index="21" style="background-color: rgb(255, 107, 107);">★</div><div class="game-tile" data-index="22" style="background-color: rgb(78, 205, 196);">♦</div><div class="game-tile" data-index="23" style="background-color: rgb(106, 5, 114);">♣</div><div class="game-tile" data-index="24" style="background-color: rgb(255, 209, 102);">♠</div><div class="game-tile" data-index="25" style="background-color: rgb(255, 107, 107);">★</div><div class="game-tile" data-index="26" style="background-color: rgb(255, 209, 102);">♠</div><div class="game-tile" data-index="27" style="background-color: rgb(78, 205, 196);">♦</div><div class="game-tile" data-index="28" style="background-color: rgb(255, 107, 107);">★</div><div class="game-tile" data-index="29" style="background-color: rgb(255, 209, 102);">♠</div><div class="game-tile" data-index="30" style="background-color: rgb(78, 205, 196);">♦</div><div class="game-tile" data-index="31" style="background-color: rgb(106, 5, 114);">♣</div><div class="game-tile" data-index="32" style="background-color: rgb(255, 107, 107);">★</div><div class="game-tile" data-index="33" style="background-color: rgb(255, 107, 107);">★</div><div class="game-tile" data-index="34" style="background-color: rgb(17, 138, 178);">♥</div><div class="game-tile" data-index="35" style="background-color: rgb(255, 209, 102);">♠</div></div>
+                    <div class="game-controls">
+                        <div class="game-score">分数: <span id="score">1250</span></div>
+                        <div>时间: <span id="game-time">02:45</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 计算机模式 -->
+            <div class="mode" id="calculator">
+                <div class="calculator">
+                    <div class="calculator-display" id="calc-display">0</div>
+                    <div class="calculator-buttons">
+                        <button class="calc-btn function">C</button>
+                        <button class="calc-btn function">+/-</button>
+                        <button class="calc-btn function">%</button>
+                        <button class="calc-btn operator">÷</button>
+                        
+                        <button class="calc-btn">7</button>
+                        <button class="calc-btn">8</button>
+                        <button class="calc-btn">9</button>
+                        <button class="calc-btn operator">×</button>
+                        
+                        <button class="calc-btn">4</button>
+                        <button class="calc-btn">5</button>
+                        <button class="calc-btn">6</button>
+                        <button class="calc-btn operator">-</button>
+                        
+                        <button class="calc-btn">1</button>
+                        <button class="calc-btn">2</button>
+                        <button class="calc-btn">3</button>
+                        <button class="calc-btn operator">+</button>
+                        
+                        <button class="calc-btn zero">0</button>
+                        <button class="calc-btn">.</button>
+                        <button class="calc-btn operator">=</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 学英语模式 -->
+            <div id="english" class="mode">
+                <div class="rich_media_content js_underline_content
+                       autoTypeSetting24psection
+            " id="js_content" style=""><section style="white-space: pre-wrap; margin: 0px 0px 30px; padding: 20px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; background: linear-gradient(to right, rgb(12, 30, 62), rgb(26, 58, 109)); color: white; border-radius: 12px 12px 0px 0px; box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 30px; overflow: hidden; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; visibility: visible;" data-pm-slice="0 0 []"><section style="margin: 0px 0px 15px; padding: 6px 12px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; display: inline-block; background: rgb(212, 175, 55); color: rgb(12, 30, 62); font-weight: bold; border-radius: 4px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; visibility: visible;"><span leaf="" style="visibility: visible;">MUNGER'S MINDSET | EPISODE 1</span></section><section style="margin: 0px; padding: 0px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; visibility: visible;"><h1 style="margin: 0px 0px 10px; padding: 0px 0px 15px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; font-size: 23px; color: white; text-align: center; border-bottom: 3px solid rgb(212, 175, 55); font-weight: 700; line-height: 1.2; max-width: 100%; visibility: visible;"><span leaf="" style="visibility: visible;">Reverse Thinking—How to Make Others Idiots&nbsp;</span><span style="margin: 0px; padding: 8px 16px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; background: rgba(255, 255, 255, 0.15); border: 2px solid rgb(212, 175, 55); border-radius: 30px; font-weight: 600; font-size: 1.1rem; display: inline-flex; align-items: center; visibility: visible;"><i style="margin: 0px 8px 0px 0px; padding: 0px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; color: rgb(212, 175, 55); visibility: visible;"><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#d89f03ff" role="img" aria-label="插图" style="visibility: visible;"><path d="M20 20H4V4" stroke="#e09200ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="visibility: visible;"></path><path d="M4 16.5L12 9L15 12L19.5 7.5" stroke="#c99a01ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="visibility: visible;"></path></svg></i><span leaf="" style="visibility: visible;">C1 Level</span></span></h1></section><section style="margin: 20px 0px 0px; padding: 15px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; background: rgba(255, 255, 255, 0.1); border-radius: 8px; display: flex; align-items: center; font-size: 1.1rem; border-left: 4px solid rgb(212, 175, 55); visibility: visible;"><i style="margin: 0px 10px 0px 0px; padding: 0px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; font-size: 1.5rem; color: rgb(212, 175, 55); visibility: visible;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f0f0f0ff" width="42" height="42" role="img" aria-label="插图" style="visibility: visible;"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" style="visibility: visible;"></path><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" style="visibility: visible;"></path></svg></i><span style="margin: 0px; padding: 0px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; visibility: visible;"><span leaf="" style="visibility: visible;">An intellectual discussion on psychology and decision-making</span></span></section></section><section style="visibility: visible;"><span style="white-space: pre-wrap; color: rgb(51, 51, 51); font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important; visibility: visible;"></span></section><section style="white-space: pre-wrap; margin: 0px 0px 30px; padding: 25px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; background: white; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 30px; border-top: 5px solid rgb(42, 90, 140); color: rgb(51, 51, 51); font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; visibility: visible;"><h3 style="margin: 0px 0px 15px; padding: 0px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; font-size: 1.5rem; color: rgb(26, 58, 109); display: flex; align-items: center; visibility: visible;"><i style="margin: 0px 10px 0px 0px; padding: 0px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; color: rgb(212, 175, 55); font-size: 1.4rem; visibility: visible;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00456dff" width="32" height="32" role="img" aria-label="插图" style="visibility: visible;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" style="visibility: visible;"></path></svg></i><span leaf="" style="visibility: visible;">摘要</span></h3><section style="margin: 0px; padding: 0px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; font-size: 0.8rem; line-height: 1.7; color: rgb(68, 68, 68); visibility: visible;">这篇文章探讨了查理·芒格的逆向思维理念，认为要避免失败和愚蠢，首先要理解人是如何被塑造成傻子的。文章将方法分解为四个关键领域：信息操纵、心理利用、行为强化和社会压力。</section></section><section style="visibility: visible;"><span style="white-space: pre-wrap; color: rgb(51, 51, 51); font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important; visibility: visible;"></span></section><section style="white-space: pre-wrap; margin: 0px; padding: 0px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; background: white; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px; overflow: hidden; display: flex; transition: transform 0.3s; flex-direction: column; color: rgb(51, 51, 51); font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; visibility: visible;"><section style="margin: 0px; padding: 10px 0px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; background: rgb(26, 58, 109); color: white; font-size: 2.5rem; font-weight: 800; min-width: 100%; display: flex; align-items: center; justify-content: center; visibility: visible;"><span leaf="" style="visibility: visible;">A</span></section><section style="margin: 0px; padding: 5px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; flex: 1 1 0%; width: 2825.38px; visibility: visible;"><h3 style="margin: 0px 0px 15px; padding: 0px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; font-size: 1.3rem; color: rgb(42, 90, 140); display: flex; align-items: center; visibility: visible;"><span leaf="" style="visibility: visible;">The Core Principle: Invert, Always Invert</span></h3><section style="margin: 0px 0px 25px; padding: 0px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; visibility: visible;"><h4 style="margin: 0px 0px 8px; padding: 0px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; color: rgb(42, 90, 140); font-size: 1.1rem; display: flex; align-items: center; visibility: visible;"><i style="margin: 0px 8px 0px 0px; padding: 0px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; color: rgb(212, 175, 55); font-size: 1.2rem; visibility: visible;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e0c008ff" width="48" height="48" role="img" aria-label="插图" style="visibility: visible;"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25" style="visibility: visible;"></path></svg></i><span leaf="" style="visibility: visible;">英语原文</span></h4><section style="margin: 0px; padding: 15px; box-sizing: border-box; font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif; background: rgb(248, 249, 252); border-radius: 8px; border-left: 3px solid rgb(42, 90, 140); font-size: 1.05rem; line-height: 1.7; visibility: visible;"><span leaf="" style="visibility: visible;">Charlie Munger emphasizes that reverse thinking is often more valuable than forward thinking. If you want to avoid failure, understanding the causes of failure is more effective than blindly chasing success. Applied to cognition: if you want to avoid becoming an idiot yourself, consider first—how would someone make others idiots?</span></section></section><section style="margin: 0px 0px 25px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><h4 style="margin: 0px 0px 8px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(42, 90, 140);font-size: 1.1rem;display: flex;align-items: center;"><i style="margin: 0px 8px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.2rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bd8409ff" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"></path></svg></i><span leaf="">中文翻译</span></h4><section style="margin: 15px 0px 0px;padding: 15px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);border-radius: 8px;border-left: 3px solid rgb(212, 175, 55);font-size: 12px;line-height: 1.7;"><span leaf="">查理·芒格强调，逆向思维往往比正向思维更有价值。若要避免失败，理解失败的成因比盲目追逐成功更有效。应用到认知上：如果你想避免自己成为傻瓜，首先要考虑——如何让别人变成傻瓜？</span></section></section><h3 style="margin: 0px 0px 15px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 1.3rem;color: rgb(42, 90, 140);display: flex;align-items: center;"><i style="margin: 0px 10px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.4rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(110, 103, 4, 1)" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 0 1-.657.643 48.39 48.39 0 0 1-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 0 1-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 0 0-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 0 1-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 0 0 .657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 0 1-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 0 0 5.427-.63 48.05 48.05 0 0 0 .582-4.717.532.532 0 0 0-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 0 0 .658-.663 48.422 48.422 0 0 0-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 0 1-.61-.58v0Z"></path></svg></i><span leaf="">专业词汇</span></h3><section style="margin: 20px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;width: 2815.38px;overflow-x: auto;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 15px;"><table style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;width: 2815.38px;min-width: 750px;border-collapse: collapse;"><thead><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Vocabulary</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Phonetic</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">POS</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Meaning</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Example</span></section></th></tr></thead><tbody><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">emphasize</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/ˈem.fə.saɪz/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">verb</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">强调，重视</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">to give special importance to something</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: 1px solid rgb(234, 238, 245);white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"Munger emphasizes the power of mental models."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"芒格强调了思维模型的力量。"</span></section></td></tr><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">reverse thinking</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/rɪˈvɜːs ˈθɪŋ.kɪŋ/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">noun phrase</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">逆向思维</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">the process of considering a problem from the opposite starting point</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: 1px solid rgb(234, 238, 245);white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"Reverse thinking is a powerful tool for problem-solving."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"逆向思维是解决问题的有力工具。"</span></section></td></tr><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: none;font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">cognition</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/kɒɡˈnɪʃ.ən/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">noun</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">认知，认识</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">the mental process of knowing, including awareness, perception, and reasoning</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: none;white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"The book is about the flaws in human cognition."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"这本书是关于人类认知中的缺陷。"</span></section></td></tr></tbody></table></section></section></section><section><span style="white-space:pre-wrap;color: rgb(51, 51, 51);font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: medium;font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: 400;letter-spacing: normal;orphans: 2;text-align: start;text-indent: 0px;text-transform: none;widows: 2;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;display: inline !important;float: none;"></span></section><section style="white-space:pre-wrap;margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: white;border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;overflow: hidden;display: flex;transition: transform 0.3s;flex-direction: column;color: rgb(51, 51, 51);font-size: medium;font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: 400;letter-spacing: normal;orphans: 2;text-align: start;text-indent: 0px;text-transform: none;widows: 2;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;"><section style="margin: 0px;padding: 10px 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;font-size: 2.5rem;font-weight: 800;min-width: 100%;display: flex;align-items: center;justify-content: center;"><span leaf="">B</span></section><section style="margin: 0px;padding: 5px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;flex: 1 1 0%;width: 2825.38px;"><h3 style="margin: 0px 0px 15px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 1.3rem;color: rgb(42, 90, 140);display: flex;align-items: center;"><span leaf="">Information Environment: Create Bias and Noise</span></h3><section style="margin: 0px 0px 25px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><h4 style="margin: 0px 0px 8px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(42, 90, 140);font-size: 1.1rem;display: flex;align-items: center;"><i style="margin: 0px 8px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.2rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e0c008ff" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25"></path></svg></i><span leaf="">英语原文</span></h4><section style="margin: 0px;padding: 15px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);border-radius: 8px;border-left: 3px solid rgb(42, 90, 140);font-size: 1.05rem;line-height: 1.7;"><span leaf="">The most direct method is controlling the flow of information: Selective exposure (showing only fragments of the truth), repetition of falsehoods (until people accept them unconsciously, a phenomenon Munger calls 'psychological inertia'), and overcomplicating facts (using jargon or excessive data to obscure truth).</span></section></section><section style="margin: 0px 0px 25px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><h4 style="margin: 0px 0px 8px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(42, 90, 140);font-size: 1.1rem;display: flex;align-items: center;"><i style="margin: 0px 8px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.2rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bd8409ff" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"></path></svg></i><span leaf="">中文翻译</span></h4><section style="margin: 15px 0px 0px;padding: 15px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);border-radius: 8px;border-left: 3px solid rgb(212, 175, 55);font-size: 12px;line-height: 1.7;"><span leaf="">最直接的方法是控制信息流：选择性曝光（只展示部分真相）、重复谎言（直到人们无意识地接受它们，芒格称之为‘心理惯性’）、以及过度复杂化事实（使用行话或过量数据来模糊真相）。</span></section></section><h3 style="margin: 0px 0px 15px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 1.3rem;color: rgb(42, 90, 140);display: flex;align-items: center;"><i style="margin: 0px 10px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.4rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(110, 103, 4, 1)" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 0 1-.657.643 48.39 48.39 0 0 1-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 0 1-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 0 0-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 0 1-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 0 0 .657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 0 1-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 0 0 5.427-.63 48.05 48.05 0 0 0 .582-4.717.532.532 0 0 0-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 0 0 .658-.663 48.422 48.422 0 0 0-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 0 1-.61-.58v0Z"></path></svg></i><span leaf="">专业词汇</span></h3><section style="margin: 20px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;width: 2815.38px;overflow-x: auto;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 15px;"><table style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;width: 2815.38px;min-width: 750px;border-collapse: collapse;"><thead><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Vocabulary</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Phonetic</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">POS</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Meaning</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Example</span></section></th></tr></thead><tbody><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">bias</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/ˈbaɪ.əs/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">noun</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">偏见，偏差</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">a tendency to believe that some people, ideas, etc., are better than others that results in unfair treatment</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: 1px solid rgb(234, 238, 245);white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"The report showed a clear media bias."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"该报告显示出明显的媒体偏见。"</span></section></td></tr><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">inertia</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/ɪˈnɜː.ʃə/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">noun</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">惯性，惰性</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">a tendency to do nothing or to remain unchanged</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: 1px solid rgb(234, 238, 245);white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"Psychological inertia makes it hard to change beliefs."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"心理惯性使得改变信念变得困难。"</span></section></td></tr><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: none;font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">obscure</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/əbˈskjʊər/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">verb</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">使模糊，使费解</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">to make something difficult to know or understand</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: none;white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"Complex jargon can obscure the real meaning."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"复杂的行话会掩盖真实含义。"</span></section></td></tr></tbody></table></section></section></section><section><span style="white-space:pre-wrap;color: rgb(51, 51, 51);font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: medium;font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: 400;letter-spacing: normal;orphans: 2;text-align: start;text-indent: 0px;text-transform: none;widows: 2;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;display: inline !important;float: none;"></span></section><section style="white-space:pre-wrap;margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: white;border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;overflow: hidden;display: flex;transition: transform 0.3s;flex-direction: column;color: rgb(51, 51, 51);font-size: medium;font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: 400;letter-spacing: normal;orphans: 2;text-align: start;text-indent: 0px;text-transform: none;widows: 2;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;"><section style="margin: 0px;padding: 10px 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;font-size: 2.5rem;font-weight: 800;min-width: 100%;display: flex;align-items: center;justify-content: center;"><span leaf="">C</span></section><section style="margin: 0px;padding: 5px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;flex: 1 1 0%;width: 2825.38px;"><h3 style="margin: 0px 0px 15px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 1.3rem;color: rgb(42, 90, 140);display: flex;align-items: center;"><span leaf="">Psychological Manipulation: Exploit Cognitive Biases</span></h3><section style="margin: 0px 0px 25px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><h4 style="margin: 0px 0px 8px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(42, 90, 140);font-size: 1.1rem;display: flex;align-items: center;"><i style="margin: 0px 8px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.2rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e0c008ff" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25"></path></svg></i><span leaf="">英语原文</span></h4><section style="margin: 0px;padding: 15px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);border-radius: 8px;border-left: 3px solid rgb(42, 90, 140);font-size: 1.05rem;line-height: 1.7;"><span leaf="">Humans have natural mental weaknesses that can be exploited: Confirmation bias (only supplying information that supports a desired conclusion), herd mentality (using social pressure to make people follow the group), and emotional hijacking (using fear, anger, or shame to override logical truth).</span></section></section><section style="margin: 0px 0px 25px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><h4 style="margin: 0px 0px 8px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(42, 90, 140);font-size: 1.1rem;display: flex;align-items: center;"><i style="margin: 0px 8px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.2rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bd8409ff" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"></path></svg></i><span leaf="">中文翻译</span></h4><section style="margin: 15px 0px 0px;padding: 15px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);border-radius: 8px;border-left: 3px solid rgb(212, 175, 55);font-size: 12px;line-height: 1.7;"><span leaf="">人类有天生的心理弱点可以被利用：确认偏误（只提供支持特定结论的信息）、从众心理（利用社会压力使人随大流）、以及情绪劫持（利用恐惧、愤怒或羞耻来压制逻辑真相）。</span></section></section><h3 style="margin: 0px 0px 15px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 1.3rem;color: rgb(42, 90, 140);display: flex;align-items: center;"><i style="margin: 0px 10px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.4rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(110, 103, 4, 1)" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 0 1-.657.643 48.39 48.39 0 0 1-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 0 1-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 0 0-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 0 1-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 0 0 .657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 0 1-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 0 0 5.427-.63 48.05 48.05 0 0 0 .582-4.717.532.532 0 0 0-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 0 0 .658-.663 48.422 48.422 0 0 0-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 0 1-.61-.58v0Z"></path></svg></i><span leaf="">专业词汇</span></h3><section style="margin: 20px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;width: 2815.38px;overflow-x: auto;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 15px;"><table style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;width: 2815.38px;min-width: 750px;border-collapse: collapse;"><thead><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Vocabulary</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Phonetic</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">POS</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Meaning</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Example</span></section></th></tr></thead><tbody><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">exploit</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/ɪkˈsplɔɪt/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">verb</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">利用，剥削</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">to use someone or something unfairly for your own advantage</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: 1px solid rgb(234, 238, 245);white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"Advertisers often exploit cognitive biases."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"广告商经常利用认知偏见。"</span></section></td></tr><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">confirmation bias</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/ˌkɒn.fəˈmeɪ.ʃən ˈbaɪ.əs/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">noun phrase</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">确认偏误</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">the tendency to search for, interpret, and recall information that confirms one's preexisting beliefs</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: 1px solid rgb(234, 238, 245);white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"Confirmation bias prevents us from seeing opposing evidence."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"确认偏误阻止我们看到相反的证据。"</span></section></td></tr><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: none;font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">herd mentality</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/hɜːd menˈtæl.ə.ti/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">noun phrase</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">从众心理</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">the tendency to adopt the behaviors or opinions of a group</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: none;white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"Herd mentality can lead to poor investment decisions."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"从众心理可能导致糟糕的投资决策。"</span></section></td></tr></tbody></table></section></section></section><section><span style="white-space:pre-wrap;color: rgb(51, 51, 51);font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: medium;font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: 400;letter-spacing: normal;orphans: 2;text-align: start;text-indent: 0px;text-transform: none;widows: 2;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;display: inline !important;float: none;"></span></section><section style="white-space:pre-wrap;margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: white;border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;overflow: hidden;display: flex;transition: transform 0.3s;flex-direction: column;color: rgb(51, 51, 51);font-size: medium;font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: 400;letter-spacing: normal;orphans: 2;text-align: start;text-indent: 0px;text-transform: none;widows: 2;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;"><section style="margin: 0px;padding: 10px 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;font-size: 2.5rem;font-weight: 800;min-width: 100%;display: flex;align-items: center;justify-content: center;"><span leaf="">D</span></section><section style="margin: 0px;padding: 5px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;flex: 1 1 0%;width: 2825.38px;"><h3 style="margin: 0px 0px 15px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 1.3rem;color: rgb(42, 90, 140);display: flex;align-items: center;"><span leaf="">Habits &amp; Behavior: Reinforce Stupid Patterns</span></h3><section style="margin: 0px 0px 25px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><h4 style="margin: 0px 0px 8px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(42, 90, 140);font-size: 1.1rem;display: flex;align-items: center;"><i style="margin: 0px 8px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.2rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e0c008ff" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25"></path></svg></i><span leaf="">英语原文</span></h4><section style="margin: 0px;padding: 15px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);border-radius: 8px;border-left: 3px solid rgb(42, 90, 140);font-size: 1.05rem;line-height: 1.7;"><span leaf="">Intelligence can be degraded by reinforcing counterproductive behavioral patterns. This includes promoting lazy thinking (reliance on shortcuts and easy beliefs), encouraging dependence on authority (instead of independent judgment), and fostering fragmented attention (focus on instant stimulation, which destroys long-term thinking capacity).</span></section></section><section style="margin: 0px 0px 25px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><h4 style="margin: 0px 0px 8px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(42, 90, 140);font-size: 1.1rem;display: flex;align-items: center;"><i style="margin: 0px 8px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.2rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bd8409ff" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"></path></svg></i><span leaf="">中文翻译</span></h4><section style="margin: 15px 0px 0px;padding: 15px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);border-radius: 8px;border-left: 3px solid rgb(212, 175, 55);font-size: 12px;line-height: 1.7;"><span leaf="">通过强化适得其反的行为模式，智力会被削弱。这包括提倡懒惰思维（依赖捷径和简单的信念）、鼓励对权威的依赖（而非独立判断）、以及助长碎片化注意力（专注于即时刺激(类似短视频)，从而破坏长期思考能力）。</span></section></section><h3 style="margin: 0px 0px 15px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 1.3rem;color: rgb(42, 90, 140);display: flex;align-items: center;"><i style="margin: 0px 10px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.4rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(110, 103, 4, 1)" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 0 1-.657.643 48.39 48.39 0 0 1-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 0 1-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 0 0-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 0 1-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 0 0 .657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 0 1-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 0 0 5.427-.63 48.05 48.05 0 0 0 .582-4.717.532.532 0 0 0-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 0 0 .658-.663 48.422 48.422 0 0 0-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 0 1-.61-.58v0Z"></path></svg></i><span leaf="">专业词汇</span></h3><section style="margin: 20px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;width: 2815.38px;overflow-x: auto;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 15px;"><table style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;width: 2815.38px;min-width: 750px;border-collapse: collapse;"><thead><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Vocabulary</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Phonetic</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">POS</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Meaning</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Example</span></section></th></tr></thead><tbody><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">reinforce</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/ˌriː.ɪnˈfɔːs/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">verb</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">加强，强化</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">to make an idea, belief, or feeling stronger</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: 1px solid rgb(234, 238, 245);white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"Bad habits are reinforced by repetition."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"坏习惯通过重复得到强化。"</span></section></td></tr><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">fragmented</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/fræɡˈmen.tɪd/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">adjective</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">碎片化的</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">broken into small or separate parts</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: 1px solid rgb(234, 238, 245);white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"Fragmented attention spans are a modern problem."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"碎片化的注意力持续时间是一个现代问题。"</span></section></td></tr><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: none;font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">stimulation</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/ˌstɪm.jəˈleɪ.ʃən/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">noun</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">刺激，激励</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">an action or thing that causes someone to become more active or enthusiastic</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: none;white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"The brain craves constant stimulation."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"大脑渴望持续的刺激。"</span></section></td></tr></tbody></table></section></section></section><section><span style="white-space:pre-wrap;color: rgb(51, 51, 51);font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: medium;font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: 400;letter-spacing: normal;orphans: 2;text-align: start;text-indent: 0px;text-transform: none;widows: 2;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;display: inline !important;float: none;"></span></section><section style="white-space:pre-wrap;margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: white;border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;overflow: hidden;display: flex;transition: transform 0.3s;flex-direction: column;color: rgb(51, 51, 51);font-size: medium;font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: 400;letter-spacing: normal;orphans: 2;text-align: start;text-indent: 0px;text-transform: none;widows: 2;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;"><section style="margin: 0px;padding: 10px 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;font-size: 2.5rem;font-weight: 800;min-width: 100%;display: flex;align-items: center;justify-content: center;"><span leaf="">E</span></section><section style="margin: 0px;padding: 5px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;flex: 1 1 0%;width: 2825.38px;"><h3 style="margin: 0px 0px 15px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 1.3rem;color: rgb(42, 90, 140);display: flex;align-items: center;"><span leaf="">Society &amp; Culture: Create 'Collective Idiocy'</span></h3><section style="margin: 0px 0px 25px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><h4 style="margin: 0px 0px 8px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(42, 90, 140);font-size: 1.1rem;display: flex;align-items: center;"><i style="margin: 0px 8px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.2rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e0c008ff" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25"></path></svg></i><span leaf="">英语原文</span></h4><section style="margin: 0px;padding: 15px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);border-radius: 8px;border-left: 3px solid rgb(42, 90, 140);font-size: 1.05rem;line-height: 1.7;"><span leaf="">Social environments can be engineered to make people collectively stupid. Tactics include excluding skeptics (isolating dissenters to force group conformity), promoting blind worship (of idols, pop culture, or algorithms that reinforce surface approval over critical thinking), and suppressing learning (limiting exposure to critical reading and thinking to prevent self-correction).</span></section></section><section style="margin: 0px 0px 25px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><h4 style="margin: 0px 0px 8px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(42, 90, 140);font-size: 1.1rem;display: flex;align-items: center;"><i style="margin: 0px 8px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.2rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bd8409ff" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"></path></svg></i><span leaf="">中文翻译</span></h4><section style="margin: 15px 0px 0px;padding: 15px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);border-radius: 8px;border-left: 3px solid rgb(212, 175, 55);font-size: 12px;line-height: 1.7;"><span leaf="">社会环境可以被设计成让人们集体变傻。策略包括排斥怀疑论者（孤立异议者以迫使群体一致）、提倡盲目崇拜（崇拜偶像、流行文化或算法，这些都会强化表面认同而非批判性思维）、以及压制学习（限制接触批判性阅读和思考，以防止自我修正）。</span></section></section><h3 style="margin: 0px 0px 15px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 1.3rem;color: rgb(42, 90, 140);display: flex;align-items: center;"><i style="margin: 0px 10px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.4rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(110, 103, 4, 1)" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 0 1-.657.643 48.39 48.39 0 0 1-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 0 1-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 0 0-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 0 1-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 0 0 .657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 0 1-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 0 0 5.427-.63 48.05 48.05 0 0 0 .582-4.717.532.532 0 0 0-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 0 0 .658-.663 48.422 48.422 0 0 0-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 0 1-.61-.58v0Z"></path></svg></i><span leaf="">专业词汇</span></h3><section style="margin: 20px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;width: 2815.38px;overflow-x: auto;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 15px;"><table style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;width: 2815.38px;min-width: 750px;border-collapse: collapse;"><thead><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Vocabulary</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Phonetic</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">POS</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Meaning</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Example</span></section></th></tr></thead><tbody><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">conformity</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/kənˈfɔː.mə.ti/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">noun</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">一致，符合</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">behavior that follows the usual standards that are expected by a group or society</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: 1px solid rgb(234, 238, 245);white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"Pressure for conformity can stifle innovation."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"要求一致的压力可能扼杀创新。"</span></section></td></tr><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">skeptic</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/ˈskep.tɪk/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">noun</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">怀疑者，怀疑论者</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">a person who questions the validity of something</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: 1px solid rgb(234, 238, 245);white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"A healthy skeptic questions popular opinions."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"一个健康的怀疑者会质疑流行的观点。"</span></section></td></tr><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: none;font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">suppress</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/səˈpres/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">verb</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">压制，抑制</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">to prevent something from being seen, expressed, or operating</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: none;white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"The regime suppressed free speech."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"该政权压制了言论自由。"</span></section></td></tr></tbody></table></section></section></section><section><span style="white-space:pre-wrap;color: rgb(51, 51, 51);font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: medium;font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: 400;letter-spacing: normal;orphans: 2;text-align: start;text-indent: 0px;text-transform: none;widows: 2;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;display: inline !important;float: none;"></span></section><section style="white-space:pre-wrap;margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: white;border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;overflow: hidden;display: flex;transition: transform 0.3s;flex-direction: column;color: rgb(51, 51, 51);font-size: medium;font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: 400;letter-spacing: normal;orphans: 2;text-align: start;text-indent: 0px;text-transform: none;widows: 2;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;"><section style="margin: 0px;padding: 10px 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;font-size: 2.5rem;font-weight: 800;min-width: 100%;display: flex;align-items: center;justify-content: center;"><span leaf="">F</span></section><section style="margin: 0px;padding: 5px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;flex: 1 1 0%;width: 2825.38px;"><h3 style="margin: 0px 0px 15px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 1.3rem;color: rgb(42, 90, 140);display: flex;align-items: center;"><span leaf="">Conclusion: The Power of Reverse Thinking</span></h3><section style="margin: 0px 0px 25px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><h4 style="margin: 0px 0px 8px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(42, 90, 140);font-size: 1.1rem;display: flex;align-items: center;"><i style="margin: 0px 8px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.2rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e0c008ff" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25"></path></svg></i><span leaf="">英语原文</span></h4><section style="margin: 0px;padding: 15px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);border-radius: 8px;border-left: 3px solid rgb(42, 90, 140);font-size: 1.05rem;line-height: 1.7;"><span leaf="">Munger often says: 'Few people actively learn not to make elementary mistakes.' If you understand how to make others idiots, you also understand the path toward mental decline and how to avoid it yourself. True intelligence is self-protection against cognitive traps, not blindly chasing shortcuts to 'cleverness.'</span></section></section><section style="margin: 0px 0px 25px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><h4 style="margin: 0px 0px 8px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(42, 90, 140);font-size: 1.1rem;display: flex;align-items: center;"><i style="margin: 0px 8px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.2rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bd8409ff" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"></path></svg></i><span leaf="">中文翻译</span></h4><section style="margin: 15px 0px 0px;padding: 15px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);border-radius: 8px;border-left: 3px solid rgb(212, 175, 55);font-size: 12px;line-height: 1.7;"><span leaf="">芒格常说：‘很少有人积极学习如何不犯低级错误。’如果你理解了如何让别人变成傻瓜，你也就理解了走向心智衰退的道路以及如何自己避免它。真正的智慧是对认知陷阱的自我保护，而不是盲目追逐通往‘聪明’的捷径。</span></section></section><h3 style="margin: 0px 0px 15px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 1.3rem;color: rgb(42, 90, 140);display: flex;align-items: center;"><i style="margin: 0px 10px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-size: 1.4rem;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(110, 103, 4, 1)" width="48" height="48" role="img" aria-label="插图"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 0 1-.657.643 48.39 48.39 0 0 1-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 0 1-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 0 0-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 0 1-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 0 0 .657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 0 1-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 0 0 5.427-.63 48.05 48.05 0 0 0 .582-4.717.532.532 0 0 0-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 0 0 .658-.663 48.422 48.422 0 0 0-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 0 1-.61-.58v0Z"></path></svg></i><span leaf="">专业词汇</span></h3><section style="margin: 20px 0px 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;width: 2815.38px;overflow-x: auto;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 15px;"><table style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;width: 2815.38px;min-width: 750px;border-collapse: collapse;"><thead><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Vocabulary</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Phonetic</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">POS</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Meaning</span></section></th><th style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(26, 58, 109);color: white;text-align: left;font-weight: 600;white-space: nowrap;font-size: 0.85rem;"><section><span leaf="">Example</span></section></th></tr></thead><tbody><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">elementary</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/ˌel.ɪˈmen.tər.i/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">adjective</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">基本的，初级的</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">simple or basic</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: 1px solid rgb(234, 238, 245);white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"Avoiding elementary mistakes is crucial for success."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"避免低级错误对成功至关重要。"</span></section></td></tr><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(248, 249, 252);"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">decline</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/dɪˈklaɪn/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">noun</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: 1px solid rgb(234, 238, 245);font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">衰退，下降</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">a gradual and continuous loss of strength, numbers, quality, or value</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: 1px solid rgb(234, 238, 245);white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"The book discusses the decline of critical thinking."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"这本书讨论了批判性思维的衰退。"</span></section></td></tr><tr style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-weight: 700;color: rgb(26, 58, 109);white-space: nowrap;border-bottom: none;font-size: 0.85rem;"><strong style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;"><span leaf="">cognitive traps</span></strong></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);font-style: italic;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><section><span leaf="">/ˈkɒɡ.nə.tɪv træps/</span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 4px 8px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;background: rgb(238, 242, 248);border-radius: 4px;display: inline-block;font-size: 0.85rem;font-weight: 600;color: rgb(42, 90, 140);"><span leaf="">noun phrase</span></span></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;line-height: 1.5;border-bottom: none;font-size: 0.85rem;white-space: nowrap;"><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(212, 175, 55);font-weight: 600;"><span leaf="">认知陷阱</span></span><section><span leaf=""><br></span><span style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-size: 0.95rem;"><span leaf="">systematic patterns of deviation from norm or rationality in judgment</span></span></section></td><td style="margin: 0px;padding: 8px 10px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;font-size: 0.85rem;line-height: 1.6;border-bottom: none;white-space: nowrap;"><section style="margin: 0px 0px 5px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(68, 68, 68);font-style: italic;"><span leaf="">"Being aware of cognitive traps is the first step to avoiding them."</span></section><section style="margin: 0px;padding: 0px;box-sizing: border-box;font-family: Roboto, &quot;Noto Sans SC&quot;, sans-serif;color: rgb(95, 107, 125);"><span leaf="">"意识到认知陷阱是避免它们的第一步。"</span></section></td></tr></tbody></table></section></section></section><section style="margin-bottom: 0px;"><span leaf=""><br></span></section><p style="display: none;"><mp-style-type data-value="3"></mp-style-type></p></div>
+                
+                
+            </div>
+            
+            <!-- 英语播放器模式 -->
+            <div class="mode" id="player">
+                <div class="player-container">
+                    <div class="album-art">
+                        English Hits
+                    </div>
+                    
+                    <div class="song-info">
+                        <div class="song-title">Perfect</div>
+                        <div class="song-artist">Ed Sheeran</div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progress-bar">
+                            <div class="progress" id="progress"></div>
+                        </div>
+                        <div class="time-display">
+                            <span id="current-time-display">2:15</span>
+                            <span id="total-time">4:30</span>
+                        </div>
+                    </div>
+                    
+                    <div class="player-controls">
+                        <button class="control-btn" id="prev-btn">◀◀</button>
+                        <button class="control-btn" id="back-btn">◀</button>
+                        <button class="play-btn" id="play-btn">▶</button>
+                        <button class="control-btn" id="forward-btn">▶</button>
+                        <button class="control-btn" id="next-btn">▶▶</button>
+                    </div>
+                    
+                    <div class="lyrics-container" id="lyrics-container"><div class="lyric-line">I found a love for me</div><div class="lyric-line">Darling, just dive right in and follow my lead</div><div class="lyric-line">Well, I found a girl, beautiful and sweet</div><div class="lyric-line">Oh, I never knew you were the someone waiting for me</div><div class="lyric-line">'Cause we were just kids when we fell in love</div><div class="lyric-line">Not knowing what it was</div><div class="lyric-line">I will not give you up this time</div><div class="lyric-line">But darling, just kiss me slow</div><div class="lyric-line">Your heart is all I own</div><div class="lyric-line">And in your eyes, you're holding mine</div></div>
+                </div>
+            </div>
+            
+            <!-- 记事本模式 -->
+            <div class="mode" id="notepad">
+                <div class="notepad-header">
+                    <div class="notepad-title">我的笔记</div>
+                    <div class="notepad-date" id="current-date">2025年10月22日</div>
+                </div>
+                <textarea class="notepad-content" id="notepad-content" placeholder="开始输入...">今天需要完成的任务：
+1. 准备会议材料
+2. 回复客户邮件
+3. 完成项目报告初稿
+4. 预约下周会议
+
+想法：
+- 考虑优化工作流程
+- 学习新的时间管理方法</textarea>
+            </div>
+        </div>
+        
+        <footer>
+            <div>首页</div>
+            <div>返回</div>
+            <div>多任务</div>
+        </footer>
+    </div>
+
+    <script>
+        // 单词库
+        const wordList = [
+            {
+                word: "Serendipity",
+                pronunciation: "/ˌser.ənˈdɪp.ə.ti/",
+                meaning: "意外发现珍奇事物的本领；机缘巧合",
+                example: "Finding this beautiful old book in a small village shop was a real serendipity."
+            },
+            {
+                word: "Ephemeral",
+                pronunciation: "/ɪˈfem.ər.əl/",
+                meaning: "短暂的；瞬息的",
+                example: "The beauty of cherry blossoms is ephemeral, lasting only a few weeks each spring."
+            },
+            {
+                word: "Ubiquitous",
+                pronunciation: "/juːˈbɪk.wɪ.təs/",
+                meaning: "无处不在的；普遍存在的",
+                example: "Mobile phones are now ubiquitous in modern society."
+            },
+            {
+                word: "Eloquent",
+                pronunciation: "/ˈel.ə.kwənt/",
+                meaning: "雄辩的；有说服力的",
+                example: "Her eloquent speech moved the entire audience."
+            },
+            {
+                word: "Resilient",
+                pronunciation: "/rɪˈzɪl.i.ənt/",
+                meaning: "有弹性的；能恢复的",
+                example: "Children are often more resilient than adults in adapting to new environments."
+            }
+        ];
+
+        // 歌词
+        const lyrics = [
+            "I found a love for me",
+            "Darling, just dive right in and follow my lead",
+            "Well, I found a girl, beautiful and sweet",
+            "Oh, I never knew you were the someone waiting for me",
+            "'Cause we were just kids when we fell in love",
+            "Not knowing what it was",
+            "I will not give you up this time",
+            "But darling, just kiss me slow",
+            "Your heart is all I own",
+            "And in your eyes, you're holding mine"
+        ];
+
+        // 更新当前时间
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('zh-CN', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                hour12: false 
+            });
+            document.getElementById('current-time').textContent = timeString;
+            
+            // 更新记事本日期
+            const dateString = now.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('current-date').textContent = dateString;
+            
+            // 更新文章日期
+            const articleDate = now.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+            document.getElementById('article-date').textContent = articleDate;
+        }
+        
+        // 初始更新时间
+        updateTime();
+        // 每秒更新时间
+        setInterval(updateTime, 1000);
+        
+        // 模式切换
+        const navButtons = document.querySelectorAll('nav button');
+        const modes = document.querySelectorAll('.mode');
+        
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const mode = button.getAttribute('data-mode');
+                
+                // 更新活动按钮
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // 显示对应模式
+                modes.forEach(m => m.classList.remove('active'));
+                document.getElementById(mode).classList.add('active');
+                
+                // 如果是游戏模式，重新初始化游戏
+                if (mode === 'game') {
+                    initGame();
+                }
+            });
+        });
+        
+        // 消消乐游戏变量
+        let selectedTile = null;
+        let score = 1250;
+        let gameTime = 165; // 2分45秒
+        
+        // 初始化消消乐游戏
+        function initGame() {
+            const gameBoard = document.getElementById('game-board');
+            gameBoard.innerHTML = '';
+            selectedTile = null;
+            score = 1250;
+            gameTime = 165;
+            
+            document.getElementById('score').textContent = score;
+            updateGameTime();
+            
+            const colors = ['#FF6B6B', '#4ECDC4', '#FFD166', '#6A0572', '#118AB2'];
+            const symbols = ['★', '♦', '♠', '♣', '♥'];
+            
+            for (let i = 0; i < 36; i++) {
+                const tile = document.createElement('div');
+                const randomIndex = Math.floor(Math.random() * colors.length);
+                tile.className = 'game-tile';
+                tile.style.backgroundColor = colors[randomIndex];
+                tile.textContent = symbols[randomIndex];
+                tile.dataset.index = i;
+                
+                tile.addEventListener('click', () => {
+                    handleTileClick(tile);
+                });
+                
+                gameBoard.appendChild(tile);
+            }
+        }
+        
+        // 处理方块点击
+        function handleTileClick(tile) {
+            if (selectedTile === null) {
+                // 第一次选择
+                selectedTile = tile;
+                tile.classList.add('selected');
+            } else if (selectedTile === tile) {
+                // 取消选择
+                selectedTile.classList.remove('selected');
+                selectedTile = null;
+            } else {
+                // 交换两个方块
+                const tempColor = selectedTile.style.backgroundColor;
+                const tempSymbol = selectedTile.textContent;
+                
+                selectedTile.style.backgroundColor = tile.style.backgroundColor;
+                selectedTile.textContent = tile.textContent;
+                
+                tile.style.backgroundColor = tempColor;
+                tile.textContent = tempSymbol;
+                
+                // 增加分数
+                score += 10;
+                document.getElementById('score').textContent = score;
+                
+                // 取消选择
+                selectedTile.classList.remove('selected');
+                selectedTile = null;
+            }
+        }
+        
+        // 更新游戏时间
+        function updateGameTime() {
+            const minutes = Math.floor(gameTime / 60);
+            const seconds = gameTime % 60;
+            document.getElementById('game-time').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // 游戏计时器
+        setInterval(() => {
+            if (document.getElementById('game').classList.contains('active')) {
+                gameTime++;
+                updateGameTime();
+            }
+        }, 1000);
+        
+        // 初始化歌词
+        function initLyrics() {
+            const lyricsContainer = document.getElementById('lyrics-container');
+            lyricsContainer.innerHTML = '';
+            
+            lyrics.forEach((lyric, index) => {
+                const lyricLine = document.createElement('div');
+                lyricLine.className = 'lyric-line';
+                lyricLine.textContent = lyric;
+                lyricsContainer.appendChild(lyricLine);
+            });
+        }
+        
+        // 播放器状态
+        let isPlaying = false;
+        let currentTime = 135; // 2分15秒
+        let totalTime = 270; // 4分30秒
+        let progressInterval;
+        
+        // 更新播放器进度
+        function updatePlayerProgress() {
+            const progressPercent = (currentTime / totalTime) * 100;
+            document.getElementById('progress').style.width = `${progressPercent}%`;
+            
+            const currentMinutes = Math.floor(currentTime / 60);
+            const currentSeconds = currentTime % 60;
+            document.getElementById('current-time-display').textContent = 
+                `${currentMinutes}:${currentSeconds.toString().padStart(2, '0')}`;
+        }
+        
+        // 播放/暂停功能
+        function togglePlay() {
+            const playBtn = document.getElementById('play-btn');
+            
+            if (isPlaying) {
+                // 暂停
+                clearInterval(progressInterval);
+                playBtn.textContent = '▶';
+            } else {
+                // 播放
+                progressInterval = setInterval(() => {
+                    if (currentTime < totalTime) {
+                        currentTime++;
+                        updatePlayerProgress();
+                        
+                        // 更新歌词高亮
+                        updateLyricsHighlight();
+                    } else {
+                        // 歌曲结束
+                        clearInterval(progressInterval);
+                        isPlaying = false;
+                        playBtn.textContent = '▶';
+                    }
+                }, 1000);
+                playBtn.textContent = '❚❚';
+            }
+            
+            isPlaying = !isPlaying;
+        }
+        
+        // 更新歌词高亮
+        function updateLyricsHighlight() {
+            const lyricLines = document.querySelectorAll('.lyric-line');
+            const currentLyricIndex = Math.floor((currentTime / totalTime) * lyrics.length);
+            
+            lyricLines.forEach((line, index) => {
+                if (index === currentLyricIndex) {
+                    line.classList.add('active');
+                } else {
+                    line.classList.remove('active');
+                }
+            });
+        }
+        
+        // 单词学习功能
+        let currentWordIndex = 0;
+        
+        function updateWordCard() {
+            const word = wordList[currentWordIndex];
+            document.getElementById('current-word').textContent = word.word;
+            document.getElementById('current-pronunciation').textContent = word.pronunciation;
+            document.getElementById('current-meaning').innerHTML = `<strong>${word.pos || '名词'}</strong><br>${word.meaning}`;
+            document.getElementById('current-example').textContent = word.example;
+        }
+        
+        function nextWord() {
+            currentWordIndex = (currentWordIndex + 1) % wordList.length;
+            updateWordCard();
+        }
+        
+        function prevWord() {
+            currentWordIndex = (currentWordIndex - 1 + wordList.length) % wordList.length;
+            updateWordCard();
+        }
+        
+        function pronounceWord() {
+            // 模拟发音功能
+            const word = wordList[currentWordIndex].word;
+            alert(`发音: ${word}`);
+        }
+        
+        // 计算器功能
+        let calcDisplayValue = '0';
+        let firstOperand = null;
+        let operator = null;
+        let waitingForSecondOperand = false;
+        
+        function updateCalcDisplay() {
+            document.getElementById('calc-display').textContent = calcDisplayValue;
+        }
+        
+        function inputDigit(digit) {
+            if (waitingForSecondOperand) {
+                calcDisplayValue = digit;
+                waitingForSecondOperand = false;
+            } else {
+                calcDisplayValue = calcDisplayValue === '0' ? digit : calcDisplayValue + digit;
+            }
+        }
+        
+        function inputDecimal() {
+            if (waitingForSecondOperand) {
+                calcDisplayValue = '0.';
+                waitingForSecondOperand = false;
+                return;
+            }
+            
+            if (!calcDisplayValue.includes('.')) {
+                calcDisplayValue += '.';
+            }
+        }
+        
+        function handleOperator(nextOperator) {
+            const inputValue = parseFloat(calcDisplayValue);
+            
+            if (firstOperand === null) {
+                firstOperand = inputValue;
+            } else if (operator) {
+                const result = performCalculation();
+                calcDisplayValue = `${parseFloat(result.toFixed(7))}`;
+                firstOperand = result;
+            }
+            
+            waitingForSecondOperand = true;
+            operator = nextOperator;
+        }
+        
+        function performCalculation() {
+            const inputValue = parseFloat(calcDisplayValue);
+            
+            if (operator === '+') {
+                return firstOperand + inputValue;
+            } else if (operator === '-') {
+                return firstOperand - inputValue;
+            } else if (operator === '×') {
+                return firstOperand * inputValue;
+            } else if (operator === '÷') {
+                if (inputValue === 0) {
+                    alert('不能除以零');
+                    return firstOperand;
+                }
+                return firstOperand / inputValue;
+            }
+            
+            return inputValue;
+        }
+        
+        function resetCalculator() {
+            calcDisplayValue = '0';
+            firstOperand = null;
+            operator = null;
+            waitingForSecondOperand = false;
+        }
+        
+        // 记事本功能
+        function saveNotepadContent() {
+            localStorage.setItem('notepadContent', document.getElementById('notepad-content').value);
+        }
+        
+        function loadNotepadContent() {
+            const savedContent = localStorage.getItem('notepadContent');
+            if (savedContent) {
+                document.getElementById('notepad-content').value = savedContent;
+            }
+        }
+        
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', () => {
+            initGame();
+            initLyrics();
+            updateWordCard();
+            loadNotepadContent();
+            
+            // 绑定事件监听器
+            document.getElementById('play-btn').addEventListener('click', togglePlay);
+            document.getElementById('next-word').addEventListener('click', nextWord);
+            document.getElementById('prev-word').addEventListener('click', prevWord);
+            document.getElementById('pronounce-btn').addEventListener('click', pronounceWord);
+            document.getElementById('notepad-content').addEventListener('input', saveNotepadContent);
+            
+            // 进度条点击事件
+            document.getElementById('progress-bar').addEventListener('click', (e) => {
+                const rect = e.target.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const width = rect.width;
+                const percent = clickX / width;
+                currentTime = Math.floor(totalTime * percent);
+                updatePlayerProgress();
+                updateLyricsHighlight();
+            });
+            
+            // 添加计算器按钮事件监听
+            document.querySelectorAll('.calc-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const { textContent: value } = button;
+                    
+                    if (button.classList.contains('function')) {
+                        if (value === 'C') {
+                            resetCalculator();
+                            updateCalcDisplay();
+                        }
+                        return;
+                    }
+                    
+                    if (button.classList.contains('operator')) {
+                        if (value === '=') {
+                            if (firstOperand !== null && operator) {
+                                const result = performCalculation();
+                                calcDisplayValue = `${parseFloat(result.toFixed(7))}`;
+                                firstOperand = null;
+                                operator = null;
+                                waitingForSecondOperand = true;
+                                updateCalcDisplay();
+                            }
+                        } else {
+                            handleOperator(value);
+                            updateCalcDisplay();
+                        }
+                        return;
+                    }
+                    
+                    if (value === '.') {
+                        inputDecimal();
+                        updateCalcDisplay();
+                        return;
+                    }
+                    
+                    inputDigit(value);
+                    updateCalcDisplay();
+                });
+            });
+        });
+    </script>
+
+</body></html>
