@@ -393,762 +393,1005 @@
         justify-content: center;
       }
 
-      .iseeu-media-manager {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90%;
-        max-width: 800px;
-        max-height: 80vh;
-        background: #1a1a2e;
-        border-radius: 12px;
-        z-index: 10004;
-        overflow: hidden;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      }
-
-      .iseeu-media-manager.active {
-        display: block;
-      }
-
-      .iseeu-media-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 20px;
-        background: rgba(0,0,0,0.3);
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-      }
-
-      .iseeu-media-content {
-        padding: 20px;
-        max-height: 60vh;
-        overflow-y: auto;
-      }
-
-      .iseeu-media-stats {
-        background: rgba(255,255,255,0.05);
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .iseeu-clear-all-btn {
-        background: linear-gradient(135deg, #e74c3c, #c0392b);
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 14px;
-      }
-
-      .iseeu-clear-all-btn:hover {
-        background: linear-gradient(135deg, #ea6153, #d35400);
-      }
-
-      .iseeu-media-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 15px;
-      }
-
-      .iseeu-media-item {
-        position: relative;
-        border-radius: 8px;
-        overflow: hidden;
-        cursor: pointer;
-        background: rgba(255,255,255,0.05);
-        transition: transform 0.2s;
-      }
-
-      .iseeu-media-item:hover {
-        transform: translateY(-2px);
-      }
-
-      .iseeu-media-item img,
-      .iseeu-media-item video {
-        width: 100%;
-        height: 120px;
-        object-fit: cover;
-        display: block;
-      }
-
-      .iseeu-media-item-info {
-        padding: 8px;
-        font-size: 12px;
-        color: #aaa;
-        text-align: center;
-      }
-
-      .iseeu-media-item-actions {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        display: flex;
-        gap: 5px;
-      }
-
-      .iseeu-delete-media {
-        background: rgba(231, 76, 60, 0.9);
-        border: none;
-        color: white;
-        border-radius: 50%;
-        width: 24px;
-        height: 24px;
-        cursor: pointer;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .iseeu-manager-btn {
-        margin-top: 15px;
-        background: rgba(255,255,255,0.1);
-        border: 1px solid rgba(255,255,255,0.2);
-        color: #eee;
-        padding: 10px 15px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .iseeu-manager-btn:hover {
-        background: rgba(255,255,255,0.2);
-      }
-
-       /* 增强的媒体库样式 */
-      .iseeu-media-manager {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90%;
-        max-width: 1200px;
-        max-height: 90vh;
-        background: #1a1a2e;
-        border-radius: 16px;
-        z-index: 10004;
-        overflow: hidden;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.7);
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      }
-
-      .iseeu-media-manager.active {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .iseeu-media-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 30px;
-        background: linear-gradient(135deg, #2c3e50, #34495e);
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        flex-shrink: 0;
-      }
-
-      .iseeu-media-header h3 {
-        margin: 0;
-        color: #fff;
-        font-size: 20px;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .iseeu-media-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-      }
-
-      .iseeu-media-toolbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 30px;
-        background: rgba(0,0,0,0.2);
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        flex-wrap: wrap;
-        gap: 15px;
-      }
-
-      .iseeu-media-filters {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-
-      .iseeu-filter-btn {
-        padding: 8px 16px;
-        border: 1px solid rgba(255,255,255,0.2);
-        background: rgba(255,255,255,0.1);
-        color: #eee;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 14px;
-        transition: all 0.2s;
-      }
-
-      .iseeu-filter-btn.active {
-        background: #3498db;
-        border-color: #3498db;
-      }
-
-      .iseeu-filter-btn:hover {
-        background: rgba(255,255,255,0.2);
-      }
-
-      .iseeu-search-box {
-        display: flex;
-        align-items: center;
-        background: rgba(255,255,255,0.1);
-        border-radius: 20px;
-        padding: 8px 16px;
-        min-width: 200px;
-      }
-
-      .iseeu-search-box input {
-        background: none;
-        border: none;
-        color: #fff;
-        font-size: 14px;
-        width: 100%;
-        outline: none;
-      }
-
-      .iseeu-search-box input::placeholder {
-        color: #aaa;
-      }
-
-      .iseeu-media-actions {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .iseeu-action-btn {
-        padding: 8px 16px;
-        border: 1px solid rgba(255,255,255,0.2);
-        background: rgba(255,255,255,0.1);
-        color: #eee;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 14px;
-        transition: all 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-
-      .iseeu-action-btn:hover {
-        background: rgba(255,255,255,0.2);
-      }
-
-      .iseeu-action-btn.danger {
-        background: linear-gradient(135deg, #e74c3c, #c0392b);
-        border-color: rgba(255,255,255,0.3);
-      }
-
-      .iseeu-action-btn.danger:hover {
-        background: linear-gradient(135deg, #ea6153, #d35400);
-      }
-
-      .iseeu-action-btn.primary {
-        background: linear-gradient(135deg, #3498db, #2980b9);
-        border-color: rgba(255,255,255,0.3);
-      }
-
-      .iseeu-action-btn.primary:hover {
-        background: linear-gradient(135deg, #3ca0db, #2c88c7);
-      }
-
-      .iseeu-media-stats {
-        background: rgba(255,255,255,0.05);
-        padding: 15px 30px;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .iseeu-stats-info {
-        color: #aaa;
-        font-size: 14px;
-      }
-
-      .iseeu-stats-actions {
-        display: flex;
-        gap: 10px;
-      }
-
-      .iseeu-media-view {
-        flex: 1;
-        padding: 20px 30px;
-        overflow-y: auto;
-        min-height: 400px;
-      }
-
-      /* 网格视图 */
-      .iseeu-media-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 20px;
-      }
-
-      .iseeu-media-item {
-        position: relative;
-        border-radius: 12px;
-        overflow: hidden;
-        cursor: pointer;
-        background: rgba(255,255,255,0.05);
-        transition: all 0.3s ease;
-        border: 2px solid transparent;
-      }
-
-      .iseeu-media-item:hover {
-        transform: translateY(-5px);
-        border-color: #3498db;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      }
-
-      .iseeu-media-item.selected {
-        border-color: #2ecc71;
-        background: rgba(46, 204, 113, 0.1);
-      }
-
-      .iseeu-media-preview {
-        position: relative;
-        width: 100%;
-        height: 150px;
-        overflow: hidden;
-      }
-
-      .iseeu-media-preview img,
-      .iseeu-media-preview video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-
-      .iseeu-media-type {
-        position: absolute;
-        top: 8px;
-        left: 8px;
-        background: rgba(0,0,0,0.7);
-        color: white;
-        padding: 4px 8px;
-        border-radius: 12px;
-        font-size: 10px;
-        font-weight: 600;
-      }
-
-      .iseeu-media-duration {
-        position: absolute;
-        bottom: 8px;
-        right: 8px;
-        background: rgba(0,0,0,0.7);
-        color: white;
-        padding: 2px 6px;
-        border-radius: 8px;
-        font-size: 10px;
-      }
-
-      .iseeu-media-checkbox {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: rgba(0,0,0,0.7);
-        border: 2px solid #fff;
-        display: none;
-      }
-
-      .iseeu-media-item.selectable .iseeu-media-checkbox {
-        display: block;
-      }
-
-      .iseeu-media-item.selected .iseeu-media-checkbox {
-        background: #2ecc71;
-        border-color: #2ecc71;
-      }
-
-      .iseeu-media-item.selected .iseeu-media-checkbox::after {
-        content: '✓';
-        color: white;
-        font-size: 12px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .iseeu-media-info {
-        padding: 12px;
-      }
-
-      .iseeu-media-title {
-        color: #fff;
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 4px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .iseeu-media-meta {
-        display: flex;
-        justify-content: space-between;
-        color: #aaa;
-        font-size: 11px;
-      }
-
-      .iseeu-media-size {
-        font-weight: 600;
-      }
-
-      .iseeu-media-date {
-        color: #888;
-      }
-
-      .iseeu-media-actions-bar {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(transparent, rgba(0,0,0,0.9));
-        padding: 12px;
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-
-      .iseeu-media-item:hover .iseeu-media-actions-bar {
-        opacity: 1;
-      }
-
-      .iseeu-item-action {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.9);
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 14px;
-        transition: all 0.2s;
-      }
-
-      .iseeu-item-action:hover {
-        transform: scale(1.1);
-        background: #fff;
-      }
-
-      .iseeu-item-action.download {
-        color: #3498db;
-      }
-
-      .iseeu-item-action.delete {
-        color: #e74c3c;
-      }
-
-      .iseeu-item-action.share {
-        color: #2ecc71;
-      }
-
-      /* 列表视图 */
-      .iseeu-media-list {
-        display: none;
-      }
-
-      .iseeu-media-list.active {
-        display: block;
-      }
-
-      .iseeu-list-item {
-        display: flex;
-        align-items: center;
-        padding: 12px 16px;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-
-      .iseeu-list-item:hover {
-        background: rgba(255,255,255,0.05);
-      }
-
-      .iseeu-list-item.selected {
-        background: rgba(46, 204, 113, 0.1);
-      }
-
-      .iseeu-list-preview {
-        width: 60px;
-        height: 60px;
-        border-radius: 8px;
-        overflow: hidden;
-        margin-right: 16px;
-        flex-shrink: 0;
-      }
-
-      .iseeu-list-preview img,
-      .iseeu-list-preview video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .iseeu-list-info {
-        flex: 1;
-        min-width: 0;
-      }
-
-      .iseeu-list-title {
-        color: #fff;
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 4px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .iseeu-list-meta {
-        display: flex;
-        gap: 12px;
-        color: #aaa;
-        font-size: 12px;
-      }
-
-      .iseeu-list-type {
-        background: #3498db;
-        color: white;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-size: 10px;
-        font-weight: 600;
-      }
-
-      .iseeu-list-actions {
-        display: flex;
-        gap: 8px;
-        opacity: 0;
-        transition: opacity 0.2s;
-      }
-
-      .iseeu-list-item:hover .iseeu-list-actions {
-        opacity: 1;
-      }
-
-      /* 空状态 */
-      .iseeu-media-empty {
-        text-align: center;
-        padding: 60px 20px;
-        color: #666;
-      }
-
-      .iseeu-empty-icon {
-        font-size: 48px;
-        margin-bottom: 16px;
-        opacity: 0.5;
-      }
-
-      .iseeu-empty-text {
-        font-size: 16px;
-        margin-bottom: 8px;
-      }
-
-      .iseeu-empty-subtext {
-        font-size: 14px;
-        color: #888;
-      }
-
-      /* 预览模态框 */
-      .iseeu-preview-modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.95);
-        z-index: 10005;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .iseeu-preview-modal.active {
-        display: flex;
-      }
-
-      .iseeu-preview-content {
-        max-width: 90%;
-        max-height: 90%;
-        position: relative;
-      }
-
-      .iseeu-preview-media {
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 8px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      }
-
-      .iseeu-preview-info {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(transparent, rgba(0,0,0,0.8));
-        color: white;
-        padding: 20px;
-        border-radius: 0 0 8px 8px;
-      }
-
-      .iseeu-preview-title {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 8px;
-      }
-
-      .iseeu-preview-meta {
-        display: flex;
-        gap: 16px;
-        font-size: 12px;
-        color: #ccc;
-      }
-
-      .iseeu-preview-close {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: rgba(0,0,0,0.7);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index:10;
-      }
-
-      .iseeu-preview-nav {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0,0,0,0.7);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .iseeu-preview-prev {
-        left: 20px;
-        z-index:10;
-      }
-
-      .iseeu-preview-next {
-        right: 20px;
-        z-index:10;
-      }
-
-      /* 响应式设计 */
-      @media (max-width: 768px) {
-        .iseeu-media-manager {
-          width: 95%;
-          height: 95vh;
-        }
-
-        .iseeu-media-grid {
-          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-          gap: 15px;
-        }
-
-        .iseeu-media-toolbar {
-          flex-direction: column;
-          align-items: stretch;
-        }
-
-        .iseeu-media-filters {
-          justify-content: center;
-        }
-
-        .iseeu-media-actions {
-          justify-content: center;
-        }
-      }
-
-      /* 加载动画 */
-      .iseeu-media-loading {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 60px 20px;
-        color: #666;
-      }
-
-      .iseeu-loading-spinner {
-        width: 40px;
-        height: 40px;
-        border: 4px solid rgba(255,255,255,0.3);
-        border-top: 4px solid #3498db;
-        border-radius: 50%;
-        animation: iseeu-spin 1s linear infinite;
-        margin-bottom: 16px;
-      }
-
-      /* 选择模式 */
-      .iseeu-selection-mode .iseeu-media-item {
-        cursor: default;
-      }
-
-      .iseeu-selection-mode .iseeu-media-item:hover {
-        transform: none;
-        border-color: transparent;
-      }
-
-      .iseeu-selection-mode .iseeu-media-item.selected:hover {
-        border-color: #2ecc71;
-      }
+      /* 增强的媒体库样式 - 响应式版本 */
+.iseeu-media-manager {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  max-width: 1200px;
+  max-height: 95vh;
+  background: #1a1a2e;
+  border-radius: 16px;
+  z-index: 10004;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.iseeu-media-manager.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.iseeu-media-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+
+.iseeu-media-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.iseeu-media-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.iseeu-media-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.iseeu-media-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.iseeu-filter-btn {
+  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
+  color: #eee;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.iseeu-filter-btn.active {
+  background: #3498db;
+  border-color: #3498db;
+}
+
+.iseeu-filter-btn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.iseeu-search-box {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 8px 16px;
+  min-width: 200px;
+}
+
+.iseeu-search-box input {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+}
+
+.iseeu-search-box input::placeholder {
+  color: #aaa;
+}
+
+.iseeu-media-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.iseeu-action-btn {
+  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
+  color: #eee;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.iseeu-action-btn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.iseeu-action-btn.danger {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.iseeu-action-btn.danger:hover {
+  background: linear-gradient(135deg, #ea6153, #d35400);
+}
+
+.iseeu-action-btn.primary {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.iseeu-action-btn.primary:hover {
+  background: linear-gradient(135deg, #3ca0db, #2c88c7);
+}
+
+.iseeu-media-stats {
+  background: rgba(255,255,255,0.05);
+  padding: 15px 30px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.iseeu-stats-info {
+  color: #aaa;
+  font-size: 14px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.iseeu-stats-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.iseeu-media-view {
+  flex: 1;
+  padding: 20px 30px;
+  overflow-y: auto;
+  min-height: 400px;
+}
+
+/* 网格视图 */
+.iseeu-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.iseeu-media-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.iseeu-media-item:hover {
+  transform: translateY(-5px);
+  border-color: #3498db;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.iseeu-media-item.selected {
+  border-color: #2ecc71;
+  background: rgba(46, 204, 113, 0.1);
+}
+
+.iseeu-media-preview {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+}
+
+.iseeu-media-preview img,
+.iseeu-media-preview video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.iseeu-media-type {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.iseeu-media-duration {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+}
+
+.iseeu-media-checkbox {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.7);
+  border: 2px solid #fff;
+  display: none;
+}
+
+.iseeu-media-item.selectable .iseeu-media-checkbox {
+  display: block;
+}
+
+.iseeu-media-item.selected .iseeu-media-checkbox {
+  background: #2ecc71;
+  border-color: #2ecc71;
+}
+
+.iseeu-media-item.selected .iseeu-media-checkbox::after {
+  content: '✓';
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.iseeu-media-info {
+  padding: 12px;
+}
+
+.iseeu-media-title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.iseeu-media-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #aaa;
+  font-size: 11px;
+}
+
+.iseeu-media-size {
+  font-weight: 600;
+}
+
+.iseeu-media-date {
+  color: #888;
+}
+
+.iseeu-media-actions-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.iseeu-media-item:hover .iseeu-media-actions-bar {
+  opacity: 1;
+}
+
+.iseeu-item-action {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.iseeu-item-action:hover {
+  transform: scale(1.1);
+  background: #fff;
+}
+
+.iseeu-item-action.download {
+  color: #3498db;
+}
+
+.iseeu-item-action.delete {
+  color: #e74c3c;
+}
+
+.iseeu-item-action.share {
+  color: #2ecc71;
+}
+
+/* 列表视图 */
+.iseeu-media-list {
+  display: none;
+}
+
+.iseeu-media-list.active {
+  display: block;
+}
+
+.iseeu-list-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-wrap: wrap;
+}
+
+.iseeu-list-item:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.iseeu-list-item.selected {
+  background: rgba(46, 204, 113, 0.1);
+}
+
+.iseeu-list-preview {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.iseeu-list-preview img,
+.iseeu-list-preview video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.iseeu-list-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.iseeu-list-title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.iseeu-list-meta {
+  display: flex;
+  gap: 12px;
+  color: #aaa;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+.iseeu-list-type {
+  background: #3498db;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.iseeu-list-actions {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.iseeu-list-item:hover .iseeu-list-actions {
+  opacity: 1;
+}
+
+/* 空状态 */
+.iseeu-media-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.iseeu-empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.iseeu-empty-text {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.iseeu-empty-subtext {
+  font-size: 14px;
+  color: #888;
+}
+
+/* 预览模态框 */
+.iseeu-preview-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  z-index: 10005;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.iseeu-preview-modal.active {
+  display: flex;
+}
+
+.iseeu-preview-content {
+  max-width: 100%;
+  max-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.iseeu-preview-media {
+  max-width: 100%;
+  max-height: calc(100vh - 120px);
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  object-fit: contain;
+}
+
+.iseeu-preview-info {
+  width: 100%;
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 15px;
+  border-radius: 0 0 8px 8px;
+  margin-top: -4px;
+  max-width: 800px;
+}
+
+.iseeu-preview-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.iseeu-preview-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #ccc;
+  flex-wrap: wrap;
+}
+
+.iseeu-preview-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.iseeu-preview-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iseeu-preview-prev {
+  left: 10px;
+  z-index: 10;
+}
+
+.iseeu-preview-next {
+  right: 10px;
+  z-index: 10;
+}
+
+/* ==================== 响应式设计 ==================== */
+
+/* 平板设备 (768px 及以下) */
+@media (max-width: 768px) {
+  .iseeu-media-manager {
+    width: 98%;
+    height: 98vh;
+    max-height: 98vh;
+    border-radius: 12px;
+  }
+  
+  .iseeu-media-header {
+    padding: 15px 20px;
+  }
+  
+  .iseeu-media-header h3 {
+    font-size: 18px;
+  }
+  
+  .iseeu-media-toolbar {
+    padding: 15px 20px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .iseeu-media-filters {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .iseeu-search-box {
+    min-width: 150px;
+    flex: 1;
+  }
+  
+  .iseeu-media-actions {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .iseeu-action-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .iseeu-media-stats {
+    padding: 12px 20px;
+  }
+  
+  .iseeu-stats-info {
+    font-size: 13px;
+    text-align: center;
+    min-width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  .iseeu-stats-actions {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .iseeu-media-view {
+    padding: 15px 20px;
+  }
+  
+  .iseeu-media-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+  }
+  
+  .iseeu-media-preview {
+    height: 120px;
+  }
+  
+  .iseeu-list-item {
+    padding: 10px 12px;
+  }
+  
+  .iseeu-list-preview {
+    width: 50px;
+    height: 50px;
+    margin-right: 12px;
+  }
+  
+  .iseeu-list-title {
+    font-size: 13px;
+  }
+  
+  .iseeu-list-meta {
+    font-size: 11px;
+    gap: 8px;
+  }
+  
+  .iseeu-preview-modal {
+    padding: 10px;
+  }
+  
+  .iseeu-preview-close {
+    top: 5px;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+  
+  .iseeu-preview-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .iseeu-preview-prev {
+    left: 5px;
+  }
+  
+  .iseeu-preview-next {
+    right: 5px;
+  }
+  
+  .iseeu-preview-info {
+    padding: 12px;
+  }
+  
+  .iseeu-preview-title {
+    font-size: 14px;
+  }
+  
+  .iseeu-preview-meta {
+    font-size: 11px;
+    gap: 12px;
+  }
+}
+
+/* 手机设备 (480px 及以下) */
+@media (max-width: 480px) {
+  .iseeu-media-manager {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  
+  .iseeu-media-header {
+    padding: 12px 15px;
+  }
+  
+  .iseeu-media-header h3 {
+    font-size: 16px;
+  }
+  
+  .iseeu-media-toolbar {
+    padding: 12px 15px;
+    gap: 10px;
+  }
+  
+  .iseeu-media-filters {
+    gap: 6px;
+  }
+  
+  .iseeu-filter-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .iseeu-search-box {
+    min-width: 120px;
+    padding: 6px 12px;
+  }
+  
+  .iseeu-search-box input {
+    font-size: 13px;
+  }
+  
+  .iseeu-search-box input::placeholder {
+    font-size: 13px;
+  }
+  
+  .iseeu-media-actions {
+    gap: 6px;
+  }
+  
+  .iseeu-action-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  
+  .iseeu-media-stats {
+    padding: 10px 15px;
+  }
+  
+  .iseeu-stats-info {
+    font-size: 12px;
+  }
+  
+  .iseeu-media-view {
+    padding: 12px 15px;
+  }
+  
+  .iseeu-media-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+  }
+  
+  .iseeu-media-preview {
+    height: 100px;
+  }
+  
+  .iseeu-media-info {
+    padding: 8px;
+  }
+  
+  .iseeu-media-title {
+    font-size: 12px;
+  }
+  
+  .iseeu-media-meta {
+    font-size: 10px;
+  }
+  
+  .iseeu-media-actions-bar {
+    padding: 8px;
+    gap: 6px;
+  }
+  
+  .iseeu-item-action {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+  
+  .iseeu-list-item {
+    padding: 8px 10px;
+  }
+  
+  .iseeu-list-preview {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .iseeu-list-title {
+    font-size: 12px;
+  }
+  
+  .iseeu-list-meta {
+    font-size: 10px;
+    gap: 6px;
+  }
+  
+  .iseeu-list-actions {
+    gap: 6px;
+  }
+  
+  .iseeu-preview-modal {
+    padding: 5px;
+  }
+  
+  .iseeu-preview-close {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+  
+  .iseeu-preview-nav {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+  
+  .iseeu-preview-info {
+    padding: 10px;
+  }
+  
+  .iseeu-preview-title {
+    font-size: 13px;
+  }
+  
+  .iseeu-preview-meta {
+    font-size: 10px;
+    gap: 8px;
+  }
+  
+  /* 在小屏幕上隐藏分享按钮 */
+  .iseeu-item-action.share {
+    display: none;
+  }
+}
+
+/* 超小屏幕设备 (360px 及以下) */
+@media (max-width: 360px) {
+  .iseeu-media-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+  }
+  
+  .iseeu-media-preview {
+    height: 90px;
+  }
+  
+  .iseeu-filter-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+  
+  .iseeu-action-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  
+  .iseeu-media-actions {
+    gap: 4px;
+  }
+  
+  .iseeu-stats-actions {
+    gap: 6px;
+  }
+}
+
+/* 横屏手机优化 */
+@media (max-height: 500px) and (orientation: landscape) {
+  .iseeu-media-manager {
+    max-height: 98vh;
+  }
+  
+  .iseeu-media-header {
+    padding: 10px 15px;
+  }
+  
+  .iseeu-media-toolbar {
+    padding: 8px 15px;
+  }
+  
+  .iseeu-media-stats {
+    padding: 8px 15px;
+  }
+  
+  .iseeu-media-view {
+    padding: 10px 15px;
+    min-height: 200px;
+  }
+  
+  .iseeu-media-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  
+  .iseeu-media-preview {
+    height: 80px;
+  }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+  .iseeu-media-item:hover {
+    transform: none;
+    border-color: transparent;
+  }
+  
+  .iseeu-media-item:active {
+    transform: scale(0.98);
+    border-color: #3498db;
+  }
+  
+  .iseeu-media-actions-bar {
+    opacity: 1;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  }
+  
+  .iseeu-list-actions {
+    opacity: 1;
+  }
+  
+  .iseeu-action-btn,
+  .iseeu-filter-btn,
+  .iseeu-item-action {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* 高DPI屏幕优化 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iseeu-media-preview img,
+  .iseeu-media-preview video {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* 加载动画 */
+.iseeu-media-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.iseeu-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255,255,255,0.3);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: iseeu-spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+/* 选择模式 */
+.iseeu-selection-mode .iseeu-media-item {
+  cursor: default;
+}
+
+.iseeu-selection-mode .iseeu-media-item:hover {
+  transform: none;
+  border-color: transparent;
+}
+
+.iseeu-selection-mode .iseeu-media-item.selected:hover {
+  border-color: #2ecc71;
+}
     `;
     document.head.appendChild(style);
 
@@ -1336,7 +1579,7 @@
     const previewVideo = previewModal.querySelector('#previewVideo');
     const previewTitle = previewModal.querySelector('#previewTitle');
     const previewMeta = previewModal.querySelector('#previewMeta');
-    
+
     // 媒体库状态
     let mediaLibraryState = {
       currentView: 'grid', // 'grid' 或 'list'
@@ -1371,7 +1614,7 @@
     const openManagerBtn = modal.querySelector('.iseeu-open-manager-btn');
     const minimizeBtn = modal.querySelector('.iseeu-minimize-btn');
     const closeBtn = modal.querySelector('.iseeu-close-btn');
-    
+
     const statusElement = modal.querySelector('.iseeu-status');
     const cameraTypeStatus = modal.querySelector('.iseeu-camera-status');
     const mediaStats = mediaManager.querySelector('#mediaStats');
@@ -1993,10 +2236,10 @@
     async function refreshMediaManager() {
       try {
         showMediaLoading();
-        
+
         const allMedia = await getAllMediaFromDB();
         mediaLibraryState.allMedia = allMedia.sort((a, b) => b.timestamp - a.timestamp);
-        
+
         applyFiltersAndSearch();
         updateMediaDisplay();
         updateStats();
@@ -2083,7 +2326,7 @@
     // 更新网格视图
     function updateGridView() {
       mediaGrid.innerHTML = '';
-      
+
       mediaLibraryState.filteredMedia.forEach((media, index) => {
         const mediaItem = createGridMediaItem(media, index);
         mediaGrid.appendChild(mediaItem);
@@ -2104,10 +2347,10 @@
 
       mediaItem.innerHTML = `
         <div class="iseeu-media-preview">
-          ${media.type === 'photo' ? 
-            `<img src="${blobUrl}" alt="${typeLabel} ${date}" loading="lazy">` : 
-            `<video src="${blobUrl}" preload="metadata"></video>`
-          }
+          ${media.type === 'photo' ?
+          `<img src="${blobUrl}" alt="${typeLabel} ${date}" loading="lazy">` :
+          `<video src="${blobUrl}" preload="metadata"></video>`
+        }
           <div class="iseeu-media-type">${typeLabel}</div>
           ${media.type === 'video' ? `<div class="iseeu-media-duration" id="duration-${media.id}">加载中...</div>` : ''}
           <div class="iseeu-media-checkbox"></div>
@@ -2152,7 +2395,7 @@
     // 更新列表视图
     function updateListView() {
       mediaList.innerHTML = '';
-      
+
       mediaLibraryState.filteredMedia.forEach((media, index) => {
         const listItem = createListMediaItem(media, index);
         mediaList.appendChild(listItem);
@@ -2173,10 +2416,10 @@
 
       listItem.innerHTML = `
         <div class="iseeu-list-preview">
-          ${media.type === 'photo' ? 
-            `<img src="${blobUrl}" alt="${typeLabel} ${date}" loading="lazy">` : 
-            `<video src="${blobUrl}" preload="metadata"></video>`
-          }
+          ${media.type === 'photo' ?
+          `<img src="${blobUrl}" alt="${typeLabel} ${date}" loading="lazy">` :
+          `<video src="${blobUrl}" preload="metadata"></video>`
+        }
         </div>
         <div class="iseeu-list-info">
           <div class="iseeu-list-title">${typeLabel} - ${new Date(media.timestamp).toLocaleString()}</div>
@@ -2260,7 +2503,7 @@
       const selectedCount = mediaLibraryState.selectedItems.size;
       deleteSelectedBtn.disabled = selectedCount === 0;
       downloadSelectedBtn.disabled = selectedCount === 0;
-      
+
       if (selectedCount > 0) {
         selectModeBtn.textContent = `取消选择 (${selectedCount})`;
       } else {
@@ -2322,7 +2565,7 @@
       previewImage.src = '';
       previewVideo.src = '';
       console.log('点击关闭')
-      
+
       // 清理URL
       if (previewImage.src.startsWith('blob:')) {
         URL.revokeObjectURL(previewImage.src);
@@ -2345,13 +2588,13 @@
       const a = document.createElement('a');
       const extension = media.type === 'photo' ? 'png' : 'webm';
       const filename = `iseeu-${media.type}-${new Date(media.timestamp).toISOString().replace(/[:.]/g, '-')}.${extension}`;
-      
+
       a.href = blobUrl;
       a.download = filename;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      
+
       showNotification(`${media.type === 'photo' ? '照片' : '视频'}下载开始`, 'success');
     }
 
@@ -2368,7 +2611,7 @@
           URL.revokeObjectURL(blobUrl);
         }
       }
-      
+
       showNotification(`开始下载 ${mediaLibraryState.selectedItems.size} 个文件`, 'success');
     }
 
@@ -2430,7 +2673,7 @@
     // 切换选择模式
     function toggleSelectMode() {
       mediaLibraryState.isSelectMode = !mediaLibraryState.isSelectMode;
-      
+
       if (mediaLibraryState.isSelectMode) {
         mediaManager.classList.add('iseeu-selection-mode');
         selectModeBtn.textContent = '取消选择';
@@ -2440,7 +2683,7 @@
         selectModeBtn.textContent = '选择';
         updateSelectionUI();
       }
-      
+
       updateMediaDisplay();
     }
 
@@ -2473,13 +2716,13 @@
       const stats = getStorageInfo(mediaLibraryState.allMedia);
       const filteredCount = mediaLibraryState.filteredMedia.length;
       const totalCount = mediaLibraryState.allMedia.length;
-      
+
       let statsText = `共 ${totalCount} 个文件`;
       if (filteredCount !== totalCount) {
         statsText += ` (显示 ${filteredCount} 个)`;
       }
       statsText += ` | 照片: ${stats.photos} | 视频: ${stats.videos} | 总大小: ${stats.totalSizeFormatted}`;
-      
+
       mediaStats.textContent = statsText;
     }
 
@@ -2503,7 +2746,7 @@
     function toggleView() {
       mediaLibraryState.currentView = mediaLibraryState.currentView === 'grid' ? 'list' : 'grid';
       updateMediaDisplay();
-      
+
       // 更新按钮图标
       const icon = toggleViewBtn.querySelector('svg');
       if (mediaLibraryState.currentView === 'grid') {
@@ -2515,7 +2758,7 @@
       }
     }
 
-    
+
     // 事件监听器
     toggleViewBtn.addEventListener('click', toggleView);
     selectAllBtn.addEventListener('click', toggleSelectAll);
