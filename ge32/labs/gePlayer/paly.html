@@ -1,71 +1,73 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>PixelRenderer v2.5 通用像素渲染工具</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PixelRenderer Mic Visualizer</title>
 <style>
-body { background:#111; color:#ddd; font-family:monospace; margin:16px; }
-button,input { background:#222; color:#ddd; border:1px solid #333; padding:6px 10px; border-radius:4px; }
-#canvas { background:#000; image-rendering:pixelated; }
-.controls { margin-bottom:12px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+body { background:#000; color:#0f0; font-family:monospace; text-align:center; }
+canvas { border:1px solid #333; margin-top:20px; image-rendering:pixelated; }
+button { background:#111; color:#0f0; border:1px solid #0f0; padding:6px 12px; cursor:pointer; }
 </style>
 </head>
 <body>
-
-<div class="controls">
-  <button id="loadImg">导入图片</button>
-  <button id="exportGepic">导出GEPIC</button>
-  <button id="importGepic">导入GEPIC</button>
-  <button id="exportPng">导出PNG</button>
-  <button id="play">播放</button>
-  <button id="pause">暂停</button>
-  <label>FPS: <input id="fps" type="number" value="12" style="width:60px"></label>
-  <label>Scale: <input id="scale" type="number" value="4" style="width:60px"></label>
-</div>
-
-<canvas id="canvas"></canvas>
-<input type="file" id="fileInput" accept="image/*,.gepic" style="display:none">
+<h2>🎤 实时音频 → 像素可视化</h2>
+<button id="startBtn">启动麦克风</button>
+<br>
+<canvas id="cvs" width="256" height="128"></canvas>
 
 <script type="module">
-import { PixelRenderer } from "./pixelRenderer.js";
+// ================= PixelRenderer ==================
+class PixelRenderer {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext("2d", {alpha:false});
+    this.width = canvas.width;
+    this.height = canvas.height;
+    this.scale = 1;
+  }
 
-const canvas = document.getElementById('canvas');
-const fileInput = document.getElementById('fileInput');
+  renderSpectrum(frequencyData) {
+    const ctx = this.ctx;
+    ctx.fillStyle = "black";
+    ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
+    const barWidth = this.canvas.width / frequencyData.length;
+    for (let i=0;i<frequencyData.length;i++) {
+      const value = frequencyData[i]/255;
+      const barHeight = value * this.canvas.height;
+      const y = this.canvas.height - barHeight;
+      const color = `rgb(${Math.floor(255*value)},${Math.floor(255*(1-value))},50)`;
+      ctx.fillStyle = color;
+      ctx.fillRect(i*barWidth, y, barWidth, barHeight);
+    }
+  }
+}
+
+// ================= Main ==================
+const canvas = document.getElementById('cvs');
 const renderer = new PixelRenderer(canvas);
+const btn = document.getElementById('startBtn');
+let audioCtx, analyser, dataArray;
 
-// ---- UI 控制 ----
-document.getElementById('loadImg').onclick = () => {
-  fileInput.accept = 'image/*';
-  fileInput.onchange = async e => {
-    const f = e.target.files[0];
-    if (!f) return;
-    await renderer.fromImageFile(f, 0, renderer.frames.length);
-    renderer.render(renderer.frames.length - 1);
-  };
-  fileInput.click();
+btn.onclick = async ()=>{
+  btn.disabled = true;
+  btn.textContent = "麦克风已启动";
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const source = audioCtx.createMediaStreamSource(stream);
+  analyser = audioCtx.createAnalyser();
+  analyser.fftSize = 256;
+  source.connect(analyser);
+  dataArray = new Uint8Array(analyser.frequencyBinCount);
+  loop();
 };
 
-document.getElementById('exportGepic').onclick = () => renderer.exportGEPIC();
-document.getElementById('importGepic').onclick = () => {
-  fileInput.accept = '.gepic';
-  fileInput.onchange = async e => {
-    const f = e.target.files[0];
-    if (!f) return;
-    await renderer.importGEPIC(f);
-  };
-  fileInput.click();
-};
-document.getElementById('exportPng').onclick = () => renderer.toImage();
-document.getElementById('play').onclick = () => renderer.play();
-document.getElementById('pause').onclick = () => renderer.pause();
-document.getElementById('fps').onchange = e => renderer.fps = +e.target.value;
-document.getElementById('scale').onchange = e => {
-  renderer.scale = +e.target.value;
-  renderer._resizeCanvas();
-  renderer.render();
-};
+function loop(){
+  requestAnimationFrame(loop);
+  if (!analyser) return;
+  analyser.getByteFrequencyData(dataArray);
+  renderer.renderSpectrum(dataArray);
+}
 </script>
-
 </body>
 </html>
