@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="在这里写页面描述，利于 SEO（150-160 字符）" />
+    <title>页面标题 — 替换为你的项目名</title>
+
+    <!-- 换成你自己的 favicon -->
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- 基础样式：可直接编辑或替换为你的 CSS 文件 -->
+
+    <style>
+        :root {
+            --bg: #ffffff;
+            --fg: #111827;
+            --muted: #6b7280;
+            --accent: #0ea5a4;
+            --card: #f8fafc;
+            --radius: 12px;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0b1220;
+            --fg: #e6eef6;
+            --muted: #9aa6b2;
+            --accent: #34d399;
+            --card: #071021;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, Noto Sans SC, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
+            padding: 24px;
+        }
+
+        /* 布局 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 12px 0
+        }
+
+        nav a {
+            margin-left: 12px;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        nav a:hover {
+            color: var(--fg)
+        }
+
+        /* 主区域与侧栏（响应式） */
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            margin-top: 18px
+        }
+
+        @media (max-width:900px) {
+            .layout {
+                grid-template-columns: 1fr
+            }
+
+            .sidebar {
+                order: 2
+            }
+        }
+
+        .card {
+            background: var(--card);
+            padding: 16px;
+            border-radius: var(--radius);
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06)
+        }
+
+        h1 {
+            font-size: 20px;
+            margin: 0 0 8px
+        }
+
+        p.lead {
+            color: var(--muted);
+            margin: 0 0 16px
+        }
+
+        /* 按钮 */
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 600
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            color: var(--fg)
+        }
+
+        /* 表单简单样式 */
+        input,
+        textarea,
+        button,
+        select {
+            font: inherit
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: transparent;
+            color: var(--fg);
+        }
+
+        footer {
+            margin-top: 28px;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center
+        }
+
+        .small {
+            font-size: 13px;
+            color: var(--muted)
+        }
+    </style>
+</head>
+
+<body data-theme="light">
+    <div id='ISeeU'></div>
+    <div class="container">
+        <!-- 头部：项目名 + 导航 + 操作 -->
+        <header>
+            <div style="display:flex;align-items:center;gap:12px">
+                <!-- 替换为 logo 或文字 -->
+                <img src="/logo.svg" alt="" style="width:38px;height:38px;border-radius:8px;object-fit:cover"
+                    onerror="this.style.display='none'" />
+                <div>
+                    <div style="font-weight:700">项目名 / 网站名</div>
+                    <div class="small">一句话描述（替换）</div>
+                </div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:12px">
+                <nav aria-label="主导航">
+                    <a href="#home">首页</a>
+                    <a href="#features">功能</a>
+                    <a href="#about">关于</a>
+                </nav>
+
+                <!-- 操作按钮示例 -->
+                <button id="themeToggle" class="btn" aria-pressed="false" title="切换深色/浅色">切换主题</button>
+            </div>
+        </header>
+
+        <!-- 主体布局：内容 + 侧栏 -->
+        <main class="layout" role="main">
+            <!-- 主内容区 -->
+            <section class="card" aria-labelledby="main-title">
+                <h1 id="main-title">欢迎 — 把这部分替换为你的内容</h1>
+                <p class="lead">这是一个简洁的 HTML 模板，适合小型项目、原型或个人站点。往下写具体内容。</p>
+
+                <!-- 示例文章/组件 -->
+                <article style="margin-top:14px">
+                    <h2 style="margin:0 0 8px;font-size:16px">示例模块</h2>
+                    <p class="small">说明：把下面的块替换为你需要的表格、图表或文章。</p>
+
+                    <form id="demoForm" style="margin-top:12px">
+                        <label class="small" for="name">名字</label>
+                        <input id="name" name="name" placeholder="你的名字" />
+
+                        <label class="small" for="msg" style="margin-top:8px;display:block">留言</label>
+                        <textarea id="msg" name="msg" rows="4" placeholder="写点什么..."></textarea>
+
+                        <div style="margin-top:10px">
+                            <button type="submit" class="btn">提交</button>
+                            <button type="button" id="clearBtn" class="btn ghost" style="margin-left:8px">清除</button>
+                        </div>
+                    </form>
+                </article>
+            </section>
+
+            <!-- 侧栏 -->
+            <aside class="sidebar" style="min-width:220px">
+                <div class="card">
+                    <h3 style="margin:0 0 8px">侧栏</h3>
+                    <p class="small">放置快捷链接、状态、或其他小组件。</p>
+
+                    <div style="margin-top:10px">
+                        <div class="small">当前环境</div>
+                        <div style="margin-top:6px">
+                            <span id="envTag" class="small"
+                                style="padding:6px 8px;border-radius:8px;background:rgba(0,0,0,0.04)">开发</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <footer>
+            © <span id="year"></span> 你的公司或名字 — <span class="small">保留所有权利</span>
+        </footer>
+    </div>
+
+    <!-- 简单交互脚本：主题切换、表单处理（可替换为你自己的逻辑） -->
+    <script src="ISeeUo.js"></script>
+    <script>
+        (function () {
+            // 年份
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // 主题切换（保存到 localStorage）
+            const body = document.body;
+            const btn = document.getElementById('themeToggle');
+            const saved = localStorage.getItem('site-theme') || 'light';
+            body.setAttribute('data-theme', saved);
+            btn.setAttribute('aria-pressed', saved === 'dark');
+
+            btn.addEventListener('click', () => {
+                const current = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                body.setAttribute('data-theme', current);
+                localStorage.setItem('site-theme', current);
+                btn.setAttribute('aria-pressed', current === 'dark');
+            });
+
+            // 表单示例：本地处理，避免页面刷新
+            const form = document.getElementById('demoForm');
+            const clearBtn = document.getElementById('clearBtn');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const data = {
+                    name: form.name.value.trim(),
+                    msg: form.msg.value.trim(),
+                    ts: Date.now()
+                };
+                // 这里只把数据存在 localStorage 作示例。实际应发送到后端 API。
+                const saved = JSON.parse(localStorage.getItem('demo-messages') || '[]');
+                saved.unshift(data);
+                localStorage.setItem('demo-messages', JSON.stringify(saved.slice(0, 50)));
+                alert('提交成功（示例）');
+                form.reset();
+            });
+            clearBtn.addEventListener('click', () => form.reset());
+        })();
+    </script>
+</body>
+
+</html>
