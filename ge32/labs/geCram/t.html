@@ -1,16 +1,95 @@
 <!doctype html>
 <html lang="zh-CN">
-
 <head>
-    <link rel="icon" href="/favicon.ico" />
-    
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ISeeU — 快速测试（合规版）</title>
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    :root{font-family:Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#111;}
+    body{margin:0;background:#f7f9fb;padding:28px;line-height:1.6;}
+    .container{max-width:900px;margin:0 auto;background:#fff;padding:24px;border-radius:10px;box-shadow:0 6px 20px rgba(8,18,32,0.06);}
+    header h1{margin:0 0 6px;font-size:22px;}
+    header p{margin:0;color:#666;font-size:13px;}
+    .badges{margin-top:12px;font-size:13px;color:#444;}
+    section{margin-top:20px;}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+    .card{background:#fafbfd;padding:12px;border-radius:8px;border:1px solid #eef3f7;}
+    pre.article{white-space:pre-wrap;background:#fff;padding:14px;border-radius:6px;border:1px dashed #e6eef5;overflow:auto;}
+    .legal{font-size:13px;color:#9aa3ad;margin-top:12px;padding:10px;border-left:4px solid #e2e8f0;background:#fbfdff;}
+    footer{margin-top:18px;font-size:12px;color:#8893a0;}
+  </style>
 </head>
-
 <body>
-    <div id='ISeeU'>ISeeU 快速测试</div>
-    <div>功能很简单，大概就是点右下角的那个图标，点击进去，就可以进行隐秘式拍摄</div>
-    <div>先声明，这玩意儿不是用来搞什么偷拍的而是用来秘密拍摄</div>
-    <div>也就是比如有人在做什么坏事，你直接可以最小化后进行拍摄,别人说，你他妈在拍什么，你说我他们没拍，我他妈在学英语，白痴。</div>
-</body>
+  <div class="container" role="main" aria-labelledby="page-title">
+    <header>
+      <h1 id="page-title">ISeeU — 快速测试（合规说明）</h1>
+      <p>这是产品简介页面。功能聚焦在个人安全与合法证据保存，而非侵犯隐私或非法拍摄。</p>
+      <div class="badges">版本：Beta • 目标：个人安全记录与合规证据保全</div>
+    </header>
 
+    <section aria-label="简介">
+      <h2>产品概述</h2>
+      <p>功能很简单：在不违反当地法律与他人隐私权的前提下，提供一个便于保存关键时刻音视频与文字记录的工具。典型场景包括：发生争执需要记录证据、记录突发事故的现场情况、或用于个人安全备份。</p>
+    </section>
+
+    <section aria-label="主要功能">
+      <h2>主要功能</h2>
+      <div class="features">
+        <div class="card">
+          <strong>一键记录</strong>
+          <div>快速启动录制，便于在紧急情况下保存证据（请先确认合法性）。</div>
+        </div>
+        <div class="card">
+          <strong>隐私保护</strong>
+          <div>本产品建议在录制前告知相关当事人，并提供文件加密与访问控制。</div>
+        </div>
+        <div class="card">
+          <strong>证据导出</strong>
+          <div>支持导出为常见格式，便于提交给执法与法律机构（仅在合法情形下）。</div>
+        </div>
+        <div class="card">
+          <strong>位置与时间戳</strong>
+          <div>自动保存时间戳与必要的元数据，帮助证明记录的时空信息。</div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="合规提示">
+      <h2>合规与责任声明</h2>
+      <div class="legal">
+        重要：使用本产品前务必了解并遵守所在地法律法规。严禁用于跟踪、偷拍或任何侵犯他人隐私的行为。用户须自行承担因违法使用导致的一切责任。我们鼓励在可行的情况下先征得对方同意或在公共场合合法记录。
+      </div>
+    </section>
+
+    <section aria-label="支持文章">
+      <h2>示例英文新闻稿（仅供页面展示）</h2>
+      <div class="card">
+        <pre class="article" aria-label="Fake English article">
+Press Release — For Immediate Release
+
+ISeeU Announces New Personal Safety Recorder Focused on Lawful Evidence Preservation
+
+October 20, 2025 — ISeeU, a small team of privacy-minded developers, today unveiled a beta version of its Personal Safety Recorder, a mobile-first tool designed to help individuals legally document incidents while prioritizing consent and privacy.
+
+The recorder provides quick access to audio and video capture, secure export options for legal professionals, and clear guidance on lawful usage. “Our goal is to empower people to protect themselves and preserve factual records when necessary — not to enable covert surveillance,” said Li Wei, project lead at ISeeU. “Transparency and respect for privacy are baked into the product.”
+
+Pilot users praised the app's straightforward workflow and its emphasis on secure handling of recordings. One early adopter said, “I used ISeeU after a delivery dispute; having a clear, time-stamped record resolved the issue quickly and professionally.”
+
+ISeeU also partners with local legal advisors to provide up-to-date information about recording laws across different jurisdictions. The company recommends users familiarize themselves with local regulations and, whenever possible, obtain consent prior to recording.
+
+About ISeeU
+ISeeU is a developer initiative focused on tools that balance personal safety with ethical design. The team is committed to legal compliance, privacy-first architecture, and transparency.
+
+Contact
+press@isee-u.example
+        </pre>
+      </div>
+    </section>
+
+    <footer>
+      <div>开发者声明：页面示例与新闻稿为演示用途，请勿用于教唆或实施非法行为。</div>
+    </footer>
+  </div>
+</body>
 </html>
