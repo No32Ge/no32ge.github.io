@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PixelRenderer v2.5 通用像素渲染工具</title>
+<style>
+body { background:#111; color:#ddd; font-family:monospace; margin:16px; }
+button,input { background:#222; color:#ddd; border:1px solid #333; padding:6px 10px; border-radius:4px; }
+#canvas { background:#000; image-rendering:pixelated; }
+.controls { margin-bottom:12px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <button id="loadImg">导入图片</button>
+  <button id="exportGepic">导出GEPIC</button>
+  <button id="importGepic">导入GEPIC</button>
+  <button id="exportPng">导出PNG</button>
+  <button id="play">播放</button>
+  <button id="pause">暂停</button>
+  <label>FPS: <input id="fps" type="number" value="12" style="width:60px"></label>
+  <label>Scale: <input id="scale" type="number" value="4" style="width:60px"></label>
+</div>
+
+<canvas id="canvas"></canvas>
+<input type="file" id="fileInput" accept="image/*,.gepic" style="display:none">
+
+<script type="module">
+import { PixelRenderer } from "./pixelRenderer.js";
+
+const canvas = document.getElementById('canvas');
+const fileInput = document.getElementById('fileInput');
+const renderer = new PixelRenderer(canvas);
+
+// ---- UI 控制 ----
+document.getElementById('loadImg').onclick = () => {
+  fileInput.accept = 'image/*';
+  fileInput.onchange = async e => {
+    const f = e.target.files[0];
+    if (!f) return;
+    await renderer.fromImageFile(f, 0, renderer.frames.length);
+    renderer.render(renderer.frames.length - 1);
+  };
+  fileInput.click();
+};
+
+document.getElementById('exportGepic').onclick = () => renderer.exportGEPIC();
+document.getElementById('importGepic').onclick = () => {
+  fileInput.accept = '.gepic';
+  fileInput.onchange = async e => {
+    const f = e.target.files[0];
+    if (!f) return;
+    await renderer.importGEPIC(f);
+  };
+  fileInput.click();
+};
+document.getElementById('exportPng').onclick = () => renderer.toImage();
+document.getElementById('play').onclick = () => renderer.play();
+document.getElementById('pause').onclick = () => renderer.pause();
+document.getElementById('fps').onchange = e => renderer.fps = +e.target.value;
+document.getElementById('scale').onchange = e => {
+  renderer.scale = +e.target.value;
+  renderer._resizeCanvas();
+  renderer.render();
+};
+</script>
+
+</body>
+</html>
