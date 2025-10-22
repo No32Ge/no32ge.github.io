@@ -68,7 +68,7 @@
         }
 
         .content {
-            padding: 20px 15px;
+            padding: 15px 15px;
         }
 
         .paragraph {
@@ -772,7 +772,7 @@
             padding: 8px;
             border-radius: 50%;
             transition: all 0.3s ease;
-            display: flex;
+            display: inline-block;
             align-items: center;
             justify-content: center;
             color: var(--secondary-color);
@@ -1243,7 +1243,7 @@
         }
 
         .card-body {
-            padding: 20px;
+            padding: 10px;
         }
 
         .gram-section {
@@ -1599,7 +1599,7 @@
             }
 
             .content {
-                padding: 30px 40px;
+                padding: 30px 25px;
             }
 
             .paragraph {
@@ -1784,7 +1784,7 @@
             <div class="setting-item">
                 <span class="setting-label">显示解析</span>
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="toggle-explanations" checked>
+                    <input class="form-check-input" type="checkbox" id="toggle-explanations">
                 </div>
             </div>
         </div>
@@ -2418,7 +2418,7 @@
             currentArticleId: "failure",
             showExplanations: false,
             wordDictionary: {},
-            grammarRules:[],
+            grammarRules: [],
             floatingControlPosition: {
                 x: window.innerWidth - 80,
                 y: window.innerHeight / 2
@@ -2590,12 +2590,45 @@
                     englishText.appendChild(span);
                 });
 
-                paragraphElement.appendChild(englishText);
+                const createCircleButton = (text, onClick, extraStyle = {}) => {
+                    const btn = document.createElement('span');
+                    Object.assign(btn.style, {
+                        display: 'inline-block',
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: '#2980b9',
+                        borderRadius: '50%',
+                        textAlign: 'center',
+                        lineHeight: '20px',
+                        cursor: 'pointer',
+                        fontSize: '12px',
+                        color: 'white',
+                        userSelect: 'none',
+                        marginLeft: '5px',
+                        ...extraStyle,
+                    });
+                    btn.innerText = text;
+                    btn.addEventListener('click', onClick);
+                    return btn;
+                };
+
+                englishText.appendChild(
+                    createCircleButton('G', () => showAddGrammarModal(paragraph))
+                );
+
+                englishText.appendChild(
+                    createCircleButton('V', () => showAddVocabModal(paragraph))
+                );
+
+
+
 
                 // ========== 添加语音朗读控制 ==========
                 const speechControl = createSpeechControl(paragraph);
-                paragraphElement.appendChild(speechControl);
+                englishText.appendChild(speechControl);
                 // ========== 添加结束 ==========
+
+                paragraphElement.appendChild(englishText);
 
                 // ========== 添加中文文本 ==========
                 // 添加中文翻译
@@ -2616,18 +2649,6 @@
                     const vocabList = document.createElement('div');
                     vocabList.className = 'vocab-list';
                     vocabList.id = `vocab-${paragraph.id}`;
-
-                    // 在词汇列表前添加添加按钮
-                    const addVocabBtn = document.createElement('button');
-                    addVocabBtn.className = 'add-item-btn';
-                    addVocabBtn.textContent = '+ 添加单词';
-                    addVocabBtn.addEventListener('click', function () {
-                        showAddVocabModal(paragraph);
-                    });
-
-                    vocabList.appendChild(addVocabBtn);
-                    vocabList.appendChild(document.createElement('br'))
-
 
                     // 在renderPage函数中找到词汇部分，修改这一部分：
                     paragraph.vocab.forEach((vocab, index) => {
@@ -2675,7 +2696,7 @@
                     }
                 }
 
-                
+
 
                 // 添加语法部分
                 if (paragraph.gram && paragraph.gram.length > 0) {
@@ -2686,17 +2707,6 @@
                     const grammarList = document.createElement('div');
                     grammarList.className = 'grammar-list';
                     grammarList.id = `grammar-${paragraph.id}`;
-
-                    // 在语法列表前部添加添加按钮
-                    const addGrammarBtn = document.createElement('button');
-                    addGrammarBtn.className = 'add-item-btn';
-                    addGrammarBtn.textContent = '+ 添加语法点';
-                    addGrammarBtn.addEventListener('click', function () {
-                        showAddGrammarModal(paragraph);
-                    });
-                    grammarList.appendChild(addGrammarBtn);
-                    grammarList.appendChild(document.createElement('br'))
-
 
                     paragraph.gram.forEach((grammar, index) => {
                         const grammarPage = renderGrammarCard(grammar);
@@ -4426,7 +4436,7 @@
 
         // 创建语音控制组件
         function createSpeechControl(paragraph) {
-            const speechControl = document.createElement('div');
+            const speechControl = document.createElement('span');
             speechControl.className = 'speech-control';
 
             const speechBtn = document.createElement('button');
@@ -5333,8 +5343,6 @@
                 document.getElementById('article-catalog').classList.remove('show');
             }
         });
-
-
         // 在页面加载完成后初始化选择功能
         document.addEventListener('DOMContentLoaded', function () {
             // ... 其他初始化代码 ...
@@ -5343,5 +5351,4 @@
         });
     </script>
 </body>
-
 </html>
