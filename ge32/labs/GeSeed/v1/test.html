@@ -1,4 +1,18 @@
-import { TextAnalyzer } from './TextAnalyzer.js';
+
+
+<html>
+    <head></head>
+    <body>
+<script>import { TextAnalyzer } from './TextAnalyzer.js';
+
+const analyzer = new TextAnalyzer("This is a sample text. The quick brown fox.", {
+    stopWords: ["the", "is", "a"],
+    nGram: 2
+});
+
+console.log(analyzer.getStats());
+console.log(analyzer.getTopWords());
+console.log(analyzer.exportCSV());</script>import { TextAnalyzer } from './TextAnalyzer.js';
 
 const analyzer = new TextAnalyzer("This is a sample text. The quick brown fox.", {
     stopWords: ["the", "is", "a"],
@@ -8,3 +22,4 @@ const analyzer = new TextAnalyzer("This is a sample text. The quick brown fox.",
 console.log(analyzer.getStats());
 console.log(analyzer.getTopWords());
 console.log(analyzer.exportCSV());
+</body></html>
