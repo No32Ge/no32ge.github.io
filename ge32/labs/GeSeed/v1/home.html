@@ -2624,6 +2624,7 @@
                 englishText.appendChild(((p) => {
                     const s = document.createElement('span');
                     s.innerText = TextAnalyzer.quickAnalyze(p.en);
+                    console.log(TextAnalyzer.quickAnalyze(p.en))
                     return s;
                 })(paragraph));
 
