@@ -2621,13 +2621,8 @@
                     createCircleButton('V', () => showAddVocabModal(paragraph))
                 );
 
-                englishText.appendChild(
-                    (()=>{
-                        const data = TextAnalyzer.quickAnalyze(paragraph)
-                        const span = document.createElement('span');
-                        span.innerText = `${data}`;
-                    })()
-                )
+                englishText.appendChild(((p)=>((s=document.createElement('span')),s.innerText=TextAnalyzer.quickAnalyze(p.en),s))(paragraph))
+
 
                 // ========== 添加语音朗读控制 ==========
                 const speechControl = createSpeechControl(paragraph);
