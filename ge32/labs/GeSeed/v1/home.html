@@ -1199,7 +1199,7 @@
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
-            z-index: 9996;
+            z-index: 999;
             transition: all 0.3s ease;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
@@ -1407,6 +1407,22 @@
 
         /* 响应式设计 */
         @media (max-width: 768px) {
+            .catalog-toggle-btn {
+                display: none;
+                position: fixed;
+                left: 20px;
+                top: 20px;
+                background: var(--secondary-color);
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                z-index: 999;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            }
+
             .pattern-container {
                 background: var(--light-bg);
                 padding: 12px;
@@ -2625,7 +2641,7 @@
                     const s = document.createElement('span');
                     s.innerText = TextAnalyzer.quickAnalyze(p.en).wordCount;
                     console.log(TextAnalyzer.quickAnalyze(p.en));
-                    Object.assign(s.style,{
+                    Object.assign(s.style, {
                         display: 'inline-block',
                         width: '20px',
                         height: '20px',
@@ -5357,7 +5373,6 @@
                     document.getElementById('catalog-search').focus();
                 }
             }
-
             // ESC 键关闭目录
             if (e.key === 'Escape' && document.getElementById('article-catalog').classList.contains('show')) {
                 document.getElementById('article-catalog').classList.remove('show');
@@ -5371,5 +5386,4 @@
         });
     </script>
 </body>
-
 </html>
