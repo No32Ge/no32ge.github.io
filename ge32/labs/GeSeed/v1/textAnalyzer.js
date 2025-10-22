@@ -9,6 +9,7 @@
  * - 可读性分析（Flesch Reading Ease）
  * - 中文、英文支持
  * - 数据导出 JSON / CSV
+ * - 新增：频率到单词的映射集合和快捷分析方法
  * 
  * @author ge32
  */
@@ -50,6 +51,55 @@ export class TextAnalyzer {
         } else {
             this._analyzeChinese(text);
         }
+
+        // 构建频率映射集合并添加到stats中
+        this._buildFrequencyMap();
+    }
+
+    // 新增：构建频率到单词的映射集合
+    _buildFrequencyMap() {
+        const frequencyMap = {};
+        
+        if (!this.stats.wordFrequency) return;
+        
+        const wordFrequency = this.stats.wordFrequency;
+        
+        // 构建频率到单词集合的映射
+        Object.entries(wordFrequency).forEach(([word, frequency]) => {
+            if (!frequencyMap[frequency]) {
+                frequencyMap[frequency] = [];
+            }
+            frequencyMap[frequency].push(word);
+        });
+
+        // 按频率排序并添加到stats中
+        this.stats.frequencyMap = frequencyMap;
+        
+        // 同时添加频率分布统计
+        this.stats.frequencyDistribution = Object.entries(frequencyMap)
+            .map(([frequency, words]) => ({
+                frequency: parseInt(frequency),
+                wordCount: words.length,
+                words: words.sort()
+            }))
+            .sort((a, b) => b.frequency - a.frequency);
+    }
+
+    // 新增：获取指定频率对应的单词集合
+    getWordsByFrequency(frequency) {
+        return this.stats.frequencyMap?.[frequency] || [];
+    }
+
+    // 新增：获取所有频率及其对应的单词数量
+    getFrequencyDistribution() {
+        return this.stats.frequencyDistribution || [];
+    }
+
+    // 新增：获取高频词（按频率分组）
+    getWordsByFrequencyRange(minFrequency = 1, maxFrequency = Infinity) {
+        return this.stats.frequencyDistribution?.filter(item => 
+            item.frequency >= minFrequency && item.frequency <= maxFrequency
+        ) || [];
     }
 
     // ========== 英文分析 ==========
@@ -119,6 +169,7 @@ export class TextAnalyzer {
             wordFrequency,
             nGramFrequency: nGramFreq,
             fleschReadingEase: parseFloat(fleschScore.toFixed(2))
+            // frequencyMap 和 frequencyDistribution 会在 _buildFrequencyMap 中添加
         };
     }
 
@@ -175,6 +226,7 @@ export class TextAnalyzer {
             wordFrequency,
             nGramFrequency: {},  // 中文默认不做 n-gram
             fleschReadingEase: null
+            // frequencyMap 和 frequencyDistribution 会在 _buildFrequencyMap 中添加
         };
     }
 
@@ -186,6 +238,36 @@ export class TextAnalyzer {
         return Object.entries(this.stats.wordFrequency)
             .sort((a,b) => b[1]-a[1])
             .slice(0, limit);
+    }
+
+    // 新增：快捷静态方法 - 避免重复实例化
+    static quickAnalyze(text, options = {}) {
+        const analyzer = new TextAnalyzer(text, options);
+        const stats = analyzer.getStats();
+        
+        return {
+            wordCount: stats.totalWords,
+            uniqueWordCount: stats.uniqueWords,
+            repetitionRate: stats.repetitionRate,
+            sentenceCount: stats.sentenceCount,
+            paragraphCount: stats.paragraphCount,
+            // 包含频率分布信息
+            topFrequencies: stats.frequencyDistribution?.slice(0, 5) || []
+        };
+    }
+
+    // 新增：批量分析多个文本
+    static batchAnalyze(texts, options = {}) {
+        const results = [];
+        const analyzer = new TextAnalyzer('', options);
+        
+        for (let text of texts) {
+            analyzer.setText(text);
+            const quickResult = TextAnalyzer.quickAnalyze(text, options);
+            results.push(quickResult);
+        }
+        
+        return results;
     }
 
     exportJSON() {
@@ -200,6 +282,24 @@ export class TextAnalyzer {
             if (typeof stats[key] === 'object') continue;
             rows.push(`${key},${stats[key]}`);
         }
+        
+        // 添加频率分布摘要
+        rows.push('\n频率分布,单词数量,示例单词');
+        const topFrequencies = this.stats.frequencyDistribution?.slice(0, 10) || [];
+        topFrequencies.forEach(item => {
+            const sampleWords = item.words.slice(0, 3).join(';');
+            rows.push(`出现${item.frequency}次的单词,${item.wordCount},"${sampleWords}"`);
+        });
+        
         return rows.join('\n');
     }
+}
+
+// 新增：独立的快捷函数，无需实例化
+export function analyzeTextQuickly(text, options = {}) {
+    return TextAnalyzer.quickAnalyze(text, options);
+}
+
+export function analyzeMultipleTexts(texts, options = {}) {
+    return TextAnalyzer.batchAnalyze(texts, options);
 }
