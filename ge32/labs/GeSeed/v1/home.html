@@ -3104,7 +3104,7 @@
             // 分割 pattern —— 保留空格
             const takeParts = pattern.split(/([.,!?;:\s]+)/);
             console.log('parts', takeParts)
-            parts = mergePhrases(takeParts,slotList);
+            const parts = mergePhrases(takeParts,slotList);
             return parts.map(part => {
                 // 去掉前后空格
                 const trimmed = part.trim();
