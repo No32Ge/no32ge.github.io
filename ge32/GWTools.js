@@ -82,5 +82,63 @@ const GWTools = {
             msgDiv.style.opacity = "0";
             setTimeout(() => msgDiv.remove(), 300);
         }, 1200);
+    },
+
+    /**
+     * 标签替换功能：将指定元素的标签从一种替换为另一种
+     * @param {string} id - 要替换标签的元素的id
+     * @param {string} sourceTag - 原始标签名（如 'div'）
+     * @param {string} targetTag - 目标标签名（如 'section'）
+     */
+    replaceElementTag(id, sourceTag, targetTag) {
+        const element = document.getElementById(id);
+        if (!element) {
+            this.showMessage(`找不到 id="${id}" 的元素`);
+            return false;
+        }
+
+        // 检查当前元素的标签是否匹配源标签
+        if (element.tagName.toLowerCase() !== sourceTag.toLowerCase()) {
+            this.showMessage(`元素标签不是 "${sourceTag}"，当前标签为 "${element.tagName.toLowerCase()}"`);
+            return false;
+        }
+
+        try {
+            // 创建新标签元素
+            const newElement = document.createElement(targetTag);
+            
+            // 复制所有属性
+            for (let attr of element.attributes) {
+                newElement.setAttribute(attr.name, attr.value);
+            }
+            
+            // 复制所有子元素和内容
+            newElement.innerHTML = element.innerHTML;
+            
+            // 用新元素替换旧元素
+            element.parentNode.replaceChild(newElement, element);
+            
+            this.showMessage(`成功将 ${sourceTag} 标签替换为 ${targetTag} 标签`);
+            return true;
+        } catch (error) {
+            this.showMessage(`标签替换失败：${error.message}`);
+            return false;
+        }
+    },
+
+    /**
+     * 便捷方法：将div标签转换为section标签（针对公众号优化）
+     * @param {string} id - 要转换的元素的id
+     */
+    divToSection(id) {
+        return this.replaceElementTag(id, 'div', 'section');
+    },
+
+    /**
+     * 便捷方法：将section标签转换回div标签
+     * @param {string} id - 要转换的元素的id
+     */
+    sectionToDiv(id) {
+        return this.replaceElementTag(id, 'section', 'div');
     }
 };
