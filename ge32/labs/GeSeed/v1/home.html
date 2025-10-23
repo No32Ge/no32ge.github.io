@@ -2852,17 +2852,60 @@
             return card;
         }
 
+                // 用于合并单词最小单位,第参数个元素是单词最小单位列表，第二是具体需要合并的句子
+        function mergePhrases(parts, phrases) {
+            const result = [];
+            let i = 0;
+
+            while (i < parts.length) {
+                let merged = false;
+
+                // 遍历要合并的短语
+                for (const phrase of phrases) {
+                    const phraseParts = phrase.split(/([.,!?;:\s]+)/).filter(Boolean); // 拆短语成词+空格
+                    const segment = parts.slice(i, i + phraseParts.length).join('');
+
+                    if (segment.toLowerCase() === phrase.toLowerCase()) {
+                        // 如果匹配成功
+                        result.push(phrase);
+                        i += phraseParts.length;
+                        merged = true;
+                        break;
+                    }
+                }
+
+                if (!merged) {
+                    result.push(parts[i]);
+                    i++;
+                }
+            }
+
+            return result;
+        }
+
+
         // 渲染语法模式，智能识别槽位
         function renderPattern(pattern, components, ruleId) {
             // 先提取所有 slot 名称方便查找
+            // Object.fromEntries功能，把列表转化为字典 如 [[a,b],[b,c],[c,d]] => {a:b,b:c,c:d}
+            const slotList = [];
             const slotMap = Object.fromEntries(
-                components.map(c => [c.slot, c])
+                components.map(c => 
+                {
+                    slotList.push(c.slot)
+                    return [c.slot, c];
+                }
+            )
             );
+            console.log('slotMap', slotMap);
+            console.log('slotList', slotList);
 
             // 分割 pattern —— 保留空格
-            const parts = pattern.split(/(\s+)/);
-
+            const takeParts = pattern.split(/([.,!?;:\s]+)/);
+            console.log('parts', takeParts)
+            parts = mergePhrases(takeParts,slotList);
             return parts.map(part => {
+                // 去掉前后空格
                 const trimmed = part.trim();
                 if (trimmed === '') return part; // 保留空格
 
