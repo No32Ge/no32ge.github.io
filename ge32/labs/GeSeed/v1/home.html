@@ -147,24 +147,30 @@
         }
 
         .pronunciation {
-            color: var(--text-light);
-            margin-bottom: 6px;
+            color: #7f8c8d;
+            margin-bottom: 8px;
             font-style: italic;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            padding-left: 4px;
+            border-left: 2px solid #bdc3c7;
         }
 
         .meaning {
-            color: #34495e;
-            margin-bottom: 6px;
-            font-size: 0.9rem;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.4;
         }
 
         .example {
             font-style: italic;
-            color: var(--text-light);
-            font-size: 0.85rem;
-            padding-top: 6px;
-            border-top: 1px dashed #ddd;
+            color: #34495e;
+            font-size: 0.9rem;
+            padding: 10px;
+            background: rgba(52, 152, 219, 0.05);
+            border-radius: 6px;
+            line-height: 1.4;
         }
 
         .rule {
@@ -830,22 +836,24 @@
         /* 单词发音图标样式 */
         .word-header {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            margin-bottom: 5px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         /* 词性标签样式 */
         .pos-tag {
-            display: inline-block;
-            background: #3498db;
+            background: linear-gradient(135deg, var(--secondary-color), #2980b9);
             color: white;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 0.7rem;
-            margin-left: 8px;
-            vertical-align: middle;
-            font-weight: normal;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
         }
 
         /* 单词标题布局调整 */
@@ -874,25 +882,26 @@
         .word-actions {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 8px;
         }
 
         .word-speech-btn {
-            background: none;
+            background: rgba(52, 152, 219, 0.1);
             border: none;
             cursor: pointer;
-            padding: 4px;
+            padding: 6px;
             border-radius: 50%;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--secondary-color);
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
         .word-speech-btn:hover {
-            background-color: rgba(52, 152, 219, 0.1);
+            background: var(--secondary-color);
+            color: white;
             opacity: 1;
             transform: scale(1.1);
         }
@@ -919,22 +928,22 @@
 
         /* 删除按钮样式 */
         .delete-btn {
-            background: none;
+            background: rgba(231, 76, 60, 0.1);
             border: none;
             cursor: pointer;
-            padding: 4px;
+            padding: 6px;
             border-radius: 50%;
             transition: all 0.3s ease;
-            opacity: 0.7;
+            opacity: 0.8;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #e74c3c;
-            /* 去掉 position、top、right */
         }
 
         .delete-btn:hover {
-            background-color: rgba(231, 76, 60, 0.1);
+            background: #e74c3c;
+            color: white;
             opacity: 1;
             transform: scale(1.1);
         }
@@ -949,7 +958,26 @@
         }
 
         /* 词汇项和语法项添加相对定位，以便绝对定位删除按钮 */
-        .vocab-item,
+        .vocab-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(43, 59, 68, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vocab-item::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #2a497265, transparent);
+        }
+
         .grammar-item {
             position: relative;
             background-color: var(--light-color);
