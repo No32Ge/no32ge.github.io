@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GWT.js 测试页面</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #033fad, #4a90e2);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #033fad;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        h3 {
+            color: #4a90e2;
+            margin: 20px 0 10px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .test-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+        }
+        .test-section.full-width {
+            grid-column: 1 / -1;
+        }
+        button {
+            background-color: #033fad;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #022a7a;
+        }
+        button.secondary {
+            background-color: #4a90e2;
+        }
+        button.secondary:hover {
+            background-color: #3a7bc8;
+        }
+        .content-box {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            background-color: #f9f9f9;
+            min-height: 100px;
+        }
+        .content-box h4 {
+            margin-bottom: 10px;
+            color: #033fad;
+        }
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status.success {
+            background-color: #e7f7e7;
+            color: #2d8515;
+            border-left: 4px solid #2d8515;
+        }
+        .status.error {
+            background-color: #fdeaea;
+            color: #c53030;
+            border-left: 4px solid #c53030;
+        }
+        .test-results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border-radius: 5px;
+            border-left: 4px solid #4a90e2;
+        }
+        .test-results h4 {
+            margin-bottom: 10px;
+            color: #033fad;
+        }
+        .tag-replace-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .tag-box {
+            flex: 1;
+            min-width: 200px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>GWT.js 测试页面</h1>
+        <p>测试 Ge32 通用工具库的所有功能</p>
+    </header>
+
+    <div class="container">
+        <div class="test-section">
+            <h2>1. 消息提示功能测试</h2>
+            <p>测试 showMessage 函数，显示不同类型的提示信息。</p>
+            
+            <button onclick="GWTools.showMessage('这是一个普通提示消息')">显示普通提示</button>
+            <button onclick="GWTools.showMessage('这是一个成功提示')" class="secondary">显示成功提示</button>
+            <button onclick="GWTools.showMessage('这是一个警告提示')" style="background-color: #ff9800;">显示警告提示</button>
+            <button onclick="GWTools.showMessage('这是一个错误提示')" style="background-color: #f44336;">显示错误提示</button>
+            
+            <div class="test-results">
+                <h4>测试说明：</h4>
+                <p>点击上方按钮，页面顶部应显示相应的提示信息，并在1.5秒后自动消失。</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>2. 复制功能测试</h2>
+            <p>测试 copyToClipboard 函数，包括HTML和纯文本复制。</p>
+            
+            <div class="content-box" id="copyContent">
+                <h4>可复制的内容区域</h4>
+                <p>这是一段可以复制的内容，包含<strong>粗体文本</strong>和<em>斜体文本</em>。</p>
+                <ul>
+                    <li>列表项 1</li>
+                    <li>列表项 2</li>
+                    <li>列表项 3</li>
+                </ul>
+            </div>
+            
+            <button onclick="GWTools.copyToClipboard('copyContent')">复制HTML内容</button>
+            <button onclick="GWTools.copyToClipboard('copyContent', '', {asText: true})" class="secondary">复制纯文本</button>
+            <button onclick="GWTools.copyToClipboard('copyContent', '格式错误')">测试错误情况</button>
+            <button onclick="GWTools.copyToClipboard('nonExistentId')">测试不存在的元素</button>
+            
+            <div class="test-results">
+                <h4>测试说明：</h4>
+                <p>点击"复制HTML内容"按钮后，粘贴到支持富文本的编辑器（如Word）中查看效果。</p>
+                <p>点击"复制纯文本"按钮后，粘贴到纯文本编辑器（如记事本）中查看效果。</p>
+            </div>
+        </div>
+
+        <div class="test-section full-width">
+            <h2>3. 标签替换功能测试</h2>
+            <p>测试 replaceTagsById、divToSection 和 sectionToDiv 函数。</p>
+            
+            <div class="tag-replace-container">
+                <div class="tag-box">
+                    <h3>原始内容 (div标签)</h3>
+                    <div class="content-box" id="replaceTest">
+                        <div class="item" style="background-color: #e3f2fd; padding: 10px; margin: 5px;">
+                            这是一个div元素 1
+                        </div>
+                        <div class="item" style="background-color: #e8f5e9; padding: 10px; margin: 5px;">
+                            这是一个div元素 2
+                        </div>
+                        <div class="item" style="background-color: #fff3e0; padding: 10px; margin: 5px;">
+                            这是一个div元素 3
+                        </div>
+                    </div>
+                    
+                    <button onclick="GWTools.divToSection('replaceTest')">div → section</button>
+                    <button onclick="GWTools.sectionToDiv('replaceTest')">section → div</button>
+                </div>
+                
+                <div class="tag-box">
+                    <h3>标签替换测试结果</h3>
+                    <div class="content-box" id="replaceResult">
+                        点击按钮后，查看左侧内容区域的标签变化
+                    </div>
+                    
+                    <button onclick="updateReplaceResult()">更新结果</button>
+                </div>
+            </div>
+            
+            <div class="test-results">
+                <h4>测试说明：</h4>
+                <p>点击"div → section"按钮，左侧内容区域的所有div标签将被替换为section标签。</p>
+                <p>点击"section → div"按钮，左侧内容区域的所有section标签将被替换为div标签。</p>
+                <p>点击"更新结果"按钮查看当前标签状态。</p>
+            </div>
+        </div>
+
+        <div class="test-section full-width">
+            <h2>4. 综合测试</h2>
+            <p>测试多个功能的组合使用。</p>
+            
+            <div class="content-box" id="comprehensiveTest">
+                <h4>综合测试区域</h4>
+                <p>这个区域用于测试标签替换和复制功能的组合。</p>
+                <div class="nested-div" style="background-color: #f0f4f8; padding: 10px; margin: 10px 0;">
+                    <p>嵌套的div元素</p>
+                </div>
+            </div>
+            
+            <button onclick="runComprehensiveTest()">运行综合测试</button>
+            
+            <div class="test-results" id="comprehensiveResult">
+                <h4>测试结果将显示在这里</h4>
+            </div>
+        </div>
+
+        <div class="test-section full-width">
+            <h2>5. 代码示例</h2>
+            <p>GWT.js 使用示例代码</p>
+            
+            <div class="code-block">
+// 显示提示信息
+GWTools.showMessage("操作成功！");
+
+// 复制HTML内容
+GWTools.copyToClipboard("elementId");
+
+// 复制纯文本
+GWTools.copyToClipboard("elementId", "", {asText: true});
+
+// 将div标签转换为section标签
+GWTools.divToSection("containerId");
+
+// 将section标签转换回div标签
+GWTools.sectionToDiv("containerId");
+
+// 自定义标签替换
+GWTools.replaceTagsById("containerId", "span", "p");
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>GWT.js 测试页面 &copy; 2023</p>
+    </footer>
+
+    <!-- 引入 GWT.js -->
+    <script src="GWT.js"></script>
+    
+    <script>
+        // 更新标签替换结果
+        function updateReplaceResult() {
+            const container = document.getElementById('replaceTest');
+            const resultDiv = document.getElementById('replaceResult');
+            
+            if (container) {
+                const divCount = container.getElementsByTagName('div').length;
+                const sectionCount = container.getElementsByTagName('section').length;
+                
+                resultDiv.innerHTML = `
+                    <h4>当前标签状态：</h4>
+                    <p>div 元素数量: ${divCount}</p>
+                    <p>section 元素数量: ${sectionCount}</p>
+                    <p>总子元素数量: ${container.children.length}</p>
+                `;
+            }
+        }
+        
+        // 运行综合测试
+        function runComprehensiveTest() {
+            const resultDiv = document.getElementById('comprehensiveResult');
+            
+            // 步骤1: 显示开始测试消息
+            GWTools.showMessage("开始综合测试");
+            resultDiv.innerHTML = "<h4>综合测试步骤：</h4><ol>";
+            
+            // 步骤2: 将div转换为section
+            setTimeout(() => {
+                GWTools.divToSection('comprehensiveTest');
+                resultDiv.innerHTML += "<li>已将div标签转换为section标签</li>";
+            }, 500);
+            
+            // 步骤3: 复制内容
+            setTimeout(() => {
+                GWTools.copyToClipboard('comprehensiveTest');
+                resultDiv.innerHTML += "<li>已复制转换后的内容</li>";
+            }, 1500);
+            
+            // 步骤4: 将section转换回div
+            setTimeout(() => {
+                GWTools.sectionToDiv('comprehensiveTest');
+                resultDiv.innerHTML += "<li>已将section标签转换回div标签</li>";
+            }, 2500);
+            
+            // 步骤5: 完成测试
+            setTimeout(() => {
+                resultDiv.innerHTML += "<li>综合测试完成！</li></ol>";
+                GWTools.showMessage("综合测试完成");
+            }, 3500);
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 显示欢迎消息
+            setTimeout(() => {
+                GWTools.showMessage("GWT.js 测试页面已加载完成");
+            }, 1000);
+            
+            // 初始化标签替换结果
+            updateReplaceResult();
+        });
+    </script>
+</body>
+</html>
