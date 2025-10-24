@@ -23,7 +23,7 @@ window.externalArticles = [
                 "id": 1,
                 "en": "How did a patent clerk who couldn't get a job teaching become the most famous scientist of all time? Albert Einstein faced numerous setbacks throughout his life before becoming the superstar scientist. As a child, he was so slow in learning to talk that his parents, Herman and Pauline Einstein, consulted a doctor. Einstein credited his delayed development with fostering his genius, as he approached abstract concepts like space and time later in life. In his words, consequently, I probed more deeply into the problem than an ordinary child would have.",
                 "cn": "一个连教职都找不到的专利局职员，是如何成为有史以来最著名的科学家的？在成为超级明星科学家之前，阿尔伯特·爱因斯坦一生中面临了无数的挫折。童年时，他学说话非常慢，以至于他的父母赫尔曼和波琳·爱因斯坦还为此咨询了医生。爱因斯坦将他智力的养成归功于他发育迟缓，因为这使他在人生后期才接触到像空间和时间这样的抽象概念。用他自己的话说：“因此，我比一个普通孩子会更深入地探究这个问题。”",
-                "vocab": [
+                 "vocab": [
                     {
                         "word": "patent clerk",
                         "ph": "/ˈpætənt klɜːrk/",
@@ -44,6 +44,97 @@ window.externalArticles = [
                         "pos": "v",
                         "mean": "培养；促进",
                         "ex": "Reading regularly can foster a child's imagination."
+                    },
+                    {
+                        "word": "teaching post",
+                        "ph": "/ˈtiːtʃɪŋ poʊst/",
+                        "pos": "n phr",
+                        "mean": "教职；教师职位",
+                        "ex": "He couldn't find a teaching post after graduation."
+                    },
+                    {
+                        "word": "numerous",
+                        "ph": "/ˈnuːmərəs/",
+                        "pos": "adj",
+                        "mean": "众多的；许多的",
+                        "ex": "She made numerous attempts to solve the problem."
+                    },
+                    {
+                        "word": "superstar",
+                        "ph": "/ˈsuːpərstɑːr/",
+                        "pos": "n",
+                        "mean": "超级明星；巨星",
+                        "ex": "Einstein became a superstar scientist."
+                    },
+                    {
+                        "word": "consult",
+                        "ph": "/kənˈsʌlt/",
+                        "pos": "v",
+                        "mean": "咨询；请教",
+                        "ex": "They consulted a doctor about their son's speech delay."
+                    },
+                    {
+                        "word": "credit A with B",
+                        "ph": "/ˈkrɛdɪt eɪ wɪð biː/",
+                        "pos": "phr v",
+                        "mean": "把B归功于A；认为A有B的功劳",
+                        "ex": "Einstein credited his delayed development with fostering his genius."
+                    },
+                    {
+                        "word": "delayed development",
+                        "ph": "/dɪˈleɪd dɪˈvɛləpmənt/",
+                        "pos": "n phr",
+                        "mean": "发育迟缓",
+                        "ex": "His delayed development made his parents worried."
+                    },
+                    {
+                        "word": "genius",
+                        "ph": "/ˈdʒiːniəs/",
+                        "pos": "n",
+                        "mean": "天才；天赋",
+                        "ex": "Her musical genius was clear from a young age."
+                    },
+                    {
+                        "word": "abstract concept",
+                        "ph": "/ˈæbstrækt ˈkɒnsept/",
+                        "pos": "n phr",
+                        "mean": "抽象概念",
+                        "ex": "Children often find it hard to understand abstract concepts like time."
+                    },
+                    {
+                        "word": "space and time",
+                        "ph": "/speɪs ənd taɪm/",
+                        "pos": "n phr",
+                        "mean": "空间与时间（爱因斯坦相对论核心概念）",
+                        "ex": "Einstein's theories changed how we see space and time."
+                    },
+                    {
+                        "word": "consequently",
+                        "ph": "/ˈkɒnsɪkwəntli/",
+                        "pos": "adv",
+                        "mean": "因此；结果",
+                        "ex": "He studied hard and consequently passed the exam."
+                    },
+                    {
+                        "word": "probe",
+                        "ph": "/proʊb/",
+                        "pos": "v",
+                        "mean": "深入探究；调查",
+                        "ex": "Scientists continue to probe the mysteries of the universe."
+                    },
+                    {
+                        "word": "ordinary",
+                        "ph": "/ˈɔːrdəneri/",
+                        "pos": "adj",
+                        "mean": "普通的；平常的",
+                        "ex": "He had an extraordinary mind, not an ordinary one."
+                    },
+                    {
+                        "word": "approach",
+                        "ph": "/əˈproʊtʃ/",
+                        "pos": "v",
+                        "mean": "接近；处理（问题或任务）",
+                        "ex": "He approached the problem in a unique way."
                     }
                 ],
                 "gram": [
