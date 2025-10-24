@@ -23,7 +23,7 @@ window.externalArticles = [
                 "id": 1,
                 "en": "How did a patent clerk who couldn't get a job teaching become the most famous scientist of all time? Albert Einstein faced numerous setbacks throughout his life before becoming the superstar scientist. As a child, he was so slow in learning to talk that his parents, Herman and Pauline Einstein, consulted a doctor. Einstein credited his delayed development with fostering his genius, as he approached abstract concepts like space and time later in life. In his words, consequently, I probed more deeply into the problem than an ordinary child would have.",
                 "cn": "一个连教职都找不到的专利局职员，是如何成为有史以来最著名的科学家的？在成为超级明星科学家之前，阿尔伯特·爱因斯坦一生中面临了无数的挫折。童年时，他学说话非常慢，以至于他的父母赫尔曼和波琳·爱因斯坦还为此咨询了医生。爱因斯坦将他智力的养成归功于他发育迟缓，因为这使他在人生后期才接触到像空间和时间这样的抽象概念。用他自己的话说：“因此，我比一个普通孩子会更深入地探究这个问题。”",
-                 "vocab": [
+                "vocab": [
                     {
                         "word": "patent clerk",
                         "ph": "/ˈpætənt klɜːrk/",
@@ -167,15 +167,252 @@ window.externalArticles = [
                                 ]
                             }
                         ],
-                        "function": "用于提供必要信息来识别或定义先行词（名词）。在此句 'a patent clerk who couldn't get a job' 中，从句明确了是哪一种专利局职员。",
+                        "function": "用于提供必要信息来识别或限定名词。在句子 'a patent clerk who couldn't get a job teaching' 中，定语从句说明是哪一个专利局职员。",
                         "example": {
                             "en": "The man who lives next door is a doctor.",
-                            "cn": "住在隔壁的那个男人是位医生。"
+                            "cn": "住在隔壁的那个男人是医生。"
                         },
                         "variants": [
                             "Noun + which/that + ..."
                         ],
-                        "constraints": "与先行词之间不用逗号隔开，关系代词'that'可以指人或物。"
+                        "constraints": "与先行词之间不加逗号；'that' 可指人或物。"
+                    },
+                    {
+                        "id": "gerund_postmodifier",
+                        "name": "动名词作后置定语",
+                        "category": "C",
+                        "level": "B2",
+                        "pattern": "Noun + V-ing",
+                        "components": [
+                            {
+                                "slot": "Noun",
+                                "role": "中心名词（被限定对象）",
+                                "pos": [
+                                    "n"
+                                ]
+                            },
+                            {
+                                "slot": "V-ing",
+                                "role": "后置修饰语（说明用途或性质）",
+                                "pos": [
+                                    "v"
+                                ]
+                            }
+                        ],
+                        "function": "V-ing 形式的动名词用来说明名词的功能、用途或性质。在此句 'a job teaching' 中，'teaching' 说明了 'job' 的类型，即“从事教学的工作”。",
+                        "example": {
+                            "en": "She found a job working at a bookstore.",
+                            "cn": "她找到了一份在书店工作的工作。"
+                        },
+                        "variants": [
+                            "Noun + for + V-ing",
+                            "Noun + used for + V-ing"
+                        ],
+                        "constraints": "通常用于说明职业、活动或用途，不可与现在分词作状语混淆。"
+                    },
+                    {
+                        "id": "so_that_result_clause",
+                        "name": "结果状语从句（so…that）",
+                        "category": "C",
+                        "level": "B2",
+                        "pattern": "so + adj/adv + that + clause",
+                        "components": [
+                            {
+                                "slot": "so + adj/adv",
+                                "role": "程度副词或形容词短语",
+                                "pos": [
+                                    "adv",
+                                    "adj phr"
+                                ]
+                            },
+                            {
+                                "slot": "that + clause",
+                                "role": "从句内容（结果）",
+                                "pos": [
+                                    "clause"
+                                ]
+                            }
+                        ],
+                        "function": "表示前面描述的程度导致了后面的结果。在句中 'he was so slow in learning to talk that his parents... consulted a doctor' 表示“他学说话很慢，以至于父母为此去看医生”。",
+                        "example": {
+                            "en": "She was so tired that she fell asleep immediately.",
+                            "cn": "她累得立刻就睡着了。"
+                        },
+                        "variants": [
+                            "so + much/many + noun + that + clause",
+                            "so + adv + that + clause"
+                        ],
+                        "constraints": "so 后面必须跟形容词或副词；that 引导的从句必须表达结果。"
+                    },
+                    {
+                        "id": "before_ing",
+                        "name": "介词 + 动名词结构",
+                        "category": "Phrase",
+                        "level": "B1",
+                        "pattern": "Preposition + V-ing",
+                        "components": [
+                            {
+                                "slot": "Preposition",
+                                "role": "介词",
+                                "pos": [
+                                    "prep"
+                                ]
+                            },
+                            {
+                                "slot": "V-ing",
+                                "role": "动名词（表示动作或状态）",
+                                "pos": [
+                                    "gerund"
+                                ]
+                            }
+                        ],
+                        "function": "表示在某动作发生之前或之后的情况。例句中 'before becoming the superstar scientist' 表示爱因斯坦在成为科学巨星之前经历的阶段。",
+                        "example": {
+                            "en": "She washed her hands before eating.",
+                            "cn": "她在吃饭前洗了手。"
+                        },
+                        "variants": [
+                            "after + V-ing",
+                            "without + V-ing"
+                        ],
+                        "constraints": "介词后必须接动名词（V-ing），不可接动词原形。"
+                    },
+                    {
+                        "id": "so_that_clause",
+                        "name": "结果状语从句",
+                        "category": "Clause",
+                        "level": "B1",
+                        "pattern": "so + adj/adv + that + clause",
+                        "components": [
+                            {
+                                "slot": "so + adj/adv",
+                                "role": "表示程度",
+                                "pos": [
+                                    "advp"
+                                ]
+                            },
+                            {
+                                "slot": "that + clause",
+                                "role": "结果从句",
+                                "pos": [
+                                    "clause"
+                                ]
+                            }
+                        ],
+                        "function": "表示前面描述的程度导致的结果。句中 'he was so slow in learning to talk that his parents consulted a doctor' 表示“因为太慢所以父母去咨询医生”。",
+                        "example": {
+                            "en": "He ran so fast that no one could catch him.",
+                            "cn": "他跑得太快了，没人能追上他。"
+                        },
+                        "variants": [
+                            "such + (a/an) + adj + noun + that + clause"
+                        ],
+                        "constraints": "从句中通常表结果或后果。"
+                    },
+                    {
+                        "id": "credit_with",
+                        "name": "credit A with B 结构",
+                        "category": "Phrase",
+                        "level": "B2",
+                        "pattern": "credit + sb/sth + with + sth",
+                        "components": [
+                            {
+                                "slot": "credit",
+                                "role": "动词",
+                                "pos": [
+                                    "v"
+                                ]
+                            },
+                            {
+                                "slot": "sb/sth",
+                                "role": "受词A",
+                                "pos": [
+                                    "n"
+                                ]
+                            },
+                            {
+                                "slot": "with + sth",
+                                "role": "表示被归功的事物",
+                                "pos": [
+                                    "prep phrase"
+                                ]
+                            }
+                        ],
+                        "function": "表示‘把某成就或品质归功于某人/事’。句中 'Einstein credited his delayed development with fostering his genius' 即“他把自己的天才归功于发育迟缓”。",
+                        "example": {
+                            "en": "She credited her success with hard work.",
+                            "cn": "她把成功归功于勤奋。"
+                        },
+                        "variants": [
+                            "credit A for B"
+                        ],
+                        "constraints": "‘credit A for B’ 语义相似但更强调‘因为B而表扬A’。"
+                    },
+                    {
+                        "id": "as_clause",
+                        "name": "原因状语从句（as）",
+                        "category": "Clause",
+                        "level": "B1",
+                        "pattern": "as + clause",
+                        "components": [
+                            {
+                                "slot": "as",
+                                "role": "从属连词",
+                                "pos": [
+                                    "conj"
+                                ]
+                            },
+                            {
+                                "slot": "clause",
+                                "role": "原因从句",
+                                "pos": [
+                                    "clause"
+                                ]
+                            }
+                        ],
+                        "function": "表示原因或理由。句中 'as he approached abstract concepts like space and time later in life' 表示“因为他在人生后期才接触抽象概念”。",
+                        "example": {
+                            "en": "As it was raining, we stayed at home.",
+                            "cn": "因为下雨，我们待在家里。"
+                        },
+                        "variants": [
+                            "since + clause",
+                            "because + clause"
+                        ],
+                        "constraints": "‘as’ 语气较弱，多用于说明背景原因。"
+                    },
+                    {
+                        "id": "modal_perfect",
+                        "name": "情态动词 + 完成时（虚拟过去）",
+                        "category": "Grammar",
+                        "level": "B2",
+                        "pattern": "modal verb + have + past participle",
+                        "components": [
+                            {
+                                "slot": "modal verb",
+                                "role": "情态动词",
+                                "pos": [
+                                    "modal"
+                                ]
+                            },
+                            {
+                                "slot": "have + past participle",
+                                "role": "完成时结构",
+                                "pos": [
+                                    "verb phrase"
+                                ]
+                            }
+                        ],
+                        "function": "表示对过去情况的推测、假设或错过的机会。句中 'than an ordinary child would have' 是省略了动词的比较从句，用 'would have' 表示虚拟的过去可能性。",
+                        "example": {
+                            "en": "He would have gone if he had known.",
+                            "cn": "如果他知道的话，他本来会去的。"
+                        },
+                        "variants": [
+                            "could have + p.p.",
+                            "might have + p.p."
+                        ],
+                        "constraints": "‘would have’ 通常用于与过去事实相反的假设。"
                     }
                 ]
             },
@@ -185,6 +422,41 @@ window.externalArticles = [
                 "cn": "尽管他在小学和中学都名列前茅，但他讨厌德国教育体系对机械式学习的强调——即记忆、操练和填鸭式的事实灌输，并把他的老师比作普鲁士军队中的中尉。16岁时，他决定离开慕尼黑的高中自学，希望能被苏黎世的一所师范学院录取。通过离开德国并放弃国籍，他还避免了17岁开始的义务兵役，这个前景让这位和平主义者充满了恐惧。",
                 "vocab": [
                     {
+                        "word": "at the top of one's class",
+                        "ph": "/æt ðə tɒp əv wʌnz klæs/",
+                        "pos": "phr",
+                        "mean": "名列前茅；成绩最好",
+                        "ex": "She graduated at the top of her class."
+                    },
+                    {
+                        "word": "emphasis",
+                        "ph": "/ˈemfəsɪs/",
+                        "pos": "n",
+                        "mean": "强调；重视",
+                        "ex": "The school places great emphasis on discipline."
+                    },
+                    {
+                        "word": "mechanical learning",
+                        "ph": "/məˈkænɪkəl ˈlɜːrnɪŋ/",
+                        "pos": "n phr",
+                        "mean": "机械学习；死记硬背式学习",
+                        "ex": "He disliked the mechanical learning style at school."
+                    },
+                    {
+                        "word": "memorization",
+                        "ph": "/ˌmeməraɪˈzeɪʃən/",
+                        "pos": "n",
+                        "mean": "记忆；背诵",
+                        "ex": "Language learning requires more than memorization."
+                    },
+                    {
+                        "word": "drill",
+                        "ph": "/drɪl/",
+                        "pos": "n",
+                        "mean": "反复练习；训练",
+                        "ex": "Students did grammar drills every morning."
+                    },
+                    {
                         "word": "force-fed",
                         "ph": "/ˈfɔːrs fed/",
                         "pos": "adj",
@@ -192,11 +464,88 @@ window.externalArticles = [
                         "ex": "He criticized the school for its force-fed teaching methods."
                     },
                     {
+                        "word": "liken",
+                        "ph": "/ˈlaɪkən/",
+                        "pos": "v",
+                        "mean": "把…比作…",
+                        "ex": "He likened his teachers to soldiers in the army."
+                    },
+                    {
+                        "word": "lieutenant",
+                        "ph": "/luːˈtenənt/ (UK) /lefˈtenənt/ (US)",
+                        "pos": "n",
+                        "mean": "中尉；副官",
+                        "ex": "The lieutenant gave orders to the soldiers."
+                    },
+                    {
+                        "word": "Prussian",
+                        "ph": "/ˈprʌʃən/",
+                        "pos": "adj",
+                        "mean": "普鲁士的；普鲁士人的",
+                        "ex": "The Prussian army was known for its strict discipline."
+                    },
+                    {
+                        "word": "on one's own",
+                        "ph": "/ɒn wʌnz oʊn/",
+                        "pos": "phr",
+                        "mean": "独自地；靠自己",
+                        "ex": "He learned to play the piano on his own."
+                    },
+                    {
+                        "word": "admission",
+                        "ph": "/ədˈmɪʃən/",
+                        "pos": "n",
+                        "mean": "录取；入学许可",
+                        "ex": "She gained admission to Harvard University."
+                    },
+                    {
+                        "word": "teaching college",
+                        "ph": "/ˈtiːtʃɪŋ ˈkɒlɪdʒ/",
+                        "pos": "n phr",
+                        "mean": "师范学院",
+                        "ex": "He applied to a teaching college in Zurich."
+                    },
+                    {
+                        "word": "Zurich",
+                        "ph": "/ˈzjʊərɪk/",
+                        "pos": "n",
+                        "mean": "苏黎世（瑞士城市）",
+                        "ex": "Zurich is known for its universities and banks."
+                    },
+                    {
                         "word": "renounce",
                         "ph": "/rɪˈnaʊns/",
                         "pos": "v",
-                        "mean": "宣布放弃",
+                        "mean": "宣布放弃；弃绝",
                         "ex": "He had to renounce his citizenship to take the new job."
+                    },
+                    {
+                        "word": "citizenship",
+                        "ph": "/ˈsɪtɪzənʃɪp/",
+                        "pos": "n",
+                        "mean": "国籍；公民身份",
+                        "ex": "She applied for Canadian citizenship."
+                    },
+                    {
+                        "word": "compulsory",
+                        "ph": "/kəmˈpʌlsəri/",
+                        "pos": "adj",
+                        "mean": "强制的；义务的",
+                        "ex": "Education is compulsory for children up to age 16."
+                    },
+                    {
+                        "word": "military service",
+                        "ph": "/ˈmɪlɪtəri ˈsɜːrvɪs/",
+                        "pos": "n phr",
+                        "mean": "兵役；军务",
+                        "ex": "He avoided compulsory military service."
+                    },
+                    {
+                        "word": "prospect",
+                        "ph": "/ˈprɒspekt/",
+                        "pos": "n",
+                        "mean": "前景；可能性",
+                        "ex": "The prospect of war filled them with fear."
                     },
                     {
                         "word": "pacifist",
@@ -204,9 +553,80 @@ window.externalArticles = [
                         "pos": "n",
                         "mean": "和平主义者",
                         "ex": "As a pacifist, she was opposed to all forms of violence."
+                    },
+                    {
+                        "word": "dread",
+                        "ph": "/dred/",
+                        "pos": "n/v",
+                        "mean": "恐惧；惧怕",
+                        "ex": "He felt dread at the thought of going to war."
                     }
                 ],
                 "gram": [
+                    {
+                        "id": "concessive_clause",
+                        "name": "让步状语从句",
+                        "category": "C",
+                        "level": "B2",
+                        "pattern": "Although + Clause, + Clause",
+                        "components": [
+                            {
+                                "slot": "Although",
+                                "role": "从属连词（引导让步）",
+                                "pos": [
+                                    "conj"
+                                ]
+                            },
+                            {
+                                "slot": "Clause",
+                                "role": "从句内容（让步）",
+                                "pos": [
+                                    "clause"
+                                ]
+                            }
+                        ],
+                        "function": "表示虽然某种情况存在，但主句内容依然成立。在句中 'Although he finished at the top of his class ... , he hated ...' 表示“尽管他成绩优异，但仍然讨厌教育体系”。",
+                        "example": {
+                            "en": "Although it was raining, we went out for a walk.",
+                            "cn": "尽管下雨了，我们还是出去散步。"
+                        },
+                        "variants": [
+                            "Though + Clause, + Clause"
+                        ],
+                        "constraints": "‘Although’ 后接完整句；不能与‘but’连用。"
+                    },
+                    {
+                        "id": "participle_clause",
+                        "name": "现在分词状语结构",
+                        "category": "C",
+                        "level": "B2",
+                        "pattern": "Verb-ing + ...",
+                        "components": [
+                            {
+                                "slot": "Verb-ing",
+                                "role": "分词形式动词",
+                                "pos": [
+                                    "v"
+                                ]
+                            },
+                            {
+                                "slot": "Clause",
+                                "role": "暗示主语一致的附加动作",
+                                "pos": [
+                                    "clause"
+                                ]
+                            }
+                        ],
+                        "function": "用现在分词短语表示伴随动作、原因或条件。在句中 '...to study on his own, hoping to gain admission...' 中，'hoping...' 表示“带着希望的状态”，修饰前面主句动作。",
+                        "example": {
+                            "en": "She walked away, smiling at everyone.",
+                            "cn": "她走开了，微笑着看着每个人。"
+                        },
+                        "variants": [
+                            "V-ing phrase + , + Clause"
+                        ],
+                        "constraints": "分词短语的逻辑主语必须与主句主语一致，否则容易产生歧义。"
+                    },
                     {
                         "id": "non_defining_relative_clause",
                         "name": "非限定性定语从句",
@@ -229,15 +649,15 @@ window.externalArticles = [
                                 ]
                             }
                         ],
-                        "function": "用于提供关于先行词的额外、非必要信息。它与主句用逗号隔开。在此句 '...compulsory military service, which began at 17...' 中，从句补充说明了兵役开始的年龄。",
+                        "function": "提供关于前面名词的附加说明，不影响句子主要意思。此句中 '...military service, which began at 17...' 补充说明兵役开始的时间。",
                         "example": {
-                            "en": "My car, which is very old, often breaks down.",
-                            "cn": "我的车很旧了，经常出故障。"
+                            "en": "My house, which was built in 1920, is still in good condition.",
+                            "cn": "我的房子建于1920年，现在仍然状况良好。"
                         },
                         "variants": [
                             "..., who + Verb..."
                         ],
-                        "constraints": "必须用逗号与主句隔开，不能使用关系代词 'that'。"
+                        "constraints": "前后必须用逗号隔开；不可使用 ‘that’ 替代 ‘which’。"
                     }
                 ]
             },
@@ -247,11 +667,32 @@ window.externalArticles = [
                 "cn": "然而，他面临了早期的挫折。他未能考入大学。他通过了入学考试的科学和数学部分，但在法语、文学、动物学、植物学和政治学上挂科了。因此，他不得不在瑞士阿尔劳村的一所高中待了一年。他很欣赏瑞士教育对视觉化学习的重视，这一点后来在他培养著名的思想实验方面发挥了关键作用。他在班上取得了第二高的成绩，这一次，他通过了入学考试，进入了苏黎世理工学院的数学与物理专业师范系。",
                 "vocab": [
                     {
+                        "word": "entrance exam",
+                        "ph": "/ˈentrəns ɪɡˌzæm/",
+                        "pos": "n phr",
+                        "mean": "入学考试",
+                        "ex": "He passed the science and math sections of the entrance exam."
+                    },
+                    {
+                        "word": "zoology",
+                        "ph": "/zuːˈɒlədʒi/",
+                        "pos": "n",
+                        "mean": "动物学",
+                        "ex": "Zoology was one of the subjects he failed."
+                    },
+                    {
                         "word": "botany",
                         "ph": "/ˈbɒtəni/",
                         "pos": "n",
                         "mean": "植物学",
                         "ex": "She is studying botany at the university."
+                    },
+                    {
+                        "word": "visual learning",
+                        "ph": "/ˈvɪʒuəl ˈlɜːrnɪŋ/",
+                        "pos": "n phr",
+                        "mean": "视觉学习；通过观察和图像学习",
+                        "ex": "Visual learning helped him understand concepts more clearly."
                     },
                     {
                         "word": "thought experiment",
@@ -266,6 +707,41 @@ window.externalArticles = [
                         "pos": "phr v",
                         "mean": "在…注册入学",
                         "ex": "He decided to enroll at the local community college."
+                    },
+                    {
+                        "word": "foster",
+                        "ph": "/ˈfɒstər/",
+                        "pos": "v",
+                        "mean": "培养；促进",
+                        "ex": "Swiss education fostered his famous thought experiments."
+                    },
+                    {
+                        "word": "enroll",
+                        "ph": "/ɪnˈroʊl/",
+                        "pos": "v",
+                        "mean": "注册；入学",
+                        "ex": "He passed the entrance exam to enroll at Zurich Polytechnic."
+                    },
+                    {
+                        "word": "Polytechnic",
+                        "ph": "/ˌpɒliˈteknɪk/",
+                        "pos": "n",
+                        "mean": "理工学院；工艺专科学校",
+                        "ex": "He studied at Zurich Polytechnic in the Specialized Math and Physics Teaching Stream."
+                    },
+                    {
+                        "word": "specialized",
+                        "ph": "/ˈspeʃəlaɪzd/",
+                        "pos": "adj",
+                        "mean": "专门的；专业化的",
+                        "ex": "He chose the Specialized Math and Physics Teaching Stream."
+                    },
+                    {
+                        "word": "teaching stream",
+                        "ph": "/ˈtiːtʃɪŋ striːm/",
+                        "pos": "n phr",
+                        "mean": "师范方向；教学专业分流",
+                        "ex": "The Teaching Stream prepared students for careers in education."
                     }
                 ],
                 "gram": [
@@ -291,13 +767,110 @@ window.externalArticles = [
                                 ]
                             }
                         ],
-                        "function": "'but' 用于连接两个相反或对比的观点（通过了数学但挂了法语）。'so' 用于表示因果关系，连接原因和结果（挂科了，所以他必须去读高中）。",
+                        "function": "'but' 用于连接两个相反或对比的观点（如 'He passed the science and math sections, but failed French'）。'so' 用于表示因果关系（如 'He failed French, so he had to spend a year at a high school'）。",
                         "example": {
                             "en": "I wanted to go, but I was too tired. It was late, so I went home.",
                             "cn": "我想去，但我太累了。时间晚了，所以我回家了。"
                         },
                         "variants": null,
                         "constraints": "连接两个语法上独立的句子，连词前通常有逗号。"
+                    },
+                    {
+                        "id": "non_defining_relative_clause",
+                        "name": "非限定性定语从句",
+                        "category": "C",
+                        "level": "B2",
+                        "pattern": "..., which + Verb...",
+                        "components": [
+                            {
+                                "slot": "which",
+                                "role": "关系代词",
+                                "pos": [
+                                    "pron"
+                                ]
+                            },
+                            {
+                                "slot": "Verb...",
+                                "role": "从句内容",
+                                "pos": [
+                                    "clause"
+                                ]
+                            }
+                        ],
+                        "function": "提供关于先行词的附加说明，不改变主句主要意思。在句中 'visual learning, which later played a key role in fostering his famous thought experiments' 补充说明视觉学习的重要作用。",
+                        "example": {
+                            "en": "My car, which is very old, often breaks down.",
+                            "cn": "我的车很旧，经常出故障。"
+                        },
+                        "variants": [
+                            "..., who + Verb..."
+                        ],
+                        "constraints": "前后必须用逗号隔开；不可使用 'that'。"
+                    },
+                    {
+                        "id": "so_that_result_clause",
+                        "name": "结果状语从句（so…that）",
+                        "category": "C",
+                        "level": "B2",
+                        "pattern": "so + adj/adv + that + clause",
+                        "components": [
+                            {
+                                "slot": "so + adj/adv",
+                                "role": "程度副词或形容词短语",
+                                "pos": [
+                                    "adv",
+                                    "adj phr"
+                                ]
+                            },
+                            {
+                                "slot": "that + clause",
+                                "role": "从句内容（结果）",
+                                "pos": [
+                                    "clause"
+                                ]
+                            }
+                        ],
+                        "function": "表示前面描述的程度导致后面的结果。例如段落中可以类比 'He scored the second highest grades, so he passed the entrance exam'。",
+                        "example": {
+                            "en": "She was so tired that she fell asleep immediately.",
+                            "cn": "她累得立刻就睡着了。"
+                        },
+                        "variants": [
+                            "so much/many + noun + that + clause"
+                        ],
+                        "constraints": "so 后面必须跟形容词或副词，that 引导从句表达结果。"
+                    },
+                    {
+                        "id": "past_participle_as_adjective",
+                        "name": "过去分词作形容词",
+                        "category": "W",
+                        "level": "B2",
+                        "pattern": "V-ed + Noun",
+                        "components": [
+                            {
+                                "slot": "V-ed",
+                                "role": "过去分词",
+                                "pos": [
+                                    "v"
+                                ]
+                            },
+                            {
+                                "slot": "Noun",
+                                "role": "被修饰名词",
+                                "pos": [
+                                    "n"
+                                ]
+                            }
+                        ],
+                        "function": "用过去分词修饰名词，表示被动或完成的状态。段落中 'famous thought experiments' 的 'famous' 可以理解为形容词，但若用 'fostered experiments' 可表示被培养的实验。",
+                        "example": {
+                            "en": "The broken window needs to be repaired.",
+                            "cn": "破碎的窗户需要修理。"
+                        },
+                        "variants": [
+                            "V-en + Noun"
+                        ],
+                        "constraints": "分词必须紧跟被修饰名词；表达完成或被动性质。"
                     }
                 ]
             },
@@ -2255,6 +2828,5 @@ window.externalArticles = [
             }
         }
     }
-
     // ... 更多文章
 ];
