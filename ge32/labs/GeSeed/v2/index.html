@@ -2663,35 +2663,36 @@
             return copy;
         }
 
+        test()
 
-        function test() {
-            function showTest(list) {
-                // 创建一个容器 div
-                const show = document.createElement("div");
-                show.style.border = "1px solid #ccc";
-                show.style.padding = "10px";
-                show.style.margin = "10px 0";
+        function test(){
+                    function showTest(list) {
+            // 创建一个容器 div
+            const show = document.createElement("div");
+            show.style.border = "1px solid #ccc";
+            show.style.padding = "10px";
+            show.style.margin = "10px 0";
 
-                // 遍历列表，把每个语音显示为一行
-                list.forEach((voice, index) => {
-                    const line = document.createElement("div");
-                    line.innerText = `${index + 1}. Name: ${voice.name}, Lang: ${voice.lang}, Local: ${voice.localService}`;
-                    show.appendChild(line);
-                });
+            // 遍历列表，把每个语音显示为一行
+            list.forEach((voice, index) => {
+                const line = document.createElement("div");
+                line.innerText = `${index + 1}. Name: ${voice.name}, Lang: ${voice.lang}, Local: ${voice.localService}`;
+                show.appendChild(line);
+            });
 
-                // 添加到页面 body（或者指定容器）
-                document.body.appendChild(show);
-            }
+            // 添加到页面 body（或者指定容器）
+            document.body.appendChild(show);
+        }
 
-            // 使用示例
+        // 使用示例
+        const voices = window.speechSynthesis.getVoices();
+        showTest(voices);
+
+        // 如果页面刚加载可能 voices 为空，需要监听 voiceschanged
+        window.speechSynthesis.onvoiceschanged = () => {
             const voices = window.speechSynthesis.getVoices();
             showTest(voices);
-
-            // 如果页面刚加载可能 voices 为空，需要监听 voiceschanged
-            window.speechSynthesis.onvoiceschanged = () => {
-                const voices = window.speechSynthesis.getVoices();
-                showTest(voices);
-            };
+        };
 
         }
 
