@@ -1,7 +1,7 @@
 {
-  "name": "Test",
-  "short_name": "MyApp",
-  "start_url": "./index.html",
+  "name": "测试代码 00001",
+  "short_name": "00001",
+  "start_url": "/ge32/labs/GeSeed/v2/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
