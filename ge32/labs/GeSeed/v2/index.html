@@ -2374,6 +2374,7 @@
             if (articlesData) {
                 articlesData.forEach(article => initArtcleData(article));
             }
+            listAvailableVoices?.();
             buildWordDictionary?.();
             renderArticleMenu?.();
             renderPage?.();
@@ -4404,6 +4405,13 @@
 
         function createWordStopSpeechIcon() {
             return createStopSpeechIcon(16);
+        }
+
+        function listAvailableVoices() {
+            const voices = window.speechSynthesis.getVoices();
+            voices.forEach(voice => {
+                console.log(`Name: ${voice.name}, Lang: ${voice.lang}, Local: ${voice.localService}`);
+            });
         }
 
         // 初始化语音合成
