@@ -1,4 +1,4 @@
-const CACHE_NAME = 'myapp-v1';
+const CACHE_NAME = 'myapp-v2';
 
 // 预缓存关键文件（安装时缓存）
 const FILES_TO_PRECACHE = [
