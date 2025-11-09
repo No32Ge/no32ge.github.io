@@ -1,0 +1,3134 @@
+[
+    {
+        "id": "wonder_excerpt_camp_lies",
+        "title": "Camp Lies",
+        "info": {
+            "author": "R.J. Palacio",
+            "source": "Wonder (narrated by Miranda)",
+            "level": "B2",
+            "tags": [
+                "divorce",
+                "family",
+                "identity",
+                "lies",
+                "friendship",
+                "popularity",
+                "perspective"
+            ],
+            "link": "https://example.com/original-source",
+            "variants": null
+        },
+        "paras": [
+            {
+                "id": 1,
+                "en": "My parents got divorced the summer before ninth grade. My father was with someone else right away. In fact, though my mother never said so, I think this was the reason they got divorced. After the divorce, I hardly ever saw my father. And my mother acted stranger than ever. It's not that she was unstable or anything: just distant. Remote. My mother is the kind of person who has a happy face for the rest of the world but not a lot left over for me. She's never talked to me much—not about her feelings, her life. I don't know much about what she was like when she was my age. Don't know much about the things she liked or didn't like. The few times she mentioned her own parents, who I've never met, it was mostly about how she wanted to get as far away from them as she could once she'd grown up. She never told me why. I asked a few times, but she would pretend she hadn't heard me.",
+                "cn": "我父母在我上九年级前的那个夏天离婚了。我父亲很快就和别人在一起了。事实上，虽然我母亲从未这么说过，但我认为这就是他们离婚的原因。离婚后，我几乎再也没见过我父亲。而我母亲的行为比以往任何时候都更奇怪。不是说她情绪不稳定什么的：只是疏远。遥远。我母亲是那种对世界其他人都有笑脸，但留给我的却不多的人。她从来不怎么跟我说话——不谈她的感受，她的生活。我不太了解她在我这个年纪时是什么样子。不太了解她喜欢或不喜欢的东西。她几次提到她的父母，我从未见过他们，说的也主要是关于她长大后如何想尽可能地远离他们。她从没告诉过我为什么。我问过几次，但她会假装没听见。",
+                "vocab": [
+                    {
+                        "word": "divorced",
+                        "ph": "/dɪˈvɔːrst/",
+                        "pos": "adj",
+                        "mean": "离婚的",
+                        "ex": "After ten years of marriage, they decided to get divorced."
+                    },
+                    {
+                        "word": "right away",
+                        "ph": "/raɪt əˈweɪ/",
+                        "pos": "phr",
+                        "mean": "立刻；马上",
+                        "ex": "When the fire alarm rang, we left the building right away."
+                    },
+                    {
+                        "word": "unstable",
+                        "ph": "/ʌnˈsteɪbl/",
+                        "pos": "adj",
+                        "mean": "不稳定的",
+                        "ex": "The political situation in the country is highly unstable."
+                    },
+                    {
+                        "word": "distant",
+                        "ph": "/ˈdɪstənt/",
+                        "pos": "adj",
+                        "mean": "疏远的",
+                        "ex": "After the argument, the two friends became distant."
+                    },
+                    {
+                        "word": "remote",
+                        "ph": "/rɪˈmoʊt/",
+                        "pos": "adj",
+                        "mean": "遥远的；冷淡的",
+                        "ex": "He had a remote and unfriendly manner."
+                    },
+                    {
+                        "word": "left over",
+                        "ph": "/left ˈoʊvər/",
+                        "pos": "phr",
+                        "mean": "剩下的",
+                        "ex": "We had some chicken left over from dinner last night."
+                    },
+                    {
+                        "word": "get away from",
+                        "ph": "/ɡet əˈweɪ frəm/",
+                        "pos": "phr v",
+                        "mean": "远离",
+                        "ex": "I need a vacation to get away from all this stress."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "contrast_within_a_sentence",
+                        "name": "句内对比",
+                        "category": "S",
+                        "level": "B2",
+                        "pattern": "X for [group A] but Y for [group B]",
+                        "components": [
+                            {
+                                "slot": "for [group A]",
+                                "role": "对比对象一",
+                                "pos": [
+                                    "phr"
+                                ]
+                            },
+                            {
+                                "slot": "but",
+                                "role": "转折连词",
+                                "pos": [
+                                    "conj"
+                                ]
+                            },
+                            {
+                                "slot": "for [group B]",
+                                "role": "对比对象二",
+                                "pos": [
+                                    "phr"
+                                ]
+                            }
+                        ],
+                        "function": "用于在一个句子中清晰地对比某人或某物在两种不同情况下的表现或状态。'...a happy face for the rest of the world but not a lot left over for me' 强烈地对比了母亲对外人和对家人的两种截然不同的态度。",
+                        "example": {
+                            "en": "He has a lot of patience for his students but very little for his own children.",
+                            "cn": "他对他的学生很有耐心，但对自己的孩子却没什么耐心。"
+                        },
+                        "variants": null,
+                        "constraints": "是一种有效的揭示矛盾性格的结构。"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "en": "I didn't want to go to camp that summer. I had wanted to stay with her, to help her through the divorce. But she insisted I go away. I figured she wanted the alone time, so I gave it to her.",
+                "cn": "那个夏天我不想去夏令营。我本想和她待在一起，帮她度过离婚这段时期。但她坚持让我去。我琢磨着她想要独处的时间，所以我就给了她。",
+                "vocab": [
+                    {
+                        "word": "help someone through",
+                        "ph": "/help ˈsʌmwʌn θruː/",
+                        "pos": "phr v",
+                        "mean": "帮助某人度过（难关）",
+                        "ex": "Her friends helped her through the difficult time after she lost her job."
+                    },
+                    {
+                        "word": "insist",
+                        "ph": "/ɪnˈsɪst/",
+                        "pos": "v",
+                        "mean": "坚持",
+                        "ex": "He insisted on paying for the meal, even though I offered."
+                    },
+                    {
+                        "word": "figure",
+                        "ph": "/ˈfɪɡjər/",
+                        "pos": "v",
+                        "mean": "（非正式）认为；琢磨",
+                        "ex": "I figure it's going to rain later, so I'll bring an umbrella."
+                    },
+                    {
+                        "word": "alone time",
+                        "ph": "/əˈloʊn taɪm/",
+                        "pos": "n phr",
+                        "mean": "独处时间",
+                        "ex": "As a busy parent, she rarely gets any alone time."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "past_perfect_for_unfulfilled_desire",
+                        "name": "过去完成时（用于未实现的愿望）",
+                        "category": "T",
+                        "level": "B2",
+                        "pattern": "had + past participle",
+                        "components": [
+                            {
+                                "slot": "had + pp",
+                                "role": "过去完成时",
+                                "pos": [
+                                    "phr"
+                                ]
+                            }
+                        ],
+                        "function": "表示在过去某个时间点之前存在的愿望或意图，但该愿望并未实现。'I had wanted to stay with her...' 暗示了“待在她身边”这个愿望在妈妈“坚持让我去”这个过去的动作发生之前就存在，并且最终未能实现。",
+                        "example": {
+                            "en": "I had hoped to see you at the party, but you didn't come.",
+                            "cn": "我本希望在派对上见到你，但你没来。"
+                        },
+                        "variants": null,
+                        "constraints": "常与 'hope', 'want', 'plan', 'intend' 等动词连用。"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "en": "Camp was awful. I hated it. I thought it would be better being a junior counselor, but it wasn't. No one I knew from the previous year had come back, so I didn't know anyone— not a single person. I'm not even sure why, but I started playing this little make-believe game with the girls in the camp. They'd ask me stuff about myself, and I'd make things up: my parents are in Europe, I told them. I live in a huge townhouse on the nicest street in North River Heights. I have a dog named Daisy.",
+                "cn": "夏令营糟透了。我讨厌它。我原以为当个初级辅导员会好一些，但并没有。我去年认识的人一个也没回来，所以我不认识任何人——一个都不认识。我甚至不确定为什么，但我开始和营里的女孩们玩起了这个小小的假装游戏。她们会问我关于我自己的事，然后我就会编造：我告诉她们，我的父母在欧洲。我住在一栋巨大的联排别墅里，在北河高地最好的街道上。我有一只叫黛西的狗。",
+                "vocab": [
+                    {
+                        "word": "awful",
+                        "ph": "/ˈɔːfl/",
+                        "pos": "adj",
+                        "mean": "糟糕的",
+                        "ex": "The weather was awful all weekend, so we stayed inside."
+                    },
+                    {
+                        "word": "junior counselor",
+                        "ph": "/ˈdʒuːniər ˈkaʊnsələr/",
+                        "pos": "n phr",
+                        "mean": "（夏令营的）初级辅导员",
+                        "ex": "As a junior counselor, her job was to supervise the younger campers."
+                    },
+                    {
+                        "word": "not a single person",
+                        "ph": "/nɒt ə ˈsɪŋɡl ˈpɜːrsn/",
+                        "pos": "phr",
+                        "mean": "一个人都没有",
+                        "ex": "Not a single person showed up for the meeting."
+                    },
+                    {
+                        "word": "make-believe",
+                        "ph": "/ˈmeɪk bɪˌliːv/",
+                        "pos": "adj",
+                        "mean": "假装的；虚构的",
+                        "ex": "The children were playing in their own make-believe world."
+                    },
+                    {
+                        "word": "make things up",
+                        "ph": "/meɪk θɪŋz ʌp/",
+                        "pos": "phr v",
+                        "mean": "编造事情",
+                        "ex": "He's known for making things up, so don't believe his stories."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "colon_for_introduction",
+                        "name": "冒号（用于引出）",
+                        "category": "P",
+                        "level": "B1",
+                        "pattern": "Main clause: + example/list/explanation",
+                        "components": [
+                            {
+                                "slot": ":",
+                                "role": "冒号",
+                                "pos": [
+                                    "punc"
+                                ]
+                            }
+                        ],
+                        "function": "用于引出对前面主句的解释、举例或详细说明。'...I'd make things up: my parents are in Europe...' 冒号后面直接列举了她编造的具体谎言。",
+                        "example": {
+                            "en": "I have three favorite colors: blue, green, and purple.",
+                            "cn": "我有三种最喜欢的颜色：蓝色、绿色和紫色。"
+                        },
+                        "variants": null,
+                        "constraints": "冒号前面的部分通常是一个完整的句子。"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "en": "Then one day I blurted out that I had a little brother who was deformed. I have absolutely no idea why I said this: it just seemed like an interesting thing to say. And, of course, the reaction I got from the little girls in the bungalow was dramatic. Really? So sorry! That must be tough! Et cetera. Et cetera. I regretted saying this the moment it escaped from my lips, of course: I felt like such a fake. If Via ever found out, I thought, she'd think I was such a weirdo. And I felt like a weirdo. But, I have to admit, there was a part of me that felt a little entitled to this lie. I've known Auggie since I was six years old. I've played with him. I've watched all six episodes of Star Wars for his sake, so I could talk to him about the aliens and bounty hunters and all that. I'm the one that gave him the astronaut helmet he wouldn't take off for two years. I mean, I've kind of earned the right to think of him as my brother.",
+                "cn": "然后有一天我脱口而出，说我有一个畸形的弟弟。我完全不知道自己为什么会这么说：它似乎只是一个说出来会很有趣的事情。当然，我从小平房里的那些小女孩那里得到的反应是戏剧性的。“真的吗？太遗憾了！那一定很难吧！等等。等等。” 当然，这话一从我嘴里溜出来我就后悔了：我感觉自己像个骗子。我想，如果维娅发现了，她会觉得我是个怪人。我也感觉自己像个怪人。但是，我得承认，我内心有一部分觉得对这个谎言有点理所当然。我从六岁起就认识奥吉。我和他一起玩过。为了他，我看了全部六集《星球大战》，这样我就可以和他谈论外星人、赏金猎人和所有那些东西。是我给了他那个他两年都舍不得摘下的宇航员头盔。我的意思是，我算是赢得了把他看作我弟弟的权利。",
+                "vocab": [
+                    {
+                        "word": "blurt out",
+                        "ph": "/blɜːrt aʊt/",
+                        "pos": "phr v",
+                        "mean": "脱口而出",
+                        "ex": "In a moment of panic, he blurted out the secret."
+                    },
+                    {
+                        "word": "deformed",
+                        "ph": "/dɪˈfɔːrmd/",
+                        "pos": "adj",
+                        "mean": "畸形的",
+                        "ex": "The accident left his hand permanently deformed."
+                    },
+                    {
+                        "word": "bungalow",
+                        "ph": "/ˈbʌŋɡəloʊ/",
+                        "pos": "n",
+                        "mean": "（夏令营等的）小屋；平房",
+                        "ex": "The campers slept in small wooden bungalows."
+                    },
+                    {
+                        "word": "et cetera",
+                        "ph": "/et ˈsetərə/",
+                        "pos": "phr",
+                        "mean": "等等",
+                        "ex": "The store sells fruit, vegetables, bread, et cetera."
+                    },
+                    {
+                        "word": "escape from one's lips",
+                        "ph": "/ɪˈskeɪp frəm wʌnz lɪps/",
+                        "pos": "idiom",
+                        "mean": "（话语）脱口而出",
+                        "ex": "He didn't mean to say it; the words just escaped from his lips."
+                    },
+                    {
+                        "word": "fake",
+                        "ph": "/feɪk/",
+                        "pos": "n",
+                        "mean": "骗子；冒牌货",
+                        "ex": "He claimed to be a doctor, but he was a total fake."
+                    },
+                    {
+                        "word": "weirdo",
+                        "ph": "/ˈwɪərdoʊ/",
+                        "pos": "n",
+                        "mean": "（非正式）怪人",
+                        "ex": "Some kids at school called him a weirdo because he liked to read all day."
+                    },
+                    {
+                        "word": "entitled to",
+                        "ph": "/ɪnˈtaɪtld tuː/",
+                        "pos": "adj phr",
+                        "mean": "有权利（拥有或做某事）",
+                        "ex": "After a long week of work, you're entitled to a rest."
+                    },
+                    {
+                        "word": "for someone's sake",
+                        "ph": "/fɔːr ˈsʌmwʌnz seɪk/",
+                        "pos": "idiom",
+                        "mean": "为了某人",
+                        "ex": "He agreed to go to the party for his girlfriend's sake, even though he didn't want to."
+                    },
+                    {
+                        "word": "earn the right",
+                        "ph": "/ɜːrn ðə raɪt/",
+                        "pos": "phr",
+                        "mean": "赢得权利",
+                        "ex": "After years of hard work and dedication, she earned the right to lead the team."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "embedded_thought_in_narrative",
+                        "name": "叙事中的嵌入式想法",
+                        "category": "R",
+                        "level": "C1",
+                        "pattern": "Conditional Clause, + [reporting verb], + Main Clause",
+                        "components": [
+                            {
+                                "slot": "reporting verb",
+                                "role": "引述动词（如 'I thought'）",
+                                "pos": [
+                                    "phr"
+                                ]
+                            }
+                        ],
+                        "function": "通过在句中插入 'I thought'，作者将角色的内心思考直接嵌入到叙事流中，而不是另起一句。'If Via ever found out, I thought, she'd think I was such a weirdo' 使得叙述更加流畅，并让读者能同时看到外部事件和角色的内心反应。",
+                        "example": {
+                            "en": "This party, she thought, was the best one she had ever attended.",
+                            "cn": "这场派对，她想，是她参加过的最好的一场。"
+                        },
+                        "variants": null,
+                        "constraints": "是一种在小说中常见的叙事技巧。"
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "en": "And the strangest thing is that these lies I told, these fictions, did wonders for my popularity. The other junior counselors heard it from the campers, and they were all over it. Never in my life have I ever been considered one of the \"popular\" girls in anything, but that summer in camp, for whatever reason, I was the girl everybody wanted to hang out with. Even the girls in bungalow 32 were totally into me. These were the girls at the top of the food chain. They said they liked my hair (though they changed it). They said they liked the way I did my makeup (though they changed that, too). They showed me how to turn my T-shirts into halter tops. We smoked. We snuck out late at night and took the path through the woods to the boys' camp. We hung out with boys.",
+                "cn": "而最奇怪的是，我说的这些谎言，这些虚构的故事，对我的受欢迎程度产生了奇效。其他的初级辅导员从营员那里听说了这事，他们都对此非常感兴趣。在我的一生中，我从未在任何事情上被认为是“受欢迎”的女孩之一，但那个夏天在夏令营，不管什么原因，我成了每个人都想一起玩的女孩。甚至32号小屋的女孩们也完全迷上了我。这些是处于食物链顶端的女孩。她们说她们喜欢我的头发（虽然她们改变了它）。她们说她们喜欢我化妆的方式（虽然她们也改变了那个）。她们教我如何把我的T恤变成露背上衣。我们抽烟。我们深夜溜出去，走过树林里的小路去男孩们的营地。我们和男孩们一起玩。",
+                "vocab": [
+                    {
+                        "word": "fiction",
+                        "ph": "/ˈfɪkʃn/",
+                        "pos": "n",
+                        "mean": "虚构的事",
+                        "ex": "His whole story about being a secret agent was a complete fiction."
+                    },
+                    {
+                        "word": "do wonders for",
+                        "ph": "/duː ˈwʌndərz fɔːr/",
+                        "pos": "idiom",
+                        "mean": "对…有奇效",
+                        "ex": "A good night's sleep can do wonders for your mood."
+                    },
+                    {
+                        "word": "popularity",
+                        "ph": "/ˌpɒpjuˈlærəti/",
+                        "pos": "n",
+                        "mean": "受欢迎程度",
+                        "ex": "The singer's popularity grew after her new album was released."
+                    },
+                    {
+                        "word": "be all over it",
+                        "ph": "/biː ɔːl ˈoʊvər ɪt/",
+                        "pos": "idiom",
+                        "mean": "（非正式）对…非常感兴趣；热衷于",
+                        "ex": "When I suggested we go for pizza, they were all over it."
+                    },
+                    {
+                        "word": "for whatever reason",
+                        "ph": "/fɔːr wɒtˈevər ˈriːzn/",
+                        "pos": "phr",
+                        "mean": "不管什么原因",
+                        "ex": "For whatever reason, he decided to quit his job and travel the world."
+                    },
+                    {
+                        "word": "top of the food chain",
+                        "ph": "/tɒp əv ðə fuːd tʃeɪn/",
+                        "pos": "idiom",
+                        "mean": "食物链顶端（比喻社会等级最高层）",
+                        "ex": "In that high school, the football players were at the top of the social food chain."
+                    },
+                    {
+                        "word": "halter top",
+                        "ph": "/ˈhɔːltər tɒp/",
+                        "pos": "n phr",
+                        "mean": "露背上衣",
+                        "ex": "Halter tops were a popular fashion item in the early 2000s."
+                    },
+                    {
+                        "word": "sneak out",
+                        "ph": "/sniːk aʊt/",
+                        "pos": "phr v",
+                        "mean": "溜出去",
+                        "ex": "The teenagers tried to sneak out of the house after their parents were asleep."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "inversion_after_negative_adverbial",
+                        "name": "否定副词置于句首引起的倒装",
+                        "category": "S",
+                        "level": "C1",
+                        "pattern": "Negative Adverbial + auxiliary + Subject + Verb",
+                        "components": [
+                            {
+                                "slot": "Negative Adverbial",
+                                "role": "否定意义的状语",
+                                "pos": [
+                                    "phr"
+                                ]
+                            },
+                            {
+                                "slot": "auxiliary",
+                                "role": "助动词",
+                                "pos": [
+                                    "v"
+                                ]
+                            }
+                        ],
+                        "function": "为了强调否定意义，将 'Never in my life' 这样的否定性状语置于句首，其后的主谓需要部分倒装（助动词 'have' 提前）。这是一种非常正式和有力的强调句型。",
+                        "example": {
+                            "en": "Never before have I seen such a beautiful sunset.",
+                            "cn": "我以前从未见过如此美丽的日落。"
+                        },
+                        "variants": [
+                            "Not only...",
+                            "Hardly..."
+                        ],
+                        "constraints": "是书面语和正式演讲中常见的强调结构。"
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "en": "When I got home from camp, I called Ella right away to make plans with her. I don't know why I didn't call Via. I guess I just didn't feel like talking about stuff with her. She would have asked me about my parents, about camp. Ella never really asked me about things. She was an easier friend to have in that way. She wasn't serious like Via. She was fun. She thought it was cool when I dyed my hair pink. She wanted to hear all about those trips through the woods late at night.",
+                "cn": "我从夏令营回到家后，立刻打电话给艾拉和她制定计划。我不知道我为什么没有打给维娅。我猜我只是不想和她谈论那些事。她会问我关于我父母的事，关于夏令营的事。艾拉从来不怎么问我事情。从那方面来说，她是一个更容易相处的朋友。她不像维娅那么严肃。她很有趣。当我把头发染成粉色时，她觉得很酷。她想听所有关于那些深夜穿过树林旅行的故事。",
+                "vocab": [
+                    {
+                        "word": "make plans",
+                        "ph": "/meɪk plænz/",
+                        "pos": "phr",
+                        "mean": "制定计划",
+                        "ex": "Let's make plans to meet for coffee next week."
+                    },
+                    {
+                        "word": "feel like doing something",
+                        "ph": "/fiːl laɪk ˈduːɪŋ ˈsʌmθɪŋ/",
+                        "pos": "idiom",
+                        "mean": "想做某事",
+                        "ex": "I'm tired; I don't feel like cooking tonight."
+                    },
+                    {
+                        "word": "serious",
+                        "ph": "/ˈsɪəriəs/",
+                        "pos": "adj",
+                        "mean": "严肃的",
+                        "ex": "He's a very serious person and rarely laughs."
+                    },
+                    {
+                        "word": "dye",
+                        "ph": "/daɪ/",
+                        "pos": "v",
+                        "mean": "染（发，布等）",
+                        "ex": "She decided to dye her hair blue for the party."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "character_contrast_through_parallel_description",
+                        "name": "通过平行描述进行角色对比",
+                        "category": "R",
+                        "level": "B2",
+                        "pattern": "Person A would have [action]. Person B never [action].",
+                        "components": [
+                            {
+                                "slot": "Person A",
+                                "role": "对比角色一",
+                                "pos": [
+                                    "n"
+                                ]
+                            },
+                            {
+                                "slot": "Person B",
+                                "role": "对比角色二",
+                                "pos": [
+                                    "n"
+                                ]
+                            }
+                        ],
+                        "function": "通过对比维娅和艾拉对事情的不同反应（'She would have asked me...' vs. 'Ella never really asked me...'），作者清晰地揭示了叙述者在那个时期选择朋友的标准：她倾向于选择一个“更容易”（easier）、“不那么严肃”（not serious）、更能带来“乐趣”（fun）的朋友，以逃避自己复杂的家庭现实。",
+                        "example": {
+                            "en": "My mom always worries about details. My dad, on the other hand, is very relaxed.",
+                            "cn": "我妈妈总是担心细节。而我爸爸，则非常放松。"
+                        },
+                        "variants": null,
+                        "constraints": "是一种通过行为对比来揭示人物关系和内心动机的技巧。"
+                    }
+                ]
+            }
+        ],
+        "gram_types": {
+            "S": {
+                "en": "Sentence Structure",
+                "cn": "句子结构"
+            },
+            "T": {
+                "en": "Tense",
+                "cn": "时态"
+            },
+            "C": {
+                "en": "Clause",
+                "cn": "从句"
+            },
+            "P": {
+                "en": "Punctuation",
+                "cn": "标点"
+            },
+            "W": {
+                "en": "Word Form / Morphology",
+                "cn": "词形变化"
+            },
+            "F": {
+                "en": "Figurative Language",
+                "cn": "修辞"
+            },
+            "R": {
+                "en": "Rhetoric",
+                "cn": "修辞手法"
+            },
+            "O": {
+                "en": "Others",
+                "cn": "其他"
+            }
+        },
+        "pos_types": {
+            "n": {
+                "en": "noun",
+                "cn": "名词"
+            },
+            "v": {
+                "en": "verb",
+                "cn": "动词"
+            },
+            "adj": {
+                "en": "adjective",
+                "cn": "形容词"
+            },
+            "adv": {
+                "en": "adverb",
+                "cn": "副词"
+            },
+            "prep": {
+                "en": "preposition",
+                "cn": "介词"
+            },
+            "conj": {
+                "en": "conjunction",
+                "cn": "连词"
+            },
+            "pron": {
+                "en": "pronoun",
+                "cn": "代词"
+            },
+            "det": {
+                "en": "determiner",
+                "cn": "限定词"
+            },
+            "int": {
+                "en": "interjection",
+                "cn": "感叹词"
+            },
+            "phr": {
+                "en": "phrase",
+                "cn": "短语"
+            },
+            "phr v": {
+                "en": "phrasal verb",
+                "cn": "动词短语"
+            },
+            "n phr": {
+                "en": "noun phrase",
+                "cn": "名词短语"
+            },
+            "adj phr": {
+                "en": "adjective phrase",
+                "cn": "形容词短语"
+            },
+            "modal v": {
+                "en": "modal verb",
+                "cn": "情态动词"
+            },
+            "idiom": {
+                "en": "idiom",
+                "cn": "习语"
+            },
+            "S": {
+                "en": "sentence",
+                "cn": "句子"
+            }
+        }
+    },
+    {
+        "id": "wonder_excerpt_school_miranda",
+        "title": "School",
+        "info": {
+            "author": "R.J. Palacio",
+            "source": "Wonder (narrated by Miranda)",
+            "level": "B2",
+            "tags": [
+                "high school",
+                "friendship",
+                "identity",
+                "social dynamics",
+                "guilt"
+            ],
+            "link": "https://example.com/original-source",
+            "variants": null
+        },
+        "paras": [
+            {
+                "id": 1,
+                "en": "I hardly saw Via at school this year, and when I did it was awkward. It felt like she was judging me. I knew she didn't like my new look. I knew she didn't like my group of friends. I didn't much like hers. We never actually argued: we just drifted away. Ella and I badmouthed her to each other: She's such a prude, she's so this, she's so that. We knew we were being mean, but it was easier to ice her out if we pretended she had done something to us. The truth is she hadn't changed at all: we had. We'd become these other people, and she was still the person she'd always been. That annoyed me so much and I didn't know why.",
+                "cn": "今年我在学校几乎没见到维娅，见到时也很尴尬。感觉她在评判我。我知道她不喜欢我的新造型。我知道她不喜欢我的那群朋友。我也不太喜欢她的朋友。我们从未真正吵过架：我们只是渐行渐远了。艾拉和我会互相说她的坏话：她真是个老古板，她这样，她那样。我们知道我们很刻薄，但如果我们假装她对我们做了什么，把她排挤出去会更容易些。事实是她一点也没变：是我们变了。我们变成了另外的人，而她仍然是她一直以来的那个人。那让我非常恼火，我也不知道为什么。",
+                "vocab": [
+                    {
+                        "word": "hardly",
+                        "ph": "/ˈhɑːrdli/",
+                        "pos": "adv",
+                        "mean": "几乎不",
+                        "ex": "It was so foggy I could hardly see the road."
+                    },
+                    {
+                        "word": "awkward",
+                        "ph": "/ˈɔːkwərd/",
+                        "pos": "adj",
+                        "mean": "尴尬的",
+                        "ex": "There was an awkward silence after he told the inappropriate joke."
+                    },
+                    {
+                        "word": "drift away",
+                        "ph": "/drɪft əˈweɪ/",
+                        "pos": "phr v",
+                        "mean": "（关系）渐行渐远",
+                        "ex": "After high school, many old friends naturally drift away."
+                    },
+                    {
+                        "word": "badmouth",
+                        "ph": "/ˈbædmaʊθ/",
+                        "pos": "v",
+                        "mean": "（非正式）说…的坏话",
+                        "ex": "It's unprofessional to badmouth your colleagues."
+                    },
+                    {
+                        "word": "prude",
+                        "ph": "/pruːd/",
+                        "pos": "n",
+                        "mean": "过分拘谨的人；老古板",
+                        "ex": "She called him a prude just because he didn't want to go to the wild party."
+                    },
+                    {
+                        "word": "ice someone out",
+                        "ph": "/aɪs ˈsʌmwʌn aʊt/",
+                        "pos": "idiom",
+                        "mean": "（非正式）冷落/排挤某人",
+                        "ex": "After the argument, her friends started to ice her out."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "short_sentence_for_epiphany",
+                        "name": "用于顿悟的短句",
+                        "category": "R",
+                        "level": "B2",
+                        "pattern": "A short, contrasting sentence after a longer explanation.",
+                        "components": [
+                            {
+                                "slot": "short sentence",
+                                "role": "短句",
+                                "pos": [
+                                    "S"
+                                ]
+                            }
+                        ],
+                        "function": "在一系列为自己行为辩解的描述之后，使用一个非常简短、带有强烈对比的句子 'The truth is she hadn't changed at all: we had.'，创造了一个深刻的自我反思和顿悟的时刻。这个结构有力地揭示了叙述者内心的矛盾和对事实的清醒认识。",
+                        "example": {
+                            "en": "He blamed the traffic, the weather, his boss. But the real problem was him.",
+                            "cn": "他怪交通，怪天气，怪老板。但真正的问题是他自己。"
+                        },
+                        "variants": null,
+                        "constraints": "其力量来自于其简洁性以及与前后较长句子的对比。"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "en": "Once in a while I'd look to see where she was sitting in the lunchroom, or check the elective lists to see what she'd signed up for. But except for a few nods in the hallway and an occasional \"hello,\" we never really spoke to each other.",
+                "cn": "偶尔我会看看她在餐厅坐在哪里，或者查查选修课名单，看她报了什么。但除了在走廊里点几次头和偶尔一声“你好”之外，我们从未真正和对方说过话。",
+                "vocab": [
+                    {
+                        "word": "once in a while",
+                        "ph": "/wʌns ɪn ə waɪl/",
+                        "pos": "phr",
+                        "mean": "偶尔",
+                        "ex": "I don't go to the movies often, but I see one once in a while."
+                    },
+                    {
+                        "word": "elective",
+                        "ph": "/ɪˈlektɪv/",
+                        "pos": "n",
+                        "mean": "选修课",
+                        "ex": "Students must choose two electives this semester."
+                    },
+                    {
+                        "word": "sign up for",
+                        "ph": "/saɪn ʌp fɔːr/",
+                        "pos": "phr v",
+                        "mean": "报名参加",
+                        "ex": "I decided to sign up for a yoga class."
+                    },
+                    {
+                        "word": "except for",
+                        "ph": "/ɪkˈsept fɔːr/",
+                        "pos": "prep",
+                        "mean": "除了…之外",
+                        "ex": "The room was empty except for a single chair in the corner."
+                    },
+                    {
+                        "word": "occasional",
+                        "ph": "/əˈkeɪʒənl/",
+                        "pos": "adj",
+                        "mean": "偶尔的",
+                        "ex": "He enjoys an occasional glass of wine with dinner."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "would_for_past_habit_i_d_look",
+                        "name": "使用'would'表示过去习惯",
+                        "category": "T",
+                        "level": "B2",
+                        "pattern": "Subject + 'd (would) + infinitive",
+                        "components": [
+                            {
+                                "slot": "'d (would)",
+                                "role": "情态动词",
+                                "pos": [
+                                    "v"
+                                ]
+                            }
+                        ],
+                        "function": "用于描述过去反复发生的、带有某种情感色彩的习惯性动作。'I'd look to see...' 描述了叙述者过去反复做的一个动作，暗示了她内心深处对维娅的持续关注，尽管表面上已经疏远。",
+                        "example": {
+                            "en": "When they were children, they would spend hours playing by the river.",
+                            "cn": "他们小时候，常常会在河边玩上好几个小时。"
+                        },
+                        "variants": [
+                            "used to + infinitive"
+                        ],
+                        "constraints": "'would'不能用于描述过去的状态，只能用于描述动作。"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "en": "I noticed Justin about halfway through the school year. I hadn't noticed him at all before then, other than that he was this skinny cutish dude with thick glasses and longish hair who carried a violin everywhere. Then one day I saw him in front of the school with his arm around Via. \"So Via has a boyfriend!\" I said to Ella, kind of mocking. I don't know why it surprised me that she'd have a boyfriend. Out of the three of us, she was totally the prettiest: blue, blue eyes and long wavy dark hair. But she'd just never acted like she was at all interested in boys. She acted like she was too smart for that kind of stuff.",
+                "cn": "我在学年进行到一半左右时注意到了贾斯汀。在此之前我根本没注意到他，只知道他是个瘦瘦的、有点帅的家伙，戴着厚厚的眼镜，留着偏长的头发，到哪儿都带着一把小提琴。然后有一天，我看到他在学校门口，胳膊搂着维娅。“所以维娅有男朋友了！” 我对艾拉说，语气有点嘲弄。我不知道为什么她有男朋友会让我惊讶。我们三个人中，她绝对是最漂亮的：蓝色的眼睛，长长的深色卷发。但她就是从来没表现出对男孩有任何兴趣。她表现得好像她太聪明了，不屑于那种事。",
+                "vocab": [
+                    {
+                        "word": "halfway through",
+                        "ph": "/ˈhæfweɪ θruː/",
+                        "pos": "phr",
+                        "mean": "在…的中途",
+                        "ex": "We are already halfway through the movie."
+                    },
+                    {
+                        "word": "other than that",
+                        "ph": "/ˈʌðər ðæn ðæt/",
+                        "pos": "phr",
+                        "mean": "除此之外",
+                        "ex": "The car has a few scratches, but other than that, it's in perfect condition."
+                    },
+                    {
+                        "word": "cutish",
+                        "ph": "/ˈkjuːtɪʃ/",
+                        "pos": "adj",
+                        "mean": "有点帅的；有点可爱的",
+                        "ex": "Her new boyfriend is kind of cutish, with curly brown hair."
+                    },
+                    {
+                        "word": "dude",
+                        "ph": "/duːd/",
+                        "pos": "n",
+                        "mean": "（非正式）哥们；家伙",
+                        "ex": "Hey dude, what's up?"
+                    },
+                    {
+                        "word": "mocking",
+                        "ph": "/ˈmɒkɪŋ/",
+                        "pos": "adj",
+                        "mean": "嘲弄的",
+                        "ex": "He repeated my words in a mocking tone of voice."
+                    },
+                    {
+                        "word": "out of the three of us",
+                        "ph": "/aʊt əv ðə θriː əv əs/",
+                        "pos": "phr",
+                        "mean": "在我们三个人当中",
+                        "ex": "Out of all the candidates, she was the most qualified."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "suffix_ish",
+                        "name": "后缀 -ish",
+                        "category": "W",
+                        "level": "B1",
+                        "pattern": "adjective/noun + -ish",
+                        "components": [
+                            {
+                                "slot": "-ish",
+                                "role": "后缀",
+                                "pos": [
+                                    "suffix"
+                                ]
+                            }
+                        ],
+                        "function": "加在形容词或名词后，表示“有点…的”、“大约…的”或“像…的”。'cutish' 和 'longish' 是一种非正式的用法，表示“有点帅”和“偏长”，传达了一种不精确的、主观的印象。",
+                        "example": {
+                            "en": "The sky is a grayish blue color this morning.",
+                            "cn": "今天早上的天空是灰蓝色的。"
+                        },
+                        "variants": null,
+                        "constraints": "常用于颜色、年龄和品质的非正式描述中。"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "en": "I had a boyfriend, too: a guy named Zack. When I told him I was choosing the theater elective, he shook his head and said: \"Careful you don't turn into a drama geek.\" Not the most sympathetic dude in the world, but very cute. Very high up on the totem pole. A varsity jock.",
+                "cn": "我也有个男朋友：一个叫扎克的家伙。当我告诉他我选了戏剧选修课时，他摇了摇头说：“小心别变成戏剧呆子。” 不是世界上最富同情心的家伙，但非常帅。在社交等级中地位很高。一个校队运动员。",
+                "vocab": [
+                    {
+                        "word": "drama geek",
+                        "ph": "/ˈdrɑːmə ɡiːk/",
+                        "pos": "n phr",
+                        "mean": "戏剧呆子；戏痴",
+                        "ex": "He loves Shakespeare and is known as the school's biggest drama geek."
+                    },
+                    {
+                        "word": "sympathetic",
+                        "ph": "/ˌsɪmpəˈθetɪk/",
+                        "pos": "adj",
+                        "mean": "有同情心的",
+                        "ex": "She offered a sympathetic ear when I told her about my problems."
+                    },
+                    {
+                        "word": "totem pole",
+                        "ph": "/ˈtoʊtəm poʊl/",
+                        "pos": "n phr",
+                        "mean": "图腾柱（比喻社会等级）",
+                        "ex": "In the office hierarchy, interns are at the bottom of the totem pole."
+                    },
+                    {
+                        "word": "varsity",
+                        "ph": "/ˈvɑːrsəti/",
+                        "pos": "adj",
+                        "mean": "（大学或中学的）校队的",
+                        "ex": "He plays for the varsity football team."
+                    },
+                    {
+                        "word": "jock",
+                        "ph": "/dʒɒk/",
+                        "pos": "n",
+                        "mean": "（俚语）运动员",
+                        "ex": "In many high school movies, the jock is the main character's rival."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "characterization_through_fragments",
+                        "name": "用句子片段进行描述",
+                        "category": "R",
+                        "level": "B2",
+                        "pattern": "A series of noun phrases used for description.",
+                        "components": [
+                            {
+                                "slot": "noun phrase",
+                                "role": "名词短语",
+                                "pos": [
+                                    "n phr"
+                                ]
+                            }
+                        ],
+                        "function": "作者没有使用完整的句子，而是用一系列简短的名词短语（'Not the most sympathetic dude...', 'Very high up on the totem pole.', 'A varsity jock.'）来快速地勾勒出Zack的形象。这种碎片化的描述模仿了快速的、基于标签的印象，生动地传达了高中社交圈的典型特征。",
+                        "example": {
+                            "en": "I remember my first car. An old blue sedan. Rusted fenders. A true classic.",
+                            "cn": "我记得我的第一辆车。一辆旧的蓝色轿车。生锈的挡泥板。真正的经典。"
+                        },
+                        "variants": null,
+                        "constraints": "是一种非正式但有效的文学技巧，用于创造快速的节奏和鲜明的形象。"
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "en": "I wasn't planning on taking theater at first. Then I saw Via's name on the sign-up sheet and just wrote my name down on the list. I don't even know why. We managed to avoid one another throughout most of the semester, like we didn't even know each other. Then one day I got to theater class a little early, and Davenport asked me to run off additional copies of the play he was planning on having us do for the spring production: The Elephant Man. I'd heard about it but I didn't really know what it was about, so I started skimming through the pages while I was waiting for the xerox machine. It was about a man who lived more than a hundred years ago named John Merrick who was terribly deformed.",
+                "cn": "我起初并没打算选戏剧课。然后我在报名表上看到了维娅的名字，就顺手把我的名字写在了名单上。我甚至不知道为什么。我们在大半个学期里都设法避开对方，就像我们根本不认识一样。然后有一天我到戏剧课早了一点，达文波特让我去加印一些他计划让我们在春季演出中表演的剧本：《象人》。我听说过它，但并不真的知道是关于什么的，所以在等复印机的时候我开始快速浏览那些纸页。它是关于一个活在一百多年前、名叫约翰·梅里克的人，他严重畸形。",
+                "vocab": [
+                    {
+                        "word": "sign-up sheet",
+                        "ph": "/saɪn ʌp ʃiːt/",
+                        "pos": "n phr",
+                        "mean": "报名表",
+                        "ex": "If you want to join the club, please put your name on the sign-up sheet."
+                    },
+                    {
+                        "word": "manage to",
+                        "ph": "/ˈmænɪdʒ tuː/",
+                        "pos": "phr v",
+                        "mean": "设法做到",
+                        "ex": "The exam was difficult, but I managed to pass."
+                    },
+                    {
+                        "word": "run off copies",
+                        "ph": "/rʌn ɔːf ˈkɒpiz/",
+                        "pos": "phr v",
+                        "mean": "复印",
+                        "ex": "Could you please run off twenty copies of this report for the meeting?"
+                    },
+                    {
+                        "word": "skim through",
+                        "ph": "/skɪm θruː/",
+                        "pos": "phr v",
+                        "mean": "快速浏览",
+                        "ex": "I only had time to skim through the newspaper this morning."
+                    },
+                    {
+                        "word": "xerox machine",
+                        "ph": "/ˈzɪərɒks məˌʃiːn/",
+                        "pos": "n phr",
+                        "mean": "复印机",
+                        "ex": "The office needs a new xerox machine; this one is always breaking down."
+                    },
+                    {
+                        "word": "deformed",
+                        "ph": "/dɪˈfɔːrmd/",
+                        "pos": "adj",
+                        "mean": "畸形的",
+                        "ex": "The accident left his hand permanently deformed."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "unexplained_motivation",
+                        "name": "未解释的动机",
+                        "category": "R",
+                        "level": "B2",
+                        "pattern": "Action + 'I don't even know why.'",
+                        "components": [
+                            {
+                                "slot": "I don't even know why.",
+                                "role": "陈述",
+                                "pos": [
+                                    "S"
+                                ]
+                            }
+                        ],
+                        "function": "通过在描述一个冲动行为（报名戏剧课）后加上一句 'I don't even know why.'，作者揭示了叙述者自己也无法完全理解的潜意识动机。这暗示了她内心深处仍然渴望与维娅建立联系，尽管表面上她们在互相回避。",
+                        "example": {
+                            "en": "He suddenly turned left instead of right. He didn't even know why.",
+                            "cn": "他突然向左转而不是向右。他自己都不知道为什么。"
+                        },
+                        "variants": null,
+                        "constraints": "是一种展示角色内心复杂性和潜意识驱动的文学技巧。"
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "en": "\"We can't do this play, Mr. D,\" I told him when I got back to class, and I told him why: my little brother has a birth defect and has a deformed face and this play would hit too close to home. He seemed annoyed and a little unsympathetic, but I kind of said that my parents would have a real issue with the school doing this play. So anyway, he ended up switching to Our Town.",
+                "cn": "“我们不能演这个剧，D先生，” 我回到教室时告诉他，并且我告诉了他原因：我的小弟弟有出生缺陷，脸部畸形，这个剧会触及我们的痛处。他看起来很恼火，有点不同情，但我大概是说，如果学校演这个剧，我父母会很有意见。所以不管怎样，他最终换成了《我们的小镇》。",
+                "vocab": [
+                    {
+                        "word": "birth defect",
+                        "ph": "/bɜːrθ ˈdiːfekt/",
+                        "pos": "n phr",
+                        "mean": "出生缺陷",
+                        "ex": "The hospital specializes in treating children with rare birth defects."
+                    },
+                    {
+                        "word": "hit too close to home",
+                        "ph": "/hɪt tuː kloʊs tuː hoʊm/",
+                        "pos": "idiom",
+                        "mean": "（因与自身经历相关而）触及痛处",
+                        "ex": "The movie about losing a pet hit too close to home for her."
+                    },
+                    {
+                        "word": "unsympathetic",
+                        "ph": "/ˌʌnsɪmpəˈθetɪk/",
+                        "pos": "adj",
+                        "mean": "不同情的",
+                        "ex": "He was unsympathetic to her problems and told her to stop complaining."
+                    },
+                    {
+                        "word": "have an issue with",
+                        "ph": "/hæv ən ˈɪʃuː wɪθ/",
+                        "pos": "phr",
+                        "mean": "对…有意见/有问题",
+                        "ex": "I have a real issue with people who are rude to waiters."
+                    },
+                    {
+                        "word": "switch to",
+                        "ph": "/swɪtʃ tuː/",
+                        "pos": "phr v",
+                        "mean": "转换到",
+                        "ex": "He decided to switch to a different TV channel."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "understatement_and_implication",
+                        "name": "轻描淡写与暗示",
+                        "category": "R",
+                        "level": "C1",
+                        "pattern": "Using mild language ('kind of said') to describe a strong action.",
+                        "components": [
+                            {
+                                "slot": "mild language",
+                                "role": "温和的措辞",
+                                "pos": [
+                                    "phr"
+                                ]
+                            }
+                        ],
+                        "function": "叙述者用 'I kind of said that my parents would have a real issue...' 这种轻描淡写的说法来描述一个实际上是威胁或强烈要求的行为。这种措辞上的反差，可能暗示了她对自己利用父母权威来达到目的的行为感到一丝不自在或内疚。",
+                        "example": {
+                            "en": "I kind of mentioned that I might quit if things don't change. (implying a strong ultimatum)",
+                            "cn": "我大概提了一下如果情况不变我可能会辞职。（暗示了强烈的最后通牒）"
+                        },
+                        "variants": null,
+                        "constraints": "是一种通过语言选择来揭示角色内心态度的技巧。"
+                    }
+                ]
+            },
+            {
+                "id": 7,
+                "en": "I think I went for the role of Emily Gibbs because I knew Via was going to go for it, too. It never occurred to me that I'd beat her for the role.",
+                "cn": "我想我争取艾米丽·吉布斯这个角色，是因为我知道维娅也会去争取。我从没想过我会在这个角色上赢过她。",
+                "vocab": [
+                    {
+                        "word": "go for",
+                        "ph": "/ɡoʊ fɔːr/",
+                        "pos": "phr v",
+                        "mean": "争取",
+                        "ex": "Are you going to go for that promotion at work?"
+                    },
+                    {
+                        "word": "role",
+                        "ph": "/roʊl/",
+                        "pos": "n",
+                        "mean": "（戏剧中的）角色",
+                        "ex": "She landed the lead role in the new movie."
+                    },
+                    {
+                        "word": "occur to someone",
+                        "ph": "/əˈkɜːr tuː ˈsʌmwʌn/",
+                        "pos": "phr v",
+                        "mean": "（想法）突然出现在某人脑海中；想到",
+                        "ex": "It never occurred to me that he might be lying."
+                    },
+                    {
+                        "word": "beat someone for something",
+                        "ph": "/biːt ˈsʌmwʌn fɔːr ˈsʌmθɪŋ/",
+                        "pos": "phr v",
+                        "mean": "在某事上赢过某人",
+                        "ex": "She beat her rival for the championship title."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "concluding_statement_of_surprise",
+                        "name": "表示惊讶的结论性陈述",
+                        "category": "S",
+                        "level": "B2",
+                        "pattern": "It never occurred to me that...",
+                        "components": [
+                            {
+                                "slot": "It never occurred to me",
+                                "role": "固定表达",
+                                "pos": [
+                                    "phr"
+                                ]
+                            }
+                        ],
+                        "function": "作为一个章节的结尾，这句话揭示了叙述者的复杂动机（竞争）和出乎意料的结果。它不仅为角色关系增加了新的层次，也为后续的情节发展（比如可能的内疚或冲突）埋下了伏笔。",
+                        "example": {
+                            "en": "I applied for the job just for fun. It never occurred to me that I would actually get it.",
+                            "cn": "我申请那份工作只是为了好玩。我从没想过我真的会得到它。"
+                        },
+                        "variants": null,
+                        "constraints": "是一种制造悬念或表达惊讶的有效结尾方式。"
+                    }
+                ]
+            }
+        ],
+        "gram_types": {
+            "S": {
+                "en": "Sentence Structure",
+                "cn": "句子结构"
+            },
+            "T": {
+                "en": "Tense",
+                "cn": "时态"
+            },
+            "C": {
+                "en": "Clause",
+                "cn": "从句"
+            },
+            "P": {
+                "en": "Punctuation",
+                "cn": "标点"
+            },
+            "W": {
+                "en": "Word Form / Morphology",
+                "cn": "词形变化"
+            },
+            "F": {
+                "en": "Figurative Language",
+                "cn": "修辞"
+            },
+            "R": {
+                "en": "Rhetoric",
+                "cn": "修辞手法"
+            },
+            "O": {
+                "en": "Others",
+                "cn": "其他"
+            }
+        },
+        "pos_types": {
+            "n": {
+                "en": "noun",
+                "cn": "名词"
+            },
+            "v": {
+                "en": "verb",
+                "cn": "动词"
+            },
+            "adj": {
+                "en": "adjective",
+                "cn": "形容词"
+            },
+            "adv": {
+                "en": "adverb",
+                "cn": "副词"
+            },
+            "prep": {
+                "en": "preposition",
+                "cn": "介词"
+            },
+            "conj": {
+                "en": "conjunction",
+                "cn": "连词"
+            },
+            "pron": {
+                "en": "pronoun",
+                "cn": "代词"
+            },
+            "det": {
+                "en": "determiner",
+                "cn": "限定词"
+            },
+            "int": {
+                "en": "interjection",
+                "cn": "感叹词"
+            },
+            "phr": {
+                "en": "phrase",
+                "cn": "短语"
+            },
+            "phr v": {
+                "en": "phrasal verb",
+                "cn": "动词短语"
+            },
+            "n phr": {
+                "en": "noun phrase",
+                "cn": "名词短语"
+            },
+            "adj phr": {
+                "en": "adjective phrase",
+                "cn": "形容词短语"
+            },
+            "modal v": {
+                "en": "modal verb",
+                "cn": "情态动词"
+            },
+            "idiom": {
+                "en": "idiom",
+                "cn": "习语"
+            },
+            "S": {
+                "en": "sentence",
+                "cn": "句子"
+            }
+        }
+    },
+    {
+        "id": "wonder_excerpt_what_i_miss_most",
+        "title": "What I Miss Most",
+        "info": {
+            "author": "R.J. Palacio",
+            "source": "Wonder (narrated by Miranda)",
+            "level": "B2",
+            "tags": [
+                "friendship",
+                "family",
+                "memory",
+                "perspective",
+                "guilt"
+            ],
+            "link": "https://example.com/original-source",
+            "variants": null
+        },
+        "paras": [
+            {
+                "id": 1,
+                "en": "One of the things I miss the most about Via's friendship is her family. I loved her mom and dad. They were always so welcoming and nice to me. I knew they loved their kids more than anything. I always felt safe around them: safer than anywhere else in the world. How pathetic that I felt safer in someone else's house than in my own, right? And, of course, I loved Auggie. I was never afraid of him: even when I was little. I had friends that couldn't believe I'd ever go over to Via's house. \"His face creeps me out,\" they'd say. \"You're stupid,\" I'd tell them. Auggie's face isn't so bad once you get used to it.",
+                "cn": "关于维娅的友谊，我最怀念的事情之一就是她的家人。我爱她的爸爸妈妈。他们总是那么热情好客，对我那么好。我知道他们爱自己的孩子胜过一切。我在他们身边总感觉很安全：比世界上任何其他地方都安全。我在别人家比在自己家感觉更安全，这有多可悲，对吧？当然，我也爱奥吉。我从没怕过他：即使我很小的时候。我有些朋友简直不敢相信我居然会去维娅家。“他的脸让我毛骨悚然，” 他们会说。“你们真蠢，” 我会告诉他们。一旦你习惯了，奥吉的脸也没那么糟。",
+                "vocab": [
+                    {
+                        "word": "miss",
+                        "ph": "/mɪs/",
+                        "pos": "v",
+                        "mean": "怀念",
+                        "ex": "I really miss the long summer days of my childhood."
+                    },
+                    {
+                        "word": "welcoming",
+                        "ph": "/ˈwelkəmɪŋ/",
+                        "pos": "adj",
+                        "mean": "热情好客的",
+                        "ex": "The host family was so welcoming that I felt at home right away."
+                    },
+                    {
+                        "word": "pathetic",
+                        "ph": "/pəˈθetɪk/",
+                        "pos": "adj",
+                        "mean": "可悲的；令人怜悯的",
+                        "ex": "His attempt to lie was so pathetic that nobody believed him."
+                    },
+                    {
+                        "word": "creep someone out",
+                        "ph": "/kriːp ˈsʌmwʌn aʊt/",
+                        "pos": "idiom",
+                        "mean": "使（某人）毛骨悚然",
+                        "ex": "Those old dolls with the staring eyes really creep me out."
+                    },
+                    {
+                        "word": "get used to",
+                        "ph": "/ɡet juːst tuː/",
+                        "pos": "phr v",
+                        "mean": "习惯于",
+                        "ex": "It takes time to get used to living in a new city."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "rhetorical_question_for_self_criticism",
+                        "name": "反问句（用于自嘲/自我批评）",
+                        "category": "R",
+                        "level": "B2",
+                        "pattern": "A question expressing a self-critical thought.",
+                        "components": [
+                            {
+                                "slot": "question",
+                                "role": "问句",
+                                "pos": [
+                                    "S"
+                                ]
+                            }
+                        ],
+                        "function": "说话者提出一个问题，但并非为了寻求答案，而是为了表达对自己处境的一种悲哀或自我批评。'How pathetic that I felt safer..., right?' 是叙述者内心的独白，反映了她对自己家庭状况的悲伤和无奈。",
+                        "example": {
+                            "en": "Isn't it sad that we haven't spoken in years?",
+                            "cn": "我们已经多年没说过话了，这难道不悲哀吗？"
+                        },
+                        "variants": null,
+                        "constraints": "其功能是表达观点，而非获取信息。"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "en": "I called Via's house once just to say hello to Auggie. Maybe part of me was hoping Via would answer, I don't know. \"Hey, Major Tom!\" I said, using my nickname for him. \"Miranda!\" He sounded so happy to hear my voice it actually kind of took me by surprise. \"I'm going to a regular school now!\" he told me excitedly. \"Really? Wow!\" I said, totally shocked. I guess I never thought he'd go to a regular school. His parents have always been so protective of him. I guess I thought he'd always be that little kid in the astronaut helmet I gave him. Talking to him, I could tell he had no idea that Via and I weren't close anymore. \"It's different in high school,\" I explained to him. \"You end up hanging out with loads of different people.\"",
+                "cn": "我有一次打电话到维娅家，只是为了和奥吉打个招呼。也许我内心有一部分是希望维娅会接电话，我不知道。“嘿，汤姆少校！” 我说，用我给他的昵称。“米兰达！” 他听到我的声音听起来那么高兴，这真的让我有点惊讶。“我现在上正规学校了！” 他兴奋地告诉我。“真的吗？哇！” 我说，完全震惊了。我猜我从没想过他会去上正规学校。他的父母一直都那么保护他。我猜我以为他会永远是那个戴着我送他的宇航员头盔的小孩。和他说着话，我看得出他完全不知道我和维娅已经不亲密了。“高中不一样了，” 我向他解释。“你最终会和很多不同的人一起玩。”",
+                "vocab": [
+                    {
+                        "word": "nickname",
+                        "ph": "/ˈnɪkneɪm/",
+                        "pos": "n",
+                        "mean": "昵称",
+                        "ex": "His friends gave him the nickname 'Speedy' because he runs so fast."
+                    },
+                    {
+                        "word": "take someone by surprise",
+                        "ph": "/teɪk ˈsʌmwʌn baɪ sərˈpraɪz/",
+                        "pos": "idiom",
+                        "mean": "让某人吃惊",
+                        "ex": "The sudden announcement took everyone by surprise."
+                    },
+                    {
+                        "word": "regular school",
+                        "ph": "/ˈreɡjələr skuːl/",
+                        "pos": "n phr",
+                        "mean": "正规学校",
+                        "ex": "After being homeschooled, she was nervous about attending a regular school."
+                    },
+                    {
+                        "word": "protective",
+                        "ph": "/prəˈtektɪv/",
+                        "pos": "adj",
+                        "mean": "保护的",
+                        "ex": "He is very protective of his younger sister."
+                    },
+                    {
+                        "word": "end up",
+                        "ph": "/end ʌp/",
+                        "pos": "phr v",
+                        "mean": "最终",
+                        "ex": "He studied to be a doctor but ended up becoming a writer."
+                    },
+                    {
+                        "word": "loads of",
+                        "ph": "/loʊdz əv/",
+                        "pos": "phr",
+                        "mean": "（非正式）大量的",
+                        "ex": "There were loads of people at the concert."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "present_participle_as_adverbial_clause_of_time",
+                        "name": "现在分词作时间状语",
+                        "category": "C",
+                        "level": "B2",
+                        "pattern": "VERB-ing..., Main Clause.",
+                        "components": [
+                            {
+                                "slot": "VERB-ing...",
+                                "role": "现在分词短语",
+                                "pos": [
+                                    "v-ing phr"
+                                ]
+                            },
+                            {
+                                "slot": "Main Clause",
+                                "role": "主句",
+                                "pos": [
+                                    "clause"
+                                ]
+                            }
+                        ],
+                        "function": "用于描述与主句动作同时发生的背景或方式。'Talking to him, I could tell...' 相当于 'While I was talking to him, I could tell...'，是一种更简洁的表达方式。",
+                        "example": {
+                            "en": "Walking down the street, I saw an old friend.",
+                            "cn": "走在街上时，我看到了一个老朋友。"
+                        },
+                        "variants": null,
+                        "constraints": "分词的逻辑主语必须是主句的主语。"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "en": "\"I have some friends in my new school,\" he told me. \"A kid named Jack and a girl named Summer.\" \"That's awesome, Auggie,\" I said. \"Well, I was just calling to tell you I miss you and hope you're having a good year. Feel free to call me whenever you want, okay, Auggie? You know I love you always.\" \"I love you, too, Miranda!\" \"Say hi to Via for me. Tell her I miss her.\" \"I will. Bye!\" \"Bye!\"",
+                "cn": "“我在新学校有了一些朋友，” 他告诉我。“一个叫杰克的男孩和一个叫萨默的女孩。” “那太棒了，奥吉，” 我说。“嗯，我打电话来只是想告诉你我想你了，希望你这一年过得好。随时都可以给我打电话，好吗，奥吉？你知道我永远爱你。” “我也爱你，米兰达！” “帮我向维娅问好。告诉她我想她。” “我会的。再见！” “再见！”",
+                "vocab": [
+                    {
+                        "word": "awesome",
+                        "ph": "/ˈɔːsəm/",
+                        "pos": "adj",
+                        "mean": "（非正式）极好的",
+                        "ex": "We had an awesome time at the concert."
+                    },
+                    {
+                        "word": "feel free to",
+                        "ph": "/fiːl friː tuː/",
+                        "pos": "phr",
+                        "mean": "随时（做某事）；尽管（做某事）",
+                        "ex": "Feel free to ask questions at any time during the presentation."
+                    },
+                    {
+                        "word": "whenever",
+                        "ph": "/wenˈevər/",
+                        "pos": "conj",
+                        "mean": "无论何时",
+                        "ex": "You can visit me whenever you're in town."
+                    },
+                    {
+                        "word": "say hi to someone for me",
+                        "ph": "/seɪ haɪ tuː ˈsʌmwʌn fɔːr miː/",
+                        "pos": "idiom",
+                        "mean": "代我向某人问好",
+                        "ex": "If you see Sarah, please say hi to her for me."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "imperative_for_polite_invitation",
+                        "name": "用于礼貌邀请的祈使句",
+                        "category": "S",
+                        "level": "B1",
+                        "pattern": "Feel free to + infinitive",
+                        "components": [
+                            {
+                                "slot": "Feel free to",
+                                "role": "固定表达",
+                                "pos": [
+                                    "phr"
+                                ]
+                            },
+                            {
+                                "slot": "infinitive",
+                                "role": "动词原形",
+                                "pos": [
+                                    "v"
+                                ]
+                            }
+                        ],
+                        "function": "虽然是祈使句的形式，但 'Feel free to...' 是一种非常友好和礼貌的方式，用于给予对方许可或发出邀请，意为“请随时…”。",
+                        "example": {
+                            "en": "Feel free to use my computer if you need to.",
+                            "cn": "如果你需要，尽管用我的电脑。"
+                        },
+                        "variants": null,
+                        "constraints": "是一种常见的、表示热情的社交用语。"
+                    }
+                ]
+            }
+        ],
+        "gram_types": {
+            "S": {
+                "en": "Sentence Structure",
+                "cn": "句子结构"
+            },
+            "T": {
+                "en": "Tense",
+                "cn": "时态"
+            },
+            "C": {
+                "en": "Clause",
+                "cn": "从句"
+            },
+            "P": {
+                "en": "Punctuation",
+                "cn": "标点"
+            },
+            "W": {
+                "en": "Word Form / Morphology",
+                "cn": "词形变化"
+            },
+            "F": {
+                "en": "Figurative Language",
+                "cn": "修辞"
+            },
+            "R": {
+                "en": "Rhetoric",
+                "cn": "修辞手法"
+            },
+            "O": {
+                "en": "Others",
+                "cn": "其他"
+            }
+        },
+        "pos_types": {
+            "n": {
+                "en": "noun",
+                "cn": "名词"
+            },
+            "v": {
+                "en": "verb",
+                "cn": "动词"
+            },
+            "adj": {
+                "en": "adjective",
+                "cn": "形容词"
+            },
+            "adv": {
+                "en": "adverb",
+                "cn": "副词"
+            },
+            "prep": {
+                "en": "preposition",
+                "cn": "介词"
+            },
+            "conj": {
+                "en": "conjunction",
+                "cn": "连词"
+            },
+            "pron": {
+                "en": "pronoun",
+                "cn": "代词"
+            },
+            "det": {
+                "en": "determiner",
+                "cn": "限定词"
+            },
+            "int": {
+                "en": "interjection",
+                "cn": "感叹词"
+            },
+            "phr": {
+                "en": "phrase",
+                "cn": "短语"
+            },
+            "phr v": {
+                "en": "phrasal verb",
+                "cn": "动词短语"
+            },
+            "n phr": {
+                "en": "noun phrase",
+                "cn": "名词短语"
+            },
+            "adj phr": {
+                "en": "adjective phrase",
+                "cn": "形容词短语"
+            },
+            "modal v": {
+                "en": "modal verb",
+                "cn": "情态动词"
+            },
+            "idiom": {
+                "en": "idiom",
+                "cn": "习语"
+            },
+            "S": {
+                "en": "sentence",
+                "cn": "句子"
+            }
+        }
+    },
+    {
+        "id": "wonder_excerpt_extraordinary",
+        "title": "Extraordinary, but No One There to See",
+        "info": {
+            "author": "R.J. Palacio",
+            "source": "Wonder (narrated by Miranda)",
+            "level": "B2",
+            "tags": [
+                "school play",
+                "guilt",
+                "friendship",
+                "sacrifice",
+                "empathy"
+            ],
+            "link": "https://example.com/original-source",
+            "variants": null
+        },
+        "paras": [
+            {
+                "id": 1,
+                "en": "Neither my mother nor my father could come see the play on opening night: my mother because she had this thing at work, and my dad because his new wife was going to have her baby any second now, and he had to be on call.",
+                "cn": "首演那晚，我妈妈和我爸爸都不能来看戏：我妈妈是因为她工作上有事，我爸爸是因为他的新妻子随时都可能生孩子，他必须随时待命。",
+                "vocab": [
+                    {
+                        "word": "opening night",
+                        "ph": "/ˈoʊpənɪŋ naɪt/",
+                        "pos": "n phr",
+                        "mean": "首演之夜",
+                        "ex": "The cast was very nervous on opening night."
+                    },
+                    {
+                        "word": "any second now",
+                        "ph": "/ˈeni ˈsekənd naʊ/",
+                        "pos": "idiom",
+                        "mean": "随时",
+                        "ex": "The bus should be here any second now."
+                    },
+                    {
+                        "word": "be on call",
+                        "ph": "/biː ɒn kɔːl/",
+                        "pos": "idiom",
+                        "mean": "随时待命",
+                        "ex": "As a doctor, she often has to be on call during the weekend."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "neither_nor",
+                        "name": "Neither... nor... 结构",
+                        "category": "S",
+                        "level": "B2",
+                        "pattern": "Neither + Noun 1 + nor + Noun 2",
+                        "components": [
+                            {
+                                "slot": "Neither... nor",
+                                "role": "关联连词",
+                                "pos": [
+                                    "conj"
+                                ]
+                            }
+                        ],
+                        "function": "用于连接两个否定的成分，表示“既不…也不…”。'Neither my mother nor my father could come' 强调了父母双方都缺席。",
+                        "example": {
+                            "en": "Neither the teacher nor the students knew the answer.",
+                            "cn": "老师和学生都不知道答案。"
+                        },
+                        "variants": null,
+                        "constraints": "当连接两个主语时，谓语动词通常与离它最近的主语保持一致。"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "en": "Zack couldn't come to opening night, either: he had a volleyball game against Collegiate he couldn't miss. In fact, he had wanted me to miss the opening night so I could come cheer him on. My \"friends\" all went to the game, of course, because all their boyfriends were playing. Even Ella didn't come. Given a choice, she chose the crowd.",
+                "cn": "扎克也不能来首演之夜：他有一场对阵科利奇中学的排球赛，不能错过。事实上，他曾希望我错过首演之夜，好去为他加油助威。我的“朋友们”当然都去看比赛了，因为她们的男朋友都在打球。连艾拉也没来。在有选择的情况下，她选择了人群。",
+                "vocab": [
+                    {
+                        "word": "miss",
+                        "ph": "/mɪs/",
+                        "pos": "v",
+                        "mean": "错过",
+                        "ex": "If you leave now, you'll miss the best part of the movie."
+                    },
+                    {
+                        "word": "cheer someone on",
+                        "ph": "/tʃɪər ˈsʌmwʌn ɒn/",
+                        "pos": "phr v",
+                        "mean": "为某人加油助威",
+                        "ex": "We went to the stadium to cheer on our favorite team."
+                    },
+                    {
+                        "word": "given a choice",
+                        "ph": "/ˈɡɪvn ə tʃɔɪs/",
+                        "pos": "phr",
+                        "mean": "在有选择的情况下",
+                        "ex": "Given a choice between coffee and tea, I'll always pick coffee."
+                    },
+                    {
+                        "word": "crowd",
+                        "ph": "/kraʊd/",
+                        "pos": "n",
+                        "mean": "人群；大众",
+                        "ex": "He prefers small gatherings to large crowds."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "quotation_marks_for_skepticism",
+                        "name": "引号（表示怀疑）",
+                        "category": "P",
+                        "level": "C1",
+                        "pattern": "\"...word...\"",
+                        "components": [
+                            {
+                                "slot": "Quotation marks",
+                                "role": "标点",
+                                "pos": [
+                                    "punc"
+                                ]
+                            }
+                        ],
+                        "function": "将 'friends' 放在引号里，暗示叙述者并不认为她们是真正的朋友。这是一种 subtle（微妙的）修辞手法，传达了叙述者对这段友谊的怀疑和失望。",
+                        "example": {
+                            "en": "He told me about his \"brilliant\" idea, but I wasn't impressed.",
+                            "cn": "他告诉了我他那个“绝妙的”主意，但我并没觉得怎么样。"
+                        },
+                        "variants": null,
+                        "constraints": "用于传达叙述者的态度。"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "en": "So on opening night no one that was remotely close to me was even there. And the thing is, I realized in my third or fourth rehearsal that I was good at this acting thing. I felt the part. I understood the words I spoke. I could read the lines as if they were coming from my brain and my heart. And on opening night, I can honestly say I knew I was going to be more than good: I was going to be great. I was going to be extraordinary, but there would be no one there to see.",
+                "cn": "所以在首演之夜，没有一个和我关系稍微近点的人在场。而且问题是，我在第三或第四次排练时就意识到我擅长表演这件事。我感受到了那个角色。我理解我说的词语。我能读出台词，就好像它们发自我的大脑和内心。而在首演之夜，我可以诚实地说，我知道我将不止是好：我将会很棒。我将会非凡出众，但却无人见证。",
+                "vocab": [
+                    {
+                        "word": "remotely",
+                        "ph": "/rɪˈmoʊtli/",
+                        "pos": "adv",
+                        "mean": "稍微；丝毫",
+                        "ex": "I'm not remotely interested in politics."
+                    },
+                    {
+                        "word": "rehearsal",
+                        "ph": "/rɪˈhɜːrsl/",
+                        "pos": "n",
+                        "mean": "排练",
+                        "ex": "The actors have a final rehearsal tomorrow before the opening night."
+                    },
+                    {
+                        "word": "feel the part",
+                        "ph": "/fiːl ðə pɑːrt/",
+                        "pos": "phr",
+                        "mean": "入戏；感受角色",
+                        "ex": "To be a convincing actor, you really have to feel the part you're playing."
+                    },
+                    {
+                        "word": "more than good",
+                        "ph": "/mɔːr ðæn ɡʊd/",
+                        "pos": "phr",
+                        "mean": "不止是好；非常好",
+                        "ex": "His performance wasn't just good; it was more than good, it was spectacular."
+                    },
+                    {
+                        "word": "extraordinary",
+                        "ph": "/ɪkˈstrɔːrdəneri/",
+                        "pos": "adj",
+                        "mean": "非凡的",
+                        "ex": "She has an extraordinary talent for music."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "climactic_contrast_with_but",
+                        "name": "用 'but' 制造高潮式对比",
+                        "category": "R",
+                        "level": "B2",
+                        "pattern": "[Positive build-up], but [negative reality].",
+                        "components": [
+                            {
+                                "slot": "Positive build-up",
+                                "role": "积极铺垫",
+                                "pos": [
+                                    "S"
+                                ]
+                            },
+                            {
+                                "slot": "but",
+                                "role": "转折连词",
+                                "pos": [
+                                    "conj"
+                                ]
+                            },
+                            {
+                                "slot": "negative reality",
+                                "role": "负面现实",
+                                "pos": [
+                                    "S"
+                                ]
+                            }
+                        ],
+                        "function": "通过一系列层层递进的积极陈述（'good', 'more than good', 'great', 'extraordinary'）来建立一种高涨的期待感，然后用一个 'but' 引出一个沉重而孤独的现实（'but there would be no one there to see'）。这种结构创造了强烈的戏剧性反差和情感冲击，深刻地揭示了叙述者的孤独。",
+                        "example": {
+                            "en": "He had planned the perfect party, bought the best food, invited all his friends, but no one came.",
+                            "cn": "他策划了完美的派对，买了最好的食物，邀请了所有朋友，但却没人来。"
+                        },
+                        "variants": null,
+                        "constraints": "是一种在叙事中创造情感高潮和讽刺效果的有效技巧。"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "en": "We were all backstage, nervously running through our lines in our heads. I peeked through the curtain at the people taking their seats in the auditorium. That's when I saw Auggie walking down the aisle with Isabel and Nate. They took three seats in the fifth row, near the middle. Auggie was wearing a bow tie, looking around excitedly. He had grown up a bit since I'd last seen him, almost a year ago. His hair was shorter, and he was wearing some kind of hearing aid now. His face hadn't changed a bit.",
+                "cn": "我们都在后台，紧张地在脑海里过着台词。我透过幕布偷看正在礼堂里入座的人们。就在那时，我看到了奥吉和伊莎贝尔、内特一起走在过道上。他们在第五排靠近中间的位置坐了三个座位。奥吉戴着一个领结，兴奋地环顾四周。自从我上次见到他，差不多一年前，他长大了一点。他的头发短了，而且现在戴着某种助听器。他的脸一点也没变。",
+                "vocab": [
+                    {
+                        "word": "backstage",
+                        "ph": "/ˈbæksteɪdʒ/",
+                        "pos": "adv",
+                        "mean": "在后台",
+                        "ex": "The actors were getting ready backstage before the show."
+                    },
+                    {
+                        "word": "run through",
+                        "ph": "/rʌn θruː/",
+                        "pos": "phr v",
+                        "mean": "快速过一遍；排练",
+                        "ex": "Let's run through the presentation one more time before the meeting."
+                    },
+                    {
+                        "word": "peek through",
+                        "ph": "/piːk θruː/",
+                        "pos": "phr v",
+                        "mean": "透过…偷看",
+                        "ex": "The child peeked through the keyhole to see what was happening."
+                    },
+                    {
+                        "word": "aisle",
+                        "ph": "/aɪl/",
+                        "pos": "n",
+                        "mean": "（剧院等座位间的）过道",
+                        "ex": "The bride walked gracefully down the aisle."
+                    },
+                    {
+                        "word": "bow tie",
+                        "ph": "/boʊ taɪ/",
+                        "pos": "n phr",
+                        "mean": "领结",
+                        "ex": "He wore a tuxedo and a black bow tie to the formal event."
+                    },
+                    {
+                        "word": "grow up",
+                        "ph": "/ɡroʊ ʌp/",
+                        "pos": "phr v",
+                        "mean": "长大",
+                        "ex": "The little puppy has grown up into a big, strong dog."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "cleft_sentence_that_s_when",
+                        "name": "强调句型 (That's when...)",
+                        "category": "S",
+                        "level": "B2",
+                        "pattern": "That's when + clause",
+                        "components": [
+                            {
+                                "slot": "That's when",
+                                "role": "固定表达",
+                                "pos": [
+                                    "phr"
+                                ]
+                            }
+                        ],
+                        "function": "用于强调某个事件发生或被意识到的确切时间点。'That's when I saw Auggie...' 强调了看到奥吉的那一刻，这是整个故事的转折点。",
+                        "example": {
+                            "en": "I was about to give up. That's when I found the missing key.",
+                            "cn": "我正要放弃。就在那时，我找到了丢失的钥匙。"
+                        },
+                        "variants": [
+                            "That's why...",
+                            "That's how..."
+                        ],
+                        "constraints": "是一种常见的叙事技巧，用于突出特定时刻。"
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "en": "Davenport was running through some last-minute changes with the set decorator. I saw Justin pacing off stage left, mumbling his lines nervously. \"Mr. Davenport,\" I said, surprising myself as I spoke. \"I'm sorry, but I can't go on tonight.\" Davenport turned around slowly. \"What?\" he said. \"I'm sorry.\" \"Are you kidding?\" \"I'm just . . . ,\" I muttered, looking down, \"I don't feel well. I'm sorry. I feel like I'm going to throw up.\" This was a lie.",
+                "cn": "达文波特正在和布景师过一些最后的改动。我看到贾斯汀在舞台左侧踱步，紧张地咕哝着他的台词。“达文波特先生，” 我说，自己都被说出的话吓了一跳。“对不起，但我今晚不能上场了。” 达文波特慢慢地转过身来。“什么？” 他说。“我很抱歉。” “你在开玩笑吗？” “我只是……” 我低着头咕哝道，“我感觉不舒服。对不起。我觉得我要吐了。” 这是个谎言。",
+                "vocab": [
+                    {
+                        "word": "last-minute",
+                        "ph": "/ˈlæst ˈmɪnɪt/",
+                        "pos": "adj",
+                        "mean": "最后一刻的",
+                        "ex": "He made some last-minute changes to his speech."
+                    },
+                    {
+                        "word": "pace",
+                        "ph": "/peɪs/",
+                        "pos": "v",
+                        "mean": "踱步",
+                        "ex": "He started to pace back and forth while he waited for the news."
+                    },
+                    {
+                        "word": "mutter",
+                        "ph": "/ˈmʌtər/",
+                        "pos": "v",
+                        "mean": "咕哝；嘟囔",
+                        "ex": "He was muttering to himself as he worked."
+                    },
+                    {
+                        "word": "throw up",
+                        "ph": "/θroʊ ʌp/",
+                        "pos": "phr v",
+                        "mean": "呕吐",
+                        "ex": "He ate some bad food and had to throw up."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "short_sentence_for_revelation",
+                        "name": "用于揭示的短句",
+                        "category": "R",
+                        "level": "B1",
+                        "pattern": "A short, simple declarative sentence.",
+                        "components": [
+                            {
+                                "slot": "short sentence",
+                                "role": "短句",
+                                "pos": [
+                                    "S"
+                                ]
+                            }
+                        ],
+                        "function": "在一系列对话和借口之后，使用一个非常简短、直接的陈述句 'This was a lie.'，可以创造出一种强烈的戏剧性效果。它直接向读者揭示了叙述者的真实意图，与其表面上的言辞形成鲜明对比。",
+                        "example": {
+                            "en": "She said she was happy for me. It wasn't true.",
+                            "cn": "她说她为我感到高兴。那不是真的。"
+                        },
+                        "variants": null,
+                        "constraints": "其力量来自于其简洁性和在叙事中的位置。"
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "en": "\"It's just last-minute jitters. . . .\" \"No! I can't do it! I'm telling you.\" Davenport looked furious. \"Miranda, this is outrageous.\" \"I'm sorry!\" Davenport took a deep breath, like he was trying to restrain himself. To be truthful, I thought he looked like he was going to explode. His forehead turned bright pink. \"Miranda, this is absolutely unacceptable! Now go take a few deep breaths and—\" \"I'm not going on!\" I said loudly, and the tears came to my eyes fairly easily.",
+                "cn": "“这只是临上场前的紧张……” “不！我做不到！我跟你说真的。” 达文波特看起来怒不可遏。“米兰达，这太离谱了。” “对不起！” 达文波特深吸一口气，像是在努力克制自己。说实话，我以为他看起来快要爆炸了。他的额头涨得通红。“米兰达，这绝对是不可接受的！现在去深呼吸几下，然后——” “我不上场了！” 我大声说，眼泪很轻易地就涌上了眼眶。",
+                "vocab": [
+                    {
+                        "word": "jitters",
+                        "ph": "/ˈdʒɪtərz/",
+                        "pos": "n",
+                        "mean": "（非正式）紧张不安",
+                        "ex": "I always get the jitters before giving a public speech."
+                    },
+                    {
+                        "word": "furious",
+                        "ph": "/ˈfjʊəriəs/",
+                        "pos": "adj",
+                        "mean": "狂怒的",
+                        "ex": "She was furious when she found out he had lied to her."
+                    },
+                    {
+                        "word": "outrageous",
+                        "ph": "/aʊtˈreɪdʒəs/",
+                        "pos": "adj",
+                        "mean": "骇人的；蛮横的",
+                        "ex": "His behavior at the party was completely outrageous."
+                    },
+                    {
+                        "word": "restrain",
+                        "ph": "/rɪˈstreɪn/",
+                        "pos": "v",
+                        "mean": "克制",
+                        "ex": "He had to restrain himself from shouting in anger."
+                    },
+                    {
+                        "word": "unacceptable",
+                        "ph": "/ˌʌnəkˈseptəbl/",
+                        "pos": "adj",
+                        "mean": "不可接受的",
+                        "ex": "Such rude behavior is unacceptable in this school."
+                    },
+                    {
+                        "word": "fairly",
+                        "ph": "/ˈferli/",
+                        "pos": "adv",
+                        "mean": "相当地",
+                        "ex": "The test was fairly difficult, but I think I passed."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "em_dash_for_interruption",
+                        "name": "破折号（表示打断）",
+                        "category": "P",
+                        "level": "B2",
+                        "pattern": "Sentence —",
+                        "components": [
+                            {
+                                "slot": "—",
+                                "role": "破折号",
+                                "pos": [
+                                    "punc"
+                                ]
+                            }
+                        ],
+                        "function": "用于表示说话被打断。'...take a few deep breaths and—' 表明达文波特先生的话还没说完就被米兰达的'I'm not going on!'打断了，突显了冲突的激烈性。",
+                        "example": {
+                            "en": "\"I was just about to tell you—\" she began, but the phone rang.",
+                            "cn": "“我正要告诉你——” 她开口说，但电话响了。"
+                        },
+                        "variants": null,
+                        "constraints": "是表现对话动态的有效标点。"
+                    }
+                ]
+            },
+            {
+                "id": 7,
+                "en": "\"Fine!\" he screamed, not looking at me. Then he turned to a kid named David, who was a set decorator. \"Go find Olivia in the lighting booth! Tell her she's filling in for Miranda tonight!\" \"What?\" said David, who wasn't too swift. \"Go!\" shouted Davenport in his face. \"Now!\" The other kids had caught on to what was happening and gathered around. \"What's going on?\" said Justin. \"Last-minute change of plans,\" said Davenport. \"Miranda doesn't feel well.\" \"I feel sick,\" I said, trying to sound sick.",
+                "cn": "“好吧！” 他尖叫道，没有看我。然后他转向一个叫大卫的孩子，他是个布景师。“去灯光间找奥利维亚！告诉她今晚她替米兰达上场！” “什么？” 大卫说，他反应不太快。“去！” 达文波特对着他的脸吼道。“现在！” 其他孩子已经明白了发生了什么，围了过来。“怎么回事？” 贾斯汀说。“计划有最后一刻的变动，” 达文波特说。“米兰达感觉不舒服。” “我感觉不舒服，” 我说，努力让自己的声音听起来像生病了。",
+                "vocab": [
+                    {
+                        "word": "set decorator",
+                        "ph": "/set ˈdekəreɪtər/",
+                        "pos": "n phr",
+                        "mean": "布景师",
+                        "ex": "The set decorator did an amazing job creating the look of the film."
+                    },
+                    {
+                        "word": "lighting booth",
+                        "ph": "/ˈlaɪtɪŋ buːθ/",
+                        "pos": "n phr",
+                        "mean": "（剧院的）灯光控制室",
+                        "ex": "The technician controlled the stage lights from the lighting booth."
+                    },
+                    {
+                        "word": "fill in for",
+                        "ph": "/fɪl ɪn fɔːr/",
+                        "pos": "phr v",
+                        "mean": "代替",
+                        "ex": "Could you fill in for me at the meeting tomorrow? I have a doctor's appointment."
+                    },
+                    {
+                        "word": "swift",
+                        "ph": "/swɪft/",
+                        "pos": "adj",
+                        "mean": "迅速的（此处指反应快）",
+                        "ex": "He's not the swiftest thinker, so you might need to explain it slowly."
+                    },
+                    {
+                        "word": "catch on to",
+                        "ph": "/kætʃ ɒn tuː/",
+                        "pos": "phr v",
+                        "mean": "明白；理解",
+                        "ex": "It took him a while to catch on to the joke."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "single_word_imperative",
+                        "name": "单词祈使句",
+                        "category": "S",
+                        "level": "A2",
+                        "pattern": "Verb!",
+                        "components": [
+                            {
+                                "slot": "Verb!",
+                                "role": "祈使句",
+                                "pos": [
+                                    "v"
+                                ]
+                            }
+                        ],
+                        "function": "使用单个动词作为祈使句（'Go!', 'Now!'），可以传达出极强的紧急性和命令性。这种简洁性在紧张的情境中尤其有效，突显了达文波特先生的愤怒和急迫。",
+                        "example": {
+                            "en": "The building is on fire! Run!",
+                            "cn": "大楼着火了！快跑！"
+                        },
+                        "variants": null,
+                        "constraints": "是一种非常直接和有力的指令形式。"
+                    }
+                ]
+            },
+            {
+                "id": 8,
+                "en": "\"So why are you still here?\" Davenport said to me angrily. \"Stop talking, take off your costume, and give it to Olivia! Okay? Come on, everybody! Let's go! Go! Go! Go!\" I ran backstage to the dressing room as quickly as I could and started peeling off my costume. Two seconds later there was a knock and Via half opened the door. \"What is going on?\" she said. \"Hurry up, put it on,\" I answered, handing her the dress. \"You're sick?\" \"Yeah! Hurry up!\"",
+                "cn": "“那你还在这里干什么？” 达文波特愤怒地对我说。“别说话了，脱下你的戏服，把它给奥利维亚！好吗？快点，大家！我们走！走！走！走！” 我尽快地跑向后台的更衣室，开始脱我的戏服。两秒钟后，传来了敲门声，维娅半开着门。“发生什么事了？” 她说。“快点，穿上，” 我回答，把裙子递给她。“你病了？” “是的！快点！”",
+                "vocab": [
+                    {
+                        "word": "costume",
+                        "ph": "/ˈkɒstjuːm/",
+                        "pos": "n",
+                        "mean": "戏服",
+                        "ex": "The actors were all wearing elaborate historical costumes."
+                    },
+                    {
+                        "word": "dressing room",
+                        "ph": "/ˈdresɪŋ ruːm/",
+                        "pos": "n phr",
+                        "mean": "更衣室",
+                        "ex": "The actors waited in the dressing room before going on stage."
+                    },
+                    {
+                        "word": "peel off",
+                        "ph": "/piːl ɔːf/",
+                        "pos": "phr v",
+                        "mean": "脱下（紧身的衣服）",
+                        "ex": "After the long race, he was eager to peel off his sweaty running clothes."
+                    },
+                    {
+                        "word": "put on",
+                        "ph": "/pʊt ɒn/",
+                        "pos": "phr v",
+                        "mean": "穿上",
+                        "ex": "It's cold outside; you should put on a coat."
+                    },
+                    {
+                        "word": "hurry up",
+                        "ph": "/ˈhɜːri ʌp/",
+                        "pos": "phr v",
+                        "mean": "快点",
+                        "ex": "Hurry up, or we'll be late for the movie!"
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "imperative_sequence",
+                        "name": "祈使句序列",
+                        "category": "S",
+                        "level": "B1",
+                        "pattern": "Verb, Verb, and Verb.",
+                        "components": [
+                            {
+                                "slot": "Verb",
+                                "role": "动词原形（祈使）",
+                                "pos": [
+                                    "v"
+                                ]
+                            }
+                        ],
+                        "function": "用来列举一系列连续的指令。'Stop talking, take off your costume, and give it to Olivia!' 是一串清晰、不容置疑的命令，反映了情境的紧急性。",
+                        "example": {
+                            "en": "Go to your room, do your homework, and then you can watch TV.",
+                            "cn": "回你房间，做你的作业，然后你才能看电视。"
+                        },
+                        "variants": null,
+                        "constraints": "各项应保持语法平行。"
+                    }
+                ]
+            },
+            {
+                "id": 9,
+                "en": "Via, looking stunned, took off her T-shirt and jeans and pulled the long dress over her head. I pulled it down for her, and then zipped up the back. Luckily, Emily Webb didn't go on until ten minutes into the play, so the girl handling hair and makeup had time to put Via's hair up in a twist and do a quick makeup job. I'd never seen Via with a lot of makeup on: she looked like a model. \"I'm not even sure I'll remember my lines,\" Via said, looking at herself in the mirror. \" Your lines.\" \"You'll do great,\" I said. She looked at me in the mirror. \"Why are you doing this, Miranda?\"",
+                "cn": "维娅看起来惊呆了，脱下了她的T恤和牛仔裤，把长裙套过头顶。我帮她把裙子拉下来，然后拉上后面的拉链。幸运的是，艾米丽·韦伯要到戏剧开始十分钟后才上场，所以负责发型和化妆的女孩有时间把维娅的头发盘起来，并快速地化个妆。我从没见过维娅化浓妆的样子：她看起来像个模特。“我甚至不确定我是否能记住我的台词，” 维娅看着镜子里的自己说。“是‘你的’台词。” “你会做得很好的，” 我说。她在镜子里看着我。“你为什么要这么做，米兰达？”",
+                "vocab": [
+                    {
+                        "word": "stunned",
+                        "ph": "/stʌnd/",
+                        "pos": "adj",
+                        "mean": "惊呆的",
+                        "ex": "She was stunned by the news of his sudden departure."
+                    },
+                    {
+                        "word": "zip up",
+                        "ph": "/zɪp ʌp/",
+                        "pos": "phr v",
+                        "mean": "拉上拉链",
+                        "ex": "Could you help me zip up the back of my dress?"
+                    },
+                    {
+                        "word": "go on",
+                        "ph": "/ɡoʊ ɒn/",
+                        "pos": "phr v",
+                        "mean": "（演员）上场",
+                        "ex": "You go on in five minutes, so get ready."
+                    },
+                    {
+                        "word": "in a twist",
+                        "ph": "/ɪn ə twɪst/",
+                        "pos": "phr",
+                        "mean": "盘成发髻",
+                        "ex": "She wore her hair up in an elegant twist."
+                    },
+                    {
+                        "word": "makeup job",
+                        "ph": "/ˈmeɪkʌp dʒɒb/",
+                        "pos": "n phr",
+                        "mean": "化妆工作",
+                        "ex": "The artist did a quick makeup job on the actor before the scene."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "possessive_pronoun_for_correction",
+                        "name": "所有格代词（用于纠正）",
+                        "category": "W",
+                        "level": "B2",
+                        "pattern": "Correction using a single possessive pronoun.",
+                        "components": [
+                            {
+                                "slot": "possessive pronoun",
+                                "role": "所有格代词",
+                                "pos": [
+                                    "pron"
+                                ]
+                            }
+                        ],
+                        "function": "当维娅说 'my lines' 时，米兰达用一个单词 'Your lines.' 来纠正她。这个简单的纠正，在上下文中充满了丰富的含义：它不仅是在纠正所有权，更是在象征性地将角色、责任和机会完全地移交给维娅。",
+                        "example": {
+                            "en": "A: \"This is my pen.\" B: \"No, it's mine.\"",
+                            "cn": "A：“这是我的笔。” B：“不，是我的。”"
+                        },
+                        "variants": null,
+                        "constraints": "是一种简洁而有力的沟通方式。"
+                    }
+                ]
+            },
+            {
+                "id": 10,
+                "en": "\"Olivia!\" It was Davenport, hush-shouting from the door. \"You're on in two minutes. It's now or never!\" Via followed him out the door, so I never got the chance to answer her question. I don't know what I would have said, anyway. I wasn't sure what the answer was.",
+                "cn": "“奥利维亚！” 是达文波特，在门口压低声音喊道。“你两分钟后上场。机不可失，时不再来！” 维娅跟着他走出了门，所以我一直没机会回答她的问题。反正，我也不知道我会说什么。我不确定答案是什么。",
+                "vocab": [
+                    {
+                        "word": "hush-shout",
+                        "ph": "/hʌʃ ʃaʊt/",
+                        "pos": "v",
+                        "mean": "压低声音喊叫",
+                        "ex": "The librarian was hush-shouting at the noisy students to be quiet."
+                    },
+                    {
+                        "word": "be on",
+                        "ph": "/biː ɒn/",
+                        "pos": "phr v",
+                        "mean": "（演员）上场",
+                        "ex": "The announcer said, 'You're on in five!'"
+                    },
+                    {
+                        "word": "now or never",
+                        "ph": "/naʊ ɔːr ˈnevər/",
+                        "pos": "idiom",
+                        "mean": "机不可失，时不再来",
+                        "ex": "This is your last chance to apply. It's now or never."
+                    },
+                    {
+                        "word": "get the chance",
+                        "ph": "/ɡet ðə tʃæns/",
+                        "pos": "phr",
+                        "mean": "得到机会",
+                        "ex": "I hope I get the chance to travel to Japan someday."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "expressing_uncertainty_about_hypothetical_past",
+                        "name": "表达对过去假设的不确定性",
+                        "category": "S",
+                        "level": "C1",
+                        "pattern": "I don't know what I would have + past participle.",
+                        "components": [
+                            {
+                                "slot": "I don't know what",
+                                "role": "引导短语",
+                                "pos": [
+                                    "phr"
+                                ]
+                            },
+                            {
+                                "slot": "would have + pp",
+                                "role": "虚拟语气结构",
+                                "pos": [
+                                    "phr"
+                                ]
+                            }
+                        ],
+                        "function": "用于表达对一个未发生的过去情境下，自己可能会做出何种反应的不确定性。'I don't know what I would have said' 揭示了叙述者自己也无法完全理解自己行为的复杂动机，为角色增添了深度和真实感。",
+                        "example": {
+                            "en": "If you had asked me yesterday, I don't know what I would have told you.",
+                            "cn": "如果你昨天问我，我不知道我会告诉你什么。"
+                        },
+                        "variants": null,
+                        "constraints": "结合了名词性从句和第三条件句的主句形式。"
+                    }
+                ]
+            }
+        ],
+        "gram_types": {
+            "S": {
+                "en": "Sentence Structure",
+                "cn": "句子结构"
+            },
+            "T": {
+                "en": "Tense",
+                "cn": "时态"
+            },
+            "C": {
+                "en": "Clause",
+                "cn": "从句"
+            },
+            "P": {
+                "en": "Punctuation",
+                "cn": "标点"
+            },
+            "W": {
+                "en": "Word Form / Morphology",
+                "cn": "词形变化"
+            },
+            "F": {
+                "en": "Figurative Language",
+                "cn": "修辞"
+            },
+            "R": {
+                "en": "Rhetoric",
+                "cn": "修辞手法"
+            },
+            "O": {
+                "en": "Others",
+                "cn": "其他"
+            }
+        },
+        "pos_types": {
+            "n": {
+                "en": "noun",
+                "cn": "名词"
+            },
+            "v": {
+                "en": "verb",
+                "cn": "动词"
+            },
+            "adj": {
+                "en": "adjective",
+                "cn": "形容词"
+            },
+            "adv": {
+                "en": "adverb",
+                "cn": "副词"
+            },
+            "prep": {
+                "en": "preposition",
+                "cn": "介词"
+            },
+            "conj": {
+                "en": "conjunction",
+                "cn": "连词"
+            },
+            "pron": {
+                "en": "pronoun",
+                "cn": "代词"
+            },
+            "det": {
+                "en": "determiner",
+                "cn": "限定词"
+            },
+            "int": {
+                "en": "interjection",
+                "cn": "感叹词"
+            },
+            "phr": {
+                "en": "phrase",
+                "cn": "短语"
+            },
+            "phr v": {
+                "en": "phrasal verb",
+                "cn": "动词短语"
+            },
+            "n phr": {
+                "en": "noun phrase",
+                "cn": "名词短语"
+            },
+            "adj phr": {
+                "en": "adjective phrase",
+                "cn": "形容词短语"
+            },
+            "modal v": {
+                "en": "modal verb",
+                "cn": "情态动词"
+            },
+            "idiom": {
+                "en": "idiom",
+                "cn": "习语"
+            },
+            "S": {
+                "en": "sentence",
+                "cn": "句子"
+            }
+        }
+    },
+    {
+        "id": "wonder_excerpt_the_performance",
+        "title": "The Performance",
+        "info": {
+            "author": "R.J. Palacio",
+            "source": "Wonder (narrated by Miranda)",
+            "level": "B2",
+            "tags": [
+                "school play",
+                "friendship",
+                "performance",
+                "emotions",
+                "perspective"
+            ],
+            "link": "https://example.com/original-source",
+            "variants": null
+        },
+        "paras": [
+            {
+                "id": 1,
+                "en": "I watched the rest of the play from the wings just offstage, next to Davenport. Justin was amazing, and Via, in that heartbreaking last scene, was awesome. There was one line she flubbed a bit, but Justin covered for her, and no one in the audience even noticed. I heard Davenport muttering under his breath: \"Good, good, good.\" He was more nervous than all of the students put together: the actors, the set decorators, the lighting team, the guy handling the curtains. Davenport was a wreck, frankly.",
+                "cn": "我在舞台旁的侧幕观看了戏剧的其余部分，就站在达文波特旁边。贾斯汀的表现令人惊叹，而维娅，在最后那令人心碎的一幕中，简直太棒了。有一句台词她稍微搞砸了一点，但贾斯汀为她打了圆场，观众里根本没人注意到。我听到达文波特在低声咕哝：“好，好，好。” 他比所有学生加起来还要紧张：演员们、布景师们、灯光组、负责拉幕布的家伙。坦白说，达文波特紧张得像个神经衰弱的人。",
+                "vocab": [
+                    {
+                        "word": "wings",
+                        "ph": "/wɪŋz/",
+                        "pos": "n",
+                        "mean": "（舞台）侧幕",
+                        "ex": "The actors waited in the wings for their cue to go on stage."
+                    },
+                    {
+                        "word": "offstage",
+                        "ph": "/ˈɔːfsteɪdʒ/",
+                        "pos": "adv",
+                        "mean": "在后台；在舞台外",
+                        "ex": "She ran offstage to change her costume."
+                    },
+                    {
+                        "word": "heartbreaking",
+                        "ph": "/ˈhɑːrtbreɪkɪŋ/",
+                        "pos": "adj",
+                        "mean": "令人心碎的",
+                        "ex": "The movie told a heartbreaking story of loss and reunion."
+                    },
+                    {
+                        "word": "flub",
+                        "ph": "/flʌb/",
+                        "pos": "v",
+                        "mean": "（非正式）搞砸；弄错",
+                        "ex": "The actor flubbed his lines during the most important scene."
+                    },
+                    {
+                        "word": "cover for someone",
+                        "ph": "/ˈkʌvər fɔːr ˈsʌmwʌn/",
+                        "pos": "phr v",
+                        "mean": "为（某人）打掩护",
+                        "ex": "When I was late, my coworker covered for me by telling the boss I was on a call."
+                    },
+                    {
+                        "word": "mutter under one's breath",
+                        "ph": "/ˈmʌtər ˈʌndər wʌnz breθ/",
+                        "pos": "idiom",
+                        "mean": "低声咕哝",
+                        "ex": "He was muttering under his breath about how unfair the decision was."
+                    },
+                    {
+                        "word": "put together",
+                        "ph": "/pʊt təˈɡeðər/",
+                        "pos": "phr",
+                        "mean": "加在一起",
+                        "ex": "The cost of the parts put together was more than buying a new machine."
+                    },
+                    {
+                        "word": "a wreck",
+                        "ph": "/ə rek/",
+                        "pos": "idiom",
+                        "mean": "（精神或身体）崩溃的人",
+                        "ex": "Before the big exam, she was a nervous wreck."
+                    },
+                    {
+                        "word": "frankly",
+                        "ph": "/ˈfræŋkli/",
+                        "pos": "adv",
+                        "mean": "坦白地说",
+                        "ex": "Frankly, I don't think that's a very good idea."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "hyperbole_for_comparison",
+                        "name": "用于比较的夸张法",
+                        "category": "F",
+                        "level": "B2",
+                        "pattern": "more [adj] than [exaggerated group]",
+                        "components": [
+                            {
+                                "slot": "exaggerated group",
+                                "role": "夸张的比较对象",
+                                "pos": [
+                                    "n phr"
+                                ]
+                            }
+                        ],
+                        "function": "通过将一个人的紧张程度与一个庞大的群体（'all of the students put together'）进行比较，作者使用了夸张的手法来极大地强调戴文波特先生的紧张感。",
+                        "example": {
+                            "en": "He eats more than three people combined!",
+                            "cn": "他一个人吃的比三个人加起来还多！"
+                        },
+                        "variants": null,
+                        "constraints": "是一种通过夸大比较来加强语气的常见修辞手法。"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "en": "The only time I felt any regret, if you could even call it that, was at the end of the play when everyone went out for their curtain calls. Via and Justin were the last of the actors walking out onstage, and the audience rose to their feet when they took their bows. That, I admit, was a little bittersweet for me. But just a few minutes later I saw Nate and Isabel and Auggie make their way backstage, and they all seemed so happy. Everyone was congratulating the actors, patting them on the back. It was that crazy backstage theater mayhem where sweaty actors stand euphoric while people come worship them for a few seconds. In that crush of people, I noticed Auggie looking kind of lost. I cut through the crowd as fast as I could and came up behind him.",
+                "cn": "我唯一感到任何后悔的时刻，如果你能称之为后悔的话，是在戏剧结束，大家出来谢幕的时候。维娅和贾斯汀是最后一批走上舞台的演员，当他们鞠躬时，观众全体起立。我承认，那一刻对我来说有点苦乐参半。但仅仅几分钟后，我看到内特、伊莎贝尔和奥吉来到了后台，他们看起来都那么高兴。每个人都在祝贺演员们，拍着他们的背。那就是后台疯狂的戏剧性混乱场面，汗流浃背的演员们欣喜若狂地站着，而人们前来崇拜他们几秒钟。在那拥挤的人群中，我注意到奥吉看起来有点迷茫。我以最快的速度穿过人群，来到他身后。",
+                "vocab": [
+                    {
+                        "word": "regret",
+                        "ph": "/rɪˈɡret/",
+                        "pos": "n",
+                        "mean": "后悔；遗憾",
+                        "ex": "My only regret is not traveling more when I was younger."
+                    },
+                    {
+                        "word": "curtain call",
+                        "ph": "/ˈkɜːrtn kɔːl/",
+                        "pos": "n phr",
+                        "mean": "（演出结束后的）谢幕",
+                        "ex": "The cast came out for three curtain calls at the end of the play."
+                    },
+                    {
+                        "word": "take a bow",
+                        "ph": "/teɪk ə baʊ/",
+                        "pos": "idiom",
+                        "mean": "鞠躬致谢",
+                        "ex": "After her beautiful solo, the violinist stepped forward to take a bow."
+                    },
+                    {
+                        "word": "bittersweet",
+                        "ph": "/ˈbɪtərswiːt/",
+                        "pos": "adj",
+                        "mean": "苦乐参半的",
+                        "ex": "Graduation was a bittersweet moment; she was excited for the future but sad to leave her friends."
+                    },
+                    {
+                        "word": "mayhem",
+                        "ph": "/ˈmeɪhem/",
+                        "pos": "n",
+                        "mean": "混乱",
+                        "ex": "When the concert tickets went on sale, it was total mayhem at the box office."
+                    },
+                    {
+                        "word": "euphoric",
+                        "ph": "/juːˈfɔːrɪk/",
+                        "pos": "adj",
+                        "mean": "欣喜若狂的",
+                        "ex": "She was euphoric after winning the championship."
+                    },
+                    {
+                        "word": "worship",
+                        "ph": "/ˈwɜːrʃɪp/",
+                        "pos": "v",
+                        "mean": "崇拜",
+                        "ex": "Fans often worship their favorite celebrities."
+                    },
+                    {
+                        "word": "crush of people",
+                        "ph": "/krʌʃ əv ˈpiːpl/",
+                        "pos": "n phr",
+                        "mean": "拥挤的人群",
+                        "ex": "He got separated from his friends in the crush of people at the festival."
+                    },
+                    {
+                        "word": "cut through",
+                        "ph": "/kʌt θruː/",
+                        "pos": "phr v",
+                        "mean": "穿过",
+                        "ex": "We decided to cut through the park to save time."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "descriptive_appositive_phrase_mayhem",
+                        "name": "描述性同位语短语",
+                        "category": "S",
+                        "level": "C1",
+                        "pattern": "Noun + where + clause",
+                        "components": [
+                            {
+                                "slot": "Noun",
+                                "role": "先行名词",
+                                "pos": [
+                                    "n"
+                                ]
+                            },
+                            {
+                                "slot": "where...",
+                                "role": "定语从句/同位语从句",
+                                "pos": [
+                                    "clause"
+                                ]
+                            }
+                        ],
+                        "function": "用于对前面的名词（'mayhem'）进行生动、具体的描述和定义。'that crazy backstage theater mayhem where sweaty actors stand euphoric...' 用一个完整的场景来解释“混乱场面”到底是什么样的，创造了强烈的画面感。",
+                        "example": {
+                            "en": "He dreamed of a future where everyone was treated equally.",
+                            "cn": "他梦想着一个每个人都被平等对待的未来。"
+                        },
+                        "variants": null,
+                        "constraints": "'where' 在这里功能上类似于 'in which'，定义了一个情境。"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "en": "\"Hey!\" I said. \"Major Tom!\"",
+                "cn": "“嘿！” 我说。“汤姆少校！”",
+                "vocab": [
+                    {
+                        "word": "hey",
+                        "ph": "/heɪ/",
+                        "pos": "int",
+                        "mean": "嘿（用于打招呼或引起注意）",
+                        "ex": "Hey, how are you doing?"
+                    },
+                    {
+                        "word": "Major Tom",
+                        "ph": "/ˈmeɪdʒər tɒm/",
+                        "pos": "n phr",
+                        "mean": "汤姆少校（大卫·鲍伊歌曲中的虚构宇航员，此处为昵称）",
+                        "ex": "The song 'Space Oddity' is about an astronaut named Major Tom."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "climactic_action_and_dialogue",
+                        "name": "高潮式动作与对话",
+                        "category": "R",
+                        "level": "B1",
+                        "pattern": "Action followed by a significant line of dialogue.",
+                        "components": [
+                            {
+                                "slot": "Action",
+                                "role": "动作",
+                                "pos": [
+                                    "S"
+                                ]
+                            },
+                            {
+                                "slot": "Dialogue",
+                                "role": "对话",
+                                "pos": [
+                                    "S"
+                                ]
+                            }
+                        ],
+                        "function": "在前面段落中，叙述者描述了奥吉在人群中迷失的焦虑情景。本段通过一个快速的动作（'I cut through the crowd...'）和一个充满感情和历史的昵称（'Major Tom!'）作为结尾，为之前的紧张情节提供了一个温暖而有力的解决方案，标志着两个角色关系的重新连接。",
+                        "example": {
+                            "en": "He ran across the field and shouted, \"I made it!\"",
+                            "cn": "他跑过场地，喊道：“我成功了！”"
+                        },
+                        "variants": null,
+                        "constraints": "是一种在叙事中创造情感释放和解决冲突的有效结构。"
+                    }
+                ]
+            }
+        ],
+        "gram_types": {
+            "S": {
+                "en": "Sentence Structure",
+                "cn": "句子结构"
+            },
+            "T": {
+                "en": "Tense",
+                "cn": "时态"
+            },
+            "C": {
+                "en": "Clause",
+                "cn": "从句"
+            },
+            "P": {
+                "en": "Punctuation",
+                "cn": "标点"
+            },
+            "W": {
+                "en": "Word Form / Morphology",
+                "cn": "词形变化"
+            },
+            "F": {
+                "en": "Figurative Language",
+                "cn": "修辞"
+            },
+            "R": {
+                "en": "Rhetoric",
+                "cn": "修辞手法"
+            },
+            "O": {
+                "en": "Others",
+                "cn": "其他"
+            }
+        },
+        "pos_types": {
+            "n": {
+                "en": "noun",
+                "cn": "名词"
+            },
+            "v": {
+                "en": "verb",
+                "cn": "动词"
+            },
+            "adj": {
+                "en": "adjective",
+                "cn": "形容词"
+            },
+            "adv": {
+                "en": "adverb",
+                "cn": "副词"
+            },
+            "prep": {
+                "en": "preposition",
+                "cn": "介词"
+            },
+            "conj": {
+                "en": "conjunction",
+                "cn": "连词"
+            },
+            "pron": {
+                "en": "pronoun",
+                "cn": "代词"
+            },
+            "det": {
+                "en": "determiner",
+                "cn": "限定词"
+            },
+            "int": {
+                "en": "interjection",
+                "cn": "感叹词"
+            },
+            "phr": {
+                "en": "phrase",
+                "cn": "短语"
+            },
+            "phr v": {
+                "en": "phrasal verb",
+                "cn": "动词短语"
+            },
+            "n phr": {
+                "en": "noun phrase",
+                "cn": "名词短语"
+            },
+            "adj phr": {
+                "en": "adjective phrase",
+                "cn": "形容词短语"
+            },
+            "modal v": {
+                "en": "modal verb",
+                "cn": "情态动词"
+            },
+            "idiom": {
+                "en": "idiom",
+                "cn": "习语"
+            },
+            "S": {
+                "en": "sentence",
+                "cn": "句子"
+            }
+        }
+    },
+    {
+        "id": "wonder_excerpt_after_the_show_miranda",
+        "title": "After the Show",
+        "info": {
+            "author": "R.J. Palacio",
+            "source": "Wonder (narrated by Miranda)",
+            "level": "B2",
+            "tags": [
+                "reconciliation",
+                "friendship",
+                "family",
+                "forgiveness",
+                "happiness"
+            ],
+            "link": "https://example.com/original-source",
+            "variants": null
+        },
+        "paras": [
+            {
+                "id": 1,
+                "en": "I can't say why I was so happy to see August again after so long, or how good it felt when he hugged me. \"I can't believe how big you've gotten,\" I said to him. \"I thought you were going to be in the play!\" he said. \"I wasn't up to it,\" I said. \"But Via was great, don't you think?\" He nodded. Two seconds later Isabel found us.",
+                "cn": "我说不清为什么这么久之后再次见到奥古斯特会如此开心，也说不清他拥抱我时感觉有多好。“我真不敢相信你长这么大了，” 我对他说。“我以为你会出演那部戏呢！” 他说。“我当时不太舒服，” 我说。“但维娅很棒，你不觉得吗？” 他点了点头。两秒钟后，伊莎贝尔找到了我们。",
+                "vocab": [
+                    {
+                        "word": "after so long",
+                        "ph": "/ˈæftər soʊ lɔːŋ/",
+                        "pos": "phr",
+                        "mean": "这么久之后",
+                        "ex": "It was wonderful to see my old friend again after so long."
+                    },
+                    {
+                        "word": "have gotten",
+                        "ph": "/hæv ˈɡɒtn/",
+                        "pos": "phr v",
+                        "mean": "变得（get的现在完成时）",
+                        "ex": "Wow, your puppy has gotten so big since the last time I saw him!"
+                    },
+                    {
+                        "word": "be not up to it",
+                        "ph": "/biː nɒt ʌp tuː ɪt/",
+                        "pos": "idiom",
+                        "mean": "（身体或精神上）感觉不能胜任",
+                        "ex": "I was invited to the party, but I had a long day and just wasn't up to it."
+                    },
+                    {
+                        "word": "don't you think?",
+                        "ph": "/doʊnt juː θɪŋk/",
+                        "pos": "phr",
+                        "mean": "你不觉得吗？（用于寻求认同）",
+                        "ex": "This is a beautiful painting, don't you think?"
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "expressing_inexplicable_emotion",
+                        "name": "表达难以言喻的情感",
+                        "category": "S",
+                        "level": "B2",
+                        "pattern": "I can't say why... or how...",
+                        "components": [
+                            {
+                                "slot": "I can't say",
+                                "role": "引导短语",
+                                "pos": [
+                                    "phr"
+                                ]
+                            },
+                            {
+                                "slot": "why/how clause",
+                                "role": "并列的名词性从句",
+                                "pos": [
+                                    "clause"
+                                ]
+                            }
+                        ],
+                        "function": "通过并列两个由 'why' 和 'how' 引导的名词性从句，来表达一种强烈但又难以用语言清晰界定的复杂情感。这种结构有效地传达了叙述者内心深处的喜悦和释然。",
+                        "example": {
+                            "en": "I can't explain why I felt so sad, or how it all started.",
+                            "cn": "我说不清我为什么那么难过，也说不清这一切是如何开始的。"
+                        },
+                        "variants": null,
+                        "constraints": "是一种文学性的表达方式，用于描绘内心的不确定性。"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "en": "\"Miranda!\" she said happily, giving me a kiss on the cheek. And then to August: \"Don't ever disappear like that again.\" \"You're the one who disappeared,\" Auggie answered back. \"How are you feeling?\" Isabel said to me. \"Via told us you got sick. . . .\" \"Much better,\" I answered. \"Is your mom here?\" said Isabel.",
+                "cn": "“米兰达！” 她开心地说，在我脸颊上亲了一下。然后对奥古斯特说：“以后再也不要那样消失了。” “消失的是你，” 奥吉回嘴道。“你感觉怎么样？” 伊莎贝尔对我说。“维娅告诉我们你病了……” “好多了，” 我回答。“你妈妈在这里吗？” 伊莎贝尔说。",
+                "vocab": [
+                    {
+                        "word": "on the cheek",
+                        "ph": "/ɒn ðə tʃiːk/",
+                        "pos": "phr",
+                        "mean": "在脸颊上",
+                        "ex": "In many cultures, it's common to greet friends with a kiss on the cheek."
+                    },
+                    {
+                        "word": "disappear",
+                        "ph": "/ˌdɪsəˈpɪər/",
+                        "pos": "v",
+                        "mean": "消失",
+                        "ex": "The magician made the rabbit disappear."
+                    },
+                    {
+                        "word": "answer back",
+                        "ph": "/ˈænsər bæk/",
+                        "pos": "phr v",
+                        "mean": "回嘴；顶嘴",
+                        "ex": "It's disrespectful to answer back to your parents like that."
+                    },
+                    {
+                        "word": "sick",
+                        "ph": "/sɪk/",
+                        "pos": "adj",
+                        "mean": "生病的",
+                        "ex": "He stayed home from school because he was feeling sick."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "cleft_sentence_you_re_the_one_who",
+                        "name": "强调句型 (You're the one who...)",
+                        "category": "S",
+                        "level": "B2",
+                        "pattern": "Subject + be + the one + who/that + Verb...",
+                        "components": [
+                            {
+                                "slot": "the one who",
+                                "role": "强调结构",
+                                "pos": [
+                                    "phr"
+                                ]
+                            }
+                        ],
+                        "function": "用于强调某个动作的执行者正是某人，常带有反驳或指责的意味。当妈妈让奥吉不要“消失”时，奥吉用 'You're the one who disappeared' 来反驳，指出实际上是妈妈在人群中消失了，而不是他。",
+                        "example": {
+                            "en": "Don't blame me; you're the one who broke it!",
+                            "cn": "别怪我，是你弄坏了它！"
+                        },
+                        "variants": [
+                            "It's you who..."
+                        ],
+                        "constraints": "是一种在对话中进行强调和反驳的常用句型。"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "en": "\"No, she had work stuff, so it's actually not a big deal for me,\" I said truthfully. \"We have two more shows anyway, though I don't think I'll be as good an Emily as Via was tonight.\" Nate came over and we had basically the same exact conversation. Then Isabel said: \"Look, we're going to have a late-night dinner to celebrate the show. Are you feeling up to joining us? We'd love to have you!\"",
+                "cn": "“不，她有工作上的事，所以这对我来说其实没什么大不了的，” 我如实说道。“反正我们还有两场演出，不过我不认为我会成为像维娅今晚那样出色的艾米丽。” 内特走了过来，我们基本上进行了完全相同的对话。然后伊莎贝尔说：“听着，我们准备吃个宵夜来庆祝演出。你身体还好，能加入我们吗？我们很希望你能来！”",
+                "vocab": [
+                    {
+                        "word": "work stuff",
+                        "ph": "/wɜːrk stʌf/",
+                        "pos": "n phr",
+                        "mean": "（非正式）工作上的事",
+                        "ex": "I can't go out tonight, I have too much work stuff to finish."
+                    },
+                    {
+                        "word": "not a big deal",
+                        "ph": "/nɒt ə bɪɡ diːl/",
+                        "pos": "idiom",
+                        "mean": "没什么大不了的",
+                        "ex": "Don't worry about breaking the glass; it's not a big deal."
+                    },
+                    {
+                        "word": "as good as",
+                        "ph": "/æz ɡʊd æz/",
+                        "pos": "phr",
+                        "mean": "和…一样好",
+                        "ex": "Your painting is just as good as the one in the museum."
+                    },
+                    {
+                        "word": "late-night",
+                        "ph": "/ˈleɪt naɪt/",
+                        "pos": "adj",
+                        "mean": "深夜的",
+                        "ex": "He loves going for a late-night walk to clear his head."
+                    },
+                    {
+                        "word": "celebrate",
+                        "ph": "/ˈselɪbreɪt/",
+                        "pos": "v",
+                        "mean": "庆祝",
+                        "ex": "They went out to a fancy restaurant to celebrate their anniversary."
+                    },
+                    {
+                        "word": "feel up to",
+                        "ph": "/fiːl ʌp tuː/",
+                        "pos": "phr v",
+                        "mean": "感觉能胜任；（身体）感觉还好",
+                        "ex": "I don't really feel up to going to the party tonight; I'm too tired."
+                    },
+                    {
+                        "word": "love to have you",
+                        "ph": "/lʌv tuː hæv juː/",
+                        "pos": "phr",
+                        "mean": "很希望你能来",
+                        "ex": "We're having a barbecue on Saturday. We'd love to have you!"
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "feel_up_to_doing_something",
+                        "name": "feel up to + V-ing",
+                        "category": "S",
+                        "level": "B2",
+                        "pattern": "feel up to + gerund",
+                        "components": [
+                            {
+                                "slot": "feel up to",
+                                "role": "固定短语",
+                                "pos": [
+                                    "phr"
+                                ]
+                            },
+                            {
+                                "slot": "gerund",
+                                "role": "动名词",
+                                "pos": [
+                                    "v-ing"
+                                ]
+                            }
+                        ],
+                        "function": "用于询问某人是否有精力、健康状况或意愿去做某事，是一种体贴的提问方式。'Are you feeling up to joining us?' 考虑到了米兰达之前“生病”的情况。",
+                        "example": {
+                            "en": "After his long flight, he didn't feel up to going out for dinner.",
+                            "cn": "长途飞行后，他感觉没什么精神出去吃晚饭。"
+                        },
+                        "variants": null,
+                        "constraints": "'to' 在这里是介词，所以后面必须跟动名词（-ing形式）或名词。"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "en": "\"Oh, no . . . ,\" I started to say. \"Pleeease?\" said Auggie. \"I should go home,\" I said. \"We insist,\" said Nate. By now Via and Justin had come over with Justin's mom, and Via put her arm around me. \"You're definitely coming,\" she said, smiling her old smile at me. They started leading me out of the crowd, and I have to admit, for the first time in a very, very long time, I felt absolutely happy.",
+                "cn": "“哦，不……” 我刚要说。“求求你了？” 奥吉说。“我该回家了，” 我说。“我们坚持，” 内特说。这时维娅和贾斯汀带着贾斯汀的妈妈走了过来，维娅用胳膊搂住我。“你肯定要来，” 她说，对我露出了她过去常有的微笑。他们开始领着我走出人群，我得承认，这是很久很久以来，我第一次感到绝对的快乐。",
+                "vocab": [
+                    {
+                        "word": "pleeease",
+                        "ph": "/pliːz/",
+                        "pos": "int",
+                        "mean": "求求你了（加强语气的拼写）",
+                        "ex": "\"Can I have a cookie? Pleeease?\" the child begged."
+                    },
+                    {
+                        "word": "insist",
+                        "ph": "/ɪnˈsɪst/",
+                        "pos": "v",
+                        "mean": "坚持",
+                        "ex": "He insisted on paying for the meal, even though I offered."
+                    },
+                    {
+                        "word": "definitely",
+                        "ph": "/ˈdefɪnətli/",
+                        "pos": "adv",
+                        "mean": "肯定地",
+                        "ex": "I will definitely be at your party on Saturday."
+                    },
+                    {
+                        "word": "lead someone out",
+                        "ph": "/liːd ˈsʌmwʌn aʊt/",
+                        "pos": "phr v",
+                        "mean": "领着某人出去",
+                        "ex": "The firefighter led the family out of the burning building."
+                    },
+                    {
+                        "word": "for the first time in a very, very long time",
+                        "ph": "/fɔːr ðə fɜːrst taɪm ɪn ə ˈveri ˈveri lɔːŋ taɪm/",
+                        "pos": "phr",
+                        "mean": "很久很久以来的第一次",
+                        "ex": "Laughing with his old friends, he felt truly happy for the first time in a very, very long time."
+                    },
+                    {
+                        "word": "absolutely",
+                        "ph": "/ˈæbsəluːtli/",
+                        "pos": "adv",
+                        "mean": "绝对地",
+                        "ex": "Are you sure? Yes, absolutely."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "emotional_climax_with_emphasis",
+                        "name": "带强调的情感高潮",
+                        "category": "R",
+                        "level": "B2",
+                        "pattern": "Using repetition and strong adverbs for emotional emphasis.",
+                        "components": [
+                            {
+                                "slot": "repetition",
+                                "role": "重复",
+                                "pos": [
+                                    "adv"
+                                ]
+                            },
+                            {
+                                "slot": "strong adverb",
+                                "role": "强力副词",
+                                "pos": [
+                                    "adv"
+                                ]
+                            }
+                        ],
+                        "function": "在句子的结尾，通过重复 'very, very' 和使用强烈的副词 'absolutely'，作者将叙述者的情感推向了高潮。这种强化的表达方式，与她之前长期的孤独和不快形成鲜明对比，深刻地传达了她此刻所感受到的久违的、纯粹的快乐和归属感。",
+                        "example": {
+                            "en": "After months of hard work, he was finally, completely finished.",
+                            "cn": "经过数月的辛勤工作，他终于、彻底地完成了。"
+                        },
+                        "variants": null,
+                        "constraints": "是一种在叙事中创造情感顶点和结局感的有效技巧。"
+                    }
+                ]
+            }
+        ],
+        "gram_types": {
+            "S": {
+                "en": "Sentence Structure",
+                "cn": "句子结构"
+            },
+            "T": {
+                "en": "Tense",
+                "cn": "时态"
+            },
+            "C": {
+                "en": "Clause",
+                "cn": "从句"
+            },
+            "P": {
+                "en": "Punctuation",
+                "cn": "标点"
+            },
+            "W": {
+                "en": "Word Form / Morphology",
+                "cn": "词形变化"
+            },
+            "F": {
+                "en": "Figurative Language",
+                "cn": "修辞"
+            },
+            "R": {
+                "en": "Rhetoric",
+                "cn": "修辞手法"
+            },
+            "O": {
+                "en": "Others",
+                "cn": "其他"
+            }
+        },
+        "pos_types": {
+            "n": {
+                "en": "noun",
+                "cn": "名词"
+            },
+            "v": {
+                "en": "verb",
+                "cn": "动词"
+            },
+            "adj": {
+                "en": "adjective",
+                "cn": "形容词"
+            },
+            "adv": {
+                "en": "adverb",
+                "cn": "副词"
+            },
+            "prep": {
+                "en": "preposition",
+                "cn": "介词"
+            },
+            "conj": {
+                "en": "conjunction",
+                "cn": "连词"
+            },
+            "pron": {
+                "en": "pronoun",
+                "cn": "代词"
+            },
+            "det": {
+                "en": "determiner",
+                "cn": "限定词"
+            },
+            "int": {
+                "en": "interjection",
+                "cn": "感叹词"
+            },
+            "phr": {
+                "en": "phrase",
+                "cn": "短语"
+            },
+            "phr v": {
+                "en": "phrasal verb",
+                "cn": "动词短语"
+            },
+            "n phr": {
+                "en": "noun phrase",
+                "cn": "名词短语"
+            },
+            "adj phr": {
+                "en": "adjective phrase",
+                "cn": "形容词短语"
+            },
+            "modal v": {
+                "en": "modal verb",
+                "cn": "情态动词"
+            },
+            "idiom": {
+                "en": "idiom",
+                "cn": "习语"
+            },
+            "S": {
+                "en": "sentence",
+                "cn": "句子"
+            }
+        }
+    }
+]
