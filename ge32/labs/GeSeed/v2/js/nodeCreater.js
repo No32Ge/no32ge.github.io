@@ -152,193 +152,193 @@ export function createButton(text, onClick, className = 'btn') {
     });
 }
 
-// 测试用例 1: 基础功能
-createNode({
-    tag: 'div',
-    attrs: {
-        id: 'test-card-1',
-        'data-test': 'basic-function'
-    },
-    parent: document.body,
-    children: [
-        {
-            tag: 'h3',
-            text: '测试用例 1: 基础功能',
-            classes: ['title']
-        },
-        {
-            tag: 'p',
-            text: '这个测试卡片包含类名、属性和事件',
-            classes: ['content']
-        },
-        {
-            tag: 'button',
-            text: '点击测试事件',
-            classes: ['test-btn'],
-            events: {
-                click: () => alert('基础事件测试成功!'),
-                mouseover: (e) => e.target.style.backgroundColor = '#eee',
-                mouseout: (e) => e.target.style.backgroundColor = ''
-            }
-        }
-    ]
-});
+// // 测试用例 1: 基础功能
+// createNode({
+//     tag: 'div',
+//     attrs: {
+//         id: 'test-card-1',
+//         'data-test': 'basic-function'
+//     },
+//     parent: document.body,
+//     children: [
+//         {
+//             tag: 'h3',
+//             text: '测试用例 1: 基础功能',
+//             classes: ['title']
+//         },
+//         {
+//             tag: 'p',
+//             text: '这个测试卡片包含类名、属性和事件',
+//             classes: ['content']
+//         },
+//         {
+//             tag: 'button',
+//             text: '点击测试事件',
+//             classes: ['test-btn'],
+//             events: {
+//                 click: () => alert('基础事件测试成功!'),
+//                 mouseover: (e) => e.target.style.backgroundColor = '#eee',
+//                 mouseout: (e) => e.target.style.backgroundColor = ''
+//             }
+//         }
+//     ]
+// });
 
-// 测试用例 2: 混合节点实例
-const existingDiv = document.createElement('div');
-existingDiv.textContent = '这是已有的DOM元素';
-existingDiv.style.border = '1px dashed #999';
-existingDiv.style.padding = '10px';
-existingDiv.style.margin = '10px 0';
+// // 测试用例 2: 混合节点实例
+// const existingDiv = document.createElement('div');
+// existingDiv.textContent = '这是已有的DOM元素';
+// existingDiv.style.border = '1px dashed #999';
+// existingDiv.style.padding = '10px';
+// existingDiv.style.margin = '10px 0';
 
-createNode({
-    tag: 'div',
-    classes: ['mixed-container'],
-    parent: document.body,
-    children: [
-        {
-            tag: 'h3',
-            text: '测试用例 2: 混合节点实例'
-        },
-        {
-            tag: 'p',
-            text: '这个容器混合了配置对象和已有的DOM元素'
-        },
-        existingDiv, // 直接传入节点实例
-        {
-            tag: 'span',
-            text: '结尾的文本节点'
-        }
-    ]
-});
+// createNode({
+//     tag: 'div',
+//     classes: ['mixed-container'],
+//     parent: document.body,
+//     children: [
+//         {
+//             tag: 'h3',
+//             text: '测试用例 2: 混合节点实例'
+//         },
+//         {
+//             tag: 'p',
+//             text: '这个容器混合了配置对象和已有的DOM元素'
+//         },
+//         existingDiv, // 直接传入节点实例
+//         {
+//             tag: 'span',
+//             text: '结尾的文本节点'
+//         }
+//     ]
+// });
 
-// 测试用例 3: 工具函数使用
-createNode({
-    tag: 'div',
-    classes: ['toolbar-test'],
-    parent: document.body,
-    children: [
-        {
-            tag: 'h3',
-            text: '测试用例 3: 工具函数'
-        },
-        createText('工具栏测试: ', 'label'),
-        createButton('新建', () => console.log('新建操作')),
-        createButton('保存', () => console.log('保存操作')),
-        createButton('删除', () => console.log('删除操作'), 'danger-btn')
-    ]
-});
+// // 测试用例 3: 工具函数使用
+// createNode({
+//     tag: 'div',
+//     classes: ['toolbar-test'],
+//     parent: document.body,
+//     children: [
+//         {
+//             tag: 'h3',
+//             text: '测试用例 3: 工具函数'
+//         },
+//         createText('工具栏测试: ', 'label'),
+//         createButton('新建', () => console.log('新建操作')),
+//         createButton('保存', () => console.log('保存操作')),
+//         createButton('删除', () => console.log('删除操作'), 'danger-btn')
+//     ]
+// });
 
-// 测试用例 4: 复杂嵌套结构
-createNode({
-    tag: 'div',
-    classes: ['complex-structure'],
-    parent: document.body,
-    children: [
-        {
-            tag: 'h3',
-            text: '测试用例 4: 复杂嵌套'
-        },
-        {
-            tag: 'div',
-            classes: ['nested-level-1'],
-            children: [
-                {
-                    tag: 'p',
-                    text: '第一层嵌套',
-                    children: [
-                        {
-                            tag: 'strong',
-                            text: '加粗文本',
-                            children: [
-                                {
-                                    tag: 'em',
-                                    text: '斜体文本'
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    tag: 'ul',
-                    children: [
-                        { tag: 'li', text: '列表项 1' },
-                        { tag: 'li', text: '列表项 2' },
-                        {
-                            tag: 'li',
-                            text: '列表项 3',
-                            children: [
-                                { tag: 'span', text: '子内容' }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-});
+// // 测试用例 4: 复杂嵌套结构
+// createNode({
+//     tag: 'div',
+//     classes: ['complex-structure'],
+//     parent: document.body,
+//     children: [
+//         {
+//             tag: 'h3',
+//             text: '测试用例 4: 复杂嵌套'
+//         },
+//         {
+//             tag: 'div',
+//             classes: ['nested-level-1'],
+//             children: [
+//                 {
+//                     tag: 'p',
+//                     text: '第一层嵌套',
+//                     children: [
+//                         {
+//                             tag: 'strong',
+//                             text: '加粗文本',
+//                             children: [
+//                                 {
+//                                     tag: 'em',
+//                                     text: '斜体文本'
+//                                 }
+//                             ]
+//                         }
+//                     ]
+//                 },
+//                 {
+//                     tag: 'ul',
+//                     children: [
+//                         { tag: 'li', text: '列表项 1' },
+//                         { tag: 'li', text: '列表项 2' },
+//                         {
+//                             tag: 'li',
+//                             text: '列表项 3',
+//                             children: [
+//                                 { tag: 'span', text: '子内容' }
+//                             ]
+//                         }
+//                     ]
+//                 }
+//             ]
+//         }
+//     ]
+// });
 
-// 测试用例 5: 边界情况测试
-createNode({
-    tag: 'div',
-    classes: ['edge-cases'],
-    parent: document.body,
-    children: [
-        {
-            tag: 'h3',
-            text: '测试用例 5: 边界情况'
-        },
-        {
-            tag: 'input',
-            attrs: {
-                type: 'checkbox',
-                checked: true,
-                disabled: false,
-                placeholder: '测试输入框'
-            }
-        },
-        {
-            tag: 'div',
-            attrs: {
-                style: 'color: blue; font-weight: bold;'
-            },
-            text: '样式属性测试'
-        },
-        "纯文本节点", // 字符串直接作为子节点
-        123, // 数字作为子节点
-        null, // null 会被忽略
-        undefined // undefined 会被忽略
-    ]
-});
+// // 测试用例 5: 边界情况测试
+// createNode({
+//     tag: 'div',
+//     classes: ['edge-cases'],
+//     parent: document.body,
+//     children: [
+//         {
+//             tag: 'h3',
+//             text: '测试用例 5: 边界情况'
+//         },
+//         {
+//             tag: 'input',
+//             attrs: {
+//                 type: 'checkbox',
+//                 checked: true,
+//                 disabled: false,
+//                 placeholder: '测试输入框'
+//             }
+//         },
+//         {
+//             tag: 'div',
+//             attrs: {
+//                 style: 'color: blue; font-weight: bold;'
+//             },
+//             text: '样式属性测试'
+//         },
+//         "纯文本节点", // 字符串直接作为子节点
+//         123, // 数字作为子节点
+//         null, // null 会被忽略
+//         undefined // undefined 会被忽略
+//     ]
+// });
 
-// 测试用例 6: 动态生成内容
-const dynamicContainer = createNode({
-    tag: 'div',
-    classes: ['dynamic-test'],
-    parent: document.body,
-    children: [
-        {
-            tag: 'h3',
-            text: '测试用例 6: 动态内容'
-        },
-        {
-            tag: 'button',
-            text: '点击生成新元素',
-            events: {
-                click: function () {
-                    createNode({
-                        tag: 'div',
-                        text: '动态生成于: ' + new Date().toLocaleTimeString(),
-                        classes: ['dynamic-item'],
-                        attrs: {
-                            style: 'background: #f0f0f0; margin: 5px; padding: 5px;'
-                        },
-                        parent: this.parentNode
-                    });
-                }
-            }
-        }
-    ]
-});
+// // 测试用例 6: 动态生成内容
+// const dynamicContainer = createNode({
+//     tag: 'div',
+//     classes: ['dynamic-test'],
+//     parent: document.body,
+//     children: [
+//         {
+//             tag: 'h3',
+//             text: '测试用例 6: 动态内容'
+//         },
+//         {
+//             tag: 'button',
+//             text: '点击生成新元素',
+//             events: {
+//                 click: function () {
+//                     createNode({
+//                         tag: 'div',
+//                         text: '动态生成于: ' + new Date().toLocaleTimeString(),
+//                         classes: ['dynamic-item'],
+//                         attrs: {
+//                             style: 'background: #f0f0f0; margin: 5px; padding: 5px;'
+//                         },
+//                         parent: this.parentNode
+//                     });
+//                 }
+//             }
+//         }
+//     ]
+// });
 
-console.log('所有测试用例已加载完成');
+// console.log('所有测试用例已加载完成');
