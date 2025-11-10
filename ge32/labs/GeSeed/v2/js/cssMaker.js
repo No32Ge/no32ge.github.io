@@ -1,3 +1,13 @@
+        function listAvailableVoices() {
+            const voices = window.speechSynthesis.getVoices();
+            console.log("语音功能-----------")
+
+            voices.forEach(voice => {
+                console.log(`Name: ${voice.name}, Lang: ${voice.lang}, Local: ${voice.localService}`);
+            });
+        }
+        listAvailableVoices()
+
 export class CssStyleMaker {
     constructor(config, clsName) {
         this.config = config;

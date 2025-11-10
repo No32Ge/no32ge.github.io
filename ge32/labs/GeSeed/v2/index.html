@@ -1824,9 +1824,6 @@
             <button class="menu-item" id="article-catalog-btn">
                 <i class="bi bi-list-ul"></i> 文章目录
             </button>
-            <div id="article-menu-items">
-                <!-- 文章菜单项将通过JavaScript动态生成 -->
-            </div>
         </div>
 
         <div class="menu-section">
@@ -1958,7 +1955,6 @@
     </div>
 
     <!-- 添加语法模态框 -->
-    <!-- 添加语法模态框 -->
     <div class="modal-overlay" id="add-grammar-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1986,21 +1982,7 @@
                 <div class="modal-tab-content" id="grammar-json-tab" data-tab="json">
                     <div class="form-group">
                         <label class="form-label required-field">JSON数据</label>
-                        <textarea class="json-input" id="grammar-json" placeholder='输入JSON数组，例如：
-[
-  {
-    "rule": "present perfect tense",
-    "cat": "T",
-    "desc": "现在完成时用法",
-    "ex": "I have finished my homework."
-  },
-  {
-    "rule": "conditional sentences",
-    "cat": "C",
-    "desc": "条件句结构",
-    "ex": "If it rains, we will cancel the trip."
-  }
-]'></textarea>
+                        <textarea class="json-input" id="grammar-json" placeholder='输入JSON数组，例如：[]'></textarea>
 
                         <div class="add-method-buttons">
                             <button class="btn batch-add-btn" id="batch-add-grammar-btn">批量添加JSON</button>
@@ -2244,6 +2226,8 @@
 
     <script type="module">
 
+        import { createNode } from "./js/createNode.js";
+
         import { TextAnalyzer } from './js/textAnalyzer.js';
 
 
@@ -2310,12 +2294,20 @@
             }
         };
 
+        function crea() { }
+
         const useFuncs = {
+            // 用来找到图标
             appGetIconSVGs(name) {
                 return appDatas.system.icon.svgs[name];
             },
+            // 用来设置图标
             appSetIconSVG(name, value) {
                 appDatas.system.icon.svgs[name] = value;
+            },
+            imports: {
+                createNode: crea
+
             }
         };
 
@@ -2374,9 +2366,7 @@
             if (articlesData) {
                 articlesData.forEach(article => initArtcleData(article));
             }
-            listAvailableVoices?.();
             buildWordDictionary?.();
-            renderArticleMenu?.();
             renderPage?.();
             initFloatingControl?.();
             initImportExport?.();
@@ -2574,34 +2564,13 @@
                 }
             });
         }
-        // 渲染文章菜单
-        function renderArticleMenu() {
-            const menuItems = document.getElementById('article-menu-items');
-            menuItems.innerHTML = '';
-            articlesData.forEach(article => {
-                const button = document.createElement('button');
-                button.className = `menu-item ${article.id === appState.currentArticleId ? 'active' : ''}`;
-                button.textContent = article.title;
-                button.dataset.articleId = article.id;
-                button.addEventListener('click', function () {
-                    switchArticle(article.id);
-                    hideFloatingMenu();
 
-                    // 移动端：切换文章后返回原始位置
-                    if (isTouchDevice() && appState.floatingControl.isMobileLocked) {
-                        returnToOriginalPosition();
-                    }
-                });
-
-                menuItems.appendChild(button);
-            });
-        }
 
         // 切换文章
         function switchArticle(articleId) {
             appState.currentArticleId = articleId;
             // 更新UI
-            renderArticleMenu();
+
             buildWordDictionary();
             renderPage();
             // 更新目录高亮
@@ -2662,43 +2631,6 @@
             });
             return copy;
         }
-
-        test()
-
-        function test(){
-                    function showTest(list) {
-            // 创建一个容器 div
-            const show = document.createElement("div");
-            show.style.border = "1px solid #ccc";
-            show.style.padding = "10px";
-            show.style.margin = "10px 0";
-
-            // 遍历列表，把每个语音显示为一行
-            list.forEach((voice, index) => {
-                const line = document.createElement("div");
-                line.innerText = `${index + 1}. Name: ${voice.name}, Lang: ${voice.lang}, Local: ${voice.localService}`;
-                show.appendChild(line);
-            });
-
-            // 添加到页面 body（或者指定容器）
-            document.body.appendChild(show);
-        }
-
-        // 使用示例
-        const voices = window.speechSynthesis.getVoices();
-        showTest(voices);
-
-        // 如果页面刚加载可能 voices 为空，需要监听 voiceschanged
-        window.speechSynthesis.onvoiceschanged = () => {
-            const voices = window.speechSynthesis.getVoices();
-            showTest(voices);
-        };
-
-        }
-
-
-
-
 
         // 点击快捷复制单词
 
@@ -3340,6 +3272,8 @@
                 ratio: window.innerWidth / window.innerHeight
             };
         }
+
+
 
         // 悬浮控制球功能 - 移动端优化版本
         function initFloatingControl() {
@@ -4217,7 +4151,7 @@
 
                     // 如果导入成功，重新渲染页面
                     if (importResult.successCount > 0) {
-                        renderArticleMenu();
+
                         renderPage();
                     }
 
@@ -4443,16 +4377,6 @@
         function createWordStopSpeechIcon() {
             return createStopSpeechIcon(16);
         }
-
-        function listAvailableVoices() {
-            const voices = window.speechSynthesis.getVoices();
-            console.log("语音功能-----------")
-
-            voices.forEach(voice => {
-                console.log(`Name: ${voice.name}, Lang: ${voice.lang}, Local: ${voice.localService}`);
-            });
-        }
-        listAvailableVoices()
 
         // 初始化语音合成
         function initSpeechSynthesis() {
@@ -5079,7 +5003,7 @@
                     // 如果导入成功，重新渲染页面
                     if (result.successCount > 0) {
                         setTimeout(() => {
-                            renderArticleMenu();
+
                             renderPage();
                         }, 1000);
                     }
@@ -5467,6 +5391,16 @@
                 }
             });
         }
+
+        function listAvailableVoices() {
+            const voices = window.speechSynthesis.getVoices();
+            console.log("语音功能-----------")
+
+            voices.forEach(voice => {
+                console.log(`Name: ${voice.name}, Lang: ${voice.lang}, Local: ${voice.localService}`);
+            });
+        }
+        listAvailableVoices()
 
 
     </script>
