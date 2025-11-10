@@ -2210,9 +2210,9 @@
     </div>
 
     <!-- 目录切换按钮 -->
-    <button class="catalog-toggle-btn" id="catalog-toggle">
+    <!-- <button class="catalog-toggle-btn" id="catalog-toggle">
         <i class="bi bi-list"></i> 文章目录
-    </button>
+    </button> -->
 
     <div id="grammar-cards-container">
         <!-- 语法卡片将通过JavaScript动态生成 -->
@@ -2226,9 +2226,28 @@
 
     <script type="module">
 
-        import { createNode } from "./js/createNode.js";
+        import { createNode } from "./js/nodeCreater.js";
 
         import { TextAnalyzer } from './js/textAnalyzer.js';
+
+
+        function initNode() {
+            createNode({
+                tag: 'div',
+                attrs: {
+                    id: 'slot-tooltip'
+                },
+                classes: ['slot-tooltip'],
+                parent: document.body,
+                children: [
+                    {
+                        tag: 'i',
+                        classes:["bi","bi-list"]
+                    },
+                    "文章目录"
+                ]
+            })
+        }
 
 
 
@@ -2346,6 +2365,7 @@
         async function init() {
             await initSVG('./res/img/svg', ['copy', 'speaker']);
             await initArticles();
+        
         }
 
 
@@ -2366,6 +2386,7 @@
             if (articlesData) {
                 articlesData.forEach(article => initArtcleData(article));
             }
+            initNode?.();
             buildWordDictionary?.();
             renderPage?.();
             initFloatingControl?.();
@@ -5391,17 +5412,6 @@
                 }
             });
         }
-
-        function listAvailableVoices() {
-            const voices = window.speechSynthesis.getVoices();
-            console.log("语音功能-----------")
-
-            voices.forEach(voice => {
-                console.log(`Name: ${voice.name}, Lang: ${voice.lang}, Local: ${voice.localService}`);
-            });
-        }
-        listAvailableVoices()
-
 
     </script>
 
