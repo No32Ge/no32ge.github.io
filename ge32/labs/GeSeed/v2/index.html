@@ -2110,7 +2110,7 @@
         </div>
     </div>
     <!-- 动态导入JS模态框 -->
-    <div class="modal-overlay" id="dynamic-import-modal">
+    <!-- <div class="modal-overlay" id="dynamic-import-modal">
         <div class="modal-content" style="max-width: 600px;">
             <div class="modal-header">
                 <h3 class="modal-title">动态导入JS文章库</h3>
@@ -2123,7 +2123,7 @@
                     <div class="field-note">支持本地文件或远程JS文件，文件应导出文章数组</div>
                 </div>
 
-                <!-- 预设的基础文章库 -->
+        
                 <div class="form-group">
                     <label class="form-label">预设文章库</label>
                     <div class="preset-libraries">
@@ -2164,7 +2164,6 @@
                     <div class="field-note">如果勾选覆盖，遇到相同ID的文章将覆盖；合并选项决定是否保留现有文章</div>
                 </div>
 
-                <!-- 导入进度显示 -->
                 <div class="import-progress" style="display: none;">
                     <div class="progress" style="height: 20px;">
                         <div class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
@@ -2172,7 +2171,6 @@
                     <div class="progress-text text-center mt-2"></div>
                 </div>
 
-                <!-- 导入结果 -->
                 <div class="import-result" id="dynamic-import-result" style="display: none;"></div>
             </div>
             <div class="modal-footer">
@@ -2180,45 +2178,7 @@
                 <button class="btn btn-primary" id="confirm-dynamic-import-btn">开始导入</button>
             </div>
         </div>
-    </div>
-    <!-- 文章目录 -->
-
-    <!-- <div class="article-catalog" id="article-catalog">
-        <div class="catalog-header">
-            <h3 class="catalog-title">文章目录</h3>
-            <button class="catalog-close" id="catalog-close">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
-
-        <div class="catalog-search">
-            <input type="text" class="search-input" id="catalog-search" placeholder="搜索文章标题、标签、作者...(Ctrl+K)">
-        </div>
-
-        <div class="catalog-stats" id="catalog-stats">
-            共加载 0 篇文章
-        </div>
-
-        <div class="catalog-list" id="catalog-list">
-        </div>
-
-        <div class="catalog-footer">
-            <button class="btn btn-sm btn-outline-secondary" id="refresh-catalog">
-                <i class="bi bi-arrow-clockwise"></i> 刷新目录
-            </button>
-        </div>
     </div> -->
-
-    
-
-    <!-- 目录切换按钮 -->
-    <!-- <button class="catalog-toggle-btn" id="catalog-toggle">
-        <i class="bi bi-list"></i> 文章目录
-    </button> -->
-
-    <div id="grammar-cards-container">
-        <!-- 语法卡片将通过JavaScript动态生成 -->
-    </div>
 
     <!-- 工具提示容器 -->
     <div id="slot-tooltip" class="slot-tooltip"></div>
@@ -2326,8 +2286,254 @@
                         ]
                     }
                 ],
-                parent:document.body
+                parent: document.body
             });
+
+            const modalElement = createNode({
+                tag: 'div',
+                classes: ['modal-overlay'],
+                attrs: { id: 'dynamic-import-modal' },
+                children: [
+                    {
+                        tag: 'div',
+                        classes: ['modal-content'],
+                        attrs: { style: { maxWidth: '600px' } },
+                        children: [
+                            {
+                                tag: 'div',
+                                classes: ['modal-header'],
+                                children: [
+                                    {
+                                        tag: 'h3',
+                                        classes: ['modal-title'],
+                                        text: '动态导入JS文章库'
+                                    }
+                                ]
+                            },
+                            {
+                                tag: 'div',
+                                classes: ['modal-body'],
+                                children: [
+                                    {
+                                        tag: 'div',
+                                        classes: ['form-group'],
+                                        children: [
+                                            {
+                                                tag: 'label',
+                                                classes: ['form-label', 'required-field'],
+                                                text: 'JS文件URL'
+                                            },
+                                            {
+                                                tag: 'input',
+                                                classes: ['form-input'],
+                                                attrs: {
+                                                    type: 'text',
+                                                    id: 'js-file-url',
+                                                    placeholder: '例如: https://example.com/articles.js'
+                                                }
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['field-note'],
+                                                text: '支持本地文件或远程JS文件，文件应导出文章数组'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        tag: 'div',
+                                        classes: ['form-group'],
+                                        children: [
+                                            {
+                                                tag: 'label',
+                                                classes: ['form-label'],
+                                                text: '预设文章库'
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['preset-libraries'],
+                                                children: [
+                                                    {
+                                                        tag: 'div',
+                                                        classes: ['preset-item'],
+                                                        children: [
+                                                            {
+                                                                tag: 'button',
+                                                                classes: ['btn', 'btn-outline-primary', 'btn-sm', 'preset-btn'],
+                                                                attrs: {
+                                                                    type: 'button',
+                                                                    'data-url': 'https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/basic-articles.js'
+                                                                },
+                                                                text: '基础英语文章库 (100篇)'
+                                                            },
+                                                            {
+                                                                tag: 'span',
+                                                                classes: ['preset-description'],
+                                                                text: '包含100篇基础英语学习文章'
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        tag: 'div',
+                                                        classes: ['preset-item'],
+                                                        children: [
+                                                            {
+                                                                tag: 'button',
+                                                                classes: ['btn', 'btn-outline-primary', 'btn-sm', 'preset-btn'],
+                                                                attrs: {
+                                                                    type: 'button',
+                                                                    'data-url': 'https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/advanced-articles.js'
+                                                                },
+                                                                text: '进阶英语文章库 (150篇)'
+                                                            },
+                                                            {
+                                                                tag: 'span',
+                                                                classes: ['preset-description'],
+                                                                text: '包含150篇进阶英语学习文章'
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        tag: 'div',
+                                                        classes: ['preset-item'],
+                                                        children: [
+                                                            {
+                                                                tag: 'button',
+                                                                classes: ['btn', 'btn-outline-primary', 'btn-sm', 'preset-btn'],
+                                                                attrs: {
+                                                                    type: 'button',
+                                                                    'data-url': 'https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/business-articles.js'
+                                                                },
+                                                                text: '商务英语文章库 (80篇)'
+                                                            },
+                                                            {
+                                                                tag: 'span',
+                                                                classes: ['preset-description'],
+                                                                text: '包含80篇商务英语文章'
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        tag: 'div',
+                                        classes: ['form-group'],
+                                        children: [
+                                            {
+                                                tag: 'label',
+                                                classes: ['form-label'],
+                                                text: '导入选项'
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['form-check'],
+                                                children: [
+                                                    {
+                                                        tag: 'input',
+                                                        classes: ['form-check-input'],
+                                                        attrs: {
+                                                            type: 'checkbox',
+                                                            id: 'dynamic-overwrite',
+                                                            checked: true
+                                                        }
+                                                    },
+                                                    {
+                                                        tag: 'label',
+                                                        classes: ['form-check-label'],
+                                                        text: '覆盖重复文章'
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['form-check'],
+                                                children: [
+                                                    {
+                                                        tag: 'input',
+                                                        classes: ['form-check-input'],
+                                                        attrs: {
+                                                            type: 'checkbox',
+                                                            id: 'dynamic-merge',
+                                                            checked: true
+                                                        }
+                                                    },
+                                                    {
+                                                        tag: 'label',
+                                                        classes: ['form-check-label'],
+                                                        text: '合并到现有文章'
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['field-note'],
+                                                text: '如果勾选覆盖，遇到相同ID的文章将覆盖；合并选项决定是否保留现有文章'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        tag: 'div',
+                                        classes: ['import-progress'],
+                                        attrs: { style: { display: 'none' } },
+                                        children: [
+                                            {
+                                                tag: 'div',
+                                                classes: ['progress'],
+                                                attrs: { style: { height: '20px' } },
+                                                children: [
+                                                    {
+                                                        tag: 'div',
+                                                        classes: ['progress-bar'],
+                                                        attrs: {
+                                                            role: 'progressbar',
+                                                            style: { width: '0%' }
+                                                        },
+                                                        text: '0%'
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['progress-text', 'text-center', 'mt-2']
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        tag: 'div',
+                                        classes: ['import-result'],
+                                        attrs: {
+                                            id: 'dynamic-import-result',
+                                            style: { display: 'none' }
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                tag: 'div',
+                                classes: ['modal-footer'],
+                                children: [
+                                    {
+                                        tag: 'button',
+                                        classes: ['btn', 'btn-secondary'],
+                                        attrs: { id: 'cancel-dynamic-import-btn' },
+                                        text: '取消'
+                                    },
+                                    {
+                                        tag: 'button',
+                                        classes: ['btn', 'btn-primary'],
+                                        attrs: { id: 'confirm-dynamic-import-btn' },
+                                        text: '开始导入'
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            });
+
+            document.body.appendChild(modalElement)
+
         }
 
 
