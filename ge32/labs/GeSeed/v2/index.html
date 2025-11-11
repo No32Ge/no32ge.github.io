@@ -2210,9 +2210,9 @@
     </div>
 
     <!-- 目录切换按钮 -->
-    <button class="catalog-toggle-btn" id="catalog-toggle">
+    <!-- <button class="catalog-toggle-btn" id="catalog-toggle">
         <i class="bi bi-list"></i> 文章目录
-    </button>
+    </button> -->
 
     <div id="grammar-cards-container">
         <!-- 语法卡片将通过JavaScript动态生成 -->
@@ -2233,16 +2233,16 @@
 
         function initNode() {
             createNode({
-                tag: 'div',
+                tag: 'button',
                 attrs: {
-                    id: 'test'
+                    id: 'catalog-toggle'
                 },
-                classes: ['h1'],
+                classes: ['bi-list',"bi"],
                 parent: document.body,
                 children: [
                     {
                         tag: 'i',
-                        classes:["bi","bi-list"]
+                        classes: ["bi", "bi-list"]
                     },
                     "测试代码123444444444444444444444444"
                 ]
@@ -2365,7 +2365,7 @@
         async function init() {
             await initSVG('./res/img/svg', ['copy', 'speaker']);
             await initArticles();
-        
+
         }
 
 
