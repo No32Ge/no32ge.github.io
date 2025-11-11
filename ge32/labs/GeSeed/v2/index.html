@@ -2182,7 +2182,8 @@
         </div>
     </div>
     <!-- 文章目录 -->
-    <div class="article-catalog" id="article-catalog">
+
+    <!-- <div class="article-catalog" id="article-catalog">
         <div class="catalog-header">
             <h3 class="catalog-title">文章目录</h3>
             <button class="catalog-close" id="catalog-close">
@@ -2199,7 +2200,6 @@
         </div>
 
         <div class="catalog-list" id="catalog-list">
-            <!-- 文章列表将通过JavaScript动态生成 -->
         </div>
 
         <div class="catalog-footer">
@@ -2207,7 +2207,9 @@
                 <i class="bi bi-arrow-clockwise"></i> 刷新目录
             </button>
         </div>
-    </div>
+    </div> -->
+
+    
 
     <!-- 目录切换按钮 -->
     <!-- <button class="catalog-toggle-btn" id="catalog-toggle">
@@ -2232,21 +2234,100 @@
 
 
         function initNode() {
+
+            // 创建文章目录按键 
             createNode({
                 tag: 'button',
                 attrs: {
                     id: 'catalog-toggle'
                 },
-                classes: ['bi-list',"bi"],
+                classes: ["catalog-toggle-btn"],
                 parent: document.body,
                 children: [
                     {
                         tag: 'i',
                         classes: ["bi", "bi-list"]
                     },
-                    "测试代码123444444444444444444444444"
+                    " 文章目录"
                 ]
             })
+
+            // 创建文章目录
+            const catalogElement = createNode({
+                tag: 'div',
+                classes: ['article-catalog'],
+                attrs: { id: 'article-catalog' },
+                children: [
+                    {
+                        tag: 'div',
+                        classes: ['catalog-header'],
+                        children: [
+                            {
+                                tag: 'h3',
+                                classes: ['catalog-title'],
+                                text: '文章目录'
+                            },
+                            {
+                                tag: 'button',
+                                classes: ['catalog-close'],
+                                attrs: { id: 'catalog-close' },
+                                children: [
+                                    {
+                                        tag: 'i',
+                                        classes: ['bi', 'bi-x-lg']
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        tag: 'div',
+                        classes: ['catalog-search'],
+                        children: [
+                            {
+                                tag: 'input',
+                                classes: ['search-input'],
+                                attrs: {
+                                    type: 'text',
+                                    id: 'catalog-search',
+                                    placeholder: '搜索文章标题、标签、作者...(Ctrl+K)'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        tag: 'div',
+                        classes: ['catalog-stats'],
+                        attrs: { id: 'catalog-stats' },
+                        text: '共加载 0 篇文章'
+                    },
+                    {
+                        tag: 'div',
+                        classes: ['catalog-list'],
+                        attrs: { id: 'catalog-list' }
+                        // 文章列表将通过JavaScript动态生成
+                    },
+                    {
+                        tag: 'div',
+                        classes: ['catalog-footer'],
+                        children: [
+                            {
+                                tag: 'button',
+                                classes: ['btn', 'btn-sm', 'btn-outline-secondary'],
+                                attrs: { id: 'refresh-catalog' },
+                                children: [
+                                    {
+                                        tag: 'i',
+                                        classes: ['bi', 'bi-arrow-clockwise']
+                                    },
+                                    ' 刷新目录'
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                parent:document.body
+            });
         }
 
 
