@@ -1954,48 +1954,7 @@
         </div>
     </div>
 
-    <!-- 添加语法模态框 -->
-    <div class="modal-overlay" id="add-grammar-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">语法点</h3>
-            </div>
-            <div class="modal-body">
-                <!-- 选项卡导航 -->
-                <div class="modal-tabs">
-                    <button class="modal-tab active" data-tab="form">当前语法数据</button>
-                    <button class="modal-tab" data-tab="json">添加语法数据</button>
-                </div>
 
-                <!-- 表单填写选项卡 -->
-                <div class="modal-tab-content active" id="grammar-form-tab" data-tab="form">
-                    <div class="form-group">
-                        <label class="form-label required-field">当前语法数据</label>
-                        <textarea type="text" class="json-input" id="grammar-rule-now"
-                            placeholder="Ge32 english 语法框框"></textarea>
-                    </div>
-
-
-                </div>
-
-                <!-- JSON批量添加选项卡 -->
-                <div class="modal-tab-content" id="grammar-json-tab" data-tab="json">
-                    <div class="form-group">
-                        <label class="form-label required-field">JSON数据</label>
-                        <textarea class="json-input" id="grammar-json" placeholder='输入JSON数组，例如：[]'></textarea>
-
-                        <div class="add-method-buttons">
-                            <button class="btn batch-add-btn" id="batch-add-grammar-btn">批量添加JSON</button>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" id="cancel-grammar-btn">取消</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- 导入文章模态框 -->
     <div class="modal-overlay" id="import-articles-modal">
         <div class="modal-content">
