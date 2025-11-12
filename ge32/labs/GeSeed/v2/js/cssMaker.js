@@ -1,12 +1,12 @@
-        function listAvailableVoices() {
-            const voices = window.speechSynthesis.getVoices();
-            console.log("语音功能-----------")
+function listAvailableVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    console.log("语音功能-----------")
 
-            voices.forEach(voice => {
-                console.log(`Name: ${voice.name}, Lang: ${voice.lang}, Local: ${voice.localService}`);
-            });
-        }
-        listAvailableVoices()
+    voices.forEach(voice => {
+        console.log(`Name: ${voice.name}, Lang: ${voice.lang}, Local: ${voice.localService}`);
+    });
+}
+listAvailableVoices()
 
 export class CssStyleMaker {
     constructor(config, clsName) {
@@ -50,9 +50,17 @@ export class CssStyleMaker {
             window.__styleMakerRegistry.set(this.registryKey, registryEntry);
         }
 
-        registryEntry.instanceIds.add(this.instanceId);
-        registryEntry.styleEl.setAttribute('data-style-instance',
-            [...registryEntry.instanceIds].join(' '));
+        // ⚙️ 如果样式已经存在，就不重复添加 instanceId
+        if (!registryEntry.instanceIds.has(this.instanceId)) {
+            // 只有第一次实例化时才添加
+            if (registryEntry.instanceIds.size === 0) {
+                registryEntry.instanceIds.add(this.instanceId);
+                registryEntry.styleEl.setAttribute(
+                    'data-style-instance',
+                    this.instanceId
+                );
+            }
+        }
 
         return registryEntry;
     }
