@@ -1797,213 +1797,17 @@
         <div class="content" id="content-area">
             <!-- 内容将通过JavaScript动态生成 -->
         </div>
-
         <div class="footer">
             <p>Created by Lil Geos | Spotlight 0.1</p>
         </div>
     </div>
-
     <div class="word-tooltip" id="word-tooltip"></div>
-
     <!-- 悬浮控制球 -->
     <div class="floating-control" id="floating-control">
         <i class="bi bi-gear-fill"></i>
     </div>
-
-    <!-- 悬浮菜单 -->
-
-    <div class="floating-menu" id="floating-menu">
-        <div class="menu-header">
-            <span>学习控制</span>
-            <button type="button" class="btn-close" id="close-menu"></button>
-        </div>
-
-        <!-- 修改悬浮菜单中的文章选择部分 -->
-        <div class="menu-section">
-            <div class="menu-section-title">文章管理</div>
-            <button class="menu-item" id="article-catalog-btn">
-                <i class="bi bi-list-ul"></i> 文章目录
-            </button>
-        </div>
-
-        <div class="menu-section">
-            <div class="menu-section-title">阅读进度</div>
-            <div class="progress-display" id="progress-display">0%</div>
-        </div>
-
-        <!-- 添加导入导出菜单项 -->
-        <div class="menu-section">
-            <div class="menu-section-title">数据管理</div>
-            <button class="menu-item" id="import-articles-btn">
-                <i class="bi bi-download"></i> 导入文章
-            </button>
-            <button class="menu-item" id="export-articles-btn">
-                <i class="bi bi-upload"></i> 导出文章
-            </button>
-            <!-- 在现有的导入导出按钮后面添加 -->
-            <button class="menu-item" id="dynamic-import-btn">
-                <i class="bi bi-box-arrow-in-down"></i> 动态导入JS
-            </button>
-        </div>
-
-        <div class="menu-section">
-            <div class="menu-section-title">全局设置</div>
-            <div class="setting-item">
-                <span class="setting-label">显示解析</span>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="toggle-explanations">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 添加单词模态框 -->
-    <div class="modal-overlay" id="add-vocab-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">添加新单词</h3>
-            </div>
-            <div class="modal-body">
-                <!-- 选项卡导航 -->
-                <div class="modal-tabs">
-                    <button class="modal-tab active" data-tab="form">表单填写</button>
-                    <button class="modal-tab" data-tab="json">JSON批量添加</button>
-                </div>
-
-                <!-- 表单填写选项卡 -->
-                <!-- 表单填写选项卡 -->
-                <div class="modal-tab-content active" id="vocab-form-tab" data-tab="form">
-                    <div class="form-group">
-                        <label class="form-label required-field">单词/短语</label>
-                        <input type="text" class="form-input" id="vocab-word" placeholder="输入单词或短语">
-                        <div class="field-note">这是必填字段</div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">词性</label>
-                        <select class="form-input" id="vocab-pos">
-                            <option value="n">名词 (noun)</option>
-                            <option value="v">动词 (verb)</option>
-                            <option value="adj">形容词 (adjective)</option>
-                            <option value="adv">副词 (adverb)</option>
-                            <option value="prep">介词 (preposition)</option>
-                            <option value="conj">连词 (conjunction)</option>
-                            <option value="pron">代词 (pronoun)</option>
-                            <option value="det">限定词 (determiner)</option>
-                            <option value="int">感叹词 (interjection)</option>
-                            <option value="phr">短语 (phrase)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">发音</label>
-                        <input type="text" class="form-input" id="vocab-pronunciation" placeholder="例如: /ˈfeɪljər/">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">含义</label>
-                        <input type="text" class="form-input" id="vocab-meaning" placeholder="输入中文含义">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">例句</label>
-                        <input type="text" class="form-input" id="vocab-example" placeholder="输入例句">
-                    </div>
-
-                    <div class="add-method-buttons">
-                        <button class="btn btn-primary" id="save-vocab-btn">保存单个</button>
-                        <button class="btn quick-add-btn" id="quick-add-vocab-btn">快速添加单个</button>
-                    </div>
-                </div>
-
-                <!-- JSON批量添加选项卡 -->
-                <div class="modal-tab-content" id="vocab-json-tab" data-tab="json">
-                    <div class="form-group">
-                        <label class="form-label required-field">JSON数据</label>
-                        <textarea class="json-input" id="vocab-json" placeholder='输入JSON数组，例如：
-[
-  {
-    "word": "example",
-    "pos": "n",
-    "ph": "/ɪɡˈzæmpl/",
-    "mean": "例子",
-    "ex": "This is an example sentence."
-  },
-  {
-    "word": "test",
-    "pos": "v",
-    "ph": "/test/",
-    "mean": "测试",
-    "ex": "This is a test."
-  }
-]'></textarea>
-                        <div class="field-note">支持JSON数组格式，每个对象包含 word, pos, ph, mean, ex 字段</div>
-                    </div>
-
-                    <div class="json-example">
-                        <div class="json-example-title">快速添加格式（用逗号分隔单词）：</div>
-                        success, opportunity, challenge, development
-                        <div class="field-note" style="margin-top: 8px;">输入用逗号分隔的单词列表，将自动创建为简单单词项</div>
-                    </div>
-
-                    <div class="add-method-buttons">
-                        <button class="btn batch-add-btn" id="batch-add-vocab-btn">批量添加JSON</button>
-                        <button class="btn quick-add-btn" id="quick-batch-vocab-btn">快速批量添加</button>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancel-vocab-btn">取消</button>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- 导入文章模态框 -->
-    <div class="modal-overlay" id="import-articles-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">导入文章</h3>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="form-label required-field">选择JSON文件</label>
-                    <input type="file" class="form-input" id="import-file" accept=".json" style="padding: 6px;">
-                    <div class="field-note">支持单个文章JSON文件或包含文章数组的JSON文件</div>
-                </div>
-
-                <div class="json-example">
-                    <div class="json-example-title">支持的格式示例：</div>
-                    <div><strong>单个文章：</strong></div>
-                    <pre style="font-size: 0.7rem; margin: 5px 0;">{
-  "id": "article1",
-  "title": "文章标题",
-  "info": { ... },
-  "paras": [ ... ]
-}</pre>
-                    <div><strong>文章数组：</strong></div>
-                    <pre style="font-size: 0.7rem; margin: 5px 0;">[
-  { "id": "article1", "title": "文章1", ... },
-  { "id": "article2", "title": "文章2", ... }
-]</pre>
-                </div>
-
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="import-overwrite">
-                        <label class="form-check-label">覆盖重复文章</label>
-                    </div>
-                    <div class="field-note">如果勾选，遇到相同ID的文章将覆盖；如果不勾选，将跳过重复文章</div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancel-import-btn">取消</button>
-                <button class="btn btn-primary" id="confirm-import-btn">导入</button>
-            </div>
-        </div>
-    </div>
-
-
-
     <!-- 工具提示容器 -->
     <div id="slot-tooltip" class="slot-tooltip"></div>
-
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 
@@ -2738,11 +2542,648 @@
                 ]
             });
 
+
+
+            const floatingMenu = createNode({
+                tag: 'div',
+                classes: ['floating-menu'],
+                attrs: { id: 'floating-menu' },
+                children: [
+                    {
+                        tag: 'div',
+                        classes: ['menu-header'],
+                        children: [
+                            {
+                                tag: 'span',
+                                text: '学习控制'
+                            },
+                            {
+                                tag: 'button',
+                                classes: ['btn-close'],
+                                attrs: {
+                                    type: 'button',
+                                    id: 'close-menu'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        tag: 'div',
+                        classes: ['menu-section'],
+                        children: [
+                            {
+                                tag: 'div',
+                                classes: ['menu-section-title'],
+                                text: '文章管理'
+                            },
+                            {
+                                tag: 'button',
+                                classes: ['menu-item'],
+                                attrs: { id: 'article-catalog-btn' },
+                                children: [
+                                    {
+                                        tag: 'i',
+                                        classes: ['bi', 'bi-list-ul']
+                                    },
+                                    ' 文章目录'
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        tag: 'div',
+                        classes: ['menu-section'],
+                        children: [
+                            {
+                                tag: 'div',
+                                classes: ['menu-section-title'],
+                                text: '阅读进度'
+                            },
+                            {
+                                tag: 'div',
+                                classes: ['progress-display'],
+                                attrs: { id: 'progress-display' },
+                                text: '0%'
+                            }
+                        ]
+                    },
+                    {
+                        tag: 'div',
+                        classes: ['menu-section'],
+                        children: [
+                            {
+                                tag: 'div',
+                                classes: ['menu-section-title'],
+                                text: '数据管理'
+                            },
+                            {
+                                tag: 'button',
+                                classes: ['menu-item'],
+                                attrs: { id: 'import-articles-btn' },
+                                children: [
+                                    {
+                                        tag: 'i',
+                                        classes: ['bi', 'bi-download']
+                                    },
+                                    ' 导入文章'
+                                ]
+                            },
+                            {
+                                tag: 'button',
+                                classes: ['menu-item'],
+                                attrs: { id: 'export-articles-btn' },
+                                children: [
+                                    {
+                                        tag: 'i',
+                                        classes: ['bi', 'bi-upload']
+                                    },
+                                    ' 导出文章'
+                                ]
+                            },
+                            {
+                                tag: 'button',
+                                classes: ['menu-item'],
+                                attrs: { id: 'dynamic-import-btn' },
+                                children: [
+                                    {
+                                        tag: 'i',
+                                        classes: ['bi', 'bi-box-arrow-in-down']
+                                    },
+                                    ' 动态导入JS'
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        tag: 'div',
+                        classes: ['menu-section'],
+                        children: [
+                            {
+                                tag: 'div',
+                                classes: ['menu-section-title'],
+                                text: '全局设置'
+                            },
+                            {
+                                tag: 'div',
+                                classes: ['setting-item'],
+                                children: [
+                                    {
+                                        tag: 'span',
+                                        classes: ['setting-label'],
+                                        text: '显示解析'
+                                    },
+                                    {
+                                        tag: 'div',
+                                        classes: ['form-check', 'form-switch'],
+                                        children: [
+                                            {
+                                                tag: 'input',
+                                                classes: ['form-check-input'],
+                                                attrs: {
+                                                    type: 'checkbox',
+                                                    id: 'toggle-explanations'
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            });
+
+
+
+            const importArticlesModal = createNode({
+                tag: 'div',
+                classes: ['modal-overlay'],
+                attrs: { id: 'import-articles-modal' },
+                children: [
+                    {
+                        tag: 'div',
+                        classes: ['modal-content'],
+                        children: [
+                            {
+                                tag: 'div',
+                                classes: ['modal-header'],
+                                children: [
+                                    {
+                                        tag: 'h3',
+                                        classes: ['modal-title'],
+                                        text: '导入文章'
+                                    }
+                                ]
+                            },
+                            {
+                                tag: 'div',
+                                classes: ['modal-body'],
+                                children: [
+                                    {
+                                        tag: 'div',
+                                        classes: ['form-group'],
+                                        children: [
+                                            {
+                                                tag: 'label',
+                                                classes: ['form-label', 'required-field'],
+                                                text: '选择JSON文件'
+                                            },
+                                            {
+                                                tag: 'input',
+                                                classes: ['form-input'],
+                                                attrs: {
+                                                    type: 'file',
+                                                    id: 'import-file',
+                                                    accept: '.json',
+                                                    style: { padding: '6px' }
+                                                }
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['field-note'],
+                                                text: '支持单个文章JSON文件或包含文章数组的JSON文件'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        tag: 'div',
+                                        classes: ['json-example'],
+                                        children: [
+                                            {
+                                                tag: 'div',
+                                                classes: ['json-example-title'],
+                                                text: '支持的格式示例：'
+                                            },
+                                            {
+                                                tag: 'div',
+                                                children: [
+                                                    {
+                                                        tag: 'strong',
+                                                        text: '单个文章：'
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                tag: 'pre',
+                                                attrs: {
+                                                    style: {
+                                                        fontSize: '0.7rem',
+                                                        margin: '5px 0'
+                                                    }
+                                                },
+                                                text: `{
+  "id": "article1",
+  "title": "文章标题",
+  "info": { ... },
+  "paras": [ ... ]
+}`
+                                            },
+                                            {
+                                                tag: 'div',
+                                                children: [
+                                                    {
+                                                        tag: 'strong',
+                                                        text: '文章数组：'
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                tag: 'pre',
+                                                attrs: {
+                                                    style: {
+                                                        fontSize: '0.7rem',
+                                                        margin: '5px 0'
+                                                    }
+                                                },
+                                                text: `[
+  { "id": "article1", "title": "文章1", ... },
+  { "id": "article2", "title": "文章2", ... }
+]`
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        tag: 'div',
+                                        classes: ['form-group'],
+                                        children: [
+                                            {
+                                                tag: 'div',
+                                                classes: ['form-check'],
+                                                children: [
+                                                    {
+                                                        tag: 'input',
+                                                        classes: ['form-check-input'],
+                                                        attrs: {
+                                                            type: 'checkbox',
+                                                            id: 'import-overwrite'
+                                                        }
+                                                    },
+                                                    {
+                                                        tag: 'label',
+                                                        classes: ['form-check-label'],
+                                                        text: '覆盖重复文章'
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['field-note'],
+                                                text: '如果勾选，遇到相同ID的文章将覆盖；如果不勾选，将跳过重复文章'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                tag: 'div',
+                                classes: ['modal-footer'],
+                                children: [
+                                    {
+                                        tag: 'button',
+                                        classes: ['btn', 'btn-secondary'],
+                                        attrs: { id: 'cancel-import-btn' },
+                                        text: '取消'
+                                    },
+                                    {
+                                        tag: 'button',
+                                        classes: ['btn', 'btn-primary'],
+                                        attrs: { id: 'confirm-import-btn' },
+                                        text: '导入'
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            });
+
+            const addVocabModal = createNode({
+                tag: 'div',
+                classes: ['modal-overlay'],
+                attrs: { id: 'add-vocab-modal' },
+                children: [
+                    {
+                        tag: 'div',
+                        classes: ['modal-content'],
+                        children: [
+                            {
+                                tag: 'div',
+                                classes: ['modal-header'],
+                                children: [
+                                    {
+                                        tag: 'h3',
+                                        classes: ['modal-title'],
+                                        text: '添加新单词'
+                                    }
+                                ]
+                            },
+                            {
+                                tag: 'div',
+                                classes: ['modal-body'],
+                                children: [
+                                    {
+                                        tag: 'div',
+                                        classes: ['modal-tabs'],
+                                        children: [
+                                            {
+                                                tag: 'button',
+                                                classes: ['modal-tab', 'active'],
+                                                attrs: { 'data-tab': 'form' },
+                                                text: '表单填写'
+                                            },
+                                            {
+                                                tag: 'button',
+                                                classes: ['modal-tab'],
+                                                attrs: { 'data-tab': 'json' },
+                                                text: 'JSON批量添加'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        tag: 'div',
+                                        classes: ['modal-tab-content', 'active'],
+                                        attrs: {
+                                            id: 'vocab-form-tab',
+                                            'data-tab': 'form'
+                                        },
+                                        children: [
+                                            {
+                                                tag: 'div',
+                                                classes: ['form-group'],
+                                                children: [
+                                                    {
+                                                        tag: 'label',
+                                                        classes: ['form-label', 'required-field'],
+                                                        text: '单词/短语'
+                                                    },
+                                                    {
+                                                        tag: 'input',
+                                                        classes: ['form-input'],
+                                                        attrs: {
+                                                            type: 'text',
+                                                            id: 'vocab-word',
+                                                            placeholder: '输入单词或短语'
+                                                        }
+                                                    },
+                                                    {
+                                                        tag: 'div',
+                                                        classes: ['field-note'],
+                                                        text: '这是必填字段'
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['form-group'],
+                                                children: [
+                                                    {
+                                                        tag: 'label',
+                                                        classes: ['form-label'],
+                                                        text: '词性'
+                                                    },
+                                                    {
+                                                        tag: 'select',
+                                                        classes: ['form-input'],
+                                                        attrs: { id: 'vocab-pos' },
+                                                        children: [
+                                                            {
+                                                                tag: 'option',
+                                                                attrs: { value: 'n' },
+                                                                text: '名词 (noun)'
+                                                            },
+                                                            {
+                                                                tag: 'option',
+                                                                attrs: { value: 'v' },
+                                                                text: '动词 (verb)'
+                                                            },
+                                                            {
+                                                                tag: 'option',
+                                                                attrs: { value: 'adj' },
+                                                                text: '形容词 (adjective)'
+                                                            },
+                                                            {
+                                                                tag: 'option',
+                                                                attrs: { value: 'adv' },
+                                                                text: '副词 (adverb)'
+                                                            },
+                                                            {
+                                                                tag: 'option',
+                                                                attrs: { value: 'prep' },
+                                                                text: '介词 (preposition)'
+                                                            },
+                                                            {
+                                                                tag: 'option',
+                                                                attrs: { value: 'conj' },
+                                                                text: '连词 (conjunction)'
+                                                            },
+                                                            {
+                                                                tag: 'option',
+                                                                attrs: { value: 'pron' },
+                                                                text: '代词 (pronoun)'
+                                                            },
+                                                            {
+                                                                tag: 'option',
+                                                                attrs: { value: 'det' },
+                                                                text: '限定词 (determiner)'
+                                                            },
+                                                            {
+                                                                tag: 'option',
+                                                                attrs: { value: 'int' },
+                                                                text: '感叹词 (interjection)'
+                                                            },
+                                                            {
+                                                                tag: 'option',
+                                                                attrs: { value: 'phr' },
+                                                                text: '短语 (phrase)'
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['form-group'],
+                                                children: [
+                                                    {
+                                                        tag: 'label',
+                                                        classes: ['form-label'],
+                                                        text: '发音'
+                                                    },
+                                                    {
+                                                        tag: 'input',
+                                                        classes: ['form-input'],
+                                                        attrs: {
+                                                            type: 'text',
+                                                            id: 'vocab-pronunciation',
+                                                            placeholder: '例如: /ˈfeɪljər/'
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['form-group'],
+                                                children: [
+                                                    {
+                                                        tag: 'label',
+                                                        classes: ['form-label'],
+                                                        text: '含义'
+                                                    },
+                                                    {
+                                                        tag: 'input',
+                                                        classes: ['form-input'],
+                                                        attrs: {
+                                                            type: 'text',
+                                                            id: 'vocab-meaning',
+                                                            placeholder: '输入中文含义'
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['form-group'],
+                                                children: [
+                                                    {
+                                                        tag: 'label',
+                                                        classes: ['form-label'],
+                                                        text: '例句'
+                                                    },
+                                                    {
+                                                        tag: 'input',
+                                                        classes: ['form-input'],
+                                                        attrs: {
+                                                            type: 'text',
+                                                            id: 'vocab-example',
+                                                            placeholder: '输入例句'
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['add-method-buttons'],
+                                                children: [
+                                                    {
+                                                        tag: 'button',
+                                                        classes: ['btn', 'btn-primary'],
+                                                        attrs: { id: 'save-vocab-btn' },
+                                                        text: '保存单个'
+                                                    },
+                                                    {
+                                                        tag: 'button',
+                                                        classes: ['btn', 'quick-add-btn'],
+                                                        attrs: { id: 'quick-add-vocab-btn' },
+                                                        text: '快速添加单个'
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        tag: 'div',
+                                        classes: ['modal-tab-content'],
+                                        attrs: {
+                                            id: 'vocab-json-tab',
+                                            'data-tab': 'json'
+                                        },
+                                        children: [
+                                            {
+                                                tag: 'div',
+                                                classes: ['form-group'],
+                                                children: [
+                                                    {
+                                                        tag: 'label',
+                                                        classes: ['form-label', 'required-field'],
+                                                        text: 'JSON数据'
+                                                    },
+                                                    {
+                                                        tag: 'textarea',
+                                                        classes: ['json-input'],
+                                                        attrs: {
+                                                            id: 'vocab-json',
+                                                            placeholder: '输入JSON数组，例如：\n[\n  {\n    "word": "example",\n    "pos": "n",\n    "ph": "/ɪɡˈzæmpl/",\n    "mean": "例子",\n    "ex": "This is an example sentence."\n  },\n  {\n    "word": "test",\n    "pos": "v",\n    "ph": "/test/",\n    "mean": "测试",\n    "ex": "This is a test."\n  }\n]'
+                                                        }
+                                                    },
+                                                    {
+                                                        tag: 'div',
+                                                        classes: ['field-note'],
+                                                        text: '支持JSON数组格式，每个对象包含 word, pos, ph, mean, ex 字段'
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['json-example'],
+                                                children: [
+                                                    {
+                                                        tag: 'div',
+                                                        classes: ['json-example-title'],
+                                                        text: '快速添加格式（用逗号分隔单词）：'
+                                                    },
+                                                    {
+                                                        tag: 'div',
+                                                        text: 'success, opportunity, challenge, development'
+                                                    },
+                                                    {
+                                                        tag: 'div',
+                                                        classes: ['field-note'],
+                                                        attrs: { style: { marginTop: '8px' } },
+                                                        text: '输入用逗号分隔的单词列表，将自动创建为简单单词项'
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                tag: 'div',
+                                                classes: ['add-method-buttons'],
+                                                children: [
+                                                    {
+                                                        tag: 'button',
+                                                        classes: ['btn', 'batch-add-btn'],
+                                                        attrs: { id: 'batch-add-vocab-btn' },
+                                                        text: '批量添加JSON'
+                                                    },
+                                                    {
+                                                        tag: 'button',
+                                                        classes: ['btn', 'quick-add-btn'],
+                                                        attrs: { id: 'quick-batch-vocab-btn' },
+                                                        text: '快速批量添加'
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                tag: 'div',
+                                classes: ['modal-footer'],
+                                children: [
+                                    {
+                                        tag: 'button',
+                                        classes: ['btn', 'btn-secondary'],
+                                        attrs: { id: 'cancel-vocab-btn' },
+                                        text: '取消'
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            });
+
             document.body.appendChild(exportModalElement);
 
             document.body.appendChild(modalElement)
 
             document.body.appendChild(addGrammarModal);
+
+            document.body.appendChild(floatingMenu);
+
+            document.body.appendChild(importArticlesModal);
+
+            document.body.appendChild(addVocabModal);
+
 
         }
 
