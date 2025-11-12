@@ -1813,7 +1813,7 @@
 
     <script type="module">
 
-        import { createNode } from "./js/nodeCreater.js";
+        import { createNode, createDiv,createHeading,createButton,createIcon,createInput } from "./js/nodeCreater.js";
 
         import { TextAnalyzer } from './js/textAnalyzer.js';
 
@@ -1835,78 +1835,45 @@
             })
 
             // 创建文章目录
-            const catalogElement = createNode({
-                tag: 'div',
-                classes: ['article-catalog'],
+            const catalogElement = createDiv("article-catalog", {
                 attrs: { id: 'article-catalog' },
                 children: [
-                    {
-                        tag: 'div',
-                        classes: ['catalog-header'],
+                    // 头部
+                    createDiv("catalog-header", {
                         children: [
-                            {
-                                tag: 'h3',
-                                classes: ['catalog-title'],
-                                text: '文章目录'
-                            },
-                            {
-                                tag: 'button',
-                                classes: ['catalog-close'],
+                            createHeading(3, "文章目录", "catalog-title"),
+                            createButton("", null, "catalog-close", {
                                 attrs: { id: 'catalog-close' },
-                                children: [
-                                    {
-                                        tag: 'i',
-                                        classes: ['bi', 'bi-x-lg']
-                                    }
-                                ]
-                            }
+                                children: [createIcon("x-lg", "bi")]
+                            })
                         ]
-                    },
-                    {
-                        tag: 'div',
-                        classes: ['catalog-search'],
+                    }),
+                    // 搜索区域
+                    createDiv("catalog-search", {
                         children: [
-                            {
-                                tag: 'input',
-                                classes: ['search-input'],
-                                attrs: {
-                                    type: 'text',
-                                    id: 'catalog-search',
-                                    placeholder: '搜索文章标题、标签、作者...(Ctrl+K)'
-                                }
-                            }
+                            createInput("text", "搜索文章标题、标签、作者...(Ctrl+K)", "", "search-input", {
+                                attrs: { id: 'catalog-search' }
+                            })
                         ]
-                    },
-                    {
-                        tag: 'div',
-                        classes: ['catalog-stats'],
+                    }),
+                    // 统计信息
+                    createDiv("catalog-stats", {
                         attrs: { id: 'catalog-stats' },
                         text: '共加载 0 篇文章'
-                    },
-                    {
-                        tag: 'div',
-                        classes: ['catalog-list'],
+                    }),
+                    // 文章列表
+                    createDiv("catalog-list", {
                         attrs: { id: 'catalog-list' }
-                        // 文章列表将通过JavaScript动态生成
-                    },
-                    {
-                        tag: 'div',
-                        classes: ['catalog-footer'],
+                    }),
+                    // 底部
+                    createDiv("catalog-footer", {
                         children: [
-                            {
-                                tag: 'button',
-                                classes: ['btn', 'btn-sm', 'btn-outline-secondary'],
+                            createButton(" 刷新目录", null, "btn btn-sm btn-outline-secondary", {
                                 attrs: { id: 'refresh-catalog' },
-                                children: [
-                                    {
-                                        tag: 'i',
-                                        classes: ['bi', 'bi-arrow-clockwise']
-                                    },
-                                    ' 刷新目录'
-                                ]
-                            }
+                                children: [createIcon("arrow-clockwise", "bi")]
+                            })
                         ]
-                    }
+                    })
                 ],
                 parent: document.body
             });

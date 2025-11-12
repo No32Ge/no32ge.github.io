@@ -134,7 +134,229 @@ export function createNode(config) {
     return el;
 }
 
-// 工具函数
+/**
+ * 快捷创建 div 元素
+ * @param {string|Array} classes - 类名，可以是字符串或数组
+ * @param {Object} config - 其他配置选项
+ * @returns {HTMLElement}
+ */
+export function createDiv(classes = '', config = {}) {
+    const normalizedClasses = Array.isArray(classes) ? classes :
+        (typeof classes === 'string' && classes ? classes.split(' ') : []);
+
+    return createNode({
+        tag: 'div',
+        classes: normalizedClasses,
+        ...config
+    });
+}
+
+/**
+ * 快捷创建 span 元素
+ * @param {string} text - 文本内容
+ * @param {string|Array} classes - 类名
+ * @param {Object} config - 其他配置
+ * @returns {HTMLElement}
+ */
+export function createSpan(text = '', classes = '', config = {}) {
+    const normalizedClasses = Array.isArray(classes) ? classes :
+        (typeof classes === 'string' && classes ? classes.split(' ') : []);
+
+    return createNode({
+        tag: 'span',
+        text,
+        classes: normalizedClasses,
+        ...config
+    });
+}
+
+/**
+ * 快捷创建按钮
+ * @param {string} text - 按钮文本
+ * @param {Function} onClick - 点击事件处理函数
+ * @param {string|Array} classes - 类名
+ * @param {Object} config - 其他配置
+ * @returns {HTMLElement}
+ */
+export function createButton(text = '', onClick = null, classes = 'btn', config = {}) {
+    const normalizedClasses = Array.isArray(classes) ? classes :
+        (typeof classes === 'string' && classes ? classes.split(' ') : []);
+
+    const events = onClick ? { click: onClick } : {};
+
+    return createNode({
+        tag: 'button',
+        text,
+        classes: normalizedClasses,
+        events,
+        ...config
+    });
+}
+
+/**
+ * 快捷创建输入框
+ * @param {string} type - 输入框类型 (text, email, password等)
+ * @param {string} placeholder - 占位符文本
+ * @param {string} value - 初始值
+ * @param {string|Array} classes - 类名
+ * @param {Object} config - 其他配置
+ * @returns {HTMLElement}
+ */
+export function createInput(type = 'text', placeholder = '', value = '', classes = '', config = {}) {
+    const normalizedClasses = Array.isArray(classes) ? classes :
+        (typeof classes === 'string' && classes ? classes.split(' ') : []);
+
+    return createNode({
+        tag: 'input',
+        classes: normalizedClasses,
+        attrs: {
+            type,
+            placeholder,
+            value,
+            ...config.attrs
+        },
+        ...config
+    });
+}
+
+/**
+ * 快捷创建标签元素
+ * @param {string} text - 标签文本
+ * @param {string} htmlFor - 关联的表单元素ID
+ * @param {string|Array} classes - 类名
+ * @param {Object} config - 其他配置
+ * @returns {HTMLElement}
+ */
+export function createLabel(text = '', htmlFor = '', classes = '', config = {}) {
+    const normalizedClasses = Array.isArray(classes) ? classes :
+        (typeof classes === 'string' && classes ? classes.split(' ') : []);
+
+    return createNode({
+        tag: 'label',
+        text,
+        classes: normalizedClasses,
+        attrs: {
+            for: htmlFor,
+            ...config.attrs
+        },
+        ...config
+    });
+}
+
+/**
+ * 快捷创建图片元素
+ * @param {string} src - 图片URL
+ * @param {string} alt - 替代文本
+ * @param {string|Array} classes - 类名
+ * @param {Object} config - 其他配置
+ * @returns {HTMLElement}
+ */
+export function createImg(src = '', alt = '', classes = '', config = {}) {
+    const normalizedClasses = Array.isArray(classes) ? classes :
+        (typeof classes === 'string' && classes ? classes.split(' ') : []);
+
+    return createNode({
+        tag: 'img',
+        classes: normalizedClasses,
+        attrs: {
+            src,
+            alt,
+            ...config.attrs
+        },
+        ...config
+    });
+}
+
+/**
+ * 快捷创建链接元素
+ * @param {string} href - 链接URL
+ * @param {string} text - 链接文本
+ * @param {string|Array} classes - 类名
+ * @param {Object} config - 其他配置
+ * @returns {HTMLElement}
+ */
+export function createLink(href = '#', text = '', classes = '', config = {}) {
+    const normalizedClasses = Array.isArray(classes) ? classes :
+        (typeof classes === 'string' && classes ? classes.split(' ') : []);
+
+    return createNode({
+        tag: 'a',
+        text,
+        classes: normalizedClasses,
+        attrs: {
+            href,
+            ...config.attrs
+        },
+        ...config
+    });
+}
+
+/**
+ * 快捷创建列表项
+ * @param {string} text - 列表项文本
+ * @param {string|Array} classes - 类名
+ * @param {Object} config - 其他配置
+ * @returns {HTMLElement}
+ */
+export function createListItem(text = '', classes = '', config = {}) {
+    const normalizedClasses = Array.isArray(classes) ? classes :
+        (typeof classes === 'string' && classes ? classes.split(' ') : []);
+
+    return createNode({
+        tag: 'li',
+        text,
+        classes: normalizedClasses,
+        ...config
+    });
+}
+
+/**
+ * 快捷创建标题元素
+ * @param {number} level - 标题级别 (1-6)
+ * @param {string} text - 标题文本
+ * @param {string|Array} classes - 类名
+ * @param {Object} config - 其他配置
+ * @returns {HTMLElement}
+ */
+export function createHeading(level = 1, text = '', classes = '', config = {}) {
+    const normalizedClasses = Array.isArray(classes) ? classes :
+        (typeof classes === 'string' && classes ? classes.split(' ') : []);
+
+    if (level < 1 || level > 6) {
+        console.warn('createHeading: Heading level must be between 1 and 6, defaulting to 1');
+        level = 1;
+    }
+
+    return createNode({
+        tag: `h${level}`,
+        text,
+        classes: normalizedClasses,
+        ...config
+    });
+}
+
+/**
+ * 快捷创建图标元素 (使用Font Awesome或其他图标库)
+ * @param {string} iconName - 图标名称
+ * @param {string} prefix - 图标前缀 (默认为 'fas' Font Awesome Solid)
+ * @param {string|Array} classes - 额外类名
+ * @param {Object} config - 其他配置
+ * @returns {HTMLElement}
+ */
+export function createIcon(iconName, prefix = 'fas', classes = '', config = {}) {
+    const baseClasses = Array.isArray(classes) ? classes :
+        (typeof classes === 'string' && classes ? classes.split(' ') : []);
+
+    const iconClasses = [`${prefix}`, `fa-${iconName}`].concat(baseClasses);
+
+    return createNode({
+        tag: 'i',
+        classes: iconClasses,
+        ...config
+    });
+}
+
+// 保留原有的工具函数
 export function createText(text, className = '') {
     return createNode({
         tag: 'span',
@@ -143,12 +365,59 @@ export function createText(text, className = '') {
     });
 }
 
-export function createButton(text, onClick, className = 'btn') {
-    return createNode({
-        tag: 'button',
-        text: text,
-        classes: [className],
-        events: { click: onClick }
+// 使用方法演示
+function example() {
+    // 快速创建带类名的div
+    const container = createDiv('container fluid', {
+        attrs: { id: 'main-container' }
+    });
+
+    // 快速创建按钮
+    const submitBtn = createButton('提交', handleSubmit, 'btn btn-primary', {
+        attrs: { type: 'submit', disabled: false }
+    });
+
+    // 快速创建输入框
+    const emailInput = createInput('email', '请输入邮箱', '', 'form-control', {
+        attrs: { required: true }
+    });
+
+    // 快速创建标签
+    const emailLabel = createLabel('邮箱', 'email-input', 'form-label');
+
+    // 快速创建图片
+    const avatar = createImg('/avatar.jpg', '用户头像', 'avatar rounded');
+
+    // 快速创建链接
+    const homeLink = createLink('/', '首页', 'nav-link');
+
+    // 快速创建标题
+    const title = createHeading(1, '页面标题', 'page-title');
+
+    // 快速创建图标
+    const userIcon = createIcon('user', 'fas', 'mr-2');
+    const searchIcon = createIcon('search', 'fas');
+
+    // 组合使用
+    const card = createDiv('card', {
+        children: [
+            createDiv('card-header', {
+                children: [createHeading(3, '卡片标题')]
+            }),
+            createDiv('card-body', {
+                children: [
+                    createDiv('form-group', {
+                        children: [
+                            createLabel('用户名', 'username', 'form-label'),
+                            createInput('text', '请输入用户名', '', 'form-control', {
+                                attrs: { id: 'username' }
+                            })
+                        ]
+                    }),
+                    createButton('保存', handleSave, 'btn btn-success')
+                ]
+            })
+        ]
     });
 }
 
