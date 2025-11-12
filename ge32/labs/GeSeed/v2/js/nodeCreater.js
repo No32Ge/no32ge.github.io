@@ -355,7 +355,7 @@ export function createHeading(level = 1, text = '', classes = '', config = {}) {
  * @param {Object} config - 其他配置
  * @returns {HTMLElement}
  */
-export function createIcon(iconName, classes = '', config = {}) {
+export function createIcon(iconName, prefix = '', classes = '', config = {}) {
     const baseClasses = Array.isArray(classes) ? classes :
         (typeof classes === 'string' && classes ? classes.split(' ') : []);
 
