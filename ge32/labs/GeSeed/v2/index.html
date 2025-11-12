@@ -1817,6 +1817,69 @@
 
         import { TextAnalyzer } from './js/textAnalyzer.js';
 
+        /**
+* 创建表单组
+*/
+        function createFormGroup(...children) {
+            return createDiv("form-group", { children });
+        }
+
+        /**
+         * 创建复选框
+         */
+        function createCheckbox(id, label, checked = false) {
+            return createDiv("form-check", {
+                children: [
+                    createInput("checkbox", "", "", "form-check-input", {
+                        attrs: {
+                            id: id,
+                            checked: checked
+                        }
+                    }),
+                    createLabel(label, id, "form-check-label")
+                ]
+            });
+        }
+
+        /**
+         * 创建预设库列表
+         */
+        function createPresetLibraries() {
+            const presets = [
+                {
+                    url: 'https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/basic-articles.js',
+                    name: '基础英语文章库 (100篇)',
+                    desc: '包含100篇基础英语学习文章'
+                },
+                {
+                    url: 'https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/advanced-articles.js',
+                    name: '进阶英语文章库 (150篇)',
+                    desc: '包含150篇进阶英语学习文章'
+                },
+                {
+                    url: 'https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/business-articles.js',
+                    name: '商务英语文章库 (80篇)',
+                    desc: '包含80篇商务英语文章'
+                }
+            ];
+
+            return createDiv("preset-libraries", {
+                children: presets.map(preset =>
+                    createDiv("preset-item", {
+                        children: [
+                            createButton(preset.name, null, "btn btn-outline-primary btn-sm preset-btn", {
+                                attrs: {
+                                    type: 'button',
+                                    'data-url': preset.url
+                                }
+                            }),
+                            createSpan(preset.desc, "preset-description")
+                        ]
+                    })
+                )
+            });
+        }
+
 
         function initNode() {
             // 创建文章目录按键 
@@ -1878,68 +1941,6 @@
                 parent: document.body
             });
 
-            /**
- * 创建表单组
- */
-            function createFormGroup(...children) {
-                return createDiv("form-group", { children });
-            }
-
-            /**
-             * 创建复选框
-             */
-            function createCheckbox(id, label, checked = false) {
-                return createDiv("form-check", {
-                    children: [
-                        createInput("checkbox", "", "", "form-check-input", {
-                            attrs: {
-                                id: id,
-                                checked: checked
-                            }
-                        }),
-                        createLabel(label, id, "form-check-label")
-                    ]
-                });
-            }
-
-            /**
-             * 创建预设库列表
-             */
-            function createPresetLibraries() {
-                const presets = [
-                    {
-                        url: 'https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/basic-articles.js',
-                        name: '基础英语文章库 (100篇)',
-                        desc: '包含100篇基础英语学习文章'
-                    },
-                    {
-                        url: 'https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/advanced-articles.js',
-                        name: '进阶英语文章库 (150篇)',
-                        desc: '包含150篇进阶英语学习文章'
-                    },
-                    {
-                        url: 'https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/business-articles.js',
-                        name: '商务英语文章库 (80篇)',
-                        desc: '包含80篇商务英语文章'
-                    }
-                ];
-
-                return createDiv("preset-libraries", {
-                    children: presets.map(preset =>
-                        createDiv("preset-item", {
-                            children: [
-                                createButton(preset.name, null, "btn btn-outline-primary btn-sm preset-btn", {
-                                    attrs: {
-                                        type: 'button',
-                                        'data-url': preset.url
-                                    }
-                                }),
-                                createSpan(preset.desc, "preset-description")
-                            ]
-                        })
-                    )
-                });
-            }
 
             // 创建模态框元素
             const modalElement = createDiv("modal-overlay", {
