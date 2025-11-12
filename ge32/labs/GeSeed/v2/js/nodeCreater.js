@@ -206,31 +206,26 @@ export function createButton(text = '', onClick = null, classes = 'btn', config 
  * @param {Object} config - 其他配置
  * @returns {HTMLElement}
  */
+// 修复 createInput 函数中的问题
 export function createInput(type = 'text', placeholder = '', value = '', classes = '', config = {}) {
     const normalizedClasses = Array.isArray(classes) ? classes :
         (typeof classes === 'string' && classes ? classes.split(' ') : []);
 
-    // 明确拆分 attrs，restConfig 不包含 attrs
+    // 正确处理配置合并
     const { attrs: configAttrs = {}, ...restConfig } = config;
 
-    const nodeDict = {
-        // 把其他 config（事件、dataset、children 等）先放进来，但不让它覆盖 attrs
-        ...restConfig,
+    return createNode({
         tag: 'input',
         classes: normalizedClasses,
         attrs: {
-            // 显式把函数参数作为优先项，然后再合并 configAttrs 的键
             type,
             placeholder,
             value,
-            ...(configAttrs || {})
-        }
-    };
-
-    test(nodeDict);
-    return createNode(nodeDict);
+            ...configAttrs
+        },
+        ...restConfig
+    });
 }
-
 /**
  * 快捷创建标签元素
  * @param {string} text - 标签文本
@@ -240,20 +235,24 @@ export function createInput(type = 'text', placeholder = '', value = '', classes
  * @returns {HTMLElement}
  */
 export function createLabel(text = '', htmlFor = '', classes = '', config = {}) {
-    const normalizedClasses = Array.isArray(classes) ? classes :
-        (typeof classes === 'string' && classes ? classes.split(' ') : []);
+    const normalizedClasses = Array.isArray(classes)
+        ? classes
+        : (typeof classes === 'string' && classes ? classes.split(' ') : []);
+
+    const { attrs = {}, ...restConfig } = config;
 
     return createNode({
         tag: 'label',
-        text,
+        text: text,
         classes: normalizedClasses,
         attrs: {
             for: htmlFor,
-            ...config.attrs
+            ...attrs
         },
-        ...config
+        ...restConfig
     });
 }
+
 
 /**
  * 快捷创建图片元素
