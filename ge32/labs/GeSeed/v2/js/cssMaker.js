@@ -19,10 +19,32 @@ export class CssStyleMaker {
         this.registryKey = `${config.prefix}${clsName}`;
         this.registryEntry = this.initRegistryEntry();
 
+        // 为当前样式实例打标签并缓存
+        this.registerStyleInstance();
+
         // 初始化自动注入
         if (config.autoInject) {
             this.initAutoInject();
         }
+    }
+
+    registerStyleInstance() {
+        if (!window.__StyleMakerRegistry) {
+            window.__StyleMakerRegistry = {};
+        }
+
+        // 把当前实例加入全局缓存
+        window.__StyleMakerRegistry[this.instanceId] = {
+            clsName: this.clsName,
+            createdAt: Date.now(),
+            elementSelector: `.${this.clsName}`,
+        };
+
+        // 直接在DOM元素上标记 data-style-instance
+        const elements = document.querySelectorAll(`.${this.clsName}`);
+        elements.forEach(el => {
+            el.dataset.styleInstance = this.instanceId;
+        });
     }
 
     initRegistryEntry() {

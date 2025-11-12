@@ -3544,6 +3544,31 @@
                 autoInject: true
             }, 'copy-btn');
 
+
+            // 用于测试相同样式
+            const copyBtnStyle1 = new CssStyleMaker({
+                prefix: 'ge-',
+                autoInject: true
+            }, 'copy-btn');
+
+            copyBtnStyle.Set(
+                {
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    color: '#fff',
+                    transition: 'all 0.25s ease'
+                }
+            )
+
+            const test = document.createElement('div');
+            test.innerText = "测试";
+            copyBtnStyle1.inject(test);
+
+            document.body.appendChild(test);
+
             copyBtnStyle
                 .set({
                     alignItems: 'center',
