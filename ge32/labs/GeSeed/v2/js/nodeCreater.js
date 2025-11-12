@@ -1,3 +1,7 @@
+function test(...arg){
+    console.log("调试:",arg)
+}
+
 /**
  * 根据配置对象、字符串、数字或现有节点创建 DOM 元素。
  * 支持递归创建子节点、绑定事件、设置属性与样式。
@@ -206,7 +210,7 @@ export function createInput(type = 'text', placeholder = '', value = '', classes
     const normalizedClasses = Array.isArray(classes) ? classes :
         (typeof classes === 'string' && classes ? classes.split(' ') : []);
 
-    return createNode({
+    const nodeDict = {
         tag: 'input',
         classes: normalizedClasses,
         attrs: {
@@ -216,7 +220,10 @@ export function createInput(type = 'text', placeholder = '', value = '', classes
             ...config.attrs
         },
         ...config
-    });
+    }
+    test(nodeDict)
+    
+    return createNode(nodeDict);
 }
 
 /**
@@ -366,59 +373,59 @@ export function createText(text, className = '') {
 }
 
 // 使用方法演示
-function example() {
+function example(){
     // 快速创建带类名的div
-    const container = createDiv('container fluid', {
-        attrs: { id: 'main-container' }
-    });
+const container = createDiv('container fluid', {
+  attrs: { id: 'main-container' }
+});
 
-    // 快速创建按钮
-    const submitBtn = createButton('提交', handleSubmit, 'btn btn-primary', {
-        attrs: { type: 'submit', disabled: false }
-    });
+// 快速创建按钮
+const submitBtn = createButton('提交', handleSubmit, 'btn btn-primary', {
+  attrs: { type: 'submit', disabled: false }
+});
 
-    // 快速创建输入框
-    const emailInput = createInput('email', '请输入邮箱', '', 'form-control', {
-        attrs: { required: true }
-    });
+// 快速创建输入框
+const emailInput = createInput('email', '请输入邮箱', '', 'form-control', {
+  attrs: { required: true }
+});
 
-    // 快速创建标签
-    const emailLabel = createLabel('邮箱', 'email-input', 'form-label');
+// 快速创建标签
+const emailLabel = createLabel('邮箱', 'email-input', 'form-label');
 
-    // 快速创建图片
-    const avatar = createImg('/avatar.jpg', '用户头像', 'avatar rounded');
+// 快速创建图片
+const avatar = createImg('/avatar.jpg', '用户头像', 'avatar rounded');
 
-    // 快速创建链接
-    const homeLink = createLink('/', '首页', 'nav-link');
+// 快速创建链接
+const homeLink = createLink('/', '首页', 'nav-link');
 
-    // 快速创建标题
-    const title = createHeading(1, '页面标题', 'page-title');
+// 快速创建标题
+const title = createHeading(1, '页面标题', 'page-title');
 
-    // 快速创建图标
-    const userIcon = createIcon('user', 'fas', 'mr-2');
-    const searchIcon = createIcon('search', 'fas');
+// 快速创建图标
+const userIcon = createIcon('user', 'fas', 'mr-2');
+const searchIcon = createIcon('search', 'fas');
 
-    // 组合使用
-    const card = createDiv('card', {
-        children: [
-            createDiv('card-header', {
-                children: [createHeading(3, '卡片标题')]
-            }),
-            createDiv('card-body', {
-                children: [
-                    createDiv('form-group', {
-                        children: [
-                            createLabel('用户名', 'username', 'form-label'),
-                            createInput('text', '请输入用户名', '', 'form-control', {
-                                attrs: { id: 'username' }
-                            })
-                        ]
-                    }),
-                    createButton('保存', handleSave, 'btn btn-success')
-                ]
+// 组合使用
+const card = createDiv('card', {
+  children: [
+    createDiv('card-header', {
+      children: [createHeading(3, '卡片标题')]
+    }),
+    createDiv('card-body', {
+      children: [
+        createDiv('form-group', {
+          children: [
+            createLabel('用户名', 'username', 'form-label'),
+            createInput('text', '请输入用户名', '', 'form-control', {
+              attrs: { id: 'username' }
             })
-        ]
-    });
+          ]
+        }),
+        createButton('保存', handleSave, 'btn btn-success')
+      ]
+    })
+  ]
+});
 }
 
 // // 测试用例 1: 基础功能
