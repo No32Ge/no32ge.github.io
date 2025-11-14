@@ -25,263 +25,600 @@ export const gramTypes = {
 
 
 export const originalArticleData = [
+
     {
-        "id": "failure",
-        "title": "The Value of Failure",
+        "id": "ge32_english_promo",
+        "title": "GE32 English — GeSeed v2",
         "info": {
-            "author": "David Sedaris",
-            "source": "Me Talk Pretty One Day",
-            "level": "B2",
-            "tags": ["learning", "motivation"],
-            "link": "[https://example.com/original](https://example.com/original)",
+            "author": "GE32 English",
+            "source": "Promotional Material",
+            "level": "C1",
+            "tags": [
+                "marketing",
+                "education",
+                "slang",
+                "motivation",
+                "ed-tech"
+            ],
+            "link": "https://ge32english.com/labs/GeSeed/v2",
             "variants": null
         },
         "paras": [
             {
                 "id": 1,
-                "en": "Failure is not the opposite of success; it is part of success.",
-                "cn": "失败并不是成功的反面；它是成功的一部分。",
+                "en": "Wassup, welcome to GE32 English — your hardcore door to mastering English with zero fluff, no more fucking bullshit. You’re about to dive into GeSeed v2, a slick-ass learning engine built by GE32 that’s all about taking your English game from “meh” to “hell yeah”.",
+                "cn": "咋样，欢迎来到 GE32 英语——你通往精通英语的硬核之门，零废话，拒绝狗屁。你即将深入体验 GeSeed v2，一个由 GE32 打造的超屌的学习引擎，它就是要让你的英语水平从“一般般”飙到“牛逼”。",
                 "vocab": [
                     {
-                        "word": "failure",
-                        "ph": "/ˈfeɪljər/",
-                        "pos": "n",
-                        "mean": "失败",
-                        "ex": "He learned a lot from his failure."
+                        "word": "wassup",
+                        "ph": "/wəˈsʌp/",
+                        "pos": "int",
+                        "mean": "（俚语）你好；怎么样",
+                        "ex": "He greeted his friend with a casual, 'Wassup, dude?'"
                     },
                     {
-                        "word": "opposite of",
-                        "ph": "/ˈɒpəzɪt/",
-                        "pos": "phr",
-                        "mean": "相反的事物",
-                        "ex": "Love is the opposite of hate."
+                        "word": "hardcore",
+                        "ph": "/ˈhɑːrdkɔːr/",
+                        "pos": "adj",
+                        "mean": "硬核的；毫不妥协的",
+                        "ex": "This is a hardcore workout designed for serious athletes."
+                    },
+                    {
+                        "word": "fluff",
+                        "ph": "/flʌf/",
+                        "pos": "n",
+                        "mean": "（非正式）废话；没有实质内容的东西",
+                        "ex": "The report was full of fluff and didn't provide any real data."
+                    },
+                    {
+                        "word": "bullshit",
+                        "ph": "/ˈbʊlʃɪt/",
+                        "pos": "n",
+                        "mean": "（粗俗俚语）胡说；废话",
+                        "ex": "He claimed he finished the project, but I knew it was bullshit."
+                    },
+                    {
+                        "word": "slick-ass",
+                        "ph": "/ˈslɪk æs/",
+                        "pos": "adj",
+                        "mean": "（粗俗俚语）超屌的；非常酷炫的",
+                        "ex": "He just bought a slick-ass sports car."
+                    },
+                    {
+                        "word": "meh / hell yeah",
+                        "ph": "/meɪ / hel jeə/",
+                        "pos": "int",
+                        "mean": "（俚语）一般般 / 太棒了",
+                        "ex": "A: 'How was the movie?' B: 'Meh.' / A: 'Want to go to the concert?' B: 'Hell yeah!'"
                     }
                 ],
                 "gram": [
                     {
-                        "id": "not_but_structure",
-                        "name": "not ... but ... 结构",
-                        "category": "S",
-                        "level": "B1",
-                        "pattern": "SUBJ + be + not + X + but + Y",
+                        "id": "aggressive_and_slang_heavy_tone",
+                        "name": "攻击性与重俚语的语调",
+                        "category": "R",
+                        "level": "C1",
+                        "pattern": "Use of informal greetings, profanity, and intense slang.",
                         "components": [
-                            { "slot": "SUBJ", "role": "主语", "pos": ["n", "pron", "phr"] },
-                            { "slot": "be", "role": "系动词", "pos": ["v"] },
-                            { "slot": "not", "role": "否定词", "pos": ["adv"] },
-                            { "slot": "X", "role": "否定内容", "pos": ["n", "adj", "phr"] },
-                            { "slot": "but", "role": "转折连词", "pos": ["conj"] },
-                            { "slot": "Y", "role": "肯定内容", "pos": ["n", "adj", "phr"] }
+                            {
+                                "slot": "slang/profanity",
+                                "role": "俚语/粗话",
+                                "pos": [
+                                    "n",
+                                    "int"
+                                ]
+                            }
                         ],
-                        "function": "用于表达'不是……而是……'，强调两者对比，否定前者肯定后者。",
+                        "function": "通过使用“Wassup”、“hardcore”、“fucking bullshit”和“slick-ass”等词语，文本立即建立了一种极度非正式、直接且充满“态度”的品牌形象。这种语调旨在吸引那些厌倦传统教学、寻求更“真实”和“硬核”学习体验的目标受众。",
                         "example": {
-                            "en": "She is not lazy but tired.",
-                            "cn": "她不是懒惰而是累了。"
+                            "en": "Forget the old ways. This is the real deal, no excuses.",
+                            "cn": "忘了那些老办法。这才是真家伙，没有借口。"
                         },
-                        "variants": [
-                            "SUBJ + do/does/did + not + VERB + but + VERB",
-                            "SUBJ + be (past) + not + X + but + Y"
-                        ],
-                        "constraints": "X 与 Y 必须为语法功能一致（都为名词或都为形容词类）；but 前后保持平行结构。"
+                        "variants": null,
+                        "constraints": "这种语调在正式场合中是完全不合适的，但在特定营销中非常有效。"
                     }
                 ]
             },
             {
                 "id": 2,
-                "en": "Each mistake teaches you what not to do next time. When you try and fail, you collect information — sometimes small, sometimes decisive — that shapes your next attempt.",
-                "cn": "每一次错误都会告诉你下一次不要怎么做。尝试并失败时，你会收集信息——有时是微小的，有时是决定性的——这些信息会影响你下一次的尝试。",
+                "en": "Forget boring textbooks and stale grammar drills. GeSeed v2 is built by learners, for learners — lean, mean, and battle-ready. It’s a lean lab-based project hosted at ge32english.com/labs/GeSeed/v2 where every module is designed to throw you into the deep end of English, but with powerful tools to keep you afloat.",
+                "cn": "忘掉无聊的教科书和陈腐的语法练习。GeSeed v2 由学习者为学习者而建——精悍、强劲、随时应战。这是一个精简的、基于实验室的项目，托管在 ge32english.com/labs/GeSeed/v2，每个模块都旨在把你扔进英语的深水区，但同时提供强大的工具让你能浮起来。",
                 "vocab": [
                     {
-                        "word": "mistake",
-                        "ph": "/mɪˈsteɪk/",
-                        "pos": "n",
-                        "mean": "错误；失误",
-                        "ex": "A small mistake cost them the game."
-                    },
-                    {
-                        "word": "decisive",
-                        "ph": "/dɪˈsaɪsɪv/",
+                        "word": "stale",
+                        "ph": "/steɪl/",
                         "pos": "adj",
-                        "mean": "决定性的；关键的",
-                        "ex": "A decisive victory ended the season early."
+                        "mean": "陈腐的；不新鲜的",
+                        "ex": "His jokes were stale and no one laughed."
                     },
                     {
-                        "word": "attempt",
-                        "ph": "/əˈtempt/",
+                        "word": "drill",
+                        "ph": "/drɪl/",
                         "pos": "n",
-                        "mean": "尝试",
-                        "ex": "Her first attempt failed, but she tried again."
+                        "mean": "（反复的）练习",
+                        "ex": "The team practiced defensive drills for an hour."
+                    },
+                    {
+                        "word": "lean, mean, and battle-ready",
+                        "ph": "/liːn miːn ænd ˈbætl ˈredi/",
+                        "pos": "idiom",
+                        "mean": "精悍、强劲、随时应战（形容高效且准备充分）",
+                        "ex": "After months of training, the new team was lean, mean, and battle-ready."
+                    },
+                    {
+                        "word": "throw someone into the deep end",
+                        "ph": "/θroʊ ˈsʌmwʌn ˈɪntuː ðə diːp end/",
+                        "pos": "idiom",
+                        "mean": "让某人直接面对困境（以快速学习）",
+                        "ex": "On his first day, the new chef was thrown into the deep end during the dinner rush."
+                    },
+                    {
+                        "word": "afloat",
+                        "ph": "/əˈfloʊt/",
+                        "pos": "adv",
+                        "mean": "漂浮着；（经济上）维持下去",
+                        "ex": "The company is struggling to stay afloat during the recession."
                     }
                 ],
                 "gram": [
                     {
-                        "id": "present_participle_clause",
-                        "name": "现在分词短语作伴随状语",
-                        "category": "S",
+                        "id": "em_dash_for_apposition",
+                        "name": "破折号（用于同位语或解释）",
+                        "category": "P",
                         "level": "B2",
-                        "pattern": "VERB-ing + , + main clause",
+                        "pattern": "Clause — explanation.",
                         "components": [
-                            { "slot": "VERB-ing", "role": "现在分词短语", "pos": ["v-ing"] },
-                            { "slot": "main clause", "role": "主句", "pos": ["clause"] }
+                            {
+                                "slot": "—",
+                                "role": "破折号",
+                                "pos": [
+                                    "punc"
+                                ]
+                            }
                         ],
-                        "function": "表示两个动作同时发生或伴随发生，简化句子结构，常用于书面语。",
+                        "function": "用于引出一个补充说明或解释，比逗号更具强调意味。'...for learners — lean, mean, and battle-ready' 破折号后面的部分是对 'built by learners, for learners' 理念的进一步阐释，强调了其高效和实战性。",
                         "example": {
-                            "en": "Trying and failing, he learned what to change.",
-                            "cn": "尝试并失败的过程中，他学会了要改变什么。"
+                            "en": "He had one goal in mind — to win the championship.",
+                            "cn": "他心中只有一个目标——赢得冠军。"
                         },
                         "variants": null,
-                        "constraints": "主语要一致，避免造成悬垂分词。"
+                        "constraints": "是一种在非正式和正式写作中都可使用的标点，用于增强节奏和清晰度。"
                     }
                 ]
             },
             {
                 "id": 3,
-                "en": "Successful people often have long lists of failures behind them. They simply see those failures as experiments that didn't produce the intended result — data, not judgment.",
-                "cn": "成功的人通常背后有一长串失败。他们只是把那些失败看作未能产生预期结果的实验——是数据，不是评判。",
+                "en": "Real talk, real results: No sugarcoating. GeSeed v2 hits you with real-world English — slang, idioms, spoken flow — so you stop sounding like a textbook zombie. Modular design: Pick your path. Whether you’re grinding basic vocab or ready to spit bars in English rap style, GeSeed v2 adapts. Fast feedback loop: The quicker you try, the quicker you learn. GeSeed v2 is built to keep you engaged, keep you corrected, keep you moving.",
+                "cn": "真实对话，真实效果：不加粉饰。GeSeed v2 用真实世界的英语冲击你——俚语、习语、口语流——让你不再听起来像个教科书僵尸。模块化设计：选择你的路径。无论你是在死磕基础词汇，还是准备用英语说唱风格秀技，GeSeed v2 都能适应。快速反馈循环：你尝试得越快，学得就越快。GeSeed v2 的构建就是为了让你保持投入，让你得到纠正，让你不断前进。",
                 "vocab": [
                     {
-                        "word": "successful",
-                        "ph": "/səkˈsesfəl/",
+                        "word": "real talk",
+                        "ph": "/riːəl tɔːk/",
+                        "pos": "phr",
+                        "mean": "（俚语）实话实说；真实对话",
+                        "ex": "Okay, real talk: we need to finish this project tonight."
+                    },
+                    {
+                        "word": "sugarcoat",
+                        "ph": "/ˈʃʊɡərkoʊt/",
+                        "pos": "v",
+                        "mean": "粉饰；美化",
+                        "ex": "Don't sugarcoat the bad news; just tell me what happened."
+                    },
+                    {
+                        "word": "textbook zombie",
+                        "ph": "/ˈtekstbʊk ˈzɒmbi/",
+                        "pos": "n phr",
+                        "mean": "教科书僵尸（指说话生硬、不自然的人）",
+                        "ex": "His formal language made him sound like a textbook zombie in a casual conversation."
+                    },
+                    {
+                        "word": "modular",
+                        "ph": "/ˈmɒdʒələr/",
                         "pos": "adj",
-                        "mean": "成功的",
-                        "ex": "She is a successful engineer."
+                        "mean": "模块化的",
+                        "ex": "The new software has a modular design, allowing users to add features as they need them."
                     },
                     {
-                        "word": "experiment",
-                        "ph": "/ɪkˈsperɪmənt/",
-                        "pos": "n",
-                        "mean": "实验；尝试",
-                        "ex": "The scientists ran the experiment twice."
+                        "word": "grind",
+                        "ph": "/ɡraɪnd/",
+                        "pos": "v",
+                        "mean": "（非正式）埋头苦干；死磕",
+                        "ex": "He had to grind for weeks to prepare for the final exam."
                     },
                     {
-                        "word": "judgment",
-                        "ph": "/ˈdʒʌdʒmənt/",
-                        "pos": "n",
-                        "mean": "评判；判断",
-                        "ex": "Try to avoid harsh judgment of yourself."
+                        "word": "spit bars",
+                        "ph": "/spɪt bɑːrz/",
+                        "pos": "idiom",
+                        "mean": "（俚语）说唱；秀说唱技巧",
+                        "ex": "The rapper got on stage and started to spit bars."
+                    },
+                    {
+                        "word": "feedback loop",
+                        "ph": "/ˈfiːdbæk luːp/",
+                        "pos": "n phr",
+                        "mean": "反馈循环",
+                        "ex": "Good communication creates a positive feedback loop within the team."
                     }
                 ],
                 "gram": [
                     {
-                        "id": "noun_phrase_apposition",
-                        "name": "名词短语同位语",
-                        "category": "P",
+                        "id": "parallelism_in_a_list_keep_you",
+                        "name": "列表中的平行结构",
+                        "category": "S",
                         "level": "B2",
-                        "pattern": "noun + , + appositive phrase + ,",
+                        "pattern": "Verb + Object + VERB-ing, Verb + Object + VERB-ing, Verb + Object + VERB-ing",
                         "components": [
-                            { "slot": "noun", "role": "名词", "pos": ["n"] },
-                            { "slot": "appositive phrase", "role": "同位语", "pos": ["phr"] }
+                            {
+                                "slot": "Verb + Object + VERB-ing",
+                                "role": "平行结构单位",
+                                "pos": [
+                                    "phr"
+                                ]
+                            }
                         ],
-                        "function": "提供额外信息或解释，常用逗号隔开。",
+                        "function": "通过重复 'keep you + V-ing' 的结构（'keep you engaged, keep you corrected, keep you moving'），作者创造了一种强有力的、富有节奏感的排比句，强调了该学习引擎持续不断地推动用户前进的核心功能。",
                         "example": {
-                            "en": "They, experiments that failed, provided useful lessons.",
-                            "cn": "那些失败的实验为他们提供了有用的教训。"
+                            "en": "A good coach will push you, challenge you, and support you.",
+                            "cn": "一个好教练会推动你、挑战你、并支持你。"
                         },
-                        "variants": [
-                            "noun + — + appositive phrase + —",
-                            "noun (that + clause) as apposition"
-                        ],
-                        "constraints": "同位语与名词在意义上应指向同一概念。"
+                        "variants": null,
+                        "constraints": "平行结构中的各项应在语法上保持一致。"
                     }
                 ]
             },
             {
                 "id": 4,
-                "en": "The emotional part of failure — shame, disappointment, embarrassment — is real and must be acknowledged. But treating emotions as the whole story prevents you from extracting the lessons.",
-                "cn": "失败的情感部分——羞耻、失望、尴尬——是真实存在且必须承认的。但把情绪当成全部故事会阻止你提取教训。",
+                "en": "A slick UI at the labs that puts you in the driver’s seat. Structured modules: each designed to level you up in listening, speaking, writing, and rap‑flow—yeah, we go there. Flexibility: Use it anytime. You're a delivery driver with free modules waiting. Smoke break? Open GeSeed. Idle time? Open GeSeed. Zero excuses: Pocket‑friendly, no fancy gear required, just you and your will to level up.",
+                "cn": "实验室里流畅的用户界面，让你掌控一切。结构化的模块：每个都旨在提升你的听力、口语、写作和说唱节奏感——是的，我们就是这么硬核。灵活性：随时使用。你是一名有免费模块等着你的外卖司机。抽烟休息？打开GeSeed。空闲时间？打开GeSeed。零借口：价格亲民，无需花哨装备，只需要你和一颗想升级的心。",
                 "vocab": [
                     {
-                        "word": "shame",
-                        "ph": "/ʃeɪm/",
+                        "word": "UI",
+                        "ph": "/ˌjuːˈaɪ/",
                         "pos": "n",
-                        "mean": "羞耻；惭愧",
-                        "ex": "He felt shame after the mistake."
+                        "mean": "用户界面（User Interface）",
+                        "ex": "A good UI should be intuitive and easy to navigate."
                     },
                     {
-                        "word": "embarrassment",
-                        "ph": "/ɪmˈbærəsmənt/",
-                        "pos": "n",
-                        "mean": "窘迫；尴尬",
-                        "ex": "There was some embarrassment at the meeting."
+                        "word": "in the driver's seat",
+                        "ph": "/ɪn ðə ˈdraɪvərz siːt/",
+                        "pos": "idiom",
+                        "mean": "掌控一切",
+                        "ex": "With her new promotion, she is now in the driver's seat of the entire project."
                     },
                     {
-                        "word": "acknowledge",
-                        "ph": "/əkˈnɒlɪdʒ/",
-                        "pos": "v",
-                        "mean": "承认；认可",
-                        "ex": "You should acknowledge your progress."
+                        "word": "level up",
+                        "ph": "/ˈlevl ʌp/",
+                        "pos": "phr v",
+                        "mean": "升级",
+                        "ex": "He played the game for hours to level up his character."
+                    },
+                    {
+                        "word": "go there",
+                        "ph": "/ɡoʊ ðer/",
+                        "pos": "idiom",
+                        "mean": "（非正式）触及（某个大胆或禁忌的话题）",
+                        "ex": "I can't believe you asked him about his divorce. You really had to go there?"
+                    },
+                    {
+                        "word": "idle time",
+                        "ph": "/ˈaɪdl taɪm/",
+                        "pos": "n phr",
+                        "mean": "空闲时间",
+                        "ex": "He uses his idle time on the commute to listen to podcasts."
+                    },
+                    {
+                        "word": "zero excuses",
+                        "ph": "/ˈzɪəroʊ ɪkˈskjuːsɪz/",
+                        "pos": "phr",
+                        "mean": "零借口",
+                        "ex": "The coach demanded 100% effort from the team, zero excuses."
+                    },
+                    {
+                        "word": "pocket-friendly",
+                        "ph": "/ˈpɒkɪt ˈfrendli/",
+                        "pos": "adj",
+                        "mean": "价格亲民的",
+                        "ex": "They offer several pocket-friendly options on their menu."
+                    },
+                    {
+                        "word": "fancy gear",
+                        "ph": "/ˈfænsi ɡɪər/",
+                        "pos": "n phr",
+                        "mean": "花哨的装备",
+                        "ex": "You don't need any fancy gear to start running; just a good pair of shoes."
                     }
                 ],
                 "gram": [
                     {
-                        "id": "list_commas",
-                        "name": "并列名词或短语的列举（逗号）",
-                        "category": "S",
-                        "level": "B1",
-                        "pattern": "item1, item2, item3",
+                        "id": "use_of_elliptical_questions",
+                        "name": "省略问句的使用",
+                        "category": "R",
+                        "level": "B2",
+                        "pattern": "Noun + ?",
                         "components": [
-                            { "slot": "item", "role": "列表项", "pos": ["n", "phr"] }
+                            {
+                                "slot": "Noun?",
+                                "role": "省略问句",
+                                "pos": [
+                                    "n phr"
+                                ]
+                            }
                         ],
-                        "function": "用逗号或破折号连接多个并列项，强调累积或并列的概念。",
+                        "function": "通过使用非常简短的、省略了动词的问句（'Smoke break?', 'Idle time?'），作者创造了一种快速、直接、与读者对话的节奏。这种手法模仿了内心的自问自答，并立即给出解决方案（'Open GeSeed.'），有力地强调了产品的便捷性和随时可用的特点。",
                         "example": {
-                            "en": "Shame, disappointment, embarrassment — they all hurt.",
-                            "cn": "羞耻、失望、尴尬——它们都会令人痛苦。"
+                            "en": "Need a ride? Call a taxi. Hungry? Order some food.",
+                            "cn": "需要搭车？叫辆出租车。饿了？点些吃的。"
                         },
                         "variants": null,
-                        "constraints": "最后两个项之间通常用 and 或者破折号来终结并列。"
+                        "constraints": "是一种在营销文案中常见的、用于创造紧凑节奏的技巧。"
                     }
                 ]
             },
             {
                 "id": 5,
-                "en": "What matters is the habit you build after failure: analyze honestly, adapt quickly, and try again. That habit turns temporary setbacks into long-term progress.",
-                "cn": "关键是你在失败之后养成的习惯：诚实分析、快速调整并再次尝试。这个习惯会把暂时的挫折变成长期的进步。",
+                "en": "Head to ge32english.com/labs/GeSeed/v2. Choose your starting module — wanna nail numbers in nine languages? Yup, it's in there. Dive in, repeat, spit it out loud, make it yours. Track your mistakes, own them, then crush them. Keep going until you’re not just learning English — you’re wielding it.",
+                "cn": "前往 ge32english.com/labs/GeSeed/v2。选择你的初始模块——想搞定九种语言的数字？是的，里面有。投入进去，重复，大声说出来，化为己有。追踪你的错误，直面它们，然后粉碎它们。继续前进，直到你不再只是学习英语——而是在驾驭它。",
                 "vocab": [
                     {
-                        "word": "analyze",
-                        "ph": "/ˈænəlaɪz/",
-                        "pos": "v",
-                        "mean": "分析",
-                        "ex": "Analyze the results before deciding."
+                        "word": "head to",
+                        "ph": "/hed tuː/",
+                        "pos": "phr v",
+                        "mean": "前往",
+                        "ex": "After work, let's head to the gym."
                     },
                     {
-                        "word": "adapt",
-                        "ph": "/əˈdæpt/",
-                        "pos": "v",
-                        "mean": "适应；调整",
-                        "ex": "You must adapt your plan to new information."
+                        "word": "wanna",
+                        "ph": "/ˈwɒnə/",
+                        "pos": "phr",
+                        "mean": "（非正式）want to",
+                        "ex": "Wanna grab a coffee later?"
                     },
                     {
-                        "word": "setback",
-                        "ph": "/ˈsetbæk/",
-                        "pos": "n",
-                        "mean": "挫折；倒退",
-                        "ex": "The delay was only a temporary setback."
+                        "word": "nail",
+                        "ph": "/neɪl/",
+                        "pos": "v",
+                        "mean": "（非正式）搞定；完美完成",
+                        "ex": "She totally nailed her presentation."
+                    },
+                    {
+                        "word": "yup",
+                        "ph": "/jʌp/",
+                        "pos": "int",
+                        "mean": "（非正式）是的",
+                        "ex": "A: 'Are you coming?' B: 'Yup!'"
+                    },
+                    {
+                        "word": "dive in",
+                        "ph": "/daɪv ɪn/",
+                        "pos": "phr v",
+                        "mean": "投入",
+                        "ex": "Don't be afraid to just dive in and start learning."
+                    },
+                    {
+                        "word": "spit it out",
+                        "ph": "/spɪt ɪt aʊt/",
+                        "pos": "phr v",
+                        "mean": "说出来",
+                        "ex": "He was nervous, but he finally spit it out and told her the truth."
+                    },
+                    {
+                        "word": "own",
+                        "ph": "/oʊn/",
+                        "pos": "v",
+                        "mean": "（非正式）直面；承担",
+                        "ex": "You need to own your mistakes and learn from them."
+                    },
+                    {
+                        "word": "crush",
+                        "ph": "/krʌʃ/",
+                        "pos": "v",
+                        "mean": "（非正式）粉碎；彻底击败",
+                        "ex": "Our team is going to crush the competition."
+                    },
+                    {
+                        "word": "wield",
+                        "ph": "/wiːld/",
+                        "pos": "v",
+                        "mean": "挥舞（武器）；掌握（权力、语言）",
+                        "ex": "A true master can wield their skills with effortless grace."
                     }
                 ],
                 "gram": [
                     {
-                        "id": "imperative_sequence",
-                        "name": "祈使句序列",
+                        "id": "imperative_sequence_for_instruction",
+                        "name": "用于指令的祈使句序列",
                         "category": "S",
-                        "level": "B2",
-                        "pattern": "Verb, Verb, and Verb.",
+                        "level": "B1",
+                        "pattern": "A series of commands using the base form of the verb.",
                         "components": [
-                            { "slot": "Verb", "role": "动词原形（祈使）", "pos": ["v"] }
+                            {
+                                "slot": "Verb",
+                                "role": "动词原形（祈使）",
+                                "pos": [
+                                    "v"
+                                ]
+                            }
                         ],
-                        "function": "用来列举指导步骤或建议，常见于说明文和指示性语言。",
+                        "function": "通过一连串简短、有力的祈使句（'Head to...', 'Choose...', 'Dive in, repeat, spit it out...', 'Track..., own..., then crush...'），作者为用户提供了一套清晰、分步的操作指南。这种结构不仅易于理解，而且充满了动感和激励性。",
                         "example": {
-                            "en": "Analyze honestly, adapt quickly, and try again.",
-                            "cn": "诚实分析、迅速调整并再次尝试。"
+                            "en": "Open the box, read the instructions, and begin assembly.",
+                            "cn": "打开盒子，阅读说明，然后开始组装。"
                         },
-                        "variants": [
-                            "Verb + ing, Verb + ing, and Verb + ing.",
-                            "Verb + , + Verb + ; + Verb."
+                        "variants": null,
+                        "constraints": "是一种非常直接和有效的给出指令的方式。"
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "en": "If you’re done with fluff and ready for something that works, GeSeed v2 is your ride or die. It won’t whisper sweet motivational quotes — it’ll push you, challenge you, and make you better. No fucking bullshit. Let’s get it. See you inside, warrior.",
+                "cn": "如果你受够了废话，准备好迎接真正有效的东西，GeSeed v2 就是你的死忠伙伴。它不会对你低声说些甜蜜的励志名言——它会推动你，挑战你，让你变得更好。拒绝狗屁。开干吧。回头见，勇士。",
+                "vocab": [
+                    {
+                        "word": "be done with",
+                        "ph": "/biː dʌn wɪθ/",
+                        "pos": "phr",
+                        "mean": "受够了；完成了",
+                        "ex": "I'm so done with his excuses."
+                    },
+                    {
+                        "word": "ride or die",
+                        "ph": "/raɪd ɔːr daɪ/",
+                        "pos": "n phr",
+                        "mean": "（俚语）死忠伙伴；绝对忠诚的人",
+                        "ex": "She's been my best friend for years; she's my ride or die."
+                    },
+                    {
+                        "word": "motivational quote",
+                        "ph": "/ˌmoʊtɪˈveɪʃənl kwoʊt/",
+                        "pos": "n phr",
+                        "mean": "励志名言",
+                        "ex": "His office wall is covered with framed motivational quotes."
+                    },
+                    {
+                        "word": "let's get it",
+                        "ph": "/lets ɡet ɪt/",
+                        "pos": "idiom",
+                        "mean": "（俚语）开始吧；开干吧",
+                        "ex": "The team is ready. Let's get it!"
+                    },
+                    {
+                        "word": "warrior",
+                        "ph": "/ˈwɔːriər/",
+                        "pos": "n",
+                        "mean": "勇士",
+                        "ex": "He fought like a true warrior and never gave up."
+                    }
+                ],
+                "gram": [
+                    {
+                        "id": "repetition_of_core_slogan_for_emphasis",
+                        "name": "重复核心口号以加强语气",
+                        "category": "R",
+                        "level": "C1",
+                        "pattern": "Repetition of a key phrase or slogan for closure.",
+                        "components": [
+                            {
+                                "slot": "slogan",
+                                "role": "口号",
+                                "pos": [
+                                    "phr"
+                                ]
+                            }
                         ],
-                        "constraints": "各项应保持语法平行。"
+                        "function": "在结尾处再次使用 'No fucking bullshit'，不仅是对开篇的呼应，更是对品牌核心承诺的最终强调。这种循环结构（cyclical structure）使信息完整、有力，并给读者留下深刻、统一的品牌印象。",
+                        "example": {
+                            "en": "He started his speech by saying, 'We can do better.' He ended it with the same powerful words: 'We can do better.'",
+                            "cn": "他以“我们能做得更好”开始他的演讲。他又以同样有力的言辞结束：“我们能做得更好。”"
+                        },
+                        "variants": null,
+                        "constraints": "是一种在演讲和营销中常见的、用于强化核心信息的修辞手法。"
                     }
                 ]
             }
-        ]
+        ],
+        "gram_types": {
+            "S": {
+                "en": "Sentence Structure",
+                "cn": "句子结构"
+            },
+            "T": {
+                "en": "Tense",
+                "cn": "时态"
+            },
+            "C": {
+                "en": "Clause",
+                "cn": "从句"
+            },
+            "P": {
+                "en": "Punctuation",
+                "cn": "标点"
+            },
+            "W": {
+                "en": "Word Form / Morphology",
+                "cn": "词形变化"
+            },
+            "F": {
+                "en": "Figurative Language",
+                "cn": "修辞"
+            },
+            "R": {
+                "en": "Rhetoric",
+                "cn": "修辞手法"
+            },
+            "O": {
+                "en": "Others",
+                "cn": "其他"
+            }
+        },
+        "pos_types": {
+            "n": {
+                "en": "noun",
+                "cn": "名词"
+            },
+            "v": {
+                "en": "verb",
+                "cn": "动词"
+            },
+            "adj": {
+                "en": "adjective",
+                "cn": "形容词"
+            },
+            "adv": {
+                "en": "adverb",
+                "cn": "副词"
+            },
+            "prep": {
+                "en": "preposition",
+                "cn": "介词"
+            },
+            "conj": {
+                "en": "conjunction",
+                "cn": "连词"
+            },
+            "pron": {
+                "en": "pronoun",
+                "cn": "代词"
+            },
+            "det": {
+                "en": "determiner",
+                "cn": "限定词"
+            },
+            "int": {
+                "en": "interjection",
+                "cn": "感叹词"
+            },
+            "phr": {
+                "en": "phrase",
+                "cn": "短语"
+            },
+            "phr v": {
+                "en": "phrasal verb",
+                "cn": "动词短语"
+            },
+            "n phr": {
+                "en": "noun phrase",
+                "cn": "名词短语"
+            },
+            "adj phr": {
+                "en": "adjective phrase",
+                "cn": "形容词短语"
+            },
+            "modal v": {
+                "en": "modal verb",
+                "cn": "情态动词"
+            },
+            "idiom": {
+                "en": "idiom",
+                "cn": "习语"
+            },
+            "S": {
+                "en": "sentence",
+                "cn": "句子"
+            }
+        }
     }
+
 
 ];

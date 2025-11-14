@@ -35,7 +35,7 @@ export const catalogElement = createDiv("article-catalog", {
             children: [
                 createButton(" 刷新目录", null, "btn btn-sm btn-outline-secondary", {
                     attrs: { id: 'refresh-catalog' },
-                    children: [createIcon("arrow-clockwise", "bi")]
+                    children: [createIcon("bi-arrow-clockwise", "bi")]
                 })
             ]
         })

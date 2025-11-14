@@ -105,7 +105,7 @@ export const floatingMenu = createNode({
                             tag: 'i',
                             classes: ['bi', 'bi-box-arrow-in-down']
                         },
-                        ' 动态导入JS'
+                        ' 快速加载文章'
                     ]
                 }
             ]

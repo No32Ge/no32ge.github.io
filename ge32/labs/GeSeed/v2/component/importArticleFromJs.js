@@ -18,7 +18,7 @@ export const addArticlesFromJs = createDiv("modal-overlay", {
                     children: [
                         // URL输入
                         createFormGroup(
-                            createLabel("JS文件URL", "js-file-url", "form-label required-field"),
+                            createLabel("文件URL", "js-file-url", "form-label required-field"),
                             createInput("text", "例如: https://example.com/articles.js", "", "form-input", {
                                 attrs: { id: 'js-file-url' }
                             }),
@@ -97,8 +97,8 @@ function createPresetLibraries() {
     const presets = [
         {
             url: 'https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/basic-articles.js',
-            name: '基础英语文章库 (100篇)',
-            desc: '包含100篇基础英语学习文章'
+            name: 'Wonder (Part1)',
+            desc: '包含30篇基础英语学习文章'
         },
         {
             url: 'https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/advanced-articles.js',
