@@ -5,7 +5,6 @@
  */
 
 // 导入工具函数和样式创建器
-import { createDiv, createSpan, createButton } from "../../js/nodeCreater.js";
 import { CssStyleMaker } from "../../js/cssMaker.js";
 
 /**
