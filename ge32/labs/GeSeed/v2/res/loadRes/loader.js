@@ -200,7 +200,6 @@ function a(b){
     const y = 2;
     b(x,y);
 }
-
 a((x,y) => {
-    
+    console.log(x,y)
 })

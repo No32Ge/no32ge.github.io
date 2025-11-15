@@ -263,17 +263,6 @@
             font-size: 0.75rem;
         }
 
-        /* 新功能样式 */
-        .progress-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: #ecf0f1;
-            z-index: 1000;
-        }
-
         .progress-bar {
             height: 4px;
             background: var(--secondary-color);
@@ -1764,9 +1753,7 @@
                 font-size: 0.8rem;
             }
 
-            .progress-container {
-                height: 5px;
-            }
+        
 
             .progress-bar {
                 height: 5px;
@@ -1781,11 +1768,6 @@
 </head>
 
 <body>
-
-    <div class="progress-container">
-        <div class="progress-bar" id="progress-bar"></div>
-    </div>
-
     <div class="container" id='Sraian'>
         <div class="header">
             <h1 id="page-title">Sraian by Ge32</h1>
@@ -1817,7 +1799,7 @@
 
         import { TextAnalyzer } from './js/textAnalyzer.js';
 
-        import {floatingMenu} from "./component/floatingMenu.js";
+        import {initMenu} from "./component/floatingMenu.js";
 
         import {importArticlesModal} from "./component/importArticlesFromFile.js"
 
@@ -1831,8 +1813,16 @@
 
         import {exportModalElement} from "./component/exportModal.js";
 
+        import {getLibraryItemWithChapters} from "./res/articles/importArticles.js";
+
+        import{initProgress} from  "./component/progress.js";
+       
+
+
+
         function initNode() {
             buildCatalog?.();
+            initMenu?.();
             
             document.body.appendChild(exportModalElement);
 
@@ -1840,7 +1830,7 @@
 
             document.body.appendChild(addGrammarModal);
 
-            document.body.appendChild(floatingMenu);
+         
 
             document.body.appendChild(importArticlesModal);
 
@@ -1978,6 +1968,7 @@
                 articlesData.forEach(article => initArtcleData(article));
             }
             initNode?.();
+            initProgress?.();
             buildWordDictionary?.();
             renderPage?.();
             initFloatingControl?.();
@@ -1985,10 +1976,7 @@
             initDynamicImport?.();
             initArticleCatalog?.();
             initSpeechSynthesis?.();
-
-            // 监听滚动事件更新进度条
-            window.addEventListener('scroll', updateProgress);
-            updateProgress?.();
+            
 
             // 预加载语音列表
             if ('speechSynthesis' in window) {
@@ -2868,26 +2856,7 @@
             }
         }
 
-        // 更新阅读进度
-        function updateProgress() {
-            const winHeight = window.innerHeight;
-            const docHeight = document.documentElement.scrollHeight;
-            const scrollTop = window.scrollY || window.pageYOffset; // 使用现代API，保持向后兼容
-
-            // 防止除零错误
-            const scrollableHeight = docHeight - winHeight;
-            let scrollPercent = 0;
-
-            if (scrollableHeight > 0) {
-                scrollPercent = (scrollTop / scrollableHeight) * 100;
-            }
-
-            // 确保进度在合理范围内
-            scrollPercent = Math.min(Math.max(scrollPercent, 0), 100);
-
-            document.getElementById('progress-bar').style.width = scrollPercent + '%';
-            document.getElementById('progress-display').textContent = `${Math.round(scrollPercent)}%`;
-        }
+       
 
 
         function getScreenInfo(px = 0, py = 0) {

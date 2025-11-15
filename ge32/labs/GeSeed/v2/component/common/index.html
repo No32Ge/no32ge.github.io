@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>悬浮球功能测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 悬浮菜单样式 */
+        .floating-menu {
+            position: fixed;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            padding: 15px;
+            z-index: 9998;
+            width: 280px;
+            max-height: 80vh;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .floating-menu.show {
+            display: block;
+        }
+
+        .menu-header {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eaeaea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-section {
+            margin-bottom: 15px;
+        }
+
+        .menu-section-title {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .menu-item {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            margin-bottom: 5px;
+            background: none;
+            border: none;
+            text-align: left;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .menu-item:hover {
+            background: #f0f0f0;
+        }
+
+        .menu-item.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>悬浮球功能测试</h1>
+    <p id="test">测试</p>
+
+    <script type="module">
+        import FloatingBall from "./floatingBall.js";
+        import { createDiv, createSpan, createButton } from "../../js/nodeCreater.js";
+        // 页面加载完成后初始化悬浮球
+        // 一行式创建默认菜单
+        const wrapper = createDiv("", {
+            children: [
+                createDiv("menu-header", {
+                    children: [
+                        createSpan("悬浮菜单"),
+                        createButton("×", () => { console.log("点击关闭菜单") }, "btn-close", { attrs: { type: 'button', id: 'close-menu' } })
+                    ]
+                }),
+                createDiv("menu-section", {
+                    children: [
+                        createDiv("menu-section-title", { text: "功能菜单" }),
+                        createButton("添加菜单", null, "menu-item", { attrs: { 'data-action': 'refresh' } })
+                    ]
+                })
+            ]
+        });
+
+        const menu = document.createElement("div");
+        menu.className = "floating-menu";
+        menu.classList.add("show");
+        menu.appendChild(wrapper);
+        document.body.appendChild(menu);
+
+
+        // 创建悬浮球实例
+        const floatingBall = new FloatingBall({
+            initialX: window.innerWidth - 80,
+            initialY: window.innerHeight / 3,
+            size: 60,
+            color: '#3498db',
+            icon: 'X',
+            clickBack: function (x, y, set) {
+                set(menu)
+                menu.style.top = y + 'px';
+                menu.style.left = x + 'px'; // 在鼠标左侧显示
+            }
+        });
+
+        const t = document.getElementById("test");
+        for (let i = 0; i < 100; i++) {
+            t.innerHTML = "<p>t</p>" + t.innerHTML;
+        }
+
+    </script>
+</body>
+
+</html>

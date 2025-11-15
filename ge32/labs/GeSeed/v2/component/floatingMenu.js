@@ -1,6 +1,8 @@
 // 悬浮球功能
 import { createNode } from "../js/nodeCreater.js";
-export const floatingMenu = createNode({
+import { getScrollPercent } from "./progress.js";
+
+const floatingMenu = createNode({
     tag: 'div',
     classes: ['floating-menu'],
     attrs: { id: 'floating-menu' },
@@ -148,3 +150,26 @@ export const floatingMenu = createNode({
         }
     ]
 });
+
+
+export function initMenu() {
+    document.body.appendChild(floatingMenu);
+
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(() => {
+                const percent = Math.round(getScrollPercent());
+
+                document.getElementById("progress-display").innerText =
+                    percent + "%";
+
+                document.title = `Sraian(${percent})%`;
+
+                ticking = false;
+            });
+        }
+    });
+}

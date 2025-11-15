@@ -57,6 +57,7 @@ export const catalogButton = createNode({
 })
 
 export function buildCatalog(){
+    
     document.body.appendChild(catalogButton);
     document.body.appendChild(catalogElement);
 
