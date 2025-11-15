@@ -16,7 +16,7 @@
         "source": {
             "catalog": "wonder",
             "subPrefix": "Wonder-Part-",
-            "baseURL": "https://ge32english.com/ge32/labs/GeSeed/library/articles",
+            "baseURL": "http://127.0.0.1:8000/ge32/labs/GeSeed/library/articles",
             "chapterCount": 8
         }
     }
