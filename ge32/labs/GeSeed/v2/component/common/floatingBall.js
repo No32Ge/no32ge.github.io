@@ -84,8 +84,8 @@ class FloatingBall {
                 y: this.config.initialY
             },
             targetSize: {
-                width: 0,
-                height: 0
+                width: 200,
+                height: 200
             }
         };
 
@@ -204,6 +204,7 @@ class FloatingBall {
         };
 
         ball.addEventListener("touchstart", (e) => {
+            this.updatePosition()
             if (e.touches.length > 1) {
                 e.preventDefault();
                 return; // 不处理多指操作
@@ -242,6 +243,7 @@ class FloatingBall {
 
         // 点击显示菜单
         ball.addEventListener('click', (e) => {
+            this.updatePosition();
             e.preventDefault();
             e.stopPropagation();
             if (!isDragging) {

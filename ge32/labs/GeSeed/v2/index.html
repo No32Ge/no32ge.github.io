@@ -1522,7 +1522,7 @@
         }
 
 
-       
+
 
         /* 桌面端调整 */
         @media (min-width: 768px) {
@@ -1793,6 +1793,12 @@
                 document.querySelectorAll('.section-title .toggle-btn').forEach(btn => {
                     btn.textContent = appState.showExplanations ? '隐藏' : '显示';
                 });
+            });
+
+            document.getElementById('article-catalog-btn').addEventListener('click', function () {
+                document.getElementById('article-catalog').classList.add('show');
+                renderCatalogList();
+                hideFloatingMenu();
             });
 
         }
