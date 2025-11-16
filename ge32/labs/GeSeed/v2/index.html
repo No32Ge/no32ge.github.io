@@ -304,52 +304,6 @@
             display: none;
         }
 
-        /* 悬浮控制球样式 */
-        .floating-control {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            background: var(--secondary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 9999;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-        }
-
-        .floating-control:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .floating-control.dragging {
-            transition: none;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .floating-control.left-edge {
-            left: -30px;
-        }
-
-        .floating-control.right-edge {
-            right: -30px;
-        }
-
-        .floating-control.top-edge {
-            top: -30px;
-        }
-
-        .floating-control.bottom-edge {
-            bottom: -30px;
-        }
 
         /* 悬浮菜单样式 */
         .floating-menu {
@@ -1568,37 +1522,7 @@
         }
 
 
-        /* 手机端悬浮球锁定样式 */
-        @media (max-width: 767px) {
-            .floating-control.mobile-locked {
-                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-                pointer-events: auto;
-            }
-
-            .floating-control.mobile-returning {
-                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-
-            /* 隐藏拖动相关的样式 */
-            .floating-control.dragging {
-                transition: none;
-            }
-
-            /* 确保在移动端悬浮球足够大，易于点击 */
-            .floating-control {
-                width: 65px;
-                height: 65px;
-                font-size: 1.8rem;
-            }
-        }
-
-        /* 桌面端保持原有样式 */
-        @media (min-width: 768px) {
-            .floating-control.mobile-locked {
-                /* 桌面端不使用移动端锁定功能 */
-                transition: all 0.3s ease;
-            }
-        }
+       
 
         /* 桌面端调整 */
         @media (min-width: 768px) {
@@ -1753,7 +1677,7 @@
                 font-size: 0.8rem;
             }
 
-        
+
 
             .progress-bar {
                 height: 5px;
@@ -1784,10 +1708,6 @@
         </div>
     </div>
     <div class="word-tooltip" id="word-tooltip"></div>
-    <!-- 悬浮控制球 -->
-    <div class="floating-control" id="floating-control">
-        <i class="bi bi-gear-fill"></i>
-    </div>
     <!-- 工具提示容器 -->
     <div id="slot-tooltip" class="slot-tooltip"></div>
     <!-- Bootstrap Icons -->
@@ -1799,42 +1719,81 @@
 
         import { TextAnalyzer } from './js/textAnalyzer.js';
 
-        import {initMenu} from "./component/floatingMenu.js";
+        import { initMenuDev } from "./component/floatingMenu.js";
 
-        import {importArticlesModal} from "./component/importArticlesFromFile.js"
+        import { importArticlesModal } from "./component/importArticlesFromFile.js"
 
-        import {addGrammarModal} from "./component/addGrammer.js"
+        import { addGrammarModal } from "./component/addGrammer.js"
 
-        import {buildCatalog} from "./component/catalog.js";
+        import { buildCatalog } from "./component/catalog.js";
 
-        import {addArticlesFromJs} from "./component/importArticleFromJs.js";
+        import { addArticlesFromJs } from "./component/importArticleFromJs.js";
 
-        import {addVocabModal} from "./component/addVocab.js";
+        import { addVocabModal } from "./component/addVocab.js";
 
-        import {exportModalElement} from "./component/exportModal.js";
+        import { exportModalElement } from "./component/exportModal.js";
 
-        import {getLibraryItemWithChapters} from "./res/articles/importArticles.js";
+        import { getLibraryItemWithChapters } from "./res/articles/importArticles.js";
 
-        import{initProgress} from  "./component/progress.js";
-       
+        import { initProgress } from "./component/progress.js";
+
+        import FloatingBall from "./component/common/floatingBall.js"
+
 
 
 
         function initNode() {
             buildCatalog?.();
-            initMenu?.();
-            
+            const menu = initMenuDev?.(null)
+
             document.body.appendChild(exportModalElement);
 
             document.body.appendChild(addArticlesFromJs)
 
             document.body.appendChild(addGrammarModal);
 
-         
+
 
             document.body.appendChild(importArticlesModal);
 
             document.body.appendChild(addVocabModal);
+
+            // 创建悬浮球实例
+            const floatingBall = new FloatingBall({
+                initialX: window.innerWidth - 80,
+                initialY: window.innerHeight / 3,
+                size: 60,
+                color: '#3498db',
+                icon: '𝔾',
+                clickBack: function (x, y, set) {
+                    set(menu);
+                    console.log("点击");
+                    menu.classList.toggle("show");
+                    menu.style.top = y + 'px';
+                    menu.style.left = x + 'px'; // 在鼠标左侧显示
+                },
+                dragBack: () => {
+                    console.log("拖动事件");
+                }
+            });
+
+            document.getElementById("toggle-explanations").addEventListener('change', function () {
+                appState.showExplanations = this.checked;
+
+                // 显示/隐藏所有词汇和语法部分
+                document.querySelectorAll('.vocab-list, .grammar-list').forEach(el => {
+                    if (appState.showExplanations) {
+                        el.classList.remove('hidden-content');
+                    } else {
+                        el.classList.add('hidden-content');
+                    }
+                });
+
+                // 更新所有切换按钮文本
+                document.querySelectorAll('.section-title .toggle-btn').forEach(btn => {
+                    btn.textContent = appState.showExplanations ? '隐藏' : '显示';
+                });
+            });
 
         }
 
@@ -1971,12 +1930,12 @@
             initProgress?.();
             buildWordDictionary?.();
             renderPage?.();
-            initFloatingControl?.();
+
             initImportExport?.();
             initDynamicImport?.();
             initArticleCatalog?.();
             initSpeechSynthesis?.();
-            
+
 
             // 预加载语音列表
             if ('speechSynthesis' in window) {
@@ -2561,7 +2520,6 @@
                     el.classList.add('hidden-content');
                 }
             });
-
             // 更新所有切换按钮文本
             document.querySelectorAll('.section-title .toggle-btn').forEach(btn => {
                 btn.textContent = appState.showExplanations ? '隐藏' : '显示';
@@ -2856,387 +2814,6 @@
             }
         }
 
-       
-
-
-        function getScreenInfo(px = 0, py = 0) {
-            // 限制范围在 0~100 之间
-            px = Math.min(Math.max(px, 0), 100);
-            py = Math.min(Math.max(py, 0), 100);
-
-            // 转换为比例
-            const xRatio = px / 100;
-            const yRatio = py / 100;
-
-            // 返回信息
-            return {
-                x: window.innerWidth * xRatio,
-                y: window.innerHeight * yRatio,
-                width: window.innerWidth,
-                height: window.innerHeight,
-                ratio: window.innerWidth / window.innerHeight
-            };
-        }
-
-
-
-        // 悬浮控制球功能 - 移动端优化版本
-        function initFloatingControl() {
-            const floatingControl = document.getElementById('floating-control');
-            const floatingMenu = document.getElementById('floating-menu');
-            const closeMenuBtn = document.getElementById('close-menu');
-            const toggleExplanationsSwitch = document.getElementById('toggle-explanations');
-            // 检测设备类型
-            const isTouch = isTouchDevice();
-
-            // 设置初始位置
-            updateFloatingControlPosition();
-
-            // 保存原始位置
-            appState.floatingControl.originalPosition = {
-                x: getScreenInfo(95, 0).x,
-                y: getScreenInfo(0, 90).y
-            };
-
-            // 设置目标位置（右上角）
-            appState.floatingControl.targetPosition = {
-                x: getScreenInfo(80, 0).x,
-                y: getScreenInfo(0, 90).y
-            };
-
-            // 在悬浮菜单初始化部分添加
-            document.getElementById('article-catalog-btn').addEventListener('click', function () {
-                document.getElementById('article-catalog').classList.add('show');
-                renderCatalogList();
-                hideFloatingMenu();
-            });
-
-            // 根据设备类型绑定不同的事件
-            if (isTouch) {
-                // 触屏设备 - 简化交互，只处理点击
-                console.log('触屏设备 - 简化交互模式');
-                const s = getScreenInfo(90, 90);
-
-
-                appState.floatingControlPosition.x = s.x;
-                appState.floatingControlPosition.y = s.y;
-                console.log('left',)
-
-
-                // 移除所有可能存在的拖动事件
-                floatingControl.ontouchstart = null;
-                floatingControl.ontouchmove = null;
-                floatingControl.ontouchend = null;
-
-                updateFloatingControlPosition();
-
-                // 只绑定点击事件
-                floatingControl.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    if (appState.floatingControl.isReturning) {
-                        // 如果正在返回中，不处理点击
-                        return;
-                    }
-
-                    if (appState.floatingControl.isMobileLocked) {
-                        // 如果已经锁定，点击后返回原始位置并关闭菜单
-                        returnToOriginalPosition();
-                        hideFloatingMenu();
-                    } else {
-                        // 如果未锁定，移动到目标位置并显示菜单
-                        moveToTargetPosition();
-                        toggleMenu();
-                    }
-                });
-
-            } else {
-                // 非触屏设备 - 保持原有的鼠标事件
-                console.log('非触屏设备 - 绑定鼠标事件');
-
-                // 菜单显示/隐藏
-                floatingControl.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    toggleMenu();
-                });
-
-                // 拖动功能
-                let isDragging = false;
-                let dragOffset = { x: 0, y: 0 };
-
-                floatingControl.addEventListener('mousedown', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    isDragging = true;
-                    floatingControl.classList.add('dragging');
-
-                    const rect = floatingControl.getBoundingClientRect();
-                    dragOffset.x = e.clientX - rect.left;
-                    dragOffset.y = e.clientY - rect.top;
-
-                    document.addEventListener('mousemove', onMouseDrag);
-                    document.addEventListener('mouseup', stopMouseDrag);
-                });
-
-                function onMouseDrag(e) {
-                    if (!isDragging) return;
-
-                    appState.floatingControlPosition.x = e.clientX - dragOffset.x;
-                    appState.floatingControlPosition.y = e.clientY - dragOffset.y;
-
-                    updateFloatingControlPosition();
-                }
-
-                function stopMouseDrag() {
-                    isDragging = false;
-                    floatingControl.classList.remove('dragging');
-
-                    document.removeEventListener('mousemove', onMouseDrag);
-                    document.removeEventListener('mouseup', stopMouseDrag);
-
-                    // 自动吸附到最近的边缘
-                    autoSnapToEdge();
-
-                    // 更新原始位置
-                    appState.floatingControl.originalPosition = {
-                        x: appState.floatingControlPosition.x,
-                        y: appState.floatingControlPosition.y
-                    };
-                }
-            }
-
-
-
-            // 切换菜单显示/隐藏的通用函数
-            function toggleMenu() {
-                const isShowing = floatingMenu.classList.toggle('show');
-
-                if (isShowing) {
-                    // 定位菜单
-                    const controlRect = floatingControl.getBoundingClientRect();
-                    const menuWidth = 280;
-                    const menuHeight = floatingMenu.offsetHeight;
-
-                    let menuLeft = controlRect.left;
-                    let menuTop = controlRect.bottom + 10;
-
-                    // 确保菜单不会超出屏幕
-                    if (menuLeft + menuWidth > window.innerWidth) {
-                        menuLeft = window.innerWidth - menuWidth - 10;
-                    }
-
-                    if (menuTop + menuHeight > window.innerHeight) {
-                        menuTop = controlRect.top - menuHeight - 10;
-                    }
-
-                    floatingMenu.style.left = `${menuLeft}px`;
-                    floatingMenu.style.top = `${menuTop}px`;
-
-                    // 在移动端，显示菜单时移动到目标位置
-                    if (isTouch && !appState.floatingControl.isMobileLocked) {
-                        moveToTargetPosition();
-                    }
-                } else {
-                    // 在移动端，隐藏菜单时返回原始位置
-                    if (isTouch && appState.floatingControl.isMobileLocked) {
-                        returnToOriginalPosition();
-                    }
-                }
-            }
-
-            // 关闭菜单
-            closeMenuBtn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                hideFloatingMenu();
-            });
-
-            // 点击其他地方关闭菜单
-            document.addEventListener('click', function (e) {
-                // 如果点击的不是悬浮球、菜单或菜单内的元素，则关闭菜单
-                if (!floatingControl.contains(e.target) && !floatingMenu.contains(e.target)) {
-                    hideFloatingMenu();
-                }
-            });
-
-            // 防止菜单点击事件冒泡
-            floatingMenu.addEventListener('click', function (e) {
-                e.stopPropagation();
-            });
-
-            // 全局设置开关
-            toggleExplanationsSwitch.addEventListener('change', function () {
-                appState.showExplanations = this.checked;
-
-                // 显示/隐藏所有词汇和语法部分
-                document.querySelectorAll('.vocab-list, .grammar-list').forEach(el => {
-                    if (appState.showExplanations) {
-                        el.classList.remove('hidden-content');
-                    } else {
-                        el.classList.add('hidden-content');
-                    }
-                });
-
-                // 更新所有切换按钮文本
-                document.querySelectorAll('.section-title .toggle-btn').forEach(btn => {
-                    btn.textContent = appState.showExplanations ? '隐藏' : '显示';
-                });
-            });
-
-            // 窗口大小变化时更新位置
-            window.addEventListener('resize', function () {
-                // 更新目标位置
-                appState.floatingControl.targetPosition = {
-                    x: window.innerWidth - 80,
-                    y: 20
-                };
-
-                // 如果当前在目标位置，更新位置
-                if (appState.floatingControl.isMobileLocked) {
-                    appState.floatingControlPosition.x = appState.floatingControl.targetPosition.x;
-                    appState.floatingControlPosition.y = appState.floatingControl.targetPosition.y;
-                    updateFloatingControlPosition();
-                }
-
-                // 更新原始位置的边界检查
-                if (!appState.floatingControl.isMobileLocked) {
-                    autoSnapToEdge();
-                    // 更新原始位置
-                    appState.floatingControl.originalPosition = {
-                        x: appState.floatingControlPosition.x,
-                        y: appState.floatingControlPosition.y
-                    };
-                }
-            });
-        }
-
-        // 移动到目标位置函数（已在initFloatingControl中定义，但需要在外部可访问）
-        function moveToTargetPosition() {
-            const floatingControl = document.getElementById('floating-control');
-            const isTouch = isTouchDevice();
-
-            if (!isTouch) return;
-
-            // 添加移动动画类
-            floatingControl.classList.add('mobile-locked');
-            floatingControl.classList.remove('mobile-returning');
-
-            // 更新位置
-            appState.floatingControlPosition.x = appState.floatingControl.targetPosition.x;
-            appState.floatingControlPosition.y = appState.floatingControl.targetPosition.y;
-
-            updateFloatingControlPosition();
-
-            // 更新状态
-            appState.floatingControl.isMobileLocked = true;
-            appState.floatingControl.isReturning = false;
-        }
-
-
-        // 返回原始位置函数（已在initFloatingControl中定义，但需要在外部可访问）
-        function returnToOriginalPosition() {
-            const floatingControl = document.getElementById('floating-control');
-            const isTouch = isTouchDevice();
-
-            if (!isTouch) return;
-
-            // 添加返回动画类
-            floatingControl.classList.add('mobile-returning');
-            floatingControl.classList.remove('mobile-locked');
-
-            // 设置返回状态
-            appState.floatingControl.isReturning = true;
-
-            // 更新位置
-            appState.floatingControlPosition.x = appState.floatingControl.originalPosition.x;
-            appState.floatingControlPosition.y = appState.floatingControl.originalPosition.y;
-
-            updateFloatingControlPosition();
-
-            // 动画完成后更新状态
-            setTimeout(() => {
-                appState.floatingControl.isMobileLocked = false;
-                appState.floatingControl.isReturning = false;
-                floatingControl.classList.remove('mobile-returning');
-            }, 500);
-        }
-
-
-        function updateFloatingControlPosition() {
-            const floatingControl = document.getElementById('floating-control');
-            floatingControl.style.left = `${appState.floatingControlPosition.x}px`;
-            floatingControl.style.top = `${appState.floatingControlPosition.y}px`;
-        }
-
-        function autoSnapToEdge() {
-            const isTouch = isTouchDevice();
-
-            // 在移动端且已锁定时，不进行自动吸附
-            if (isTouch && appState.floatingControl.isMobileLocked) {
-                return;
-            }
-
-            const controlSize = 60;
-            const edgeThreshold = 80; // 距离边缘多少像素时自动吸附
-
-            const x = appState.floatingControlPosition.x;
-            const y = appState.floatingControlPosition.y;
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-
-            // 计算到各边的距离
-            const toLeft = x;
-            const toRight = width - x - controlSize;
-            const toTop = y;
-            const toBottom = height - y - controlSize;
-
-            // 找到最近的边
-            const minDistance = Math.min(toLeft, toRight, toTop, toBottom);
-
-            // 移除所有边缘类
-            const floatingControl = document.getElementById('floating-control');
-            floatingControl.classList.remove('left-edge', 'right-edge', 'top-edge', 'bottom-edge');
-
-            // 根据最近的边自动吸附
-            if (minDistance < edgeThreshold) {
-                if (minDistance === toLeft) {
-                    appState.floatingControlPosition.x = -controlSize / 2;
-                    floatingControl.classList.add('left-edge');
-                } else if (minDistance === toRight) {
-                    appState.floatingControlPosition.x = width - controlSize / 2;
-                    floatingControl.classList.add('right-edge');
-                } else if (minDistance === toTop) {
-                    appState.floatingControlPosition.y = -controlSize / 2;
-                    floatingControl.classList.add('top-edge');
-                } else if (minDistance === toBottom) {
-                    appState.floatingControlPosition.y = height - controlSize / 2;
-                    floatingControl.classList.add('bottom-edge');
-                }
-
-                updateFloatingControlPosition();
-
-                // 更新原始位置
-                appState.floatingControl.originalPosition = {
-                    x: appState.floatingControlPosition.x,
-                    y: appState.floatingControlPosition.y
-                };
-            }
-        }
-
-
-        function hideFloatingMenu() {
-            const floatingMenu = document.getElementById('floating-menu');
-            const isTouch = isTouchDevice();
-
-            floatingMenu.classList.remove('show');
-
-            // 在移动端，隐藏菜单时返回原始位置
-            if (isTouch && appState.floatingControl.isMobileLocked) {
-                returnToOriginalPosition();
-            }
-        }
 
 
 

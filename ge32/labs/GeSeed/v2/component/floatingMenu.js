@@ -1,6 +1,7 @@
 // 悬浮球功能
 import { createNode } from "../js/nodeCreater.js";
 import { getScrollPercent } from "./progress.js";
+import { initMenu } from "./common/menu.js";
 
 const floatingMenu = createNode({
     tag: 'div',
@@ -152,24 +153,38 @@ const floatingMenu = createNode({
 });
 
 
-export function initMenu() {
-    document.body.appendChild(floatingMenu);
 
-    let ticking = false;
 
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            ticking = true;
-            requestAnimationFrame(() => {
-                const percent = Math.round(getScrollPercent());
 
-                document.getElementById("progress-display").innerText =
-                    percent + "%";
+/**
+ * 用于快速测试
+ * @param {[Element...]} nodes 
+ */
 
-                document.title = `Sraian(${percent})%`;
+export function initMenuDev(nodes) {
+    return initMenu(floatingMenu, nodes, () => {
+        // RAF 节流标记
+        let ticking = false;
+        // 滚动更新进度 UI
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                ticking = true;
 
-                ticking = false;
-            });
-        }
-    });
+                requestAnimationFrame(() => {
+                    const percent = Math.round(getScrollPercent());
+
+                    document.getElementById("progress-display").innerText =
+                        percent + "%";
+
+                    document.title = `Sraian(${percent})%`;
+
+                    ticking = false;
+                });
+            }
+        });
+    })
 }
+
+
+
+

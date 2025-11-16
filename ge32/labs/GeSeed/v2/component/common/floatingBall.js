@@ -7,6 +7,7 @@
 // 导入工具函数和样式创建器
 import { CssStyleMaker } from "../../js/cssMaker.js";
 
+
 /**
  * 生成指定长度的随机数字字符串
  * @param {number} len - 字符串长度，默认为6
@@ -60,7 +61,7 @@ class FloatingBall {
      * @param {Function} [options.clickBack] - 点击回调函数
      * @param {number} options.clickBack.x - 目标位置的X坐标
      * @param {number} options.clickBack.y - 目标位置的Y坐标
-     * @param {Function} options.clickBack.setSize - 设置目标组件尺寸的回调函数
+     * @param {Function} options.clickBack.z - 设置目标组件尺寸的回调函数
      */
     constructor(options = {}) {
         // 默认配置
@@ -71,6 +72,7 @@ class FloatingBall {
             color: options.color || '#3498db',
             icon: options.icon || '⚙️',
             clickBack: options.clickBack || ((x, y, z) => { console.log(`虚拟坐标x:${x} y:${y}`) }),
+            dragBack: options.dragBack || (()=>{console.log("拖动事件")}),
             ...options
         };
 
@@ -105,7 +107,14 @@ class FloatingBall {
         this.createBall();
         this.bindEvents();
         this.updatePosition();
+        this.refrash();
         initCSS();
+    }
+
+    refrash() {
+        window.addEventListener('resize', () => {
+            this.autoSnapToEdge();
+        });
     }
 
     /**
@@ -183,6 +192,9 @@ class FloatingBall {
                     const rect = node.getBoundingClientRect();
                     this._setTargetSize(rect.width, rect.height);
                 });
+            }else{
+                const position = this.positionTarget();
+                this.config.dragBack(position.targetLeft,position.targetTop);
             }
             dragging = false;
             document.removeEventListener("touchmove", onTouchMove);
@@ -239,6 +251,10 @@ class FloatingBall {
                     this._setTargetSize(rect.width, rect.height);
                 });
             }
+            else{
+                const position = this.positionTarget();
+                this.config.dragBack(position.targetLeft,position.targetTop);
+            }
         });
 
         // 拖动功能
@@ -283,7 +299,6 @@ class FloatingBall {
      * @private
      */
     autoSnapToEdge() {
-        if (this.isTouchDevice() && this.state.isMobileLocked) return;
 
         const controlSize = this.config.size;
         const edgeThreshold = 80;
