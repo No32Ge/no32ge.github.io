@@ -1,0 +1,267 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --light-color: #f9f9f9;
+    --border-color: #eaeaea;
+    --text-color: #333;
+    --text-light: #7f8c8d;
+}
+
+.hidden-content {
+    display: none !important;
+}
+
+
+/* 词汇列表样式 */
+.vocab-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+/* 词汇项样式 */
+.vocab-item {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(43, 59, 68, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.vocab-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #2a497265, transparent);
+}
+
+/* 单词头部布局 */
+.word-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.word-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.word-text {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+/* 词性标签样式 */
+.pos-tag {
+    background: linear-gradient(135deg, var(--secondary-color), #2980b9);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+}
+
+/* 单词操作区域 */
+.word-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 发音样式 */
+.pronunciation {
+    color: #7f8c8d;
+    margin-bottom: 8px;
+    font-style: italic;
+    font-size: 0.9rem;
+    padding-left: 4px;
+    border-left: 2px solid #bdc3c7;
+}
+
+/* 含义样式 */
+.meaning {
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* 例句样式 */
+.example {
+    font-style: italic;
+    color: #34495e;
+    font-size: 0.9rem;
+    padding: 10px;
+    background: rgba(52, 152, 219, 0.05);
+    border-radius: 6px;
+    line-height: 1.4;
+}
+
+/* 单词发音按钮样式 */
+.word-speech-btn {
+    background: rgba(52, 152, 219, 0.1);
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-color);
+    opacity: 0.8;
+}
+
+.word-speech-btn:hover {
+    background: var(--secondary-color);
+    color: white;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.word-speech-btn:active {
+    transform: scale(0.95);
+}
+
+.word-speech-btn.playing {
+    color: #e74c3c;
+    opacity: 1;
+    animation: pulse 1.5s infinite;
+}
+
+.word-speech-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* 删除按钮样式 */
+.delete-btn {
+    background: rgba(231, 76, 60, 0.1);
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e74c3c;
+}
+
+.delete-btn:hover {
+    background: #e74c3c;
+    color: white;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.delete-btn:active {
+    transform: scale(0.95);
+}
+
+.delete-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* 脉冲动画 */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 响应式设计 */
+@media (min-width: 768px) {
+    .vocab-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .vocab-item {
+        padding: 15px;
+    }
+
+    .word {
+        font-size: 1.1rem;
+    }
+
+    .pronunciation {
+        font-size: 0.9rem;
+    }
+
+    .meaning {
+        font-size: 1rem;
+    }
+
+    .example {
+        font-size: 0.9rem;
+    }
+
+    .word-speech-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .delete-btn {
+        top: 10px;
+        right: 10px;
+    }
+
+    .delete-icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .vocab-item {
+        padding: 12px;
+    }
+
+    .word-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .word-actions {
+        align-self: flex-end;
+    }
+
+    .word-text {
+        font-size: 0.95rem;
+    }
+
+    .pos-tag {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+}

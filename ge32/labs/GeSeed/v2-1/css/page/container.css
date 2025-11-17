@@ -1,0 +1,26 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --light-color: #f9f9f9;
+    --border-color: #eaeaea;
+    --text-color: #333;
+    --text-light: #7f8c8d;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: #f5f2e9;
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 10px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
