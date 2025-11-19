@@ -1,0 +1,20 @@
+{
+  "content": {
+    "name": "wonder",
+    "type": "book",
+    "title": "Wonder Reading Series",
+    "description": "An English reading material with graded chapters and vocabulary notes.",
+    "version": "1.0.0"
+  },
+  "layout": {
+    "template": "book", 
+    "theme": "default",
+    "showProgress": true
+  },
+  "source": {
+    "catalog": "wonder",
+    "subPrefix": "Wonder-Part-",
+    "baseURL": "http://127.0.0.1:8000/ge32/labs/GeSeed/library/articles",
+    "chapterCount": 8
+  }
+}

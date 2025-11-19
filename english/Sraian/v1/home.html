@@ -1,0 +1,5641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Sraian EN">
+    <meta property="og:description" content="nothing beats Sraian English">
+    <meta property="og:image" content="https://ge32english.com/ge32/labs/GeSeed/v1/res/icon.png">
+    <meta property="og:url" content="https://ge32english.com/ge32/labs/GeSeed/v1/home.html">
+    <meta property="og:type" content="website">
+    <title>Sraian</title>
+    <!-- 使用Bootstrap简化样式 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="./res/icon.png">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --light-color: #f9f9f9;
+            --border-color: #eaeaea;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #f5f2e9;
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            background-image: url("data:image/svg+xml,%3Csvg width='120' height='80' viewBox='0 0 120 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h120v80H0z' fill='%232c3e50'/%3E%3Cpath d='M0 0h40v40H0zM80 0h40v40H80zM40 40h40v40H40z' fill='%2334495e'/%3E%3Cpath d='M40 0h40v40H40zM0 40h40v40H0zM80 40h40v40H80z' fill='%232a3b4c'/%3E%3Cpath d='M20 20h20v20H20zM60 20h20v20H60zM100 20h20v20H100zM0 60h20v20H0zM40 60h20v20H40zM80 60h20v20H80z' fill='%23374a5f'/%3E%3C/svg%3E");
+            background-color: var(--primary-color);
+            background-size: 180px 120px;
+            color: #fff;
+            padding: 20px 15px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
+        .info-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #ecf0f1;
+        }
+
+        .info-item {
+            padding: 4px 10px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .content {
+            padding: 15px 15px;
+        }
+
+        .paragraph {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .paragraph:last-child {
+            border-bottom: none;
+        }
+
+        .paragraph-id {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .english-text {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            line-height: 1.6;
+            font-weight: normal;
+        }
+
+        .chinese-text {
+            font-size: 1rem;
+            color: #34495e;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 2px solid #bdc3c7;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin: 20px 0 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: normal;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vocab-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .grammar-list {
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .vocab-item,
+        .grammar-item {
+            background-color: var(--light-color);
+            padding: 12px;
+            border-radius: 3px;
+            border-left: 3px solid #95a5a6;
+        }
+
+        .word {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .pronunciation {
+            color: #7f8c8d;
+            margin-bottom: 8px;
+            font-style: italic;
+            font-size: 0.9rem;
+            padding-left: 4px;
+            border-left: 2px solid #bdc3c7;
+        }
+
+        .meaning {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .example {
+            font-style: italic;
+            color: #34495e;
+            font-size: 0.9rem;
+            padding: 10px;
+            background: rgba(52, 152, 219, 0.05);
+            border-radius: 6px;
+            line-height: 1.4;
+        }
+
+        .rule {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .category {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            margin-bottom: 6px;
+        }
+
+        .description {
+            color: #34495e;
+            margin-bottom: 8px;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .note-section {
+            background: var(--light-color);
+            padding: 15px;
+            border-radius: 3px;
+            margin-top: 25px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .note-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .note-content {
+            color: #34495e;
+            font-style: italic;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            background-color: var(--light-color);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-right: 4px;
+            font-size: 0.75rem;
+        }
+
+        /* 新功能样式 */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #ecf0f1;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--secondary-color);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .clickable-word {
+            cursor: pointer;
+            border-bottom: 1px dashed var(--secondary-color);
+            transition: all 0.2s;
+        }
+
+        .clickable-word:hover {
+            background-color: #e3f2fd;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .word-tooltip {
+            position: fixed;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            z-index: 100;
+            max-width: 200px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .word-tooltip.show {
+            opacity: 1;
+        }
+
+        .hidden-content {
+            display: none;
+        }
+
+        /* 悬浮控制球样式 */
+        .floating-control {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .floating-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .floating-control.dragging {
+            transition: none;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .floating-control.left-edge {
+            left: -30px;
+        }
+
+        .floating-control.right-edge {
+            right: -30px;
+        }
+
+        .floating-control.top-edge {
+            top: -30px;
+        }
+
+        .floating-control.bottom-edge {
+            bottom: -30px;
+        }
+
+        /* 悬浮菜单样式 */
+        .floating-menu {
+            position: fixed;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            padding: 15px;
+            z-index: 9998;
+            width: 280px;
+            max-height: 80vh;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .floating-menu.show {
+            display: block;
+        }
+
+        .menu-header {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-section {
+            margin-bottom: 15px;
+        }
+
+        .menu-section-title {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .menu-item {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            margin-bottom: 5px;
+            background: none;
+            border: none;
+            text-align: left;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .menu-item:hover {
+            background: #f0f0f0;
+        }
+
+        .menu-item.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .progress-display {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 10px 0;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        .setting-label {
+            font-size: 0.9rem;
+        }
+
+        /* 添加选择工具提示样式 */
+        .selection-tooltip {
+            position: fixed;
+            background: var(--secondary-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.2s;
+            pointer-events: none;
+            transform: translateY(-10px);
+            /* 添加以下样式确保更好的边界处理 */
+            max-width: 90vw;
+            min-width: 180px;
+            box-sizing: border-box;
+        }
+
+        .selection-tooltip.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .selection-tooltip-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .selection-tooltip-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .selection-tooltip-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .selection-highlight {
+            background-color: rgba(52, 152, 219, 0.3);
+            border-radius: 2px;
+        }
+
+        /* 桌面样式 */
+
+        /* 选项卡样式 */
+        .modal-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .modal-tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            transition: all 0.2s;
+        }
+
+        .modal-tab.active {
+            color: var(--secondary-color);
+            border-bottom-color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .modal-tab-content {
+            display: none;
+        }
+
+        .modal-tab-content.active {
+            display: block;
+        }
+
+        /* JSON输入框样式 */
+        .json-input {
+            width: 100%;
+            height: 200px;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        .json-input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .json-example {
+            background: var(--light-color);
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .json-example-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .batch-add-btn {
+            background: #e67e22;
+            color: white;
+        }
+
+        .batch-add-btn:hover {
+            background: #d35400;
+        }
+
+        .add-method-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .add-method-buttons .btn {
+            flex: 1;
+        }
+
+        /* 添加按钮样式 */
+        .add-item-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: background 0.2s;
+            width: 100%;
+        }
+
+        .add-item-btn:hover {
+            background: #2980b9;
+        }
+
+        /* 模态框样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .required-field::after {
+            content: " *";
+            color: #e74c3c;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .quick-add-btn {
+            background: #27ae60;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .quick-add-btn:hover {
+            background: #219653;
+        }
+
+        .field-note {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 3px;
+        }
+
+        /* 导入导出相关样式 */
+        .import-export-section {
+            margin-bottom: 15px;
+        }
+
+        .article-checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .article-checkbox-item:last-child {
+            border-bottom: none;
+        }
+
+        .article-checkbox-item .form-check {
+            margin: 0;
+            width: 100%;
+        }
+
+        .file-input-info {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .export-options {
+            background: var(--light-color);
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .import-result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .import-result.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .import-result.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .import-result.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        /* 语音朗读功能样式 */
+        .speech-control {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .speech-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: inline-block;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+        }
+
+        .speech-btn:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+            transform: scale(1.1);
+        }
+
+        .speech-btn:active {
+            transform: scale(0.95);
+        }
+
+        .speech-btn.playing {
+            color: #e74c3c;
+            animation: pulse 1.5s infinite;
+        }
+
+        .speech-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .speech-text {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-left: 8px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* 语音控制状态提示 */
+        .speech-status {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-left: auto;
+            padding: 2px 8px;
+            background: var(--light-color);
+            border-radius: 12px;
+        }
+
+        /* 单词发音图标样式 */
+        .word-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* 词性标签样式 */
+        .pos-tag {
+            background: linear-gradient(135deg, var(--secondary-color), #2980b9);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+        }
+
+        /* 单词标题布局调整 */
+        .word-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .word-text {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+
+
+        .word-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .word-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .word-speech-btn {
+            background: rgba(52, 152, 219, 0.1);
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+            opacity: 0.8;
+        }
+
+        .word-speech-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .word-speech-btn:active {
+            transform: scale(0.95);
+        }
+
+        .word-speech-btn.playing {
+            color: #e74c3c;
+            opacity: 1;
+            animation: pulse 1.5s infinite;
+        }
+
+        .word-speech-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* 词汇项内部布局调整 */
+        .vocab-item .word {
+            margin-bottom: 0;
+        }
+
+        /* 删除按钮样式 */
+        .delete-btn {
+            background: rgba(231, 76, 60, 0.1);
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e74c3c;
+        }
+
+        .delete-btn:hover {
+            background: #e74c3c;
+            color: white;
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .delete-btn:active {
+            transform: scale(0.95);
+        }
+
+        .delete-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* 词汇项和语法项添加相对定位，以便绝对定位删除按钮 */
+        .vocab-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(43, 59, 68, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vocab-item::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #2a497265, transparent);
+        }
+
+        .grammar-item {
+            position: relative;
+            background-color: var(--light-color);
+            padding: 12px;
+            border-radius: 3px;
+            border-left: 3px solid #95a5a6;
+        }
+
+        /* 动态导入相关样式 */
+        .preset-libraries {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .preset-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .preset-item:last-child {
+            border-bottom: none;
+        }
+
+        .preset-btn {
+            min-width: 200px;
+            margin-right: 10px;
+        }
+
+        .preset-description {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            flex: 1;
+        }
+
+        .import-progress {
+            margin-top: 15px;
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* 批量操作状态 */
+        .batch-operation-status {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            z-index: 10001;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 文章目录样式 */
+        .article-catalog {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 9997;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-catalog.show {
+            transform: translateX(0);
+        }
+
+        .catalog-header {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .catalog-title {
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .catalog-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .catalog-search {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .catalog-stats {
+            padding: 10px 15px;
+            background: var(--light-color);
+            font-size: 0.8rem;
+            color: var(--text-light);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .catalog-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 0;
+        }
+
+        .article-catalog-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.2s;
+            position: relative;
+        }
+
+        .article-catalog-item:hover {
+            background: var(--light-color);
+        }
+
+        .article-catalog-item.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .article-catalog-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-color);
+        }
+
+        .catalog-item-title {
+            font-weight: bold;
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+
+        .catalog-item-meta {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .catalog-item-level {
+            display: inline-block;
+            padding: 2px 6px;
+            background: #95a5a6;
+            color: white;
+            border-radius: 3px;
+            font-size: 0.7rem;
+        }
+
+        .catalog-item-tags {
+            margin-top: 4px;
+        }
+
+        .catalog-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1px 4px;
+            border-radius: 2px;
+            margin-right: 3px;
+            font-size: 0.7rem;
+        }
+
+        .article-catalog-item.active .catalog-tag {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .catalog-footer {
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .catalog-toggle-btn {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .catalog-toggle-btn:hover {
+            background: #2980b9;
+            transform: translateX(5px);
+        }
+
+        /*          语法块       */
+
+        .grammar-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .card-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .card-level {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .card-body {
+            padding: 10px;
+        }
+
+        .gram-section {
+            margin-bottom: 24px;
+        }
+
+        .gram-section-title {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .pattern-container {
+            background: var(--light-bg);
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .slot {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 0 2px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background-color: rgba(52, 152, 219, 0.15);
+            color: var(--secondary-color);
+            border: 1px dashed var(--secondary-color);
+        }
+
+        .slot:hover {
+            background-color: rgba(52, 152, 219, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .fixed-word {
+            display: inline-block;
+            margin: 0 2px;
+            color: var(--text-color);
+        }
+
+        .example-container {
+            background: var(--light-bg);
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .example-en {
+            font-style: italic;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .example-cn {
+            color: var(--text-light);
+        }
+
+        .variants-list,
+        .constraints-list {
+            padding-left: 20px;
+        }
+
+        .variants-list li,
+        .constraints-list li {
+            margin-bottom: 8px;
+        }
+
+        .constraints-container {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #ffc107;
+            font-size: 0.9rem;
+            color: #856404;
+        }
+
+        .card-footer {
+            background: var(--light-bg);
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* 工具提示样式 */
+        .slot-tooltip {
+            position: fixed;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            max-width: 300px;
+            font-size: 0.9rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+            pointer-events: none;
+        }
+
+        .slot-tooltip.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tooltip-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tooltip-slot {
+            font-weight: bold;
+            margin-right: 8px;
+            color: var(--secondary-color);
+        }
+
+        .tooltip-role {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .tooltip-pos {
+            margin-top: 6px;
+        }
+
+        .tooltip-pos-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+        }
+
+        .tooltip-pos-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .tooltip-pos-tag {
+            background: var(--light-bg);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .catalog-toggle-btn {
+                display: none;
+                position: fixed;
+                left: 20px;
+                top: 20px;
+                background: var(--secondary-color);
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                z-index: 999;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .pattern-container {
+                background: var(--light-bg);
+                padding: 12px;
+                border-radius: 6px;
+                font-family: 'Courier New', monospace;
+                font-size: 0.8rem;
+                line-height: 1.5;
+                border-left: 4px solid var(--secondary-color);
+            }
+
+            .variants-list,
+            .constraints-list {
+                font-size: small;
+                padding-left: 10px;
+            }
+
+            .variants-list li,
+            .constraints-list li {
+                margin-bottom: 8px;
+            }
+
+            .card-header {
+                background: var(--primary-color);
+                color: white;
+                padding: 15px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .card-title {
+                font-size: 1.1em;
+                font-weight: 400;
+                margin: 0;
+
+
+            }
+
+            .card-level {
+                margin-top: 8px;
+            }
+
+            .card-footer {
+                background: var(--light-bg);
+                padding: 10px 10px;
+                border-top: 1px solid var(--border-color);
+                font-size: 0.7rem;
+                color: var(--text-light);
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .article-catalog {
+                width: 280px;
+            }
+
+            .catalog-toggle-btn {
+                left: 10px;
+                top: 10px;
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 在移动端，目录全屏显示 */
+        @media (max-width: 480px) {
+            .article-catalog {
+                width: 100%;
+            }
+        }
+
+        /* 确保目录在悬浮菜单之上 */
+        .floating-menu {
+            z-index: 9998;
+        }
+
+        .article-catalog {
+            z-index: 9997;
+        }
+
+        .catalog-toggle-btn {
+            z-index: 9996;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .preset-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .preset-btn {
+                min-width: auto;
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+
+
+        /* 手机端悬浮球锁定样式 */
+        @media (max-width: 767px) {
+            .floating-control.mobile-locked {
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                pointer-events: auto;
+            }
+
+            .floating-control.mobile-returning {
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            /* 隐藏拖动相关的样式 */
+            .floating-control.dragging {
+                transition: none;
+            }
+
+            /* 确保在移动端悬浮球足够大，易于点击 */
+            .floating-control {
+                width: 65px;
+                height: 65px;
+                font-size: 1.8rem;
+            }
+        }
+
+        /* 桌面端保持原有样式 */
+        @media (min-width: 768px) {
+            .floating-control.mobile-locked {
+                /* 桌面端不使用移动端锁定功能 */
+                transition: all 0.3s ease;
+            }
+        }
+
+        /* 桌面端调整 */
+        @media (min-width: 768px) {
+            .delete-btn {
+                top: 10px;
+                right: 10px;
+            }
+
+            .delete-icon {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        /* 桌面端调整 */
+        @media (min-width: 768px) {
+            .word-speech-icon {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        /* 桌面端调整 */
+        @media (min-width: 768px) {
+            .speech-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .speech-text {
+                font-size: 0.85rem;
+            }
+        }
+
+
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+
+            .header {
+                padding: 30px 40px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .info-bar {
+                gap: 15px;
+                margin-top: 15px;
+                font-size: 0.9rem;
+            }
+
+            .info-item {
+                padding: 5px 12px;
+            }
+
+            .content {
+                padding: 30px 25px;
+            }
+
+            .paragraph {
+                margin-bottom: 40px;
+                padding-bottom: 30px;
+            }
+
+            .paragraph-id {
+                font-size: 0.85rem;
+                margin-bottom: 10px;
+            }
+
+            .english-text {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+                line-height: 1.7;
+            }
+
+            .chinese-text {
+                font-size: 1.1rem;
+                margin-bottom: 25px;
+                padding-left: 20px;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+                margin: 25px 0 15px;
+                padding-bottom: 8px;
+            }
+
+            .vocab-list,
+            .grammar-list {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+
+            .vocab-item,
+            .grammar-item {
+                padding: 15px;
+            }
+
+            .word {
+                font-size: 1.1rem;
+            }
+
+            .pronunciation {
+                font-size: 0.9rem;
+            }
+
+            .meaning {
+                font-size: 1rem;
+            }
+
+            .example {
+                font-size: 0.9rem;
+            }
+
+            .rule {
+                font-size: 1.1rem;
+            }
+
+            .category {
+                font-size: 0.8rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .note-section {
+                padding: 20px;
+                margin-top: 30px;
+            }
+
+            .note-title {
+                font-size: 1.1rem;
+            }
+
+            .note-content {
+                font-size: 1rem;
+            }
+
+            .footer {
+                padding: 20px;
+                font-size: 0.9rem;
+            }
+
+            .tag {
+                padding: 3px 8px;
+                margin-right: 5px;
+                font-size: 0.8rem;
+            }
+
+            .progress-container {
+                height: 5px;
+            }
+
+            .progress-bar {
+                height: 5px;
+            }
+
+            .word-tooltip {
+                font-size: 0.9rem;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <div class="container" id='Sraian'>
+        <div class="header">
+            <h1 id="page-title">Sraian by Ge32</h1>
+            <div class="info-bar" id="info-area">
+                <!-- 信息将通过JavaScript动态生成 -->
+            </div>
+        </div>
+
+        <div class="content" id="content-area">
+            <!-- 内容将通过JavaScript动态生成 -->
+        </div>
+
+        <div class="footer">
+            <p>Sraian 0.1</p>
+        </div>
+    </div>
+
+    <div class="word-tooltip" id="word-tooltip"></div>
+
+    <!-- 悬浮控制球 -->
+    <div class="floating-control" id="floating-control">
+        <i class="bi bi-gear-fill"></i>
+    </div>
+
+    <!-- 悬浮菜单 -->
+
+    <div class="floating-menu" id="floating-menu">
+        <div class="menu-header">
+            <span>学习控制</span>
+            <button type="button" class="btn-close" id="close-menu"></button>
+        </div>
+
+        <!-- 修改悬浮菜单中的文章选择部分 -->
+        <div class="menu-section">
+            <div class="menu-section-title">文章管理</div>
+            <button class="menu-item" id="article-catalog-btn">
+                <i class="bi bi-list-ul"></i> 文章目录
+            </button>
+            <div id="article-menu-items">
+                <!-- 文章菜单项将通过JavaScript动态生成 -->
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-section-title">阅读进度</div>
+            <div class="progress-display" id="progress-display">0%</div>
+        </div>
+
+        <!-- 添加导入导出菜单项 -->
+        <div class="menu-section">
+            <div class="menu-section-title">数据管理</div>
+            <button class="menu-item" id="import-articles-btn">
+                <i class="bi bi-download"></i> 导入文章
+            </button>
+            <button class="menu-item" id="export-articles-btn">
+                <i class="bi bi-upload"></i> 导出文章
+            </button>
+            <!-- 在现有的导入导出按钮后面添加 -->
+            <button class="menu-item" id="dynamic-import-btn">
+                <i class="bi bi-box-arrow-in-down"></i> 动态导入JS
+            </button>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-section-title">全局设置</div>
+            <div class="setting-item">
+                <span class="setting-label">显示解析</span>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="toggle-explanations">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加单词模态框 -->
+    <!-- 添加单词模态框 -->
+    <div class="modal-overlay" id="add-vocab-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">添加新单词</h3>
+            </div>
+            <div class="modal-body">
+                <!-- 选项卡导航 -->
+                <div class="modal-tabs">
+                    <button class="modal-tab active" data-tab="form">表单填写</button>
+                    <button class="modal-tab" data-tab="json">JSON批量添加</button>
+                </div>
+
+                <!-- 表单填写选项卡 -->
+                <!-- 表单填写选项卡 -->
+                <div class="modal-tab-content active" id="vocab-form-tab" data-tab="form">
+                    <div class="form-group">
+                        <label class="form-label required-field">单词/短语</label>
+                        <input type="text" class="form-input" id="vocab-word" placeholder="输入单词或短语">
+                        <div class="field-note">这是必填字段</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">词性</label>
+                        <select class="form-input" id="vocab-pos">
+                            <option value="n">名词 (noun)</option>
+                            <option value="v">动词 (verb)</option>
+                            <option value="adj">形容词 (adjective)</option>
+                            <option value="adv">副词 (adverb)</option>
+                            <option value="prep">介词 (preposition)</option>
+                            <option value="conj">连词 (conjunction)</option>
+                            <option value="pron">代词 (pronoun)</option>
+                            <option value="det">限定词 (determiner)</option>
+                            <option value="int">感叹词 (interjection)</option>
+                            <option value="phr">短语 (phrase)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">发音</label>
+                        <input type="text" class="form-input" id="vocab-pronunciation" placeholder="例如: /ˈfeɪljər/">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">含义</label>
+                        <input type="text" class="form-input" id="vocab-meaning" placeholder="输入中文含义">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">例句</label>
+                        <input type="text" class="form-input" id="vocab-example" placeholder="输入例句">
+                    </div>
+
+                    <div class="add-method-buttons">
+                        <button class="btn btn-primary" id="save-vocab-btn">保存单个</button>
+                        <button class="btn quick-add-btn" id="quick-add-vocab-btn">快速添加单个</button>
+                    </div>
+                </div>
+
+                <!-- JSON批量添加选项卡 -->
+                <div class="modal-tab-content" id="vocab-json-tab" data-tab="json">
+                    <div class="form-group">
+                        <label class="form-label required-field">JSON数据</label>
+                        <textarea class="json-input" id="vocab-json" placeholder='输入JSON数组，例如：
+[
+  {
+    "word": "example",
+    "pos": "n",
+    "ph": "/ɪɡˈzæmpl/",
+    "mean": "例子",
+    "ex": "This is an example sentence."
+  },
+  {
+    "word": "test",
+    "pos": "v",
+    "ph": "/test/",
+    "mean": "测试",
+    "ex": "This is a test."
+  }
+]'></textarea>
+                        <div class="field-note">支持JSON数组格式，每个对象包含 word, pos, ph, mean, ex 字段</div>
+                    </div>
+
+                    <div class="json-example">
+                        <div class="json-example-title">快速添加格式（用逗号分隔单词）：</div>
+                        success, opportunity, challenge, development
+                        <div class="field-note" style="margin-top: 8px;">输入用逗号分隔的单词列表，将自动创建为简单单词项</div>
+                    </div>
+
+                    <div class="add-method-buttons">
+                        <button class="btn batch-add-btn" id="batch-add-vocab-btn">批量添加JSON</button>
+                        <button class="btn quick-add-btn" id="quick-batch-vocab-btn">快速批量添加</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-vocab-btn">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加语法模态框 -->
+    <!-- 添加语法模态框 -->
+    <div class="modal-overlay" id="add-grammar-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">添加新语法点</h3>
+            </div>
+            <div class="modal-body">
+                <!-- 选项卡导航 -->
+                <div class="modal-tabs">
+                    <button class="modal-tab active" data-tab="form">表单填写</button>
+                    <button class="modal-tab" data-tab="json">JSON批量添加</button>
+                </div>
+
+                <!-- 表单填写选项卡 -->
+                <div class="modal-tab-content active" id="grammar-form-tab" data-tab="form">
+                    <div class="form-group">
+                        <label class="form-label required-field">语法规则</label>
+                        <input type="text" class="form-input" id="grammar-rule" placeholder="输入语法规则描述">
+                        <div class="field-note">这是必填字段</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">类别</label>
+                        <select class="form-input" id="grammar-category">
+                            <option value="S">句子结构 (Sentence Structure)</option>
+                            <option value="T">时态 (Tense)</option>
+                            <option value="C">从句 (Clause)</option>
+                            <option value="P">标点 (Punctuation)</option>
+                            <option value="W">词形变化 (Word Form / Morphology)</option>
+                            <option value="O">其他 (Others)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">描述</label>
+                        <input type="text" class="form-input" id="grammar-description" placeholder="输入详细描述">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">示例</label>
+                        <input type="text" class="form-input" id="grammar-example" placeholder="输入示例句子">
+                    </div>
+
+                    <div class="add-method-buttons">
+                        <button class="btn btn-primary" id="save-grammar-btn">保存单个</button>
+                        <button class="btn quick-add-btn" id="quick-add-grammar-btn">快速添加单个</button>
+                    </div>
+                </div>
+
+                <!-- JSON批量添加选项卡 -->
+                <div class="modal-tab-content" id="grammar-json-tab" data-tab="json">
+                    <div class="form-group">
+                        <label class="form-label required-field">JSON数据</label>
+                        <textarea class="json-input" id="grammar-json" placeholder='输入JSON数组，例如：
+[
+  {
+    "rule": "present perfect tense",
+    "cat": "T",
+    "desc": "现在完成时用法",
+    "ex": "I have finished my homework."
+  },
+  {
+    "rule": "conditional sentences",
+    "cat": "C",
+    "desc": "条件句结构",
+    "ex": "If it rains, we will cancel the trip."
+  }
+]'></textarea>
+                        <div class="field-note">支持JSON数组格式，每个对象包含 rule, cat, desc, ex 字段</div>
+                    </div>
+
+                    <div class="json-example">
+                        <div class="json-example-title">快速添加格式（用逗号分隔语法规则）：</div>
+                        passive voice, relative clause, modal verbs, phrasal verbs
+                        <div class="field-note" style="margin-top: 8px;">输入用逗号分隔的语法规则列表，将自动创建为简单语法项</div>
+                    </div>
+
+                    <div class="add-method-buttons">
+                        <button class="btn batch-add-btn" id="batch-add-grammar-btn">批量添加JSON</button>
+                        <button class="btn quick-add-btn" id="quick-batch-grammar-btn">快速批量添加</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-grammar-btn">取消</button>
+            </div>
+        </div>
+    </div>
+    <!-- 导入文章模态框 -->
+    <div class="modal-overlay" id="import-articles-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">导入文章</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label required-field">选择JSON文件</label>
+                    <input type="file" class="form-input" id="import-file" accept=".json" style="padding: 6px;">
+                    <div class="field-note">支持单个文章JSON文件或包含文章数组的JSON文件</div>
+                </div>
+
+                <div class="json-example">
+                    <div class="json-example-title">支持的格式示例：</div>
+                    <div><strong>单个文章：</strong></div>
+                    <pre style="font-size: 0.7rem; margin: 5px 0;">{
+  "id": "article1",
+  "title": "文章标题",
+  "info": { ... },
+  "paras": [ ... ]
+}</pre>
+                    <div><strong>文章数组：</strong></div>
+                    <pre style="font-size: 0.7rem; margin: 5px 0;">[
+  { "id": "article1", "title": "文章1", ... },
+  { "id": "article2", "title": "文章2", ... }
+]</pre>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="import-overwrite">
+                        <label class="form-check-label">覆盖重复文章</label>
+                    </div>
+                    <div class="field-note">如果勾选，遇到相同ID的文章将覆盖；如果不勾选，将跳过重复文章</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-import-btn">取消</button>
+                <button class="btn btn-primary" id="confirm-import-btn">导入</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 导出文章模态框 -->
+    <div class="modal-overlay" id="export-articles-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">导出文章</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">选择导出方式</label>
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="export-type" id="export-current"
+                                value="current" checked>
+                            <label class="form-check-label" for="export-current">导出当前文章</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="export-type" id="export-selected"
+                                value="selected">
+                            <label class="form-check-label" for="export-selected">选择文章导出</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 文章选择区域 -->
+                <div class="form-group" id="article-selection-area" style="display: none;">
+                    <label class="form-label">选择要导出的文章</label>
+                    <div
+                        style="max-height: 200px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 4px; padding: 10px;">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="select-all-articles">
+                            <label class="form-check-label" for="select-all-articles">
+                                <strong>全选</strong>
+                            </label>
+                        </div>
+                        <div id="article-checkboxes">
+                            <!-- 文章复选框将在这里动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">导出格式</label>
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="export-format" id="export-single"
+                                value="single" checked>
+                            <label class="form-check-label" for="export-single">导出为单个JSON文件（包含所有选中文章）</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="export-format" id="export-multiple"
+                                value="multiple">
+                            <label class="form-check-label" for="export-multiple">导出为多个JSON文件（每个文章一个文件）</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" id="export-filename-group">
+                    <label class="form-label">导出文件名</label>
+                    <input type="text" class="form-input" id="export-filename" placeholder="例如: english_articles"
+                        value="english_articles">
+                    <div class="field-note">对于多文件导出，将在文件名后添加文章标题</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-export-btn">取消</button>
+                <button class="btn btn-primary" id="confirm-export-btn">导出</button>
+            </div>
+        </div>
+    </div>
+    <!-- 动态导入JS模态框 -->
+    <div class="modal-overlay" id="dynamic-import-modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3 class="modal-title">动态导入JS文章库</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label required-field">JS文件URL</label>
+                    <input type="text" class="form-input" id="js-file-url"
+                        placeholder="例如: https://example.com/articles.js">
+                    <div class="field-note">支持本地文件或远程JS文件，文件应导出文章数组</div>
+                </div>
+
+                <!-- 预设的基础文章库 -->
+                <div class="form-group">
+                    <label class="form-label">预设文章库</label>
+                    <div class="preset-libraries">
+                        <div class="preset-item">
+                            <button type="button" class="btn btn-outline-primary btn-sm preset-btn"
+                                data-url="https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/basic-articles.js">
+                                基础英语文章库 (100篇)
+                            </button>
+                            <span class="preset-description">包含100篇基础英语学习文章</span>
+                        </div>
+                        <div class="preset-item">
+                            <button type="button" class="btn btn-outline-primary btn-sm preset-btn"
+                                data-url="https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/advanced-articles.js">
+                                进阶英语文章库 (150篇)
+                            </button>
+                            <span class="preset-description">包含150篇进阶英语学习文章</span>
+                        </div>
+                        <div class="preset-item">
+                            <button type="button" class="btn btn-outline-primary btn-sm preset-btn"
+                                data-url="https://ge32english.com/ge32/labs/GeSeed/v1/article-repo/business-articles.js">
+                                商务英语文章库 (80篇)
+                            </button>
+                            <span class="preset-description">包含80篇商务英语文章</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">导入选项</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="dynamic-overwrite" checked>
+                        <label class="form-check-label">覆盖重复文章</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="dynamic-merge" checked>
+                        <label class="form-check-label">合并到现有文章</label>
+                    </div>
+                    <div class="field-note">如果勾选覆盖，遇到相同ID的文章将覆盖；合并选项决定是否保留现有文章</div>
+                </div>
+
+                <!-- 导入进度显示 -->
+                <div class="import-progress" style="display: none;">
+                    <div class="progress" style="height: 20px;">
+                        <div class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
+                    </div>
+                    <div class="progress-text text-center mt-2"></div>
+                </div>
+
+                <!-- 导入结果 -->
+                <div class="import-result" id="dynamic-import-result" style="display: none;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-dynamic-import-btn">取消</button>
+                <button class="btn btn-primary" id="confirm-dynamic-import-btn">开始导入</button>
+            </div>
+        </div>
+    </div>
+    <!-- 文章目录 -->
+    <div class="article-catalog" id="article-catalog">
+        <div class="catalog-header">
+            <h3 class="catalog-title">文章目录</h3>
+            <button class="catalog-close" id="catalog-close">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="catalog-search">
+            <input type="text" class="search-input" id="catalog-search" placeholder="搜索文章标题、标签、作者...(Ctrl+K)">
+        </div>
+
+        <div class="catalog-stats" id="catalog-stats">
+            共加载 0 篇文章
+        </div>
+
+        <div class="catalog-list" id="catalog-list">
+            <!-- 文章列表将通过JavaScript动态生成 -->
+        </div>
+
+        <div class="catalog-footer">
+            <button class="btn btn-sm btn-outline-secondary" id="refresh-catalog">
+                <i class="bi bi-arrow-clockwise"></i> 刷新目录
+            </button>
+        </div>
+    </div>
+
+    <!-- 目录切换按钮 -->
+    <button class="catalog-toggle-btn" id="catalog-toggle">
+        <i class="bi bi-list"></i> 文章目录
+    </button>
+
+    <div id="grammar-cards-container">
+        <!-- 语法卡片将通过JavaScript动态生成 -->
+    </div>
+
+    <!-- 工具提示容器 -->
+    <div id="slot-tooltip" class="slot-tooltip"></div>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <script type="module">
+
+        // import { TextAnalyzer } from './textAnalyzer.js';
+
+        // 多篇文章数据 - 新格式
+        const articlesData = [
+            {
+                "id": "failure",
+                "title": "The Value of Failure",
+                "info": {
+                    "author": "David Sedaris",
+                    "source": "Me Talk Pretty One Day",
+                    "level": "B2",
+                    "tags": ["learning", "motivation"],
+                    "link": "[https://example.com/original](https://example.com/original)",
+                    "variants": null
+                },
+                "paras": [
+                    {
+                        "id": 1,
+                        "en": "Failure is not the opposite of success; it is part of success.",
+                        "cn": "失败并不是成功的反面；它是成功的一部分。",
+                        "vocab": [
+                            {
+                                "word": "failure",
+                                "ph": "/ˈfeɪljər/",
+                                "pos": "n",
+                                "mean": "失败",
+                                "ex": "He learned a lot from his failure."
+                            },
+                            {
+                                "word": "opposite of",
+                                "ph": "/ˈɒpəzɪt/",
+                                "pos": "phr",
+                                "mean": "相反的事物",
+                                "ex": "Love is the opposite of hate."
+                            }
+                        ],
+                        "gram": [
+                            {
+                                "id": "not_but_structure",
+                                "name": "not ... but ... 结构",
+                                "category": "S",
+                                "level": "B1",
+                                "pattern": "SUBJ + be + not + X + but + Y",
+                                "components": [
+                                    { "slot": "SUBJ", "role": "主语", "pos": ["n", "pron", "phr"] },
+                                    { "slot": "be", "role": "系动词", "pos": ["v"] },
+                                    { "slot": "not", "role": "否定词", "pos": ["adv"] },
+                                    { "slot": "X", "role": "否定内容", "pos": ["n", "adj", "phr"] },
+                                    { "slot": "but", "role": "转折连词", "pos": ["conj"] },
+                                    { "slot": "Y", "role": "肯定内容", "pos": ["n", "adj", "phr"] }
+                                ],
+                                "function": "用于表达'不是……而是……'，强调两者对比，否定前者肯定后者。",
+                                "example": {
+                                    "en": "She is not lazy but tired.",
+                                    "cn": "她不是懒惰而是累了。"
+                                },
+                                "variants": [
+                                    "SUBJ + do/does/did + not + VERB + but + VERB",
+                                    "SUBJ + be (past) + not + X + but + Y"
+                                ],
+                                "constraints": "X 与 Y 必须为语法功能一致（都为名词或都为形容词类）；but 前后保持平行结构。"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "en": "Each mistake teaches you what not to do next time. When you try and fail, you collect information — sometimes small, sometimes decisive — that shapes your next attempt.",
+                        "cn": "每一次错误都会告诉你下一次不要怎么做。尝试并失败时，你会收集信息——有时是微小的，有时是决定性的——这些信息会影响你下一次的尝试。",
+                        "vocab": [
+                            {
+                                "word": "mistake",
+                                "ph": "/mɪˈsteɪk/",
+                                "pos": "n",
+                                "mean": "错误；失误",
+                                "ex": "A small mistake cost them the game."
+                            },
+                            {
+                                "word": "decisive",
+                                "ph": "/dɪˈsaɪsɪv/",
+                                "pos": "adj",
+                                "mean": "决定性的；关键的",
+                                "ex": "A decisive victory ended the season early."
+                            },
+                            {
+                                "word": "attempt",
+                                "ph": "/əˈtempt/",
+                                "pos": "n",
+                                "mean": "尝试",
+                                "ex": "Her first attempt failed, but she tried again."
+                            }
+                        ],
+                        "gram": [
+                            {
+                                "id": "present_participle_clause",
+                                "name": "现在分词短语作伴随状语",
+                                "category": "S",
+                                "level": "B2",
+                                "pattern": "VERB-ing + , + main clause",
+                                "components": [
+                                    { "slot": "VERB-ing", "role": "现在分词短语", "pos": ["v-ing"] },
+                                    { "slot": "main clause", "role": "主句", "pos": ["clause"] }
+                                ],
+                                "function": "表示两个动作同时发生或伴随发生，简化句子结构，常用于书面语。",
+                                "example": {
+                                    "en": "Trying and failing, he learned what to change.",
+                                    "cn": "尝试并失败的过程中，他学会了要改变什么。"
+                                },
+                                "variants": null,
+                                "constraints": "主语要一致，避免造成悬垂分词。"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 3,
+                        "en": "Successful people often have long lists of failures behind them. They simply see those failures as experiments that didn't produce the intended result — data, not judgment.",
+                        "cn": "成功的人通常背后有一长串失败。他们只是把那些失败看作未能产生预期结果的实验——是数据，不是评判。",
+                        "vocab": [
+                            {
+                                "word": "successful",
+                                "ph": "/səkˈsesfəl/",
+                                "pos": "adj",
+                                "mean": "成功的",
+                                "ex": "She is a successful engineer."
+                            },
+                            {
+                                "word": "experiment",
+                                "ph": "/ɪkˈsperɪmənt/",
+                                "pos": "n",
+                                "mean": "实验；尝试",
+                                "ex": "The scientists ran the experiment twice."
+                            },
+                            {
+                                "word": "judgment",
+                                "ph": "/ˈdʒʌdʒmənt/",
+                                "pos": "n",
+                                "mean": "评判；判断",
+                                "ex": "Try to avoid harsh judgment of yourself."
+                            }
+                        ],
+                        "gram": [
+                            {
+                                "id": "noun_phrase_apposition",
+                                "name": "名词短语同位语",
+                                "category": "P",
+                                "level": "B2",
+                                "pattern": "noun + , + appositive phrase + ,",
+                                "components": [
+                                    { "slot": "noun", "role": "名词", "pos": ["n"] },
+                                    { "slot": "appositive phrase", "role": "同位语", "pos": ["phr"] }
+                                ],
+                                "function": "提供额外信息或解释，常用逗号隔开。",
+                                "example": {
+                                    "en": "They, experiments that failed, provided useful lessons.",
+                                    "cn": "那些失败的实验为他们提供了有用的教训。"
+                                },
+                                "variants": [
+                                    "noun + — + appositive phrase + —",
+                                    "noun (that + clause) as apposition"
+                                ],
+                                "constraints": "同位语与名词在意义上应指向同一概念。"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 4,
+                        "en": "The emotional part of failure — shame, disappointment, embarrassment — is real and must be acknowledged. But treating emotions as the whole story prevents you from extracting the lessons.",
+                        "cn": "失败的情感部分——羞耻、失望、尴尬——是真实存在且必须承认的。但把情绪当成全部故事会阻止你提取教训。",
+                        "vocab": [
+                            {
+                                "word": "shame",
+                                "ph": "/ʃeɪm/",
+                                "pos": "n",
+                                "mean": "羞耻；惭愧",
+                                "ex": "He felt shame after the mistake."
+                            },
+                            {
+                                "word": "embarrassment",
+                                "ph": "/ɪmˈbærəsmənt/",
+                                "pos": "n",
+                                "mean": "窘迫；尴尬",
+                                "ex": "There was some embarrassment at the meeting."
+                            },
+                            {
+                                "word": "acknowledge",
+                                "ph": "/əkˈnɒlɪdʒ/",
+                                "pos": "v",
+                                "mean": "承认；认可",
+                                "ex": "You should acknowledge your progress."
+                            }
+                        ],
+                        "gram": [
+                            {
+                                "id": "list_commas",
+                                "name": "并列名词或短语的列举（逗号）",
+                                "category": "S",
+                                "level": "B1",
+                                "pattern": "item1, item2, item3",
+                                "components": [
+                                    { "slot": "item", "role": "列表项", "pos": ["n", "phr"] }
+                                ],
+                                "function": "用逗号或破折号连接多个并列项，强调累积或并列的概念。",
+                                "example": {
+                                    "en": "Shame, disappointment, embarrassment — they all hurt.",
+                                    "cn": "羞耻、失望、尴尬——它们都会令人痛苦。"
+                                },
+                                "variants": null,
+                                "constraints": "最后两个项之间通常用 and 或者破折号来终结并列。"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 5,
+                        "en": "What matters is the habit you build after failure: analyze honestly, adapt quickly, and try again. That habit turns temporary setbacks into long-term progress.",
+                        "cn": "关键是你在失败之后养成的习惯：诚实分析、快速调整并再次尝试。这个习惯会把暂时的挫折变成长期的进步。",
+                        "vocab": [
+                            {
+                                "word": "analyze",
+                                "ph": "/ˈænəlaɪz/",
+                                "pos": "v",
+                                "mean": "分析",
+                                "ex": "Analyze the results before deciding."
+                            },
+                            {
+                                "word": "adapt",
+                                "ph": "/əˈdæpt/",
+                                "pos": "v",
+                                "mean": "适应；调整",
+                                "ex": "You must adapt your plan to new information."
+                            },
+                            {
+                                "word": "setback",
+                                "ph": "/ˈsetbæk/",
+                                "pos": "n",
+                                "mean": "挫折；倒退",
+                                "ex": "The delay was only a temporary setback."
+                            }
+                        ],
+                        "gram": [
+                            {
+                                "id": "imperative_sequence",
+                                "name": "祈使句序列",
+                                "category": "S",
+                                "level": "B2",
+                                "pattern": "Verb, Verb, and Verb.",
+                                "components": [
+                                    { "slot": "Verb", "role": "动词原形（祈使）", "pos": ["v"] }
+                                ],
+                                "function": "用来列举指导步骤或建议，常见于说明文和指示性语言。",
+                                "example": {
+                                    "en": "Analyze honestly, adapt quickly, and try again.",
+                                    "cn": "诚实分析、迅速调整并再次尝试。"
+                                },
+                                "variants": [
+                                    "Verb + ing, Verb + ing, and Verb + ing.",
+                                    "Verb + , + Verb + ; + Verb."
+                                ],
+                                "constraints": "各项应保持语法平行。"
+                            }
+                        ]
+                    }
+                ]
+            }
+
+        ];
+
+
+        // 词性类型映射
+        const posTypes = {
+            "n": { "en": "noun", "cn": "名词" },
+            "v": { "en": "verb", "cn": "动词" },
+            "adj": { "en": "adjective", "cn": "形容词" },
+            "adv": { "en": "adverb", "cn": "副词" },
+            "prep": { "en": "preposition", "cn": "介词" },
+            "conj": { "en": "conjunction", "cn": "连词" },
+            "pron": { "en": "pronoun", "cn": "代词" },
+            "det": { "en": "determiner", "cn": "限定词" },
+            "int": { "en": "interjection", "cn": "感叹词" },
+            "phr": { "en": "phrase", "cn": "短语" },
+            "S": { "en": "sentence", "cn": "句子" }
+        };
+
+        // 语法类别映射
+        const gramTypes = {
+            "S": { "en": "Sentence Structure", "cn": "句子结构" },
+            "T": { "en": "Tense", "cn": "时态" },
+            "C": { "en": "Clause", "cn": "从句" },
+            "P": { "en": "Punctuation", "cn": "标点" },
+            "W": { "en": "Word Form / Morphology", "cn": "词形变化" },
+            "O": { "en": "Others", "cn": "其他" }
+        };
+
+        let currentTooltipTimeout = null;
+
+        // 文章数据初始化函数
+        function initArtcleData(currentArticle) {
+            // 确保文章对象存在
+            if (!currentArticle) return currentArticle;
+
+            // 设置默认的语法类型
+            if (!currentArticle.gram_types) {
+                currentArticle.gram_types = gramTypes;
+            }
+
+            // 设置默认的词性类型
+            if (!currentArticle.pos_types) {
+                currentArticle.pos_types = posTypes;
+            }
+
+            // 确保文章有ID（如果没有，使用标题作为ID）
+            if (!currentArticle.id && currentArticle.title) {
+                currentArticle.id = currentArticle.title.toLowerCase().replace(/[^a-z0-9]/g, '_');
+            }
+
+            // 确保段落数据存在且是数组
+            if (!currentArticle.paras || !Array.isArray(currentArticle.paras)) {
+                currentArticle.paras = [];
+            }
+
+            // 初始化每个段落
+            currentArticle.paras.forEach((para, index) => {
+                // 确保段落有ID
+                if (!para.id) {
+                    para.id = index + 1;
+                }
+
+                // 确保词汇表存在
+                if (!para.vocab) {
+                    para.vocab = [];
+                }
+
+                // 确保语法点存在
+                if (!para.gram) {
+                    para.gram = [];
+                }
+
+                // 初始化每个词汇项
+                para.vocab.forEach(vocab => {
+                    if (!vocab.ph) vocab.ph = "";
+                    if (!vocab.pos) vocab.pos = "n";
+                    if (!vocab.mean) vocab.mean = "";
+                    if (!vocab.ex) vocab.ex = "";
+                });
+
+                // 初始化每个语法项
+                para.gram.forEach(gram => {
+                    if (!gram.category) gram.category = "O";
+                });
+            });
+
+            return currentArticle;
+        }
+
+        // 应用状态
+        const appState = {
+            currentArticleId: "failure",
+            showExplanations: false,
+            wordDictionary: {},
+            grammarRules: [],
+            floatingControlPosition: {
+                x: window.innerWidth - 80,
+                y: window.innerHeight / 2
+            },
+            // 新增状态
+            floatingControl: {
+                isMobileLocked: false,
+                originalPosition: { x: 0, y: 0 },
+                targetPosition: { x: 0, y: 0 },
+                isReturning: false
+            }
+        };
+
+        // 设备检测函数
+        function isTouchDevice() {
+            return 'ontouchstart' in window ||
+                navigator.maxTouchPoints > 0 ||
+                navigator.msMaxTouchPoints > 0;
+        }
+
+
+
+        // 获取当前文章数据
+        function getCurrentArticle() {
+            const article = articlesData.find(article => article.id === appState.currentArticleId) || articlesData[0];
+            return initArtcleData(article);
+        }
+
+        // 构建单词词典
+        function buildWordDictionary() {
+            appState.wordDictionary = {};
+            const currentArticle = getCurrentArticle();
+            currentArticle.paras.forEach(para => {
+                if (para.vocab) {
+                    para.vocab.forEach(vocab => {
+                        // 将短语转换为小写作为键，同时保留原始大小写信息
+                        appState.wordDictionary[vocab.word.toLowerCase()] = vocab;
+                    });
+                }
+            });
+        }
+        // 渲染文章菜单
+        function renderArticleMenu() {
+            const menuItems = document.getElementById('article-menu-items');
+            menuItems.innerHTML = '';
+            articlesData.forEach(article => {
+                const button = document.createElement('button');
+                button.className = `menu-item ${article.id === appState.currentArticleId ? 'active' : ''}`;
+                button.textContent = article.title;
+                button.dataset.articleId = article.id;
+                button.addEventListener('click', function () {
+                    switchArticle(article.id);
+                    hideFloatingMenu();
+
+                    // 移动端：切换文章后返回原始位置
+                    if (isTouchDevice() && appState.floatingControl.isMobileLocked) {
+                        returnToOriginalPosition();
+                    }
+                });
+
+                menuItems.appendChild(button);
+            });
+        }
+
+        // 切换文章
+        function switchArticle(articleId) {
+            appState.currentArticleId = articleId;
+            // 更新UI
+            renderArticleMenu();
+            buildWordDictionary();
+            renderPage();
+            // 更新目录高亮
+            updateCatalogHighlight();
+            // 滚动到顶部
+            window.scrollTo(0, 0);
+        }
+
+        const slotTooltip = document.getElementById('slot-tooltip');
+
+        // 渲染页面
+        function renderPage() {
+            const currentArticle = getCurrentArticle();
+
+            // 设置标题
+            document.getElementById('page-title').textContent = currentArticle.title;
+            // 渲染信息栏
+            const infoArea = document.getElementById('info-area');
+            infoArea.innerHTML = '';
+
+            if (currentArticle.info) {
+                const infoItems = [
+                    { label: '作者', value: currentArticle.info.author },
+                    { label: '来源', value: currentArticle.info.source },
+                    { label: '难度', value: currentArticle.info.level }
+                ];
+
+                infoItems.forEach(item => {
+                    if (item.value) {
+                        const infoItem = document.createElement('div');
+                        infoItem.className = 'info-item';
+                        infoItem.innerHTML = `<strong>${item.label}:</strong> ${item.value}`;
+                        infoArea.appendChild(infoItem);
+                    }
+                });
+
+                // 添加标签
+                if (currentArticle.info.tags && currentArticle.info.tags.length > 0) {
+                    const tagItem = document.createElement('div');
+                    tagItem.className = 'info-item';
+                    tagItem.innerHTML = '<strong>标签:</strong> ' +
+                        currentArticle.info.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+                    infoArea.appendChild(tagItem);
+                }
+            }
+
+            // 获取内容区域
+            const contentArea = document.getElementById('content-area');
+            contentArea.innerHTML = '';
+
+            // 渲染每个段落
+            // 渲染每个段落
+            currentArticle.paras.forEach(paragraph => {
+                const paragraphElement = document.createElement('div');
+                paragraphElement.className = 'paragraph';
+                paragraphElement.id = `para-${paragraph.id}`;
+
+                // 添加段落ID
+                const paragraphId = document.createElement('div');
+                paragraphId.className = 'paragraph-id';
+                paragraphId.textContent = `段落 ${paragraph.id}`;
+                paragraphElement.appendChild(paragraphId);
+
+                // 添加英文文本
+                const englishText = document.createElement('div');
+                englishText.className = 'english-text';
+
+                // 处理英文文本，使单词和短语都可点击
+                let processedText = paragraph.en;
+
+                // 按照词汇表中的短语长度从长到短排序，优先匹配长短语
+                const vocabWords = paragraph.vocab ?
+                    paragraph.vocab.map(v => v.word).sort((a, b) => b.split(' ').length - a.split(' ').length)
+                    : [];
+
+                // 先处理短语，再处理单个单词
+                vocabWords.forEach(vocabWord => {
+                    const regex = new RegExp(`\\b${vocabWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
+                    processedText = processedText.replace(regex, `|||${vocabWord}|||`);
+                });
+
+                // 分割处理后的文本
+                const segments = processedText.split('|||');
+
+                segments.forEach(segment => {
+                    const span = document.createElement('span');
+
+                    // 检查这个segment是否是一个词汇表中的单词/短语
+                    const normalizedSegment = segment.toLowerCase();
+                    if (appState.wordDictionary[normalizedSegment] && segment.trim() !== '') {
+                        span.className = 'clickable-word';
+                        span.textContent = segment;
+                        span.dataset.word = segment; // 存储原始形式
+                        span.addEventListener('click', showWordTooltip);
+                    } else {
+                        span.textContent = segment;
+                    }
+
+                    englishText.appendChild(span);
+                });
+
+                const createCircleButton = (text, onClick, extraStyle = {}) => {
+                    const btn = document.createElement('span');
+                    Object.assign(btn.style, {
+                        display: 'inline-block',
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: '#2980b9',
+                        borderRadius: '50%',
+                        textAlign: 'center',
+                        lineHeight: '20px',
+                        cursor: 'pointer',
+                        fontSize: '12px',
+                        color: 'white',
+                        userSelect: 'none',
+                        marginLeft: '5px',
+                        ...extraStyle,
+                    });
+                    btn.innerText = text;
+                    btn.addEventListener('click', onClick);
+                    return btn;
+                };
+
+                englishText.appendChild(
+                    createCircleButton('G', () => showAddGrammarModal(paragraph))
+                );
+
+                englishText.appendChild(
+                    createCircleButton('V', () => showAddVocabModal(paragraph))
+                );
+
+                // englishText.appendChild(((p) => {
+                //     const s = document.createElement('span');
+                //     s.innerText = TextAnalyzer.quickAnalyze(p.en).wordCount;
+                //     console.log(TextAnalyzer.quickAnalyze(p.en));
+                //     Object.assign(s.style, {
+                //         display: 'inline-block',
+                //         width: '20px',
+                //         height: '20px',
+                //         backgroundColor: '#2980b9',
+                //         borderRadius: '50%',
+                //         textAlign: 'center',
+                //         lineHeight: '20px',
+                //         cursor: 'pointer',
+                //         fontSize: '12px',
+                //         color: 'white',
+                //         userSelect: 'none',
+                //         marginLeft: '5px',
+                //     })
+                //     return s;
+                // })(paragraph));
+
+
+                // ========== 添加语音朗读控制 ==========
+                const speechControl = createSpeechControl(paragraph);
+                englishText.appendChild(speechControl);
+                // ========== 添加结束 ==========
+
+                paragraphElement.appendChild(englishText);
+
+                // ========== 添加中文文本 ==========
+                // 添加中文翻译
+                if (paragraph.cn && paragraph.cn.trim()) {
+                    const chineseText = document.createElement('div');
+                    chineseText.className = 'chinese-text';
+                    chineseText.textContent = paragraph.cn;
+                    paragraphElement.appendChild(chineseText);
+                }
+                // ========== 添加结束 ==========
+
+                // 添加词汇部分
+                if (paragraph.vocab && paragraph.vocab.length > 0) {
+                    const vocabTitle = document.createElement('h3');
+                    vocabTitle.className = 'section-title';
+                    vocabTitle.innerHTML = '词汇 <button class="btn btn-sm btn-outline-secondary toggle-btn">隐藏</button>';
+
+                    const vocabList = document.createElement('div');
+                    vocabList.className = 'vocab-list';
+                    vocabList.id = `vocab-${paragraph.id}`;
+
+                    // 在renderPage函数中找到词汇部分，修改这一部分：
+                    paragraph.vocab.forEach((vocab, index) => {
+                        const vocabItem = document.createElement('div');
+                        vocabItem.className = 'vocab-item';
+
+                        // ========== 修改：使用新的单词标题布局，传递index参数 ==========
+                        const wordHeader = createWordHeader(vocab, paragraph, index);
+                        vocabItem.appendChild(wordHeader);
+
+                        const pronunciation = document.createElement('div');
+                        pronunciation.className = 'pronunciation';
+                        pronunciation.textContent = vocab.ph;
+                        vocabItem.appendChild(pronunciation);
+
+                        const meaning = document.createElement('div');
+                        meaning.className = 'meaning';
+                        meaning.textContent = `含义: ${vocab.mean}`;
+                        vocabItem.appendChild(meaning);
+
+                        const example = document.createElement('div');
+                        example.className = 'example';
+                        example.textContent = `例句: ${vocab.ex}`;
+                        vocabItem.appendChild(example);
+
+                        vocabList.appendChild(vocabItem);
+                    });
+
+
+
+                    paragraphElement.appendChild(vocabTitle);
+                    paragraphElement.appendChild(vocabList);
+
+                    // 添加切换事件
+                    vocabTitle.querySelector('.toggle-btn').addEventListener('click', function () {
+                        const isHidden = vocabList.classList.contains('hidden-content');
+                        vocabList.classList.toggle('hidden-content');
+                        this.textContent = isHidden ? '隐藏' : '显示';
+                    });
+
+                    // 初始状态
+                    if (!appState.showExplanations) {
+                        vocabList.classList.add('hidden-content');
+                        vocabTitle.querySelector('.toggle-btn').textContent = '显示';
+                    }
+                }
+
+
+
+                // 添加语法部分
+                if (paragraph.gram && paragraph.gram.length > 0) {
+                    const grammarTitle = document.createElement('h3');
+                    grammarTitle.className = 'section-title';
+                    grammarTitle.innerHTML = '语法点 <button class="btn btn-sm btn-outline-secondary toggle-btn">隐藏</button>';
+
+                    const grammarList = document.createElement('div');
+                    grammarList.className = 'grammar-list';
+                    grammarList.id = `grammar-${paragraph.id}`;
+
+                    paragraph.gram.forEach((grammar, index) => {
+                        const grammarPage = renderGrammarCard(grammar);
+                        grammarList.appendChild(grammarPage);
+                        appState.grammarRules.push(grammar)
+                    });
+                    paragraphElement.appendChild(grammarTitle);
+                    paragraphElement.appendChild(grammarList);
+
+                    paragraphElement.querySelectorAll('.slot').forEach(slot => {
+                        slot.addEventListener('click', (event) => {
+                            const slotName = event.target.dataset.slot;
+                            const ruleId = event.target.dataset.rule;
+                            showSlotTooltip(slotName, ruleId, event);
+                        });
+
+                        // 鼠标移出时隐藏工具提示
+                        slot.addEventListener('mouseleave', hideSlotTooltip);
+                    });
+
+                    // 添加切换事件
+                    grammarTitle.querySelector('.toggle-btn').addEventListener('click', function () {
+                        const isHidden = grammarList.classList.contains('hidden-content');
+                        grammarList.classList.toggle('hidden-content');
+                        this.textContent = isHidden ? '隐藏' : '显示';
+                    });
+
+                    // 初始状态
+                    if (!appState.showExplanations) {
+                        grammarList.classList.add('hidden-content');
+                        grammarTitle.querySelector('.toggle-btn').textContent = '显示';
+                    }
+                }
+
+                contentArea.appendChild(paragraphElement);
+            });
+
+            // 添加备注部分
+            if (currentArticle.note) {
+                const noteSection = document.createElement('div');
+                noteSection.className = 'note-section';
+
+                const noteTitle = document.createElement('div');
+                noteTitle.className = 'note-title';
+                noteTitle.textContent = '学习笔记';
+                noteSection.appendChild(noteTitle);
+
+                const noteContent = document.createElement('div');
+                noteContent.className = 'note-content';
+                noteContent.textContent = currentArticle.note;
+                noteSection.appendChild(noteContent);
+
+                contentArea.appendChild(noteSection);
+            }
+        }
+
+        // 切换解析显示状态
+        function toggleExplanations() {
+            appState.showExplanations = !appState.showExplanations;
+
+            // 更新全局设置开关
+            document.getElementById('toggle-explanations').checked = appState.showExplanations;
+
+            // 显示/隐藏所有词汇和语法部分
+            document.querySelectorAll('.vocab-list, .grammar-list').forEach(el => {
+                if (appState.showExplanations) {
+                    el.classList.remove('hidden-content');
+                } else {
+                    el.classList.add('hidden-content');
+                }
+            });
+
+            // 更新所有切换按钮文本
+            document.querySelectorAll('.section-title .toggle-btn').forEach(btn => {
+                btn.textContent = appState.showExplanations ? '隐藏' : '显示';
+            });
+        }
+
+        // 渲染语法卡片
+        function renderGrammarCard(rule) {
+            const card = document.createElement('div');
+            card.className = 'grammar-card';
+            card.dataset.ruleId = rule.id;
+
+            // 创建卡片HTML
+            card.innerHTML = `
+                <div class="card-header">
+                    <h2 class="card-title">${rule.name}</h2>
+                    <div class="card-level">${rule.level}</div>
+                </div>
+                <div class="card-body">
+                    <div class="gram-section">
+                        <div class="gram-section-title">语法模式</div>
+                        <div class="pattern-container" id="pattern-${rule.id}">
+                            ${renderPattern(rule.pattern, rule.components, rule.id)}
+                        </div>
+                    </div>
+                    
+                    <div class="gram-section">
+                        <div class="gram-section-title">功能说明</div>
+                        <p>${rule.function}</p>
+                    </div>
+                    
+                    <div class="gram-section">
+                        <div class="gram-section-title">示例句</div>
+                        <div class="example-container">
+                            <div class="example-en">${rule.example.en}</div>
+                            <div class="example-cn">${rule.example.cn}</div>
+                        </div>
+                    </div>
+                    
+                    ${rule.variants && rule.variants.length > 0 ? `
+                    <div class="gram-section">
+                        <div class="gram-section-title">变体</div>
+                        <ul class="variants-list">
+                            ${rule.variants.map(variant => `<li>${renderPattern(variant, rule.components, rule.id)}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+                    
+                    ${rule.constraints ? `
+                    <div class="gram-section">
+                        <div class="gram-section-title">语法限制</div>
+                        <div class="constraints-container">
+                            ${rule.constraints}
+                        </div>
+                    </div>
+                    ` : ''}
+                </div>
+                <div class="card-footer">
+                    <div>ID: ${rule.id}</div>
+                    <div>类别: ${gramTypes[rule.category]?.cn || rule.category}</div>
+                </div>
+            `;
+            return card;
+        }
+
+
+
+
+        // 用于合并单词最小单位,第参数个元素是单词最小单位列表，第二是具体需要合并的句子
+        function mergePhrases(parts, phrases) {
+            const result = [];
+            let i = 0;
+
+            while (i < parts.length) {
+                let merged = false;
+
+                // 遍历要合并的短语
+                for (const phrase of phrases) {
+                    const phraseParts = phrase.split(/([.,!?;:\s]+)/).filter(Boolean); // 拆短语成词+空格
+                    const segment = parts.slice(i, i + phraseParts.length).join('');
+
+                    if (segment.toLowerCase() === phrase.toLowerCase()) {
+                        // 如果匹配成功
+                        result.push(phrase);
+                        i += phraseParts.length;
+                        merged = true;
+                        break;
+                    }
+                }
+
+                if (!merged) {
+                    result.push(parts[i]);
+                    i++;
+                }
+            }
+
+            return result;
+        }
+
+
+
+
+        // 渲染语法模式，智能识别槽位
+        function renderPattern(pattern, components, ruleId) {
+            // 先提取所有 slot 名称方便查找
+            // Object.fromEntries功能，把列表转化为字典 如 [[a,b],[b,c],[c,d]] => {a:b,b:c,c:d}
+            const slotList = [];
+            const slotMap = Object.fromEntries(
+                components.map(c => {
+                    slotList.push(c.slot)
+                    return [c.slot, c];
+                }
+                )
+            );
+            console.log('slotMap', slotMap);
+            console.log('slotList', slotList);
+
+            // 分割 pattern —— 保留空格
+            const takeParts = pattern.split(/([.,!?;:\s]+)/);
+            console.log('parts', takeParts)
+            const parts = mergePhrases(takeParts, slotList);
+            return parts.map(part => {
+                // 去掉前后空格
+                const trimmed = part.trim();
+                if (trimmed === '') return part; // 保留空格
+
+                // 是否是 components 中定义的槽位
+                const comp = slotMap[trimmed];
+                if (comp) {
+                    // 渲染槽位
+                    return `<span class="slot"
+                         data-slot="${comp.slot}" 
+                         data-role="${comp.role}" 
+                         data-pos="${comp.pos.join(',')}" 
+                         data-rule="${ruleId}">
+                         ${comp.slot}
+                    </span>`;
+                }
+
+                // 否则当作固定词
+                return `<span class="fixed-word">${part}</span>`;
+            }).join('');
+        }
+
+        // 显示槽位工具提示
+        function showSlotTooltip(slot, ruleId, event) {
+            // 清除之前的超时
+            if (currentTooltipTimeout) {
+                clearTimeout(currentTooltipTimeout);
+            }
+
+            // 查找对应的语法规则和槽位信息
+            const rule = appState.grammarRules.find(r => r.id === ruleId);
+            if (!rule) return;
+
+            const component = rule.components.find(c => c.slot === slot);
+            if (!component) {
+                // 如果没有找到对应的component，显示默认信息
+                slotTooltip.innerHTML = `
+                    <div class="tooltip-header">
+                        <div class="tooltip-slot">${slot}</div>
+                        <div class="tooltip-role">语法槽位</div>
+                    </div>
+                    <div class="tooltip-pos">
+                        <div>在语法模式中代表一个可替换的部分</div>
+                    </div>
+                `;
+            } else {
+                // 构建工具提示内容
+                const posTags = component.pos.map(p =>
+                    `<span class="tooltip-pos-tag">${posTypes[p]?.cn || p}</span>`
+                ).join('');
+
+                slotTooltip.innerHTML = `
+                    <div class="tooltip-header">
+                        <div class="tooltip-slot">${slot}</div>
+                        <div class="tooltip-role">${component.role}</div>
+                    </div>
+                    <div class="tooltip-pos">
+                        <div class="tooltip-pos-title">允许的词性:</div>
+                        <div class="tooltip-pos-tags">${posTags}</div>
+                    </div>
+                `;
+            }
+
+            // 定位工具提示
+            const rect = event.target.getBoundingClientRect();
+
+
+            let top = rect.bottom + 5;
+            let left = rect.left;
+
+            // 确保工具提示不会超出屏幕
+            const tooltipWidth = window.innerWidth < 768 ? 200 : 250;
+            if (left + tooltipWidth > window.innerWidth) {
+                left = window.innerWidth - tooltipWidth - 10;
+            }
+
+            slotTooltip.style.top = `${top}px`;
+            slotTooltip.style.left = `${left}px`;
+
+            // 显示工具提示
+            slotTooltip.classList.add('show');
+
+            // 设置自动隐藏
+            currentTooltipTimeout = setTimeout(() => {
+                slotTooltip.classList.remove('show');
+            }, 3000);
+        }
+
+        // 隐藏工具提示
+        function hideSlotTooltip() {
+            if (currentTooltipTimeout) {
+                clearTimeout(currentTooltipTimeout);
+            }
+            slotTooltip.classList.remove('show');
+        }
+
+
+        // 增强showWordTooltip函数，在工具提示中添加词性和发音按钮
+        function showWordTooltip(event) {
+            const word = event.target.dataset.word;
+            console.log(word)
+            // 使用小写形式查找词典
+            const wordData = appState.wordDictionary[word.toLowerCase()];
+
+            if (wordData) {
+                const tooltip = document.getElementById('word-tooltip');
+
+                // 获取词性显示文本
+                let posDisplay = '';
+                if (wordData.pos && wordData.pos.trim()) {
+                    const currentArticle = getCurrentArticle();
+                    const posType = currentArticle.pos_types && currentArticle.pos_types[wordData.pos]
+                        ? currentArticle.pos_types[wordData.pos]
+                        : { en: wordData.pos, cn: wordData.pos };
+                    posDisplay = `(${posType.cn || posType.en || wordData.pos})`;
+                }
+
+                // 创建工具提示内容，包含词性、发音按钮
+                const tooltipContent = document.createElement('div');
+                tooltipContent.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <strong>${wordData.word}</strong>
+                <span style="color: var(--text-light); font-size: 0.9rem;">${posDisplay}</span>
+                <button class="word-speech-btn" style="margin: 0;" title="朗读单词">
+                    ${createSpeechIcon()}
+                </button>
+            </div>
+            <div style="margin-bottom: 4px;">${wordData.ph}</div>
+            <div style="margin-bottom: 4px;">${wordData.mean}</div>
+            <div><em>${wordData.ex}</em></div>
+        `;
+
+                tooltip.innerHTML = '';
+                tooltip.appendChild(tooltipContent);
+
+                // 为工具提示中的发音按钮添加事件
+                const speechBtn = tooltip.querySelector('.word-speech-btn');
+                speechBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    speakWord(wordData.word, this);
+                });
+
+                // 获取点击元素的位置
+                const rect = event.target.getBoundingClientRect();
+
+                // 计算工具提示位置
+                let left = rect.left;
+                let top = rect.bottom + 5;
+
+                // 确保工具提示不会超出屏幕右侧
+                const tooltipWidth = window.innerWidth < 768 ? 200 : 250;
+                if (left + tooltipWidth > window.innerWidth) {
+                    left = window.innerWidth - tooltipWidth - 10;
+                }
+
+                // 确保工具提示不会超出屏幕底部
+                const tooltipHeight = 100;
+                if (top + tooltipHeight > window.innerHeight) {
+                    top = rect.top - tooltipHeight - 5;
+                }
+
+                // 设置工具提示位置
+                tooltip.style.left = `${left}px`;
+                tooltip.style.top = `${top}px`;
+
+                tooltip.classList.add('show');
+
+                // 3秒后自动隐藏
+                setTimeout(() => {
+                    tooltip.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // 更新阅读进度
+        function updateProgress() {
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.scrollY || window.pageYOffset; // 使用现代API，保持向后兼容
+
+            // 防止除零错误
+            const scrollableHeight = docHeight - winHeight;
+            let scrollPercent = 0;
+
+            if (scrollableHeight > 0) {
+                scrollPercent = (scrollTop / scrollableHeight) * 100;
+            }
+
+            // 确保进度在合理范围内
+            scrollPercent = Math.min(Math.max(scrollPercent, 0), 100);
+
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+            document.getElementById('progress-display').textContent = `${Math.round(scrollPercent)}%`;
+        }
+
+
+        function getScreenInfo(px = 0, py = 0) {
+            // 限制范围在 0~100 之间
+            px = Math.min(Math.max(px, 0), 100);
+            py = Math.min(Math.max(py, 0), 100);
+
+            // 转换为比例
+            const xRatio = px / 100;
+            const yRatio = py / 100;
+
+            // 返回信息
+            return {
+                x: window.innerWidth * xRatio,
+                y: window.innerHeight * yRatio,
+                width: window.innerWidth,
+                height: window.innerHeight,
+                ratio: window.innerWidth / window.innerHeight
+            };
+        }
+
+        // 悬浮控制球功能 - 移动端优化版本
+        function initFloatingControl() {
+            const floatingControl = document.getElementById('floating-control');
+            const floatingMenu = document.getElementById('floating-menu');
+            const closeMenuBtn = document.getElementById('close-menu');
+            const toggleExplanationsSwitch = document.getElementById('toggle-explanations');
+            // 检测设备类型
+            const isTouch = isTouchDevice();
+
+            // 设置初始位置
+            updateFloatingControlPosition();
+
+            // 保存原始位置
+            appState.floatingControl.originalPosition = {
+                x: getScreenInfo(95, 0).x,
+                y: getScreenInfo(0, 90).y
+            };
+
+            // 设置目标位置（右上角）
+            appState.floatingControl.targetPosition = {
+                x: getScreenInfo(80, 0).x,
+                y: getScreenInfo(0, 90).y
+            };
+
+            // 在悬浮菜单初始化部分添加
+            document.getElementById('article-catalog-btn').addEventListener('click', function () {
+                document.getElementById('article-catalog').classList.add('show');
+                renderCatalogList();
+                hideFloatingMenu();
+            });
+
+            // 根据设备类型绑定不同的事件
+            if (isTouch) {
+                // 触屏设备 - 简化交互，只处理点击
+                console.log('触屏设备 - 简化交互模式');
+                const s = getScreenInfo(90, 90);
+                
+
+                appState.floatingControlPosition.x = s.x;
+                appState.floatingControlPosition.y= s.y;
+                console.log('left',)
+
+
+                // 移除所有可能存在的拖动事件
+                floatingControl.ontouchstart = null;
+                floatingControl.ontouchmove = null;
+                floatingControl.ontouchend = null;
+
+                updateFloatingControlPosition();
+
+                // 只绑定点击事件
+                floatingControl.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    if (appState.floatingControl.isReturning) {
+                        // 如果正在返回中，不处理点击
+                        return;
+                    }
+
+                    if (appState.floatingControl.isMobileLocked) {
+                        // 如果已经锁定，点击后返回原始位置并关闭菜单
+                        returnToOriginalPosition();
+                        hideFloatingMenu();
+                    } else {
+                        // 如果未锁定，移动到目标位置并显示菜单
+                        moveToTargetPosition();
+                        toggleMenu();
+                    }
+                });
+
+            } else {
+                // 非触屏设备 - 保持原有的鼠标事件
+                console.log('非触屏设备 - 绑定鼠标事件');
+
+                // 菜单显示/隐藏
+                floatingControl.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleMenu();
+                });
+
+                // 拖动功能
+                let isDragging = false;
+                let dragOffset = { x: 0, y: 0 };
+
+                floatingControl.addEventListener('mousedown', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    isDragging = true;
+                    floatingControl.classList.add('dragging');
+
+                    const rect = floatingControl.getBoundingClientRect();
+                    dragOffset.x = e.clientX - rect.left;
+                    dragOffset.y = e.clientY - rect.top;
+
+                    document.addEventListener('mousemove', onMouseDrag);
+                    document.addEventListener('mouseup', stopMouseDrag);
+                });
+
+                function onMouseDrag(e) {
+                    if (!isDragging) return;
+
+                    appState.floatingControlPosition.x = e.clientX - dragOffset.x;
+                    appState.floatingControlPosition.y = e.clientY - dragOffset.y;
+
+                    updateFloatingControlPosition();
+                }
+
+                function stopMouseDrag() {
+                    isDragging = false;
+                    floatingControl.classList.remove('dragging');
+
+                    document.removeEventListener('mousemove', onMouseDrag);
+                    document.removeEventListener('mouseup', stopMouseDrag);
+
+                    // 自动吸附到最近的边缘
+                    autoSnapToEdge();
+
+                    // 更新原始位置
+                    appState.floatingControl.originalPosition = {
+                        x: appState.floatingControlPosition.x,
+                        y: appState.floatingControlPosition.y
+                    };
+                }
+            }
+
+
+
+            // 切换菜单显示/隐藏的通用函数
+            function toggleMenu() {
+                const isShowing = floatingMenu.classList.toggle('show');
+
+                if (isShowing) {
+                    // 定位菜单
+                    const controlRect = floatingControl.getBoundingClientRect();
+                    const menuWidth = 280;
+                    const menuHeight = floatingMenu.offsetHeight;
+
+                    let menuLeft = controlRect.left;
+                    let menuTop = controlRect.bottom + 10;
+
+                    // 确保菜单不会超出屏幕
+                    if (menuLeft + menuWidth > window.innerWidth) {
+                        menuLeft = window.innerWidth - menuWidth - 10;
+                    }
+
+                    if (menuTop + menuHeight > window.innerHeight) {
+                        menuTop = controlRect.top - menuHeight - 10;
+                    }
+
+                    floatingMenu.style.left = `${menuLeft}px`;
+                    floatingMenu.style.top = `${menuTop}px`;
+
+                    // 在移动端，显示菜单时移动到目标位置
+                    if (isTouch && !appState.floatingControl.isMobileLocked) {
+                        moveToTargetPosition();
+                    }
+                } else {
+                    // 在移动端，隐藏菜单时返回原始位置
+                    if (isTouch && appState.floatingControl.isMobileLocked) {
+                        returnToOriginalPosition();
+                    }
+                }
+            }
+
+            // 关闭菜单
+            closeMenuBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                hideFloatingMenu();
+            });
+
+            // 点击其他地方关闭菜单
+            document.addEventListener('click', function (e) {
+                // 如果点击的不是悬浮球、菜单或菜单内的元素，则关闭菜单
+                if (!floatingControl.contains(e.target) && !floatingMenu.contains(e.target)) {
+                    hideFloatingMenu();
+                }
+            });
+
+            // 防止菜单点击事件冒泡
+            floatingMenu.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+
+            // 全局设置开关
+            toggleExplanationsSwitch.addEventListener('change', function () {
+                appState.showExplanations = this.checked;
+
+                // 显示/隐藏所有词汇和语法部分
+                document.querySelectorAll('.vocab-list, .grammar-list').forEach(el => {
+                    if (appState.showExplanations) {
+                        el.classList.remove('hidden-content');
+                    } else {
+                        el.classList.add('hidden-content');
+                    }
+                });
+
+                // 更新所有切换按钮文本
+                document.querySelectorAll('.section-title .toggle-btn').forEach(btn => {
+                    btn.textContent = appState.showExplanations ? '隐藏' : '显示';
+                });
+            });
+
+            // 窗口大小变化时更新位置
+            window.addEventListener('resize', function () {
+                // 更新目标位置
+                appState.floatingControl.targetPosition = {
+                    x: window.innerWidth - 80,
+                    y: 20
+                };
+
+                // 如果当前在目标位置，更新位置
+                if (appState.floatingControl.isMobileLocked) {
+                    appState.floatingControlPosition.x = appState.floatingControl.targetPosition.x;
+                    appState.floatingControlPosition.y = appState.floatingControl.targetPosition.y;
+                    updateFloatingControlPosition();
+                }
+
+                // 更新原始位置的边界检查
+                if (!appState.floatingControl.isMobileLocked) {
+                    autoSnapToEdge();
+                    // 更新原始位置
+                    appState.floatingControl.originalPosition = {
+                        x: appState.floatingControlPosition.x,
+                        y: appState.floatingControlPosition.y
+                    };
+                }
+            });
+        }
+
+        // 移动到目标位置函数（已在initFloatingControl中定义，但需要在外部可访问）
+        function moveToTargetPosition() {
+            const floatingControl = document.getElementById('floating-control');
+            const isTouch = isTouchDevice();
+
+            if (!isTouch) return;
+
+            // 添加移动动画类
+            floatingControl.classList.add('mobile-locked');
+            floatingControl.classList.remove('mobile-returning');
+
+            // 更新位置
+            appState.floatingControlPosition.x = appState.floatingControl.targetPosition.x;
+            appState.floatingControlPosition.y = appState.floatingControl.targetPosition.y;
+
+            updateFloatingControlPosition();
+
+            // 更新状态
+            appState.floatingControl.isMobileLocked = true;
+            appState.floatingControl.isReturning = false;
+        }
+
+
+        // 返回原始位置函数（已在initFloatingControl中定义，但需要在外部可访问）
+        function returnToOriginalPosition() {
+            const floatingControl = document.getElementById('floating-control');
+            const isTouch = isTouchDevice();
+
+            if (!isTouch) return;
+
+            // 添加返回动画类
+            floatingControl.classList.add('mobile-returning');
+            floatingControl.classList.remove('mobile-locked');
+
+            // 设置返回状态
+            appState.floatingControl.isReturning = true;
+
+            // 更新位置
+            appState.floatingControlPosition.x = appState.floatingControl.originalPosition.x;
+            appState.floatingControlPosition.y = appState.floatingControl.originalPosition.y;
+
+            updateFloatingControlPosition();
+
+            // 动画完成后更新状态
+            setTimeout(() => {
+                appState.floatingControl.isMobileLocked = false;
+                appState.floatingControl.isReturning = false;
+                floatingControl.classList.remove('mobile-returning');
+            }, 500);
+        }
+
+
+        function updateFloatingControlPosition() {
+            const floatingControl = document.getElementById('floating-control');
+            floatingControl.style.left = `${appState.floatingControlPosition.x}px`;
+            floatingControl.style.top = `${appState.floatingControlPosition.y}px`;
+        }
+
+        function autoSnapToEdge() {
+            const isTouch = isTouchDevice();
+
+            // 在移动端且已锁定时，不进行自动吸附
+            if (isTouch && appState.floatingControl.isMobileLocked) {
+                return;
+            }
+
+            const controlSize = 60;
+            const edgeThreshold = 80; // 距离边缘多少像素时自动吸附
+
+            const x = appState.floatingControlPosition.x;
+            const y = appState.floatingControlPosition.y;
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            // 计算到各边的距离
+            const toLeft = x;
+            const toRight = width - x - controlSize;
+            const toTop = y;
+            const toBottom = height - y - controlSize;
+
+            // 找到最近的边
+            const minDistance = Math.min(toLeft, toRight, toTop, toBottom);
+
+            // 移除所有边缘类
+            const floatingControl = document.getElementById('floating-control');
+            floatingControl.classList.remove('left-edge', 'right-edge', 'top-edge', 'bottom-edge');
+
+            // 根据最近的边自动吸附
+            if (minDistance < edgeThreshold) {
+                if (minDistance === toLeft) {
+                    appState.floatingControlPosition.x = -controlSize / 2;
+                    floatingControl.classList.add('left-edge');
+                } else if (minDistance === toRight) {
+                    appState.floatingControlPosition.x = width - controlSize / 2;
+                    floatingControl.classList.add('right-edge');
+                } else if (minDistance === toTop) {
+                    appState.floatingControlPosition.y = -controlSize / 2;
+                    floatingControl.classList.add('top-edge');
+                } else if (minDistance === toBottom) {
+                    appState.floatingControlPosition.y = height - controlSize / 2;
+                    floatingControl.classList.add('bottom-edge');
+                }
+
+                updateFloatingControlPosition();
+
+                // 更新原始位置
+                appState.floatingControl.originalPosition = {
+                    x: appState.floatingControlPosition.x,
+                    y: appState.floatingControlPosition.y
+                };
+            }
+        }
+
+
+        function hideFloatingMenu() {
+            const floatingMenu = document.getElementById('floating-menu');
+            const isTouch = isTouchDevice();
+
+            floatingMenu.classList.remove('show');
+
+            // 在移动端，隐藏菜单时返回原始位置
+            if (isTouch && appState.floatingControl.isMobileLocked) {
+                returnToOriginalPosition();
+            }
+        }
+
+        // 页面加载完成后初始化
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function () {
+            // 初始化所有文章数据
+            articlesData.forEach(article => initArtcleData(article));
+
+            buildWordDictionary();
+            renderArticleMenu();
+            renderPage();
+            initFloatingControl();
+            initImportExport();
+            initDynamicImport();
+            initArticleCatalog();
+
+            // 初始化语音合成
+            initSpeechSynthesis();
+
+            // 监听滚动事件更新进度条
+            window.addEventListener('scroll', updateProgress);
+
+            // 初始更新进度条
+            updateProgress();
+
+            // 预加载语音列表（某些浏览器需要）
+            if ('speechSynthesis' in window) {
+                // 某些浏览器需要触发一次getVoices来加载语音列表
+                window.speechSynthesis.getVoices();
+
+                // 监听语音列表变化
+                window.speechSynthesis.onvoiceschanged = function () {
+                    console.log('语音列表已加载');
+                };
+            }
+        });
+
+        // 模态框功能
+        let currentParagraphForModal = null;
+
+        function showAddVocabModal(paragraph) {
+            currentParagraphForModal = paragraph;
+            const modal = document.getElementById('add-vocab-modal');
+
+            // 清空表单
+            document.getElementById('vocab-word').value = '';
+            document.getElementById('vocab-pos').value = 'n'; // 默认选择名词
+            document.getElementById('vocab-pronunciation').value = '';
+            document.getElementById('vocab-meaning').value = '';
+            document.getElementById('vocab-example').value = '';
+            document.getElementById('vocab-json').value = '';
+
+            // 重置到第一个选项卡
+            modal.querySelectorAll('.modal-tab').forEach((tab, index) => {
+                tab.classList.toggle('active', index === 0);
+            });
+            modal.querySelectorAll('.modal-tab-content').forEach((content, index) => {
+                content.classList.toggle('active', index === 0);
+            });
+
+            modal.classList.add('show');
+        }
+
+        function showAddGrammarModal(paragraph) {
+            currentParagraphForModal = paragraph;
+            const modal = document.getElementById('add-grammar-modal');
+
+            // 清空表单
+            document.getElementById('grammar-rule').value = '';
+            document.getElementById('grammar-category').value = 'S';
+            document.getElementById('grammar-description').value = '';
+            document.getElementById('grammar-example').value = '';
+            document.getElementById('grammar-json').value = '';
+
+            // 重置到第一个选项卡
+            modal.querySelectorAll('.modal-tab').forEach((tab, index) => {
+                tab.classList.toggle('active', index === 0);
+            });
+            modal.querySelectorAll('.modal-tab-content').forEach((content, index) => {
+                content.classList.toggle('active', index === 0);
+            });
+
+            modal.classList.add('show');
+        }
+
+        function hideAllModals() {
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.classList.remove('show');
+            });
+            currentParagraphForModal = null;
+        }
+
+        function showTemporaryMessage(message) {
+            const messageEl = document.createElement('div');
+            messageEl.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--secondary-color);
+        color: white;
+        padding: 12px 16px;
+        border-radius: 6px;
+        z-index: 10000;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        font-size: 0.9rem;
+    `;
+            messageEl.textContent = message;
+            document.body.appendChild(messageEl);
+            setTimeout(() => {
+                document.body.removeChild(messageEl);
+            }, 3000);
+        }
+
+        // 添加单词功能
+        // 添加单词功能
+        function addVocabItem(word, pos, pronunciation, meaning, example, isQuickAdd = false) {
+            if (!currentParagraphForModal) return false;
+
+            // 验证必填字段
+            if (!word.trim()) {
+                showTemporaryMessage('错误：单词/短语不能为空');
+                return false;
+            }
+
+            const currentArticle = getCurrentArticle();
+            const paragraph = currentArticle.paras.find(p => p.id === currentParagraphForModal.id);
+
+            if (!paragraph.vocab) {
+                paragraph.vocab = [];
+            }
+
+            // 检查是否已存在相同的单词
+            const existingVocab = paragraph.vocab.find(v =>
+                v.word.toLowerCase() === word.toLowerCase()
+            );
+
+            if (existingVocab) {
+                showTemporaryMessage(`单词 "${word}" 已存在`);
+                return false;
+            }
+
+            // 添加新单词
+            paragraph.vocab.push({
+                word: word.trim(),
+                pos: isQuickAdd ? "n" : (pos || "n"), // 默认词性为名词
+                ph: isQuickAdd ? "Undefined" : (pronunciation.trim() || "Undefined"),
+                mean: isQuickAdd ? "Undefined" : (meaning.trim() || "Undefined"),
+                ex: isQuickAdd ? "Undefined" : (example.trim() || "Undefined")
+            });
+
+            // 重新构建词典并渲染页面
+            buildWordDictionary();
+            renderPage();
+
+            showTemporaryMessage(`已添加单词: "${word}"`);
+            return true;
+        }
+        // 添加语法功能
+        function addGrammarItem(rule, category, description, example, isQuickAdd = false) {
+            if (!currentParagraphForModal) return false;
+
+            // 验证必填字段
+            if (!rule.trim()) {
+                showTemporaryMessage('错误：语法规则不能为空');
+                return false;
+            }
+
+            const currentArticle = getCurrentArticle();
+            const paragraph = currentArticle.paras.find(p => p.id === currentParagraphForModal.id);
+
+            if (!paragraph.gram) {
+                paragraph.gram = [];
+            }
+
+            // 检查是否已存在相同的语法点
+            const existingGrammar = paragraph.gram.find(g =>
+                g.rule.toLowerCase() === rule.toLowerCase()
+            );
+
+            if (existingGrammar) {
+                showTemporaryMessage(`语法点 "${rule}" 已存在`);
+                return false;
+            }
+
+            // 添加新语法点
+            paragraph.gram.push({
+                rule: rule.trim(),
+                cat: category,
+                desc: isQuickAdd ? "Undefined" : (description.trim() || "Undefined"),
+                ex: isQuickAdd ? "Undefined" : (example.trim() || "Undefined")
+            });
+
+            // 重新渲染页面
+            renderPage();
+
+            showTemporaryMessage(`已添加语法点: "${rule}"`);
+            return true;
+        }
+
+        // 绑定模态框事件
+        // 绑定模态框事件
+        document.addEventListener('DOMContentLoaded', function () {
+            // 初始化选项卡
+            initModalTabs();
+
+            // 词汇模态框事件
+            document.getElementById('save-vocab-btn').addEventListener('click', function () {
+                const word = document.getElementById('vocab-word').value;
+                const pos = document.getElementById('vocab-pos').value;
+                const pronunciation = document.getElementById('vocab-pronunciation').value;
+                const meaning = document.getElementById('vocab-meaning').value;
+                const example = document.getElementById('vocab-example').value;
+
+                if (addVocabItem(word, pos, pronunciation, meaning, example, false)) {
+                    hideAllModals();
+                }
+            });
+
+            document.getElementById('quick-add-vocab-btn').addEventListener('click', function () {
+                const word = document.getElementById('vocab-word').value;
+                const pos = document.getElementById('vocab-pos').value;
+
+                if (addVocabItem(word, pos, '', '', '', true)) {
+                    hideAllModals();
+                }
+            });
+
+            // 批量添加单词
+            document.getElementById('batch-add-vocab-btn').addEventListener('click', function () {
+                const jsonData = document.getElementById('vocab-json').value;
+                const result = batchAddVocabItems(jsonData);
+                showBatchResult(result, 'vocab');
+
+                if (result.success > 0) {
+                    hideAllModals();
+                }
+            });
+
+            // 快速批量添加单词
+            document.getElementById('quick-batch-vocab-btn').addEventListener('click', function () {
+                const wordsText = document.getElementById('vocab-json').value;
+                const result = quickBatchAddVocab(wordsText);
+                showBatchResult(result, 'vocab');
+
+                if (result.success > 0) {
+                    hideAllModals();
+                }
+            });
+
+            document.getElementById('cancel-vocab-btn').addEventListener('click', hideAllModals);
+
+            // 语法模态框事件
+            document.getElementById('save-grammar-btn').addEventListener('click', function () {
+                const rule = document.getElementById('grammar-rule').value;
+                const category = document.getElementById('grammar-category').value;
+                const description = document.getElementById('grammar-description').value;
+                const example = document.getElementById('grammar-example').value;
+
+                if (addGrammarItem(rule, category, description, example, false)) {
+                    hideAllModals();
+                }
+            });
+
+            document.getElementById('quick-add-grammar-btn').addEventListener('click', function () {
+                const rule = document.getElementById('grammar-rule').value;
+                const category = document.getElementById('grammar-category').value;
+
+                if (addGrammarItem(rule, category, '', '', true)) {
+                    hideAllModals();
+                }
+            });
+
+            // 批量添加语法
+            document.getElementById('batch-add-grammar-btn').addEventListener('click', function () {
+                const jsonData = document.getElementById('grammar-json').value;
+                const result = batchAddGrammarItems(jsonData);
+                showBatchResult(result, 'grammar');
+
+                if (result.success > 0) {
+                    hideAllModals();
+                }
+            });
+
+            // 快速批量添加语法
+            document.getElementById('quick-batch-grammar-btn').addEventListener('click', function () {
+                const rulesText = document.getElementById('grammar-json').value;
+                const result = quickBatchAddGrammar(rulesText);
+                showBatchResult(result, 'grammar');
+
+                if (result.success > 0) {
+                    hideAllModals();
+                }
+            });
+
+            document.getElementById('cancel-grammar-btn').addEventListener('click', hideAllModals);
+
+            // 点击模态框外部关闭
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.addEventListener('click', function (e) {
+                    if (e.target === modal) {
+                        hideAllModals();
+                    }
+                });
+            });
+        });
+
+        // 选项卡切换功能
+        function initModalTabs() {
+            // 为所有选项卡按钮添加点击事件
+            document.querySelectorAll('.modal-tab').forEach(tab => {
+                tab.addEventListener('click', function () {
+                    const modal = this.closest('.modal-content');
+                    const tabName = this.dataset.tab;
+
+                    // 移除所有active类
+                    modal.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+                    modal.querySelectorAll('.modal-tab-content').forEach(c => c.classList.remove('active'));
+
+                    // 添加active类到当前选项卡
+                    this.classList.add('active');
+                    modal.querySelector(`.modal-tab-content[data-tab="${tabName}"]`).classList.add('active');
+                });
+            });
+        }
+
+        // 批量添加单词功能
+        function batchAddVocabItems(jsonData) {
+            if (!currentParagraphForModal) return { success: 0, total: 0, errors: [] };
+
+            const currentArticle = getCurrentArticle();
+            const paragraph = currentArticle.paras.find(p => p.id === currentParagraphForModal.id);
+
+            if (!paragraph.vocab) {
+                paragraph.vocab = [];
+            }
+
+            let successCount = 0;
+            const errors = [];
+
+            try {
+                // 解析JSON数据
+                const vocabItems = typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
+
+                if (!Array.isArray(vocabItems)) {
+                    throw new Error('JSON数据必须是数组格式');
+                }
+
+                vocabItems.forEach((item, index) => {
+                    // 验证必填字段
+                    if (!item.word || !item.word.trim()) {
+                        errors.push(`第 ${index + 1} 项: 缺少word字段`);
+                        return;
+                    }
+
+                    // 检查是否已存在
+                    const existingVocab = paragraph.vocab.find(v =>
+                        v.word.toLowerCase() === item.word.trim().toLowerCase()
+                    );
+
+                    if (existingVocab) {
+                        errors.push(`第 ${index + 1} 项: 单词 "${item.word}" 已存在`);
+                        return;
+                    }
+
+                    // 添加新单词
+                    paragraph.vocab.push({
+                        word: item.word.trim(),
+                        pos: item.pos && item.pos.trim() ? item.pos.trim() : "n",
+                        ph: item.ph && item.ph.trim() ? item.ph.trim() : "Undefined",
+                        mean: item.mean && item.mean.trim() ? item.mean.trim() : "Undefined",
+                        ex: item.ex && item.ex.trim() ? item.ex.trim() : "Undefined"
+                    });
+
+                    successCount++;
+                });
+
+                if (successCount > 0) {
+                    // 重新构建词典并渲染页面
+                    buildWordDictionary();
+                    renderPage();
+                }
+
+                return {
+                    success: successCount,
+                    total: vocabItems.length,
+                    errors: errors
+                };
+
+            } catch (error) {
+                return {
+                    success: 0,
+                    total: 0,
+                    errors: [`JSON解析错误: ${error.message}`]
+                };
+            }
+        }
+        // 批量添加语法功能
+        function batchAddGrammarItems(jsonData) {
+            if (!currentParagraphForModal) return { success: 0, total: 0, errors: [] };
+
+            const currentArticle = getCurrentArticle();
+            const paragraph = currentArticle.paras.find(p => p.id === currentParagraphForModal.id);
+
+            if (!paragraph.gram) {
+                paragraph.gram = [];
+            }
+
+            let successCount = 0;
+            const errors = [];
+
+            try {
+                // 解析JSON数据
+                const grammarItems = typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
+
+                if (!Array.isArray(grammarItems)) {
+                    throw new Error('JSON数据必须是数组格式');
+                }
+
+                grammarItems.forEach((item, index) => {
+                    // 验证必填字段
+                    if (!item.rule || !item.rule.trim()) {
+                        errors.push(`第 ${index + 1} 项: 缺少rule字段`);
+                        return;
+                    }
+
+                    // 检查是否已存在
+                    const existingGrammar = paragraph.gram.find(g =>
+                        g.rule.toLowerCase() === item.rule.trim().toLowerCase()
+                    );
+
+                    if (existingGrammar) {
+                        errors.push(`第 ${index + 1} 项: 语法点 "${item.rule}" 已存在`);
+                        return;
+                    }
+
+                    // 添加新语法点
+                    paragraph.gram.push({
+                        rule: item.rule.trim(),
+                        cat: item.cat && item.cat.trim() ? item.cat.trim() : "S",
+                        desc: item.desc && item.desc.trim() ? item.desc.trim() : "Undefined",
+                        ex: item.ex && item.desc.trim() ? item.ex.trim() : "Undefined"
+                    });
+
+                    successCount++;
+                });
+
+                if (successCount > 0) {
+                    // 重新渲染页面
+                    renderPage();
+                }
+
+                return {
+                    success: successCount,
+                    total: grammarItems.length,
+                    errors: errors
+                };
+
+            } catch (error) {
+                return {
+                    success: 0,
+                    total: 0,
+                    errors: [`JSON解析错误: ${error.message}`]
+                };
+            }
+        }
+
+        // 快速批量添加单词（逗号分隔）
+        function quickBatchAddVocab(wordsText) {
+            if (!currentParagraphForModal) return { success: 0, total: 0, errors: [] };
+
+            const words = wordsText.split(',').map(word => word.trim()).filter(word => word);
+
+            const jsonData = words.map(word => ({
+                word: word,
+                pos: "n", // 默认词性为名词
+                ph: "Undefined",
+                mean: "Undefined",
+                ex: "Undefined"
+            }));
+
+            return batchAddVocabItems(jsonData);
+        }
+
+        // 快速批量添加语法（逗号分隔）
+        function quickBatchAddGrammar(rulesText) {
+            if (!currentParagraphForModal) return { success: 0, total: 0, errors: [] };
+
+            const rules = rulesText.split(',').map(rule => rule.trim()).filter(rule => rule);
+
+            const jsonData = rules.map(rule => ({
+                rule: rule,
+                cat: "S",
+                desc: "Undefined",
+                ex: "Undefined"
+            }));
+
+            return batchAddGrammarItems(jsonData);
+        }
+
+        // 显示批量操作结果
+        function showBatchResult(result, type) {
+            let message = '';
+
+            if (result.success > 0) {
+                message = `成功添加 ${result.success} 个${type === 'vocab' ? '单词' : '语法点'}`;
+                if (result.errors.length > 0) {
+                    message += `，${result.errors.length} 个失败`;
+                }
+            } else {
+                message = `添加失败: ${result.errors.join('; ')}`;
+            }
+
+            showTemporaryMessage(message);
+
+            // 如果有错误，在控制台显示详细错误
+            if (result.errors.length > 0) {
+                console.log('批量添加错误详情:', result.errors);
+            }
+        }
+
+
+        // 导入导出功能
+        function initImportExport() {
+            // 导入按钮事件
+            document.getElementById('import-articles-btn').addEventListener('click', function () {
+                showImportModal();
+            });
+
+            // 导出按钮事件
+            document.getElementById('export-articles-btn').addEventListener('click', function () {
+                showExportModal();
+            });
+
+            // 导入模态框事件
+            document.getElementById('cancel-import-btn').addEventListener('click', function () {
+                hideAllModals();
+            });
+
+            document.getElementById('confirm-import-btn').addEventListener('click', function () {
+                importArticles();
+            });
+
+            // 导出模态框事件
+            document.getElementById('cancel-export-btn').addEventListener('click', function () {
+                hideAllModals();
+            });
+
+            document.getElementById('confirm-export-btn').addEventListener('click', function () {
+                exportArticles();
+            });
+
+            // 导出类型切换事件
+            document.querySelectorAll('input[name="export-type"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    const selectionArea = document.getElementById('article-selection-area');
+                    if (this.value === 'selected') {
+                        selectionArea.style.display = 'block';
+                        renderArticleCheckboxes();
+                    } else {
+                        selectionArea.style.display = 'none';
+                    }
+                });
+            });
+
+            // 全选事件
+            document.getElementById('select-all-articles').addEventListener('change', function () {
+                const checkboxes = document.querySelectorAll('#article-checkboxes input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = this.checked;
+                });
+            });
+
+            // 导出格式切换事件
+            document.querySelectorAll('input[name="export-format"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    const filenameGroup = document.getElementById('export-filename-group');
+                    const filenameInput = document.getElementById('export-filename');
+
+                    if (this.value === 'single') {
+                        filenameGroup.style.display = 'block';
+                        filenameInput.placeholder = '例如: english_articles';
+                    } else {
+                        filenameGroup.style.display = 'block';
+                        filenameInput.placeholder = '将用作文件名前缀';
+                    }
+                });
+            });
+        }
+
+        // 显示导入模态框
+        function showImportModal() {
+            const modal = document.getElementById('import-articles-modal');
+            document.getElementById('import-file').value = '';
+            document.getElementById('import-overwrite').checked = false;
+            modal.classList.add('show');
+        }
+
+        // 显示导出模态框
+        function showExportModal() {
+            const modal = document.getElementById('export-articles-modal');
+
+            // 重置表单
+            document.getElementById('export-current').checked = true;
+            document.getElementById('export-single').checked = true;
+            document.getElementById('export-filename').value = 'english_articles';
+            document.getElementById('article-selection-area').style.display = 'none';
+
+            modal.classList.add('show');
+        }
+
+        // 渲染文章复选框
+        function renderArticleCheckboxes() {
+            const container = document.getElementById('article-checkboxes');
+            container.innerHTML = '';
+
+            articlesData.forEach(article => {
+                const div = document.createElement('div');
+                div.className = 'article-checkbox-item';
+
+                div.innerHTML = `
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="${article.id}" id="article-${article.id}">
+                <label class="form-check-label" for="article-${article.id}">
+                    ${article.title}
+                </label>
+            </div>
+        `;
+
+                container.appendChild(div);
+            });
+        }
+
+        // 导入文章
+        function importArticles() {
+            const fileInput = document.getElementById('import-file');
+            const overwrite = document.getElementById('import-overwrite').checked;
+
+            if (!fileInput.files.length) {
+                showTemporaryMessage('请选择要导入的文件');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            // 在importArticles函数中，处理导入后调用初始化
+            reader.onload = function (e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    let importedArticles = [];
+
+                    // 判断是单个文章还是文章数组
+                    if (Array.isArray(data)) {
+                        importedArticles = data;
+                    } else if (typeof data === 'object' && data !== null) {
+                        importedArticles = [data];
+                    } else {
+                        throw new Error('文件格式不正确：必须是单个文章对象或文章数组');
+                    }
+
+                    // 验证文章数据
+                    const validationResult = validateArticles(importedArticles);
+                    if (!validationResult.valid) {
+                        showTemporaryMessage(`导入失败：${validationResult.error}`);
+                        return;
+                    }
+
+                    // 导入文章前初始化
+                    importedArticles.forEach(article => initArtcleData(article));
+
+                    // 导入文章
+                    const importResult = processImport(importedArticles, overwrite);
+
+                    // 显示导入结果
+                    showImportResult(importResult);
+
+                    // 如果导入成功，重新渲染页面
+                    if (importResult.successCount > 0) {
+                        renderArticleMenu();
+                        renderPage();
+                    }
+
+                } catch (error) {
+                    showTemporaryMessage(`导入失败：${error.message}`);
+                }
+            };
+
+            reader.onerror = function () {
+                showTemporaryMessage('文件读取失败');
+            };
+
+            reader.readAsText(file);
+        }
+
+        // 验证文章数据
+        function validateArticles(articles) {
+            for (let i = 0; i < articles.length; i++) {
+                const article = articles[i];
+
+                if (!article.id || !article.title) {
+                    return {
+                        valid: false,
+                        error: `第 ${i + 1} 篇文章缺少必需的 id 或 title 字段`
+                    };
+                }
+
+                if (!article.paras || !Array.isArray(article.paras)) {
+                    return {
+                        valid: false,
+                        error: `文章 "${article.title}" 缺少 paras 字段或格式不正确`
+                    };
+                }
+
+                // 验证段落数据
+                for (let j = 0; j < article.paras.length; j++) {
+                    const para = article.paras[j];
+                    if (!para.id || !para.en || !para.cn) {
+                        return {
+                            valid: false,
+                            error: `文章 "${article.title}" 的第 ${j + 1} 个段落数据不完整`
+                        };
+                    }
+                }
+            }
+
+            return { valid: true };
+        }
+
+        // 处理导入
+        function processImport(importedArticles, overwrite) {
+            let successCount = 0;
+            let skipCount = 0;
+            let overwriteCount = 0;
+            const errors = [];
+
+            importedArticles.forEach(article => {
+                const existingIndex = articlesData.findIndex(a => a.id === article.id);
+
+                if (existingIndex !== -1) {
+                    if (overwrite) {
+                        // 覆盖现有文章
+                        articlesData[existingIndex] = article;
+                        overwriteCount++;
+                        successCount++;
+                    } else {
+                        // 跳过重复文章
+                        skipCount++;
+                        errors.push(`跳过重复文章: ${article.title} (ID: ${article.id})`);
+                    }
+                } else {
+                    // 添加新文章
+                    articlesData.push(article);
+                    successCount++;
+                }
+            });
+
+            return {
+                successCount,
+                skipCount,
+                overwriteCount,
+                errors,
+                total: importedArticles.length
+            };
+        }
+
+        // 显示导入结果
+        function showImportResult(result) {
+            let message = '';
+
+            if (result.successCount > 0) {
+                message = `成功导入 ${result.successCount} 篇文章`;
+                if (result.overwriteCount > 0) {
+                    message += `（覆盖 ${result.overwriteCount} 篇）`;
+                }
+                if (result.skipCount > 0) {
+                    message += `，跳过 ${result.skipCount} 篇重复文章`;
+                }
+            } else {
+                message = '没有成功导入任何文章';
+            }
+
+            showTemporaryMessage(message);
+
+            // 如果有错误，在控制台显示
+            if (result.errors.length > 0) {
+                console.log('导入详细结果:', result.errors);
+            }
+        }
+
+        // 导出文章
+        function exportArticles() {
+            const exportType = document.querySelector('input[name="export-type"]:checked').value;
+            const exportFormat = document.querySelector('input[name="export-format"]:checked').value;
+            const filename = document.getElementById('export-filename').value.trim() || 'english_articles';
+
+            let articlesToExport = [];
+
+            // 根据导出类型选择文章
+            if (exportType === 'current') {
+                // 导出当前文章
+                const currentArticle = getCurrentArticle();
+                articlesToExport = [currentArticle];
+            } else {
+                // 导出选中的文章
+                const selectedCheckboxes = document.querySelectorAll('#article-checkboxes input[type="checkbox"]:checked');
+                if (selectedCheckboxes.length === 0) {
+                    showTemporaryMessage('请选择要导出的文章');
+                    return;
+                }
+
+                selectedCheckboxes.forEach(checkbox => {
+                    const article = articlesData.find(a => a.id === checkbox.value);
+                    if (article) {
+                        articlesToExport.push(article);
+                    }
+                });
+            }
+
+            if (articlesToExport.length === 0) {
+                showTemporaryMessage('没有选择要导出的文章');
+                return;
+            }
+
+            // 根据导出格式执行导出
+            if (exportFormat === 'single') {
+                exportAsSingleFile(articlesToExport, filename);
+            } else {
+                exportAsMultipleFiles(articlesToExport, filename);
+            }
+
+            hideAllModals();
+            showTemporaryMessage(`成功导出 ${articlesToExport.length} 篇文章`);
+        }
+
+        // 导出为单个文件
+        function exportAsSingleFile(articles, filename) {
+            const dataStr = JSON.stringify(articles, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${filename}.json`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        // 导出为多个文件
+        function exportAsMultipleFiles(articles, filenamePrefix) {
+            articles.forEach(article => {
+                const dataStr = JSON.stringify(article, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+
+                // 清理文件名（移除特殊字符）
+                const cleanTitle = article.title.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '_');
+                link.download = `${filenamePrefix}_${cleanTitle}.json`;
+
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            });
+        }
+
+        // 语音朗读功能
+        const speechState = {
+            isPlaying: false,
+            currentUtterance: null,
+            currentParagraphId: null
+        };
+
+        // 创建语音SVG图标
+        // 修改SVG图标创建函数，添加size参数
+        function createSpeechIcon(size = 20) {
+            return `
+        <svg class="speech-icon" viewBox="0 0 24 24" fill="currentColor" width="${size}" height="${size}">
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+    `;
+        }
+
+        // 创建停止语音SVG图标
+        function createStopSpeechIcon(size = 20) {
+            return `
+        <svg class="speech-icon" viewBox="0 0 24 24" fill="currentColor" width="${size}" height="${size}">
+            <path d="M6 6h12v12H6z"/>
+        </svg>
+    `;
+        }
+
+        // 单词发音图标
+        function createWordSpeechIcon() {
+            return createSpeechIcon(16);
+        }
+
+        function createWordStopSpeechIcon() {
+            return createStopSpeechIcon(16);
+        }
+
+        // 初始化语音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                console.warn('浏览器不支持语音合成功能');
+                return false;
+            }
+            return true;
+        }
+
+        // 朗读文本
+        function speakText(text, paragraphId) {
+            if (speechState.isPlaying) {
+                stopSpeech();
+                return;
+            }
+
+            if (!initSpeechSynthesis()) {
+                showTemporaryMessage('您的浏览器不支持语音朗读功能');
+                return;
+            }
+
+            // 停止当前正在播放的语音
+            window.speechSynthesis.cancel();
+
+            // 创建新的语音实例
+            const utterance = new SpeechSynthesisUtterance(text);
+
+            // 设置语音参数
+            utterance.rate = 0.9;    // 语速
+            utterance.pitch = 1.0;   // 音调
+            utterance.volume = 1.0;  // 音量
+
+            // 尝试设置英语语音
+            const voices = window.speechSynthesis.getVoices();
+            const englishVoice = voices.find(voice =>
+                voice.lang.startsWith('en') && voice.localService
+            );
+
+            if (englishVoice) {
+                utterance.voice = englishVoice;
+            } else if (voices.length > 0) {
+                utterance.voice = voices[0];
+            }
+
+            // 更新状态
+            speechState.isPlaying = true;
+            speechState.currentUtterance = utterance;
+            speechState.currentParagraphId = paragraphId;
+
+            // 更新按钮状态
+            updateSpeechButtonState(paragraphId, true);
+
+            // 事件监听
+            utterance.onstart = function () {
+                console.log('开始朗读段落:', paragraphId);
+            };
+
+            utterance.onend = function () {
+                console.log('朗读结束');
+                speechState.isPlaying = false;
+                speechState.currentUtterance = null;
+                speechState.currentParagraphId = null;
+                updateSpeechButtonState(paragraphId, false);
+            };
+
+            utterance.onerror = function (event) {
+                console.error('语音朗读错误:', event.error);
+                speechState.isPlaying = false;
+                speechState.currentUtterance = null;
+                speechState.currentParagraphId = null;
+                updateSpeechButtonState(paragraphId, false);
+
+                let errorMessage = '语音朗读失败';
+                switch (event.error) {
+                    case 'interrupted':
+                        errorMessage = '语音朗读被中断';
+                        break;
+                    case 'audio-busy':
+                        errorMessage = '音频设备繁忙';
+                        break;
+                    case 'audio-hardware':
+                        errorMessage = '音频硬件错误';
+                        break;
+                    case 'network':
+                        errorMessage = '网络错误';
+                        break;
+                    case 'synthesis-unavailable':
+                        errorMessage = '语音合成不可用';
+                        break;
+                }
+                showTemporaryMessage(errorMessage);
+            };
+
+            // 开始朗读
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // 停止语音朗读
+        function stopSpeech() {
+            if (window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+                speechState.isPlaying = false;
+                speechState.currentUtterance = null;
+
+                if (speechState.currentParagraphId) {
+                    updateSpeechButtonState(speechState.currentParagraphId, false);
+                    speechState.currentParagraphId = null;
+                }
+            }
+        }
+
+        // 更新语音按钮状态
+        function updateSpeechButtonState(paragraphId, isPlaying) {
+            const speechBtn = document.querySelector(`.speech-btn[data-paragraph-id="${paragraphId}"]`);
+            const speechIcon = speechBtn?.querySelector('.speech-icon');
+            const speechText = speechBtn?.querySelector('.speech-text');
+
+            if (speechBtn && speechIcon && speechText) {
+                if (isPlaying) {
+                    speechBtn.classList.add('playing');
+                    speechIcon.innerHTML = createWordStopSpeechIcon();
+                    speechText.textContent = '停止朗读';
+                } else {
+                    speechBtn.classList.remove('playing');
+                    speechIcon.innerHTML = createWordSpeechIcon();
+                    speechText.textContent = '朗读此段';
+                }
+            }
+        }
+
+        // 创建语音控制组件
+        function createSpeechControl(paragraph) {
+            const speechControl = document.createElement('span');
+            speechControl.className = 'speech-control';
+
+            const speechBtn = document.createElement('button');
+            speechBtn.className = 'speech-btn';
+            speechBtn.setAttribute('data-paragraph-id', paragraph.id);
+            speechBtn.setAttribute('title', '朗读此段英文内容');
+
+            speechBtn.innerHTML = `
+        ${createSpeechIcon()}
+        <span class="speech-text">朗读此段</span>
+    `;
+
+            speechBtn.addEventListener('click', function () {
+                speakText(paragraph.en, paragraph.id);
+            });
+
+            speechControl.appendChild(speechBtn);
+
+            return speechControl;
+        }
+
+        // 在页面失去焦点时暂停语音
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden && speechState.isPlaying) {
+                stopSpeech();
+            }
+        });
+
+        // 在页面卸载时停止语音
+        window.addEventListener('beforeunload', function () {
+            stopSpeech();
+        });
+
+        // 增强的语音控制功能（可选）
+        function createEnhancedSpeechControl(paragraph) {
+            const speechControl = document.createElement('div');
+            speechControl.className = 'speech-control';
+
+            const controlsContainer = document.createElement('div');
+            controlsContainer.style.display = 'flex';
+            controlsContainer.style.alignItems = 'center';
+            controlsContainer.style.gap = '10px';
+            controlsContainer.style.width = '100%';
+            controlsContainer.style.justifyContent = 'space-between';
+
+            // 主朗读按钮
+            const speechBtn = document.createElement('button');
+            speechBtn.className = 'speech-btn';
+            speechBtn.setAttribute('data-paragraph-id', paragraph.id);
+            speechBtn.setAttribute('title', '朗读此段英文内容');
+
+            speechBtn.innerHTML = `
+        ${createSpeechIcon()}
+        <span class="speech-text">朗读此段</span>
+    `;
+
+            speechBtn.addEventListener('click', function () {
+                speakText(paragraph.en, paragraph.id);
+            });
+
+            // 语速控制（可选）
+            const speedControl = document.createElement('div');
+            speedControl.style.display = 'flex';
+            speedControl.style.alignItems = 'center';
+            speedControl.style.gap = '5px';
+
+            const speedLabel = document.createElement('span');
+            speedLabel.className = 'speech-text';
+            speedLabel.textContent = '语速:';
+            speedLabel.style.fontSize = '0.7rem';
+
+            const speedSelect = document.createElement('select');
+            speedSelect.style.fontSize = '0.7rem';
+            speedSelect.style.padding = '2px 4px';
+            speedSelect.style.border = '1px solid var(--border-color)';
+            speedSelect.style.borderRadius = '3px';
+            speedSelect.style.background = 'white';
+
+            const speeds = [
+                { value: 0.7, label: '慢速' },
+                { value: 0.9, label: '常速' },
+                { value: 1.1, label: '快速' },
+                { value: 1.3, label: '倍速' }
+            ];
+
+            speeds.forEach(speed => {
+                const option = document.createElement('option');
+                option.value = speed.value;
+                option.textContent = speed.label;
+                if (speed.value === 0.9) option.selected = true;
+                speedSelect.appendChild(option);
+            });
+
+            speedSelect.addEventListener('change', function () {
+                // 可以在这里保存用户偏好的语速
+                localStorage.setItem('preferredSpeechRate', this.value);
+            });
+
+            // 加载保存的语速设置
+            const savedRate = localStorage.getItem('preferredSpeechRate');
+            if (savedRate) {
+                speedSelect.value = savedRate;
+            }
+
+            speedControl.appendChild(speedLabel);
+            speedControl.appendChild(speedSelect);
+
+            controlsContainer.appendChild(speechBtn);
+            controlsContainer.appendChild(speedControl);
+
+            speechControl.appendChild(controlsContainer);
+
+            return speechControl;
+        }
+
+        // 单词发音功能
+        const wordSpeechState = {
+            isPlaying: false,
+            currentUtterance: null,
+            currentWord: null
+        };
+
+        // 朗读单词
+        function speakWord(word, element = null) {
+            if (wordSpeechState.isPlaying) {
+                stopWordSpeech();
+                return;
+            }
+
+            if (!initSpeechSynthesis()) {
+                showTemporaryMessage('您的浏览器不支持语音朗读功能');
+                return;
+            }
+
+            // 停止当前正在播放的语音
+            window.speechSynthesis.cancel();
+
+            // 创建新的语音实例
+            const utterance = new SpeechSynthesisUtterance(word);
+
+            // 设置语音参数
+            utterance.rate = 0.8;    // 单词朗读稍慢一些
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+
+            // 尝试设置英语语音
+            const voices = window.speechSynthesis.getVoices();
+            const englishVoice = voices.find(voice =>
+                voice.lang.startsWith('en') && voice.localService
+            );
+
+            if (englishVoice) {
+                utterance.voice = englishVoice;
+            } else if (voices.length > 0) {
+                utterance.voice = voices[0];
+            }
+
+            // 更新状态
+            wordSpeechState.isPlaying = true;
+            wordSpeechState.currentUtterance = utterance;
+            wordSpeechState.currentWord = word;
+
+            // 更新按钮状态
+            if (element) {
+                updateWordSpeechButtonState(element, true);
+            }
+
+            // 事件监听
+            utterance.onstart = function () {
+                console.log('开始朗读单词:', word);
+            };
+
+            utterance.onend = function () {
+                console.log('单词朗读结束');
+                wordSpeechState.isPlaying = false;
+                wordSpeechState.currentUtterance = null;
+                wordSpeechState.currentWord = null;
+                if (element) {
+                    updateWordSpeechButtonState(element, false);
+                }
+            };
+
+            utterance.onerror = function (event) {
+                console.error('单词语音朗读错误:', event.error);
+                wordSpeechState.isPlaying = false;
+                wordSpeechState.currentUtterance = null;
+                wordSpeechState.currentWord = null;
+                if (element) {
+                    updateWordSpeechButtonState(element, false);
+                }
+
+                let errorMessage = '单词语音朗读失败';
+                switch (event.error) {
+                    case 'interrupted':
+                        errorMessage = '语音朗读被中断';
+                        break;
+                    case 'audio-busy':
+                        errorMessage = '音频设备繁忙';
+                        break;
+                    case 'audio-hardware':
+                        errorMessage = '音频硬件错误';
+                        break;
+                    case 'network':
+                        errorMessage = '网络错误';
+                        break;
+                    case 'synthesis-unavailable':
+                        errorMessage = '语音合成不可用';
+                        break;
+                }
+                showTemporaryMessage(errorMessage);
+            };
+
+            // 开始朗读
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // 停止单词语音朗读
+        function stopWordSpeech() {
+            if (window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+                wordSpeechState.isPlaying = false;
+                wordSpeechState.currentUtterance = null;
+                wordSpeechState.currentWord = null;
+            }
+        }
+
+        // 更新单词语音按钮状态
+        function updateWordSpeechButtonState(element, isPlaying) {
+            const speechBtn = element.closest('.word-speech-btn');
+            const speechIcon = speechBtn?.querySelector('.word-speech-icon');
+
+            if (speechBtn && speechIcon) {
+                if (isPlaying) {
+                    speechBtn.classList.add('playing');
+                    speechIcon.innerHTML = createStopSpeechIcon();
+                } else {
+                    speechBtn.classList.remove('playing');
+                    speechIcon.innerHTML = createSpeechIcon();
+                }
+            }
+        }
+
+        // 创建单词发音按钮
+        function createWordSpeechButton(word) {
+            const speechBtn = document.createElement('button');
+            speechBtn.className = 'word-speech-btn';
+            speechBtn.setAttribute('title', `朗读单词: ${word}`);
+            speechBtn.setAttribute('aria-label', `朗读单词 ${word}`);
+
+            speechBtn.innerHTML = createWordSpeechIcon();
+
+            speechBtn.addEventListener('click', function (e) {
+                e.stopPropagation(); // 防止事件冒泡
+                speakWord(word, this);
+            });
+
+            return speechBtn;
+        }
+
+        // 修改创建单词标题的函数，添加删除按钮
+        // 创建单词头部（包含单词、词性、发音按钮和删除按钮）
+        function createWordHeader(vocab, paragraph, index) {
+            const wordHeader = document.createElement('div');
+            wordHeader.className = 'word-header';
+
+            // 单词信息区域
+            const wordInfo = document.createElement('div');
+            wordInfo.className = 'word-info';
+
+            // 单词文本
+            const wordElement = document.createElement('div');
+            wordElement.className = 'word-text';
+            wordElement.textContent = vocab.word;
+
+            // 词性标签
+            if (vocab.pos && vocab.pos.trim()) {
+                const posTag = document.createElement('span');
+                posTag.className = 'pos-tag';
+
+                const currentArticle = getCurrentArticle();
+                const posType = currentArticle.pos_types && currentArticle.pos_types[vocab.pos]
+                    ? currentArticle.pos_types[vocab.pos]
+                    : { en: vocab.pos, cn: vocab.pos };
+
+                posTag.textContent = posType.cn || posType.en || vocab.pos;
+                posTag.title = `${posType.en} - ${posType.cn}`;
+
+                wordInfo.appendChild(wordElement);
+                wordInfo.appendChild(posTag);
+            } else {
+                wordInfo.appendChild(wordElement);
+            }
+
+            // 单词操作区域
+            const wordActions = document.createElement('div');
+            wordActions.className = 'word-actions';
+
+            // 发音按钮
+            const speechBtn = createWordSpeechButton(vocab.word);
+            wordActions.appendChild(speechBtn);
+
+            // 删除按钮
+            const deleteBtn = createDeleteButton(vocab, paragraph, index);
+            wordActions.appendChild(deleteBtn);
+
+            wordHeader.appendChild(wordInfo);
+            wordHeader.appendChild(wordActions);
+
+            return wordHeader;
+        }
+        // 创建删除按钮
+        function createDeleteButton(vocab, paragraph, index) {
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.setAttribute('title', `删除单词: ${vocab.word}`);
+            deleteBtn.setAttribute('aria-label', `删除单词 ${vocab.word}`);
+
+            // 创建SVG叉号图标
+            deleteBtn.innerHTML = `
+        <svg class="delete-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 6L18 18M6 18L18 6"/>
+        </svg>
+    `;
+
+            deleteBtn.addEventListener('click', function (e) {
+                e.stopPropagation(); // 防止事件冒泡
+                deleteVocabItem(vocab, paragraph, index);
+            });
+
+            return deleteBtn;
+        }
+
+        // 删除单词功能
+        function deleteVocabItem(vocab, paragraph, index) {
+            if (!confirm(`确定要删除单词 "${vocab.word}" 吗？`)) {
+                return;
+            }
+
+            const currentArticle = getCurrentArticle();
+            const currentParagraph = currentArticle.paras.find(p => p.id === paragraph.id);
+
+            if (currentParagraph && currentParagraph.vocab) {
+                // 从数组中删除指定索引的单词
+                currentParagraph.vocab.splice(index, 1);
+
+                // 重新构建词典并渲染页面
+                buildWordDictionary();
+                renderPage();
+
+                showTemporaryMessage(`已删除单词: "${vocab.word}"`);
+            }
+        }
+
+        function createGrammarDeleteButton(grammar, paragraph, index) {
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.setAttribute('title', `删除语法点: ${grammar.rule}`);
+            deleteBtn.setAttribute('aria-label', `删除语法点 ${grammar.rule}`);
+
+            deleteBtn.innerHTML = `
+        <svg class="delete-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 6L18 18M6 18L18 6"/>
+        </svg>
+    `;
+
+            deleteBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                deleteGrammarItem(grammar, paragraph, index);
+            });
+
+            return deleteBtn;
+        }
+        // 删除语法功能
+        function deleteGrammarItem(grammar, paragraph, index) {
+            if (!confirm(`确定要删除语法点 "${grammar.rule}" 吗？`)) {
+                return;
+            }
+
+            const currentArticle = getCurrentArticle();
+            const currentParagraph = currentArticle.paras.find(p => p.id === paragraph.id);
+
+            if (currentParagraph && currentParagraph.gram) {
+                currentParagraph.gram.splice(index, 1);
+                renderPage();
+                showTemporaryMessage(`已删除语法点: "${grammar.rule}"`);
+            }
+        }
+        function initGlobalSpeechControl() {
+            // 在页面失去焦点时暂停所有语音
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) {
+                    stopSpeech();
+                    stopWordSpeech();
+                }
+            });
+
+            // 在页面卸载时停止所有语音
+            window.addEventListener('beforeunload', function () {
+                stopSpeech();
+                stopWordSpeech();
+            });
+
+            // ESC键停止所有语音
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    stopSpeech();
+                    stopWordSpeech();
+                }
+            });
+        }
+
+
+        // 动态导入功能
+        function initDynamicImport() {
+            // 动态导入按钮事件
+            document.getElementById('dynamic-import-btn').addEventListener('click', function () {
+                showDynamicImportModal();
+            });
+
+            // 动态导入模态框事件
+            document.getElementById('cancel-dynamic-import-btn').addEventListener('click', function () {
+                hideAllModals();
+            });
+
+            document.getElementById('confirm-dynamic-import-btn').addEventListener('click', function () {
+                startDynamicImport();
+            });
+
+            // 预设库按钮事件
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const url = this.getAttribute('data-url');
+                    document.getElementById('js-file-url').value = url;
+                });
+            });
+        }
+
+        // 显示动态导入模态框
+        function showDynamicImportModal() {
+            const modal = document.getElementById('dynamic-import-modal');
+            document.getElementById('js-file-url').value = '';
+            document.getElementById('dynamic-overwrite').checked = true;
+            document.getElementById('dynamic-merge').checked = true;
+
+            // 隐藏进度和结果
+            document.querySelector('.import-progress').style.display = 'none';
+            document.getElementById('dynamic-import-result').style.display = 'none';
+
+            modal.classList.add('show');
+        }
+
+        // 开始动态导入
+        function startDynamicImport() {
+            const url = document.getElementById('js-file-url').value.trim();
+            const overwrite = document.getElementById('dynamic-overwrite').checked;
+            const merge = document.getElementById('dynamic-merge').checked;
+
+            if (!url) {
+                showTemporaryMessage('请输入文件URL');
+                return;
+            }
+
+            // 显示进度
+            const progressContainer = document.querySelector('.import-progress');
+            const progressBar = progressContainer.querySelector('.progress-bar');
+            const progressText = progressContainer.querySelector('.progress-text');
+
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+            progressBar.textContent = '0%';
+            progressText.textContent = '正在加载JS文件...';
+
+            // 禁用按钮
+            const confirmBtn = document.getElementById('confirm-dynamic-import-btn');
+            const cancelBtn = document.getElementById('cancel-dynamic-import-btn');
+            confirmBtn.disabled = true;
+            cancelBtn.disabled = true;
+
+            // 创建加载状态提示
+            const loadingStatus = createLoadingStatus('正在导入文章，请稍候...');
+            document.body.appendChild(loadingStatus);
+
+            // 动态加载JS文件
+            loadExternalJS(url)
+                .then(articles => {
+                    updateDataProgress(50, '正在处理文章数据...');
+
+                    // 处理导入的文章
+                    const result = processDynamicImport(articles, overwrite, merge);
+
+                    updateDataProgress(100, '导入完成！');
+
+                    // 显示导入结果
+                    showDynamicImportResult(result);
+
+                    // 如果导入成功，重新渲染页面
+                    if (result.successCount > 0) {
+                        setTimeout(() => {
+                            renderArticleMenu();
+                            renderPage();
+                        }, 1000);
+                    }
+                })
+                .catch(error => {
+                    console.error('动态导入失败:', error);
+                    showDynamicImportResult({
+                        successCount: 0,
+                        total: 0,
+                        errors: [`导入失败: ${error.message}`]
+                    });
+                })
+                .finally(() => {
+                    // 恢复按钮状态
+                    confirmBtn.disabled = false;
+                    cancelBtn.disabled = false;
+
+                    // 移除加载状态
+                    document.body.removeChild(loadingStatus);
+                });
+        }
+
+        // 动态加载外部JS文件
+        function loadExternalJS(url) {
+            return new Promise((resolve, reject) => {
+                // 检查是否已经加载过相同的URL
+                const existingScript = document.querySelector(`script[data-imported-url="${url}"]`);
+                if (existingScript) {
+                    // 如果已经加载过，直接从全局变量获取
+                    const articles = getArticlesFromGlobal();
+                    if (articles && articles.length > 0) {
+                        resolve(articles);
+                        return;
+                    }
+                }
+
+                // 创建script标签
+                const script = document.createElement('script');
+                script.src = url;
+                script.setAttribute('data-imported-url', url);
+
+                // 设置超时
+                const timeoutId = setTimeout(() => {
+                    reject(new Error('加载超时，请检查网络连接和文件URL'));
+                }, 30000);
+
+                script.onload = function () {
+                    clearTimeout(timeoutId);
+
+                    // 从全局变量获取文章数据
+                    const articles = getArticlesFromGlobal();
+
+                    if (articles && articles.length > 0) {
+                        resolve(articles);
+                    } else {
+                        reject(new Error('JS文件未导出有效的文章数据'));
+                    }
+                };
+
+                script.onerror = function () {
+                    clearTimeout(timeoutId);
+                    reject(new Error('无法加载JS文件，请检查URL是否正确'));
+                };
+
+                document.head.appendChild(script);
+            });
+        }
+
+        // 从全局变量获取文章数据（支持多种导出格式）
+        function getArticlesFromGlobal() {
+            // 支持多种可能的全局变量名
+            const possibleGlobals = [
+                'externalArticles',
+                'articlesData',
+                'englishArticles',
+                'articleLibrary',
+                'window.articles',
+                'articles'
+            ];
+
+            for (const globalName of possibleGlobals) {
+                try {
+                    // 尝试从window对象获取
+                    let articles = window[globalName];
+
+                    // 如果直接是数组，返回
+                    if (Array.isArray(articles)) {
+                        return articles;
+                    }
+
+                    // 如果是对象，尝试从default属性获取
+                    if (articles && articles.default && Array.isArray(articles.default)) {
+                        return articles.default;
+                    }
+                } catch (error) {
+                    // 忽略错误，继续尝试下一个
+                    continue;
+                }
+            }
+
+            return null;
+        }
+
+        // 处理动态导入的文章数据
+        function processDynamicImport(importedArticles, overwrite, merge) {
+            let successCount = 0;
+            let skipCount = 0;
+            let overwriteCount = 0;
+            const errors = [];
+
+            // 验证文章数据
+            const validationResult = validateArticles(importedArticles);
+            if (!validationResult.valid) {
+                return {
+                    successCount: 0,
+                    skipCount: 0,
+                    overwriteCount: 0,
+                    errors: [validationResult.error],
+                    total: importedArticles.length
+                };
+            }
+
+            // 如果不合并，清空现有文章（除了当前文章）
+            if (!merge) {
+                const currentArticleId = appState.currentArticleId;
+                articlesData.length = 0;
+                // 保留当前文章
+                const currentArticle = getCurrentArticle();
+                if (currentArticle) {
+                    articlesData.push(currentArticle);
+                }
+            }
+
+            // 处理每篇文章
+            importedArticles.forEach(article => {
+                initArtcleData(article);
+                const existingIndex = articlesData.findIndex(a => a.id === article.id);
+
+                if (existingIndex !== -1) {
+                    if (overwrite) {
+                        // 覆盖现有文章
+                        articlesData[existingIndex] = article;
+                        overwriteCount++;
+                        successCount++;
+                    } else {
+                        // 跳过重复文章
+                        skipCount++;
+                        errors.push(`跳过重复文章: ${article.title} (ID: ${article.id})`);
+                    }
+                } else {
+                    // 添加新文章
+                    console.log("new article", article);
+                    articlesData.push(article);
+                    successCount++;
+                }
+            });
+
+            return {
+                successCount,
+                skipCount,
+                overwriteCount,
+                errors,
+                total: importedArticles.length
+            };
+        }
+
+        // 更新导入进度
+        function updateDataProgress(percent, text) {
+            const progressBar = document.querySelector('.import-progress .progress-bar');
+            const progressText = document.querySelector('.import-progress .progress-text');
+
+            if (progressBar && progressText) {
+                progressBar.style.width = percent + '%';
+                progressBar.textContent = percent + '%';
+                progressText.textContent = text;
+            }
+        }
+
+        // 显示动态导入结果
+        function showDynamicImportResult(result) {
+            const resultContainer = document.getElementById('dynamic-import-result');
+            let html = '';
+
+            if (result.successCount > 0) {
+                html = `<div class="import-result success">
+            <strong>导入成功！</strong><br>
+            成功导入/更新: ${result.successCount} 篇文章<br>
+            ${result.overwriteCount > 0 ? `覆盖: ${result.overwriteCount} 篇<br>` : ''}
+            ${result.skipCount > 0 ? `跳过重复: ${result.skipCount} 篇<br>` : ''}
+            总计处理: ${result.total} 篇
+        </div>`;
+            } else {
+                html = `<div class="import-result error">
+            <strong>导入失败！</strong><br>
+            ${result.errors.join('<br>')}
+        </div>`;
+            }
+
+            resultContainer.innerHTML = html;
+            resultContainer.style.display = 'block';
+
+            // 滚动到结果区域
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 创建加载状态提示
+        function createLoadingStatus(message) {
+            const status = document.createElement('div');
+            status.className = 'batch-operation-status';
+            status.innerHTML = `
+        <div class="loading-spinner"></div>
+        <div>${message}</div>
+    `;
+            return status;
+        }
+
+        // 批量导入示例函数（用于测试）
+        function demoBatchImport() {
+            // 这是一个示例函数，展示如何批量导入
+            const demoArticles = [
+                {
+                    "id": "demo_1",
+                    "title": "示例文章 1",
+                    "info": {
+                        "author": "系统",
+                        "source": "示例库",
+                        "level": "B1",
+                        "tags": ["示例"]
+                    },
+                    "gram_types": {
+                        "S": "Sentence Structure",
+                        "T": "Tense",
+                        "C": "Clause",
+                        "P": "Punctuation",
+                        "W": "Word Form / Morphology",
+                        "O": "Others"
+                    },
+                    "paras": [
+                        {
+                            "id": 1,
+                            "en": "This is a demo paragraph for testing.",
+                            "cn": "这是一个用于测试的示例段落。",
+                            "vocab": [
+                                {
+                                    "word": "demo",
+                                    "ph": "/ˈdeməʊ/",
+                                    "mean": "演示",
+                                    "ex": "This is just a demo version."
+                                }
+                            ],
+                            "gram": [
+                                {
+                                    "rule": "simple present tense",
+                                    "cat": "T",
+                                    "desc": "一般现在时用法",
+                                    "ex": "I work every day."
+                                }
+                            ]
+                        }
+                    ],
+                    "note": "这是一个示例文章"
+                }
+                // 可以添加更多示例文章...
+            ];
+
+            return processDynamicImport(demoArticles, true, true);
+        }
+
+        // 文章目录功能
+        function initArticleCatalog() {
+            const catalog = document.getElementById('article-catalog');
+            const catalogToggle = document.getElementById('catalog-toggle');
+            const catalogClose = document.getElementById('catalog-close');
+            const catalogSearch = document.getElementById('catalog-search');
+            const catalogList = document.getElementById('catalog-list');
+            const catalogStats = document.getElementById('catalog-stats');
+            const refreshCatalog = document.getElementById('refresh-catalog');
+
+            // 切换目录显示
+            catalogToggle.addEventListener('click', function () {
+                catalog.classList.add('show');
+                renderCatalogList();
+            });
+
+            // 关闭目录
+            catalogClose.addEventListener('click', function () {
+                catalog.classList.remove('show');
+            });
+
+            // 点击目录外部关闭
+            document.addEventListener('click', function (e) {
+                if (!catalog.contains(e.target) && !catalogToggle.contains(e.target) && catalog.classList.contains('show')) {
+                    catalog.classList.remove('show');
+                }
+            });
+
+            // 搜索功能
+            catalogSearch.addEventListener('input', function () {
+                renderCatalogList(this.value.trim());
+            });
+
+            // 刷新目录
+            refreshCatalog.addEventListener('click', function () {
+                renderCatalogList();
+                showTemporaryMessage('目录已刷新');
+            });
+
+            // 初始渲染目录
+            renderCatalogList();
+        }
+
+        // 渲染目录列表
+        function renderCatalogList(searchTerm = '') {
+            const catalogList = document.getElementById('catalog-list');
+            const catalogStats = document.getElementById('catalog-stats');
+
+            // 过滤文章
+            let filteredArticles = articlesData;
+            if (searchTerm) {
+                const searchLower = searchTerm.toLowerCase();
+                filteredArticles = articlesData.filter(article => {
+                    return (
+                        article.title.toLowerCase().includes(searchLower) ||
+                        (article.info.author && article.info.author.toLowerCase().includes(searchLower)) ||
+                        (article.info.tags && article.info.tags.some(tag => tag.toLowerCase().includes(searchLower))) ||
+                        (article.info.level && article.info.level.toLowerCase().includes(searchLower))
+                    );
+                });
+            }
+
+            // 更新统计信息
+            catalogStats.textContent = `共加载 ${filteredArticles.length} 篇文章${searchTerm ? ` (搜索: "${searchTerm}")` : ''}`;
+
+            // 清空列表
+            catalogList.innerHTML = '';
+
+            if (filteredArticles.length === 0) {
+                catalogList.innerHTML = `
+            <div style="padding: 40px 20px; text-align: center; color: var(--text-light);">
+                <i class="bi bi-search" style="font-size: 2rem; margin-bottom: 10px; display: block;"></i>
+                <div>没有找到匹配的文章</div>
+            </div>
+        `;
+                return;
+            }
+
+            // 渲染文章列表
+            filteredArticles.forEach(article => {
+                const catalogItem = document.createElement('div');
+                catalogItem.className = `article-catalog-item ${article.id === appState.currentArticleId ? 'active' : ''}`;
+                catalogItem.setAttribute('data-article-id', article.id);
+
+                // 构建标签HTML
+                const tagsHtml = article.info.tags && article.info.tags.length > 0
+                    ? article.info.tags.map(tag => `<span class="catalog-tag">${tag}</span>`).join('')
+                    : '';
+
+                // 构建元数据HTML
+                const metaHtml = `
+            <span>${article.info.author || '未知作者'}</span>
+            ${article.info.level ? `<span class="catalog-item-level">${article.info.level}</span>` : ''}
+        `;
+
+                catalogItem.innerHTML = `
+            <div class="catalog-item-title">${article.title}</div>
+            <div class="catalog-item-meta">${metaHtml}</div>
+            ${tagsHtml ? `<div class="catalog-item-tags">${tagsHtml}</div>` : ''}
+        `;
+
+                // 添加点击事件
+                catalogItem.addEventListener('click', function () {
+                    switchArticle(article.id);
+                    document.getElementById('article-catalog').classList.remove('show');
+                });
+
+                catalogList.appendChild(catalogItem);
+            });
+        }
+        // 更新目录中的当前文章高亮
+        function updateCatalogHighlight() {
+            document.querySelectorAll('.article-catalog-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-article-id') === appState.currentArticleId) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        document.addEventListener('keydown', function (e) {
+            // Ctrl + K 或 Cmd + K 打开目录
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                const catalog = document.getElementById('article-catalog');
+                if (catalog.classList.contains('show')) {
+                    catalog.classList.remove('show');
+                } else {
+                    catalog.classList.add('show');
+                    renderCatalogList();
+                    // 聚焦搜索框
+                    document.getElementById('catalog-search').focus();
+                }
+            }
+            // ESC 键关闭目录
+            if (e.key === 'Escape' && document.getElementById('article-catalog').classList.contains('show')) {
+                document.getElementById('article-catalog').classList.remove('show');
+            }
+        });
+        // 在页面加载完成后初始化选择功能
+        document.addEventListener('DOMContentLoaded', function () {
+            // ... 其他初始化代码 ...
+            initGlobalSpeechControl();
+
+        });
+    </script>
+</body>
+
+</html>

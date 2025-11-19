@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>纯 JS 状态驱动测试</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+        // 1. 创建状态对象
+        function createState(initialValue, onChange) {
+            let value = initialValue;
+            return {
+                get: () => value,
+                set: (newValue) => {
+                    value = newValue;
+                    onChange(value); // 数据改变时回调
+                }
+            };
+        }
+        // 2. 渲染函数
+        function render(state) {
+            app.innerHTML = `
+        <p>Count: ${state.get()}</p>
+        <button id="incBtn">加 1</button>
+      `;
+            document.getElementById('incBtn').onclick = () => {
+                state.set(state.get() + 1);
+            };
+        }
+        // 3. 初始化
+        const app = document.getElementById('app');
+        const countState = createState(0, () => render(countState));
+
+
+        render(countState); // 首次渲染
+    </script>
+</body>
+
+</html>

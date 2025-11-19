@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TextAnalyzer Test</title>
+</head>
+<body>
+
+<script type="module">
+    import { TextAnalyzer } from './textAnalyzer.js';
+
+    const analyzer = new TextAnalyzer("This is a sample text. The quick brown fox.", {
+        stopWords: ["the", "is", "a"],
+        nGram: 2
+    });
+    console.log(analyzer);
+
+    console.log(analyzer.getStats());
+    console.log(analyzer.getTopWords());
+    console.log(analyzer.exportCSV());
+</script>
+
+</body>
+</html>
